@@ -1,235 +1,231 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mini Casino</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;background:#10121a;color:#fff;font-family:Arial,sans-serif}
-.app{max-width:520px;margin:auto;padding:18px 16px 90px}
-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
-h1{font-size:22px;margin:0}
-.balance{font-weight:bold;color:#ffd54a}
-.screen{display:none}
-.screen.active{display:block}
-.card{background:#1b1f2b;border-radius:18px;padding:20px;margin-bottom:15px}
-button{width:100%;padding:15px;margin:7px 0;border:0;border-radius:13px;background:#303747;color:white;font-size:16px;font-weight:bold}
-button:active{transform:scale(.98)}
-.primary{background:#e8b93e;color:#17130a}
-.big{font-size:55px;text-align:center}
-.reels{text-align:center;font-size:48px;padding:25px 0}
-.roulette{text-align:center;font-size:70px;padding:20px}
-.result{text-align:center;min-height:25px;margin:15px 0}
-nav{position:fixed;bottom:0;left:0;right:0;margin:auto;max-width:520px;display:grid;grid-template-columns:repeat(4,1fr);background:#181b25;border-top:1px solid #333}
-nav button{margin:0;border-radius:0;background:transparent;font-size:12px;padding:12px 4px}
-.history div{padding:9px 0;border-bottom:1px solid #303442}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мини-казино</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(160deg, #111827, #020617);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .casino {
+      width: 100%;
+      max-width: 430px;
+      padding: 24px 18px 30px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    .subtitle {
+      color: #9ca3af;
+      margin-bottom: 22px;
+    }
+
+    .balance {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 22px;
+    }
+
+    .balance-title {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 5px;
+    }
+
+    .coins {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .machine {
+      background: rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 22px 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .slots {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 10px 0 22px;
+    }
+
+    .slot {
+      width: 82px;
+      height: 82px;
+      background: #fff;
+      color: #111827;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.3);
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 16px;
+      padding: 16px;
+      font-size: 19px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #f59e0b;
+      color: #111827;
+    }
+
+    button:disabled {
+      opacity: .5;
+    }
+
+    .message {
+      min-height: 28px;
+      margin-top: 16px;
+      font-weight: bold;
+    }
+
+    .info {
+      color: #9ca3af;
+      font-size: 13px;
+      margin-top: 18px;
+    }
+  </style>
 </head>
 
 <body>
-<div class="app">
 
-<header>
-<h1>🎰 Mini Casino</h1>
-<div class="balance">🪙 <span id="balance">1000</span></div>
-</header>
+  <div class="casino">
 
-<section id="home" class="screen active">
-<div class="card">
-<div class="big">🎰</div>
-<h2 style="text-align:center">Добро пожаловать</h2>
-<p style="text-align:center">Демо-игра на виртуальные монеты</p>
-</div>
+    <h1>🎰 Мини-казино</h1>
+    <div class="subtitle">Демо-игра с виртуальными монетами</div>
 
-<div class="card">
-<button class="primary" onclick="dailyBonus()">🎁 Ежедневный бонус +100</button>
-<button onclick="show('roulette')">🎡 Рулетка</button>
-<button onclick="show('slot')">🎰 Слот</button>
-<button onclick="show('profile')">👤 Профиль</button>
-</div>
-</section>
+    <div class="balance">
+      <div class="balance-title">Ваш баланс</div>
+      <div class="coins">🪙 <span id="balance">1000</span></div>
+    </div>
 
-<section id="roulette" class="screen">
-<div class="card">
-<h2>🎡 Рулетка</h2>
-<p>Ставка — 50 🪙</p>
-<div class="roulette">🎡</div>
-<button onclick="roulette('red')">🔴 Красное</button>
-<button onclick="roulette('black')">⚫ Чёрное</button>
-<button onclick="roulette('green')">🟢 Зеро</button>
-<div id="rouletteResult" class="result"></div>
-</div>
-</section>
+    <div class="machine">
 
-<section id="slot" class="screen">
-<div class="card">
-<h2>🎰 Слот</h2>
-<p>Ставка — 50 🪙</p>
-<div id="reels" class="reels">🍒 🍋 🍉</div>
-<button class="primary" onclick="spinSlot()">Крутить</button>
-<div id="slotResult" class="result"></div>
-</div>
-</section>
+      <div class="slots">
+        <div class="slot" id="slot1">🍒</div>
+        <div class="slot" id="slot2">🍋</div>
+        <div class="slot" id="slot3">⭐</div>
+      </div>
 
-<section id="profile" class="screen">
-<div class="card">
-<h2>👤 Профиль</h2>
-<p>Демо-пользователь</p>
-<p>Баланс: <b><span id="profileBalance">1000</span> 🪙</b></p>
-<h3>История игр</h3>
-<div id="history" class="history">Пока пусто</div>
-</div>
-</section>
+      <button id="spin">КРУТИТЬ — 50 🪙</button>
 
-<nav>
-<button onclick="show('home')">🏠<br>Главная</button>
-<button onclick="show('roulette')">🎡<br>Рулетка</button>
-<button onclick="show('slot')">🎰<br>Слот</button>
-<button onclick="show('profile')">👤<br>Профиль</button>
-</nav>
+      <div class="message" id="message"></div>
 
-</div>
+      <div class="info">
+        Только виртуальные монеты. Реальных денег нет.
+      </div>
 
-<script>
-let balance=Number(localStorage.getItem("balance")||1000);
-let history=JSON.parse(localStorage.getItem("history")||"[]");
-let lastBonus=localStorage.getItem("bonus")||"";
+    </div>
+  </div>
 
-function save(){
-localStorage.setItem("balance",balance);
-localStorage.setItem("history",JSON.stringify(history));
-document.getElementById("balance").textContent=balance;
-document.getElementById("profileBalance").textContent=balance;
-renderHistory();
-}
+  <script>
+    const symbols = ["🍒", "🍋", "🍊", "🍉", "⭐", "💎", "7️⃣"];
 
-function show(id){
-document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-}
+    let balance = 1000;
 
-function addHistory(text){
-history.unshift(new Date().toLocaleTimeString("ru-RU")+" — "+text);
-history=history.slice(0,30);
-}
+    const balanceEl = document.getElementById("balance");
+    const spinButton = document.getElementById("spin");
+    const messageEl = document.getElementById("message");
 
-function dailyBonus(){
-let today=new Date().toDateString();
+    const slots = [
+      document.getElementById("slot1"),
+      document.getElementById("slot2"),
+      document.getElementById("slot3")
+    ];
 
-if(lastBonus===today){
-alert("Бонус уже получен сегодня");
-return;
-}
+    function randomSymbol() {
+      return symbols[Math.floor(Math.random() * symbols.length)];
+    }
 
-balance+=100;
-lastBonus=today;
-localStorage.setItem("bonus",today);
-addHistory("🎁 Получен дневной бонус +100");
-save();
-alert("🎁 Бонус получен: +100 монет");
-}
+    function spin() {
+      if (balance < 50) {
+        messageEl.textContent = "Недостаточно монет";
+        return;
+      }
 
-function roulette(choice){
+      balance -= 50;
+      balanceEl.textContent = balance;
 
-if(balance<50){
-alert("Недостаточно монет");
-return;
-}
+      spinButton.disabled = true;
+      messageEl.textContent = "Крутим...";
 
-balance-=50;
+      let count = 0;
 
-let number=Math.floor(Math.random()*37);
+      const animation = setInterval(() => {
+        slots.forEach(slot => {
+          slot.textContent = randomSymbol();
+        });
 
-let color;
+        count++;
 
-if(number===0){
-color="green";
-}else{
-color=number%2===0?"black":"red";
-}
+        if (count >= 12) {
+          clearInterval(animation);
 
-let win=choice===color;
+          const result = slots.map(() => randomSymbol());
 
-if(win){
+          slots.forEach((slot, i) => {
+            slot.textContent = result[i];
+          });
 
-let prize=choice==="green"?1800:100;
+          if (result[0] === result[1] && result[1] === result[2]) {
+            let win = 500;
 
-balance+=prize;
+            if (result[0] === "💎") win = 1500;
+            if (result[0] === "7️⃣") win = 2500;
 
-addHistory("🎡 Рулетка — выигрыш +"+prize);
+            balance += win;
+            messageEl.textContent = "🎉 ДЖЕКПОТ! +" + win + " 🪙";
+          } else if (
+            result[0] === result[1] ||
+            result[1] === result[2] ||
+            result[0] === result[2]
+          ) {
+            balance += 100;
+            messageEl.textContent = "👍 Совпадение! +100 🪙";
+          } else {
+            messageEl.textContent = "Попробуйте ещё раз";
+          }
 
-document.getElementById("rouletteResult").innerHTML=
-"🎉 Выпало <b>"+number+"</b> — победа! +"+prize+" 🪙";
+          balanceEl.textContent = balance;
+          spinButton.disabled = false;
+        }
+      }, 100);
+    }
 
-}else{
+    spinButton.addEventListener("click", spin);
 
-addHistory("🎡 Рулетка — проигрыш");
-
-document.getElementById("rouletteResult").innerHTML=
-"Выпало <b>"+number+"</b>. Проигрыш.";
-
-}
-
-save();
-}
-
-function spinSlot(){
-
-if(balance<50){
-alert("Недостаточно монет");
-return;
-}
-
-balance-=50;
-
-let symbols=["🍒","🍋","🍉","⭐","💎","7️⃣"];
-
-let reels=[
-symbols[Math.floor(Math.random()*symbols.length)],
-symbols[Math.floor(Math.random()*symbols.length)],
-symbols[Math.floor(Math.random()*symbols.length)]
-];
-
-document.getElementById("reels").textContent=reels.join(" ");
-
-let win=reels[0]===reels[1]&&reels[1]===reels[2];
-
-if(win){
-
-balance+=500;
-
-addHistory("🎰 Слот — выигрыш +500");
-
-document.getElementById("slotResult").textContent=
-"🎉 Три одинаковых! +500 🪙";
-
-}else{
-
-addHistory("🎰 Слот — проигрыш");
-
-document.getElementById("slotResult").textContent=
-"Не повезло. Попробуй ещё.";
-
-}
-
-save();
-}
-
-function renderHistory(){
-
-let box=document.getElementById("history");
-
-if(!history.length){
-box.textContent="Пока пусто";
-return;
-}
-
-box.innerHTML=history.map(x=>"<div>"+x+"</div>").join("");
-}
-
-save();
-</script>
+    if (window.Telegram && Telegram.WebApp) {
+      Telegram.WebApp.ready();
+      Telegram.WebApp.expand();
+    }
+  </script>
 
 </body>
 </html>
