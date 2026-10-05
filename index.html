@@ -18,13 +18,23 @@
     .greeting { color: #9ca3af; font-size: 14px; margin-bottom: 6px; }
     h1 { margin: 0 0 8px; font-size: 30px; }
     .subtitle { color: #9ca3af; margin-bottom: 22px; }
+
     .balance {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px; padding: 14px; margin-bottom: 22px;
+      border-radius: 18px; padding: 14px; margin-bottom: 14px;
     }
     .balance-title { font-size: 13px; color: #9ca3af; margin-bottom: 5px; }
     .coins { font-size: 28px; font-weight: bold; }
+
+    .bonus {
+      width: 100%; padding: 12px; margin-bottom: 18px;
+      border-radius: 14px; border: 1px dashed #f59e0b;
+      background: rgba(245,158,11,0.1); color: #f59e0b;
+      font-weight: bold; font-size: 15px; cursor: pointer;
+    }
+    .bonus:disabled { opacity: .45; cursor: default; border-style: solid; color: #9ca3af; border-color: rgba(255,255,255,0.15); background: transparent; }
+
     .machine {
       background: rgba(255,255,255,0.08); border-radius: 24px;
       padding: 22px 16px; border: 1px solid rgba(255,255,255,0.12);
@@ -34,20 +44,50 @@
       width: 82px; height: 82px; background: #fff; color: #111827;
       border-radius: 16px; display: flex; align-items: center; justify-content: center;
       font-size: 42px; box-shadow: 0 8px 25px rgba(0,0,0,.3);
-      transition: transform .08s;
+      transition: transform .08s, box-shadow .3s;
     }
     .slot.spinning { transform: scale(0.92); }
-    button {
+    .slot.win {
+      box-shadow: 0 0 0 3px #f59e0b, 0 0 25px #f59e0b;
+      animation: pop .4s;
+    }
+    @keyframes pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+
+    button.spin {
       width: 100%; border: 0; border-radius: 16px; padding: 16px;
       font-size: 19px; font-weight: bold; cursor: pointer;
       background: #f59e0b; color: #111827;
     }
     button:disabled { opacity: .5; }
+
     .reset {
-      margin-top: 12px; padding: 10px; font-size: 14px; font-weight: normal;
-      background: transparent; color: #9ca3af; border: 1px solid rgba(255,255,255,0.15);
+      margin-top: 10px; padding: 10px; font-size: 14px; font-weight: normal;
+      width: 100%; border-radius: 14px; cursor: pointer;
+      background: transparent; color: #9ca3af;
+      border: 1px solid rgba(255,255,255,0.15);
     }
+
     .message { min-height: 28px; margin-top: 16px; font-weight: bold; }
+
+    .history {
+      margin-top: 20px; padding: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+    }
+    .history-title { font-size: 12px; color: #9ca3af; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .history-list { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; min-height: 30px; }
+    .history-item {
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px; padding: 4px 8px;
+      font-size: 20px; letter-spacing: 2px;
+    }
+    .history-item.jackpot { background: rgba(245,158,11,0.3); }
+
     .info { color: #9ca3af; font-size: 13px; margin-top: 18px; }
   </style>
 </head>
@@ -62,21 +102,28 @@
       <div class="coins">🪙 <span id="balance">1000</span></div>
     </div>
 
+    <button class="bonus" id="bonus">🎁 Забрать бонус +500</button>
+
     <div class="machine">
       <div class="slots">
         <div class="slot" id="slot1">🍒</div>
         <div class="slot" id="slot2">🍋</div>
         <div class="slot" id="slot3">⭐</div>
       </div>
-      <button id="spin">КРУТИТЬ — 50 🪙</button>
+      <button class="spin" id="spin">КРУТИТЬ — 50 🪙</button>
       <button class="reset" id="reset">Сбросить баланс</button>
       <div class="message" id="message"></div>
       <div class="info">Только виртуальные монеты. Реальных денег нет.</div>
     </div>
+
+    <div class="history">
+      <div class="history-title">Последние спины</div>
+      <div class="history-list" id="historyList"></div>
+    </div>
   </div>
 
   <script>
-    // === Telegram WebApp ===
+    // ========== Telegram ==========
     const tg = window.Telegram?.WebApp;
     if (tg) {
       tg.ready();
@@ -90,17 +137,105 @@
       document.getElementById('greeting').textContent = 'Привет, гость! (вне Telegram)';
     }
 
-    // === Баланс с сохранением ===
+    // ========== Звук (Web Audio, без файлов) ==========
+    let audioCtx = null;
+    function getAudio() {
+      if (!audioCtx) {
+        try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {}
+      }
+      return audioCtx;
+    }
+    function playTone(freq, duration, type = 'sine', volume = 0.15) {
+      const ctx = getAudio();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type;
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(volume, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start(); osc.stop(ctx.currentTime + duration);
+    }
+    function soundTick() { playTone(900, 0.04, 'square', 0.04); }
+    function soundWin() {
+      playTone(523, 0.15, 'sine', 0.2);
+      setTimeout(() => playTone(659, 0.15, 'sine', 0.2), 100);
+      setTimeout(() => playTone(784, 0.25, 'sine', 0.2), 200);
+    }
+    function soundJackpot() {
+      [523, 659, 784, 1047, 1319].forEach((f, i) => {
+        setTimeout(() => playTone(f, 0.2, 'sine', 0.25), i * 100);
+      });
+    }
+    function soundLose() {
+      playTone(300, 0.2, 'sawtooth', 0.08);
+      setTimeout(() => playTone(200, 0.3, 'sawtooth', 0.08), 150);
+    }
+
+    // ========== Баланс ==========
     const START_BALANCE = 1000;
     const STORAGE_KEY = 'casino_balance';
     let balance = parseInt(localStorage.getItem(STORAGE_KEY), 10);
     if (isNaN(balance)) balance = START_BALANCE;
 
-    function saveBalance() {
-      localStorage.setItem(STORAGE_KEY, String(balance));
+    function saveBalance() { localStorage.setItem(STORAGE_KEY, String(balance)); }
+
+    // ========== История ==========
+    const HISTORY_KEY = 'casino_history';
+    let history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+
+    function renderHistory() {
+      const el = document.getElementById('historyList');
+      el.innerHTML = '';
+      history.slice(0, 5).forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'history-item' + (item.jackpot ? ' jackpot' : '');
+        div.textContent = item.symbols.join('');
+        el.appendChild(div);
+      });
     }
 
-    // === Игра ===
+    function addHistory(symbols, jackpot) {
+      history.unshift({ symbols, jackpot });
+      history = history.slice(0, 5);
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+      renderHistory();
+    }
+
+    // ========== Ежедневный бонус ==========
+    const BONUS_KEY = 'casino_last_bonus';
+    const BONUS_AMOUNT = 500;
+    const BONUS_COOLDOWN = 24 * 60 * 60 * 1000; // 24 часа
+    const bonusBtn = document.getElementById('bonus');
+
+    function updateBonusBtn() {
+      const last = parseInt(localStorage.getItem(BONUS_KEY) || '0', 10);
+      const left = BONUS_COOLDOWN - (Date.now() - last);
+      if (left <= 0) {
+        bonusBtn.disabled = false;
+        bonusBtn.textContent = '🎁 Забрать бонус +' + BONUS_AMOUNT;
+      } else {
+        bonusBtn.disabled = true;
+        const h = Math.floor(left / 3600000);
+        const m = Math.floor((left % 3600000) / 60000);
+        bonusBtn.textContent = '🎁 Бонус через ' + h + ' ч ' + m + ' мин';
+      }
+    }
+
+    bonusBtn.addEventListener('click', () => {
+      if (bonusBtn.disabled) return;
+      balance += BONUS_AMOUNT;
+      saveBalance();
+      balanceEl.textContent = balance;
+      localStorage.setItem(BONUS_KEY, String(Date.now()));
+      updateBonusBtn();
+      messageEl.textContent = '🎁 Бонус получен! +' + BONUS_AMOUNT + ' 🪙';
+      soundWin();
+      if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
+    });
+
+    // ========== Игра ==========
     const symbols = ["🍒", "🍋", "🍊", "🍉", "⭐", "💎", "7️⃣"];
     const balanceEl = document.getElementById("balance");
     const spinButton = document.getElementById("spin");
@@ -113,17 +248,24 @@
     ];
 
     balanceEl.textContent = balance;
+    renderHistory();
+    updateBonusBtn();
+    setInterval(updateBonusBtn, 60000);
 
     function randomSymbol() {
       return symbols[Math.floor(Math.random() * symbols.length)];
     }
 
-    function vibrate() {
+    function vibrate(type = 'medium') {
       if (tg?.HapticFeedback) {
-        tg.HapticFeedback.impactOccurred('medium');
+        tg.HapticFeedback.impactOccurred(type);
       } else if (navigator.vibrate) {
         navigator.vibrate(30);
       }
+    }
+
+    function clearWinGlow() {
+      slots.forEach(s => s.classList.remove('win'));
     }
 
     function spin() {
@@ -131,6 +273,11 @@
         messageEl.textContent = "Недостаточно монет";
         return;
       }
+      // Разблокировать звук по клику (нужно на iOS)
+      const ctx = getAudio();
+      if (ctx && ctx.state === 'suspended') ctx.resume();
+
+      clearWinGlow();
       balance -= 50;
       saveBalance();
       balanceEl.textContent = balance;
@@ -142,6 +289,7 @@
       let count = 0;
       const animation = setInterval(() => {
         slots.forEach(slot => { slot.textContent = randomSymbol(); });
+        if (count % 2 === 0) soundTick();
         count++;
         if (count >= 12) {
           clearInterval(animation);
@@ -150,19 +298,33 @@
           const result = slots.map(() => randomSymbol());
           slots.forEach((slot, i) => { slot.textContent = result[i]; });
 
+          let isJackpot = false;
+
           if (result[0] === result[1] && result[1] === result[2]) {
+            isJackpot = true;
             let win = 500;
             if (result[0] === "💎") win = 1500;
             if (result[0] === "7️⃣") win = 2500;
             balance += win;
             messageEl.textContent = "🎉 ДЖЕКПОТ! +" + win + " 🪙";
-            vibrate();
+            slots.forEach(s => s.classList.add('win'));
+            soundJackpot();
+            if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
           } else if (result[0] === result[1] || result[1] === result[2] || result[0] === result[2]) {
             balance += 100;
             messageEl.textContent = "👍 Совпадение! +100 🪙";
+            slots.forEach((s, i) => {
+              if (result[i] === result[0] || result[i] === result[1] || result[i] === result[2]) {
+                s.classList.add('win');
+              }
+            });
+            soundWin();
           } else {
             messageEl.textContent = "Попробуйте ещё раз";
+            soundLose();
           }
+
+          addHistory(result, isJackpot);
           saveBalance();
           balanceEl.textContent = balance;
           spinButton.disabled = false;
