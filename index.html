@@ -62,6 +62,9 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
 .bg-7{background:linear-gradient(180deg,#7c2d12 0%,#450a0a 45%,#1a0d08 100%);}
 .bg-8{background:linear-gradient(180deg,#7e22ce 0%,#4c1d95 45%,#1e1b4b 100%);}
 .bg-9{background:linear-gradient(180deg,#a16207 0%,#713f12 45%,#1c0e02 100%);}
+.bg-10{background:linear-gradient(180deg,#065f46 0%,#064e3b 45%,#022c22 100%);}
+.bg-11{background:linear-gradient(180deg,#0c4a6e 0%,#0c4a6e 45%,#082f49 100%);}
+.bg-12{background:linear-gradient(180deg,#831843 0%,#581c87 45%,#3b0764 100%);}
 
 .profile-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:200; opacity:0; pointer-events:none; transition: opacity .25s; }
 .profile-overlay.open { opacity:1; pointer-events:auto; }
@@ -162,7 +165,7 @@ h1 { margin:0 0 4px; font-size:22px; color:#fbbf24; text-shadow:0 0 12px rgba(25
   border:1px solid #7f1d1d;
   box-shadow:inset 0 1px 0 rgba(251,191,36,0.15), 0 3px 0 #0b0503;
   font-size:11px; font-weight:bold; cursor:pointer; transition:all .08s; }
-.bet:active:not(:disabled) { transform:translateY(2px); box-shadow:inset 0 1px 0 rgba(251,191,36,0.15), 0 1px 0 #0b0503; }
+.bet:active:not(:disabled) { transform:translateY(2px); }
 .bet.active { background:linear-gradient(180deg,#fbbf24,#d97706); color:#111827; border-color:#fbbf24;
   box-shadow:inset 0 1px 0 rgba(255,255,255,0.3), 0 3px 0 #78350f, 0 4px 10px rgba(251,191,36,0.5); }
 .bet.max { background:linear-gradient(180deg,#7f1d1d,#450a0a); color:#fca5a5; }
@@ -172,8 +175,7 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
   background:radial-gradient(circle at 35% 30%, #fde047 0%, #f59e0b 35%, #b45309 70%, #451a03 100%);
   box-shadow:0 10px 24px rgba(245,158,11,0.55), inset 0 -8px 14px rgba(0,0,0,0.5), inset 0 8px 12px rgba(255,255,255,0.35);
   color:#450a0a; font-size:19px; font-weight:900; letter-spacing:2px;
-  text-shadow:0 1px 2px rgba(255,255,255,0.4); cursor:pointer;
-  transition:transform .08s, box-shadow .08s; }
+  text-shadow:0 1px 2px rgba(255,255,255,0.4); cursor:pointer; }
 button.spin:active:not(:disabled) { transform:translateY(3px) scale(0.98); }
 button.spin:disabled { opacity:.55; cursor:not-allowed; }
 
@@ -181,13 +183,12 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .actions button { flex:1; padding:9px; border-radius:10px; border:1px solid #7c2d12;
   background:linear-gradient(180deg,#450a0a,#1c0606); color:#fecaca;
   font-weight:bold; font-size:12px; cursor:pointer;
-  box-shadow:inset 0 1px 0 rgba(251,191,36,0.15), 0 3px 0 #0b0503; transition:all .08s; }
+  box-shadow:inset 0 1px 0 rgba(251,191,36,0.15), 0 3px 0 #0b0503; }
 .actions button:active:not(:disabled) { transform:translateY(2px); }
 .actions button.auto-running { background:linear-gradient(180deg,#dc2626,#991b1b); border-color:#ef4444; }
 
-.reset { margin-top:7px; padding:8px; font-size:11px; font-weight:normal;
-  width:100%; border-radius:10px; cursor:pointer; background:transparent; color:#9ca3af;
-  border:1px solid rgba(255,255,255,0.15); }
+.reset { margin-top:7px; padding:8px; font-size:11px; width:100%; border-radius:10px; cursor:pointer;
+  background:transparent; color:#9ca3af; border:1px solid rgba(255,255,255,0.15); }
 .message { min-height:22px; margin-top:8px; font-weight:bold; font-size:13px; color:#fbbf24; }
 .panel { margin-top:12px; padding:10px; background:rgba(255,255,255,0.04);
   border:1px solid rgba(251,191,36,0.15); border-radius:12px; }
@@ -218,8 +219,8 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
   font-size:11px; font-weight:bold; color:#fbbf24; }
 .history-item.jackpot { background:rgba(251,191,36,0.4); color:#450a0a; }
 
-.win-banner { position:fixed; top:50%; left:50%;
-  transform:translate(-50%,-50%) scale(0); font-size:46px; font-weight:900; color:#fbbf24;
+.win-banner { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0);
+  font-size:46px; font-weight:900; color:#fbbf24;
   text-shadow:0 0 30px rgba(251,191,36,0.9), 0 4px 20px rgba(0,0,0,0.9);
   pointer-events:none; z-index:999; opacity:0; white-space:nowrap; }
 .win-banner.show { animation:bannerPop 2s ease-out forwards; }
@@ -246,7 +247,7 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
   backdrop-filter: blur(10px); }
 .bn-item { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px;
   background:transparent; border:0; color:#9ca3af; cursor:pointer;
-  padding:4px 0; font-size:10px; font-weight:bold; transition: color .15s; }
+  padding:4px 0; font-size:10px; font-weight:bold; }
 .bn-item .bn-icon { font-size:20px; line-height:1; }
 .bn-item.active { color:#fbbf24; }
 .bn-item.active .bn-icon { filter: drop-shadow(0 0 6px rgba(251,191,36,0.6)); }
@@ -270,51 +271,44 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .category-tabs::-webkit-scrollbar { display:none; }
 .cat-tab { flex:0 0 auto; padding:7px 14px; border-radius:20px;
   background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
-  color:#9ca3af; font-size:12px; font-weight:bold; cursor:pointer; transition:all .15s; }
+  color:#9ca3af; font-size:12px; font-weight:bold; cursor:pointer; }
 .cat-tab.active { background:linear-gradient(180deg,#fbbf24,#d97706); color:#111827; border-color:#fbbf24; }
 
 /* ============ BLACKJACK ============ */
-.bj-table {
-  position: relative; margin: 16px 4px 22px; padding: 28px 10px 18px; min-height: 420px;
+.bj-table { position: relative; margin: 16px 4px 22px; padding: 28px 10px 18px; min-height: 420px;
   border-radius: 50% 50% 46% 46% / 58% 58% 42% 42%;
   background: radial-gradient(ellipse at 50% 25%, #1e8a52 0%, #0f6a3d 35%, #084a29 65%, #052e19 100%);
   border: 5px solid #6b4423;
-  box-shadow: 0 0 0 3px #3b2412, 0 0 0 10px #22150a,
-    0 22px 50px rgba(0,0,0,0.75),
+  box-shadow: 0 0 0 3px #3b2412, 0 0 0 10px #22150a, 0 22px 50px rgba(0,0,0,0.75),
     inset 0 0 90px rgba(0,0,0,0.55), inset 0 6px 30px rgba(0,0,0,0.7);
   overflow: hidden; isolation: isolate; }
-.bj-table::after {
-  content:"BLACKJACK PAYS 3 TO 2  •  INSURANCE PAYS 2 TO 1";
+.bj-table::after { content:"BLACKJACK PAYS 3 TO 2  •  INSURANCE PAYS 2 TO 1";
   position: absolute; top: 34%; left: 50%; transform: translateX(-50%) rotate(-2.5deg);
-  font-family: Georgia, 'Times New Roman', serif; font-size: 9px; letter-spacing: 2px;
-  color: rgba(251, 191, 36, 0.28); font-weight: bold; white-space: nowrap;
+  font-family: Georgia, serif; font-size: 9px; letter-spacing: 2px;
+  color: rgba(251,191,36,0.28); font-weight: bold; white-space: nowrap;
   pointer-events: none; z-index: 0; }
 .bj-shoe { position: absolute; top: 8px; right: 12px; width: 44px; height: 58px;
   background: linear-gradient(180deg, #2b1a0e, #0d0704);
   border: 2px solid #8b5a2b; border-radius: 6px 6px 3px 3px;
-  box-shadow: inset 0 -8px 12px rgba(0,0,0,0.85), inset 0 2px 0 rgba(255,255,255,0.08),
-    0 6px 14px rgba(0,0,0,0.65); z-index: 3; }
-.bj-shoe::after { content:""; position:absolute; bottom: 6px; left: 6px; right: 6px;
-  height: 28px; background: repeating-linear-gradient(180deg, #f5f5f5 0 2px, #dcdcdc 2px 4px);
+  box-shadow: inset 0 -8px 12px rgba(0,0,0,0.85), 0 6px 14px rgba(0,0,0,0.65); z-index: 3; }
+.bj-shoe::after { content:""; position:absolute; bottom: 6px; left: 6px; right: 6px; height: 28px;
+  background: repeating-linear-gradient(180deg, #f5f5f5 0 2px, #dcdcdc 2px 4px);
   border-radius: 2px; opacity: 0.85; }
 
 .bj-row { position: relative; z-index: 2; margin-bottom: 10px; }
 .bj-label { font-size: 10px; color: #fcd34d; letter-spacing: 2px; font-weight: bold;
-  display: flex; justify-content: space-between; padding: 0 8px; text-transform: uppercase;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.85); }
+  display: flex; justify-content: space-between; padding: 0 8px; text-transform: uppercase; }
 .bj-hand { display: flex; align-items: center; justify-content: center;
-  min-height: 74px; padding: 4px 0; position: relative; }
+  min-height: 74px; padding: 4px 0; }
 
 .bj-card { width: 46px; height: 66px; margin-left: -14px; border-radius: 6px;
   background: linear-gradient(180deg, #fffdf5, #ece2c9); color: #111827;
   display: flex; flex-direction: column; justify-content: space-between;
   padding: 3px 4px; font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.18),
-    inset 0 1px 0 rgba(255,255,255,0.7);
-  transform-origin: 50% 130%;
-  transform: rotate(var(--rot, 0deg));
+  box-shadow: 0 4px 10px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.18);
+  transform-origin: 50% 130%; transform: rotate(var(--rot, 0deg));
   animation: cardFly 0.55s cubic-bezier(.22,.9,.25,1.05) both;
-  will-change: transform, opacity; position: relative; }
+  position: relative; }
 .bj-card:first-child { margin-left: 0; }
 .bj-card:nth-child(odd) { --rot: -2.5deg; }
 .bj-card:nth-child(even) { --rot: 2.5deg; }
@@ -334,31 +328,18 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .bj-card-suit { font-size: 18px; text-align: center; line-height: 1; }
 .bj-card-bot { font-size: 10px; line-height: 1; text-align: right; }
 
-/* 3 boxes */
-.bj-boxes-row {
-  position: relative; z-index: 2;
-  display: flex; gap: 6px; justify-content: center;
-  padding: 6px 0 4px;
-}
-.bj-box {
-  flex: 1; max-width: 130px; min-height: 150px;
-  position: relative;
-  display: flex; flex-direction: column; align-items: center;
-  padding: 6px 4px 22px;
-  border-radius: 12px;
-  background: rgba(0,0,0,0.14);
-  border: 2px dashed rgba(251,191,36,0.18);
-  transition: all .25s;
-  cursor: pointer;
-}
-.bj-box:active:not(.locked) { transform: scale(0.98); }
-.bj-box.has-bet { border-style: solid; border-color: #fbbf24;
-  background: rgba(251,191,36,0.06); }
+.bj-boxes-row { position: relative; z-index: 2; display: flex; gap: 6px; justify-content: center;
+  padding: 6px 0 4px; }
+.bj-box { flex: 1; max-width: 130px; min-height: 150px; position: relative;
+  display: flex; flex-direction: column; align-items: center; padding: 6px 4px 22px;
+  border-radius: 12px; background: rgba(0,0,0,0.14);
+  border: 2px dashed rgba(251,191,36,0.18); transition: all .25s; cursor: pointer; }
+.bj-box:active { transform: scale(0.98); }
+.bj-box.has-bet { border-style: solid; border-color: #fbbf24; background: rgba(251,191,36,0.06); }
 .bj-box.active { border-style: solid; border-color: #fbbf24;
   box-shadow: 0 0 0 1px rgba(251,191,36,0.6), 0 0 24px rgba(251,191,36,0.5);
   transform: translateY(-2px); }
-.bj-box.win { border-style: solid; border-color: #4ade80;
-  background: rgba(74,222,128,0.08);
+.bj-box.win { border-style: solid; border-color: #4ade80; background: rgba(74,222,128,0.08);
   box-shadow: 0 0 0 1px rgba(74,222,128,0.5), 0 0 26px rgba(74,222,128,0.55); }
 .bj-box.lose { border-style: solid; border-color: #f87171; opacity: 0.75; }
 .bj-box.push { border-style: solid; border-color: #fbbf24; opacity: 1; }
@@ -376,15 +357,13 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .bj-box-betchip { position: absolute; bottom: -10px; left: 50%;
   transform: translateX(-50%); z-index: 5;
   filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
-
 .bj-chip { width: 34px; height: 34px; border-radius: 50%;
   background: radial-gradient(circle at 38% 30%, #fff 0 8%, #e74c3c 14% 55%, #a83226 72%, #6b1c14 100%);
   border: 2px dashed rgba(255,255,255,0.85);
   color: #fff; font-size: 9px; font-weight: 900;
   display: flex; align-items: center; justify-content: center;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.85);
-  box-shadow: 0 3px 0 rgba(0,0,0,0.45), inset 0 2px 4px rgba(255,255,255,0.45),
-    inset 0 -3px 6px rgba(0,0,0,0.4);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.45), inset 0 2px 4px rgba(255,255,255,0.45);
   outline: 2px solid rgba(0,0,0,0.30); outline-offset: -6px;
   animation: chipDrop 0.35s cubic-bezier(.2,1.2,.3,1) both; }
 .bj-chip.c100  { background: radial-gradient(circle at 38% 30%, #fff 0 8%, #3498db 14% 55%, #1f618d 72%, #0c2c47 100%); }
@@ -397,7 +376,7 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
   100% { transform: translateY(0) scale(1); opacity: 1; } }
 
 .bj-result { text-align: center; font-weight: bold; font-size: 13px;
-  padding: 10px; border-radius: 10px; margin-bottom: 10px; min-height: 22px; transition: all .3s; }
+  padding: 10px; border-radius: 10px; margin-bottom: 10px; min-height: 22px; }
 .bj-result.win  { background: rgba(74,222,128,0.15); color:#4ade80; border:1px solid #4ade80; }
 .bj-result.lose { background: rgba(248,113,113,0.15); color:#f87171; border:1px solid #f87171; }
 .bj-result.push { background: rgba(251,191,36,0.15); color:#fbbf24; border:1px solid #fbbf24; }
@@ -405,7 +384,7 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .bj-bets { display:flex; gap:4px; justify-content:center; margin-bottom:10px; }
 .bj-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
 .bj-actions button { padding:14px; border-radius:12px; border:0; font-size:14px; font-weight:bold;
-  cursor:pointer; transition:transform .08s; }
+  cursor:pointer; }
 .bj-actions button:active:not(:disabled) { transform:translateY(2px); }
 .bj-actions button:disabled { opacity:.35; cursor:not-allowed; }
 .bj-btn-hit { background:linear-gradient(180deg,#10b981,#047857); color:#fff; box-shadow:0 4px 0 #022c22; }
@@ -415,14 +394,91 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .bj-btn-insurance { background:linear-gradient(180deg,#06b6d4,#0e7490); color:#fff; box-shadow:0 4px 0 #083344; grid-column: span 2; }
 .bj-btn-new { background:linear-gradient(180deg,#6366f1,#3730a3); color:#fff; box-shadow:0 4px 0 #1e1b4b; grid-column: span 2; }
 
-/* ============ ROULETTE ============ */
-.roulette-section { padding: 0 4px; }
+/* ============ ROULETTE 3D ============ */
+.roulette-section { padding: 0 4px; position: relative; }
+
+/* Зона колеса с 3D-перспективой */
 .wheel-stage {
-  position: relative; width: 100%; max-width: 320px; margin: 6px auto 8px;
-  aspect-ratio: 1 / 1;
-  filter: drop-shadow(0 16px 30px rgba(0,0,0,0.65));
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  margin: 6px auto 12px;
+  height: 260px;
+  perspective: 900px;
+  perspective-origin: 50% 30%;
+}
+.wheel-tilt {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  width: 340px;
+  height: 340px;
+  margin-left: -170px;
+  transform-origin: 50% 50%;
+  transform: rotateX(55deg);
+  filter: drop-shadow(0 26px 30px rgba(0,0,0,0.75));
+  will-change: transform;
 }
 .wheel-svg { width: 100%; height: 100%; display: block; }
+
+/* Слой для шарика — не наклоняется, чтобы шар оставался круглым */
+.ball-layer {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  width: 340px;
+  height: 340px;
+  margin-left: -170px;
+  pointer-events: none;
+  z-index: 4;
+}
+.wheel-ball {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  margin: -7.5px 0 0 -7.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #ffffff 0%, #e5e7eb 55%, #6b7280 100%);
+  box-shadow:
+    0 0 10px rgba(0,0,0,0.6),
+    0 3px 8px rgba(0,0,0,0.7),
+    inset -2px -2px 3px rgba(0,0,0,0.5),
+    inset 2px 2px 4px rgba(255,255,255,0.9);
+  will-change: left, top;
+  transform: translateZ(0);
+}
+
+/* Табло истории — сверху справа */
+.wheel-history-board {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  padding: 6px 7px;
+  background: linear-gradient(180deg, rgba(20,10,5,0.96), rgba(10,5,2,0.96));
+  border: 1.5px solid rgba(251,191,36,0.55);
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.75), inset 0 1px 0 rgba(251,191,36,0.25);
+  min-width: 122px;
+  max-width: 140px;
+}
+.wheel-history-board .rh {
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 900;
+  border-radius: 50%;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 1px 2px rgba(0,0,0,0.4);
+}
+.wheel-history-board .rh.red { background: #b91c1c; }
+.wheel-history-board .rh.black { background: #1f2937; }
+.wheel-history-board .rh.green { background: #15803d; }
+.wheel-history-board .rh.empty { background: rgba(255,255,255,0.05); box-shadow: none; }
+
 .rprompt { text-align: center; font-size: 11px; font-weight: 900;
   color: #fbbf24; letter-spacing: 3px; margin-bottom: 6px; text-transform: uppercase;
   text-shadow: 0 1px 3px rgba(0,0,0,0.9); min-height: 14px; }
@@ -438,14 +494,13 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 }
 .rnum { position: relative; display: flex; align-items: center; justify-content: center;
   padding: 0; border: 0; margin: 0; background: #15803d; color: #fff;
-  border-radius: 3px; cursor: pointer; user-select: none; font: inherit; font-weight: 900;
-  transition: filter .1s, transform .06s; overflow: visible; }
-.rnum:active { transform: scale(0.94); filter: brightness(1.35); }
+  border-radius: 3px; cursor: pointer; user-select: none; font: inherit; font-weight: 900; }
+.rnum:active { filter: brightness(1.35); transform: scale(0.95); }
 .rnum.red { background: #b91c1c; }
 .rnum.black { background: #0f172a; }
 .rnum.zero { grid-row: 1 / span 3; grid-column: 1; font-size: 14px; }
 .rnum.rcol { grid-column: 14; font-size: 9px; }
-.rnum.rdoz, .rnum.rhalf { font-size: 9px; letter-spacing: 0.3px; }
+.rnum.rdoz, .rnum.rhalf { font-size: 9px; }
 .rnum.rhalf.red { background: #b91c1c; }
 .rnum.rhalf.black { background: #0f172a; }
 .rnum .rbet {
@@ -462,9 +517,9 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .rnum.has-bet .rbet { display: flex; }
 .rnum.has-bet { box-shadow: inset 0 0 0 2px #fbbf24; }
 
-/* chips row */
+/* Chips row */
 .rchips-row {
-  display: flex; gap: 6px; justify-content: center;
+  display: flex; gap: 5px; justify-content: center;
   margin: 10px 0 8px; padding: 8px 6px;
   background: linear-gradient(180deg, rgba(69,10,10,0.5), rgba(28,6,6,0.85));
   border: 1px solid rgba(251,191,36,0.3); border-radius: 14px;
@@ -472,11 +527,10 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .rchip-btn {
   flex: 1; min-width: 0;
   aspect-ratio: 1;
-  max-width: 46px;
+  max-width: 44px;
   border-radius: 50%;
   border: 2px solid rgba(255,255,255,0.35);
-  background: radial-gradient(circle at 38% 30%, #fff 0 6%, #e74c3c 12% 55%, #a83226 72%, #6b1c14 100%);
-  color: #fff; font-size: 11px; font-weight: 900;
+  color: #fff; font-size: 10px; font-weight: 900;
   display: flex; align-items: center; justify-content: center;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.85);
   cursor: pointer; padding: 0;
@@ -486,38 +540,36 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 }
 .rchip-btn:active { transform: scale(0.9); }
 .rchip-btn.active {
-  transform: scale(1.12);
+  transform: scale(1.14);
   box-shadow: 0 0 0 3px #fbbf24, 0 0 18px rgba(251,191,36,0.7),
     inset 0 0 0 1px rgba(255,255,255,0.5);
 }
-.rchip-btn[data-chip="1"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #ecf0f1 12% 55%, #a0a6ac 72%, #575d63 100%); color: #111; text-shadow: 1px 1px 1px rgba(255,255,255,0.7); }
+/* Стандартные цвета казино */
+.rchip-btn[data-chip="1"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #f3f4f6 12% 55%, #9ca3af 72%, #4b5563 100%); color: #111; text-shadow: 1px 1px 1px rgba(255,255,255,0.7); }
 .rchip-btn[data-chip="2"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #f87171 12% 55%, #991b1b 72%, #450a0a 100%); }
-.rchip-btn[data-chip="3"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #60a5fa 12% 55%, #1e40af 72%, #0c1a4b 100%); }
-.rchip-btn[data-chip="5"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #fb923c 12% 55%, #9a3412 72%, #431407 100%); }
+.rchip-btn[data-chip="5"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #fbbf24 12% 55%, #b45309 72%, #451a03 100%); color: #111; text-shadow: none; }
+.rchip-btn[data-chip="10"]  { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #60a5fa 12% 55%, #1e40af 72%, #0c1a4b 100%); }
 .rchip-btn[data-chip="25"]  { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #4ade80 12% 55%, #15803d 72%, #052e16 100%); }
 .rchip-btn[data-chip="50"]  { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #c084fc 12% 55%, #6d28d9 72%, #2e1065 100%); }
-.rchip-btn[data-chip="100"] { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #fbbf24 12% 55%, #b45309 72%, #451a03 100%); color: #111; text-shadow: none; }
-.rchip-btn[data-chip="500"] { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #1f2937 12% 55%, #0f172a 72%, #000 100%); }
+.rchip-btn[data-chip="100"] { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #1f2937 12% 55%, #0f172a 72%, #000 100%); }
+.rchip-btn[data-chip="500"] { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #fde68a 12% 55%, #b45309 72%, #451a03 100%); color: #111; text-shadow: none; }
 
 .roulette-result { text-align: center; font-weight: bold; font-size: 13px;
-  padding: 10px; border-radius: 10px; min-height: 22px; margin: 4px 0 8px; transition: all .3s; }
-.roulette-result.win  { background: rgba(74,222,128,0.15); color:#4ade80; border:1px solid #4ade80; box-shadow:0 0 18px rgba(74,222,128,0.35); }
+  padding: 10px; border-radius: 10px; min-height: 22px; margin: 4px 0 8px; }
+.roulette-result.win  { background: rgba(74,222,128,0.15); color:#4ade80; border:1px solid #4ade80; }
 .roulette-result.lose { background: rgba(248,113,113,0.15); color:#f87171; border:1px solid #f87171; }
 .roulette-result.neutral { color: #fbbf24; border:1px solid rgba(251,191,36,0.3); background: rgba(251,191,36,0.05); }
 
 .rcontrols { display: grid; grid-template-columns: 1fr 2fr; gap: 8px; margin-top: 4px; }
 .rcontrols button { padding: 14px 8px; border-radius: 14px; border: 0; font-weight: 900;
-  cursor: pointer; font-size: 14px; transition: transform .08s; letter-spacing: 1px; }
+  cursor: pointer; font-size: 14px; letter-spacing: 1px; }
 .rcontrols button:active:not(:disabled) { transform: translateY(3px); }
 .rcontrols button:disabled { opacity:.45; cursor:not-allowed; }
 .rclear { background: linear-gradient(180deg,#dc2626,#7f1d1d); color:#fff; box-shadow:0 4px 0 #450a0a; }
-.rclear:active:not(:disabled) { box-shadow:0 1px 0 #450a0a; }
-.rspin {
-  background: radial-gradient(circle at 35% 30%, #fde047, #f59e0b 45%, #b45309 100%);
+.rspin { background: radial-gradient(circle at 35% 30%, #fde047, #f59e0b 45%, #b45309 100%);
   color: #450a0a; box-shadow: 0 5px 0 #78350f, 0 8px 18px rgba(245,158,11,0.45),
-    inset 0 2px 0 rgba(255,255,255,0.4); font-size: 16px;
-}
-.rspin:active:not(:disabled) { box-shadow: 0 2px 0 #78350f, inset 0 2px 0 rgba(255,255,255,0.4) !important; }
+    inset 0 2px 0 rgba(255,255,255,0.4); font-size: 16px; }
+.rspin:active:not(:disabled) { box-shadow: 0 2px 0 #78350f !important; }
 </style>
 </head>
 <body>
@@ -553,14 +605,14 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
   <h2 style="color:#fbbf24; margin: 0 0 14px;">📖 Правила</h2>
   <div class="rules-content">
     <h3>🎡 Рулетка</h3>
-    <p>Выбери чип внизу → нажми на клетку. Снять можно по одной фишке кнопкой ✖.</p>
+    <p>Европейская, 37 чисел (0–36). Выбери чип → тапни клетку.</p>
     <ul>
       <li>Число ×36 · красное/чёрное ×2 · чёт/нечет ×2</li>
       <li>1-18 / 19-36 ×2 · дюжина ×3 · колонка ×3</li>
+      <li>✖ СНЯТЬ — убирает по одной фишке (последнюю поставленную)</li>
     </ul>
     <h3>🃏 Блэкджек</h3>
-    <p>3 бокса. Нажми на бокс чтобы поставить, потом «Раздать».</p>
-    <p>Победа ×2 · блэкджек ×2.5 · ничья — возврат.</p>
+    <p>3 бокса. Тапни по боксу — поставится сумма. Потом «Раздать».</p>
   </div>
 </aside>
 
@@ -579,6 +631,10 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
     <div class="lobby-section">
       <div class="lobby-head"><div class="lobby-title">🎰 Слоты</div><button class="lobby-all" data-cat="slots">Все →</button></div>
       <div class="game-row" id="row-slots"></div>
+    </div>
+    <div class="lobby-section">
+      <div class="lobby-head"><div class="lobby-title">🃏 Карточные</div><button class="lobby-all" data-cat="cards">Все →</button></div>
+      <div class="game-row" id="row-cards"></div>
     </div>
     <div class="lobby-section">
       <div class="lobby-head"><div class="lobby-title">⚡ Быстрые игры</div><button class="lobby-all" data-cat="quick">Все →</button></div>
@@ -661,7 +717,6 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
       <button class="bj-btn-hit" id="bjHit">Взять</button>
       <button class="bj-btn-stand" id="bjStand">Хватит</button>
       <button class="bj-btn-double" id="bjDouble">Удвоить</button>
-      <button class="bj-btn-split" id="bjSplit">Сплит</button>
       <button class="bj-btn-insurance" id="bjInsurance" style="display:none;">🛡 Страховка</button>
       <button class="bj-btn-new" id="bjNew">Раздать</button>
     </div>
@@ -671,53 +726,45 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
     <button class="back-btn" data-back>← В меню</button>
     <h1>🎡 Рулетка</h1>
     <div class="roulette-section">
+      <div class="wheel-history-board" id="rHistoryBoard"></div>
       <div class="wheel-stage">
-        <svg class="wheel-svg" id="wheelSvg" viewBox="0 0 340 340">
-          <defs>
-            <radialGradient id="gWood" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#a16207"/>
-              <stop offset="55%" stop-color="#6b4423"/>
-              <stop offset="100%" stop-color="#1f1206"/>
-            </radialGradient>
-            <radialGradient id="gGold" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#fef3c7"/>
-              <stop offset="40%" stop-color="#fbbf24"/>
-              <stop offset="75%" stop-color="#b45309"/>
-              <stop offset="100%" stop-color="#451a03"/>
-            </radialGradient>
-            <radialGradient id="gHub" cx="38%" cy="30%" r="75%">
-              <stop offset="0%" stop-color="#fef9c3"/>
-              <stop offset="45%" stop-color="#fbbf24"/>
-              <stop offset="100%" stop-color="#78350f"/>
-            </radialGradient>
-            <radialGradient id="gBall" cx="32%" cy="28%" r="75%">
-              <stop offset="0%" stop-color="#ffffff"/>
-              <stop offset="55%" stop-color="#e5e7eb"/>
-              <stop offset="100%" stop-color="#4b5563"/>
-            </radialGradient>
-            <filter id="fShadow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur in="SourceAlpha" stdDeviation="1.2"/>
-              <feOffset dx="0" dy="1.5" result="off"/>
-              <feMerge>
-                <feMergeNode in="off"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-          <circle cx="170" cy="170" r="168" fill="url(#gWood)"/>
-          <circle cx="170" cy="170" r="157" fill="url(#gGold)"/>
-          <circle cx="170" cy="170" r="149" fill="#0a0503"/>
-          <g id="sectorsG"></g>
-          <g id="numbersG"></g>
-          <circle cx="170" cy="170" r="50" fill="#0a0503"/>
-          <circle cx="170" cy="170" r="44" fill="url(#gHub)"/>
-          <circle cx="170" cy="170" r="12" fill="url(#gBall)"/>
-          <text id="centerNum" x="170" y="170" text-anchor="middle" dominant-baseline="central"
-                font-size="30" font-weight="900" fill="#111827"
-                font-family="Arial, Helvetica, sans-serif">—</text>
-          <circle id="ballSvg" cx="170" cy="20" r="7.5" fill="url(#gBall)" filter="url(#fShadow)"/>
-          <polygon points="156,-2 184,-2 170,22" fill="#fbbf24" stroke="#78350f" stroke-width="1"/>
-        </svg>
+        <div class="wheel-tilt">
+          <svg class="wheel-svg" id="wheelSvg" viewBox="0 0 340 340">
+            <defs>
+              <radialGradient id="gWood" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#a16207"/>
+                <stop offset="55%" stop-color="#6b4423"/>
+                <stop offset="100%" stop-color="#1f1206"/>
+              </radialGradient>
+              <radialGradient id="gGold" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#fef3c7"/>
+                <stop offset="40%" stop-color="#fbbf24"/>
+                <stop offset="75%" stop-color="#b45309"/>
+                <stop offset="100%" stop-color="#451a03"/>
+              </radialGradient>
+              <radialGradient id="gHub" cx="38%" cy="30%" r="75%">
+                <stop offset="0%" stop-color="#fef9c3"/>
+                <stop offset="45%" stop-color="#fbbf24"/>
+                <stop offset="100%" stop-color="#78350f"/>
+              </radialGradient>
+            </defs>
+            <circle cx="170" cy="170" r="168" fill="url(#gWood)"/>
+            <circle cx="170" cy="170" r="157" fill="url(#gGold)"/>
+            <circle cx="170" cy="170" r="149" fill="#0a0503"/>
+            <g id="sectorsG"></g>
+            <g id="numbersG"></g>
+            <circle cx="170" cy="170" r="50" fill="#0a0503"/>
+            <circle cx="170" cy="170" r="44" fill="url(#gHub)"/>
+            <circle cx="170" cy="170" r="12" fill="url(#gHub)"/>
+            <text id="centerNum" x="170" y="170" text-anchor="middle" dominant-baseline="central"
+                  font-size="30" font-weight="900" fill="#111827"
+                  font-family="Arial, sans-serif">—</text>
+          </svg>
+        </div>
+        <div class="ball-layer">
+          <div class="wheel-ball" id="wheelBall"></div>
+        </div>
+        <div class="wheel-pointer" style="position:absolute;top:-2px;left:50%;transform:translateX(-50%);z-index:6;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:14px solid #fbbf24;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.9));"></div>
       </div>
       <div class="rprompt" id="rPrompt">СДЕЛАЙТЕ СТАВКУ</div>
       <div class="rtable" id="rtable"></div>
@@ -726,24 +773,19 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
     <div class="rchips-row" id="rchipsRow">
       <button class="rchip-btn" data-chip="1">1</button>
       <button class="rchip-btn" data-chip="2">2</button>
-      <button class="rchip-btn" data-chip="3">3</button>
       <button class="rchip-btn" data-chip="5">5</button>
+      <button class="rchip-btn" data-chip="10">10</button>
       <button class="rchip-btn" data-chip="25">25</button>
       <button class="rchip-btn" data-chip="50">50</button>
       <button class="rchip-btn" data-chip="100">100</button>
       <button class="rchip-btn" data-chip="500">500</button>
     </div>
 
-    <div class="roulette-result neutral" id="rResult">Выбери чип → нажми на клетку</div>
+    <div class="roulette-result neutral" id="rResult">Выбери чип → тапни клетку</div>
 
     <div class="rcontrols">
       <button class="rclear" id="rClear">✖ СНЯТЬ</button>
       <button class="rspin" id="rSpin">🎡 КРУТИТЬ</button>
-    </div>
-
-    <div class="panel">
-      <div class="panel-title">📋 История</div>
-      <div class="history-list" id="rHistory"></div>
     </div>
   </div>
 
@@ -754,6 +796,7 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
     <div class="category-tabs" id="catTabs">
       <button class="cat-tab active" data-tab="all">Все</button>
       <button class="cat-tab" data-tab="slots">🎰 Слоты</button>
+      <button class="cat-tab" data-tab="cards">🃏 Карточные</button>
       <button class="cat-tab" data-tab="quick">⚡ Быстрые</button>
       <button class="cat-tab" data-tab="pop">🔥 Популярные</button>
     </div>
@@ -813,14 +856,14 @@ function playTone(freq,dur,type,vol,delay){
   o.connect(g); g.connect(ctx.destination);
   o.start(t0); o.stop(t0+dur+0.02);
 }
-function noiseBurst(dur,vol,filterFreq,delay){
+function noiseBurst(dur,vol,filterFreq,delay,Q){
   const ctx=getAudio(); if(!ctx||ctx.state!=='running') return;
   delay=delay||0; const sr=ctx.sampleRate;
   const len=Math.max(1,Math.floor(sr*dur));
   const buf=ctx.createBuffer(1,len,sr); const d=buf.getChannelData(0);
-  for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,4);
+  for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,3);
   const src=ctx.createBufferSource(); src.buffer=buf;
-  const f=ctx.createBiquadFilter(); f.type='bandpass'; f.frequency.value=filterFreq; f.Q.value=6;
+  const f=ctx.createBiquadFilter(); f.type='bandpass'; f.frequency.value=filterFreq; f.Q.value=Q||8;
   const g=ctx.createGain(); g.gain.value=vol;
   src.connect(f); f.connect(g); g.connect(ctx.destination);
   const t0=ctx.currentTime+delay; src.start(t0); src.stop(t0+dur+0.02);
@@ -831,42 +874,36 @@ function coinClink(delay,vol){
   playTone(b*1.42,0.14,'sine',vol*0.85,delay+0.002);
   playTone(b*1.93,0.11,'sine',vol*0.65,delay+0.004);
 }
-function soundReelTick(){ noiseBurst(0.008,0.04,4500,0); playTone(1600,0.006,'sine',0.012,0); }
-function soundReelStop(){ noiseBurst(0.03,0.15,1400,0); playTone(180,0.06,'square',0.12,0); playTone(1200,0.05,'sine',0.08,0.01); }
+function soundReelTick(){ noiseBurst(0.008,0.04,4500,0,4); playTone(1600,0.006,'sine',0.012,0); }
+function soundReelStop(){ noiseBurst(0.03,0.15,1400,0,6); playTone(180,0.06,'square',0.12,0); playTone(1200,0.05,'sine',0.08,0.01); }
 function soundWin(){ [0,.08,.16,.24].forEach((d,i)=>playTone(660*Math.pow(1.26,i),0.22,'triangle',0.13,d)); }
 function soundLose(){ playTone(280,0.18,'sine',0.09,0); playTone(196,0.28,'sine',0.09,0.16); }
 function soundJackpot(){
   [523,659,784,1047,1319,1568,2093].forEach((f,i)=>playTone(f,0.28,'triangle',0.13,i*0.09));
   for(let i=0;i<24;i++) coinClink(0.6+i*0.07,0.10+Math.random()*0.05);
 }
-function soundCard(){ noiseBurst(0.09,0.06,900,0); playTone(720,0.04,'sine',0.04,0); }
+function soundCard(){ noiseBurst(0.09,0.06,900,0,5); playTone(720,0.04,'sine',0.04,0); }
 function soundScatter(){ [659,988,1319,1976].forEach((f,i)=>playTone(f,0.22,'triangle',0.15,i*0.10)); }
-function soundChip(){
-  playTone(1400,0.025,'triangle',0.05,0);
-  playTone(2100,0.02,'sine',0.035,0.005);
-}
-/* Тихое глухое "постукивание" колеса */
+function soundChip(){ playTone(1400,0.025,'triangle',0.05,0); playTone(2100,0.02,'sine',0.035,0.005); }
+/* Звук колеса — металлический клац, как у настоящей рулетки */
 function soundWheelTick(p){
-  // низкий глухой стук, темп и высота зависят от скорости
-  const vol = 0.025 + (1-p) * 0.02;
-  const freq = 180 + (1-p) * 120;
-  playTone(freq, 0.02, 'triangle', vol, 0);
-  noiseBurst(0.015, vol * 0.6, 900 + Math.random()*300, 0);
+  const vol = 0.02 + (1-p) * 0.03;
+  // короткий высокий металлический импульс
+  noiseBurst(0.012, vol, 2800 + Math.random()*800, 0, 12);
+  playTone(1200 + Math.random()*400, 0.012, 'square', vol*0.4, 0);
 }
-/* Шарик падает и скачет в сектор */
+/* Звук падения шарика в сектор */
 function soundBallDrop(){
-  // серия коротких падающих тиков
-  const times = [0, 0.07, 0.14, 0.22, 0.32, 0.44];
+  const times = [0, 0.07, 0.15, 0.24, 0.34, 0.46];
   times.forEach((t, i) => {
-    const f = 400 - i * 40;
-    playTone(f, 0.05, 'triangle', 0.09 - i * 0.008, t);
-    noiseBurst(0.03, 0.06 - i*0.005, 800, t);
+    const f = 480 - i * 50;
+    playTone(f, 0.05, 'triangle', 0.10 - i * 0.008, t);
+    noiseBurst(0.03, 0.07 - i*0.006, 900, t, 8);
   });
-  // финальный "тук" 
   setTimeout(() => {
-    playTone(260, 0.14, 'sine', 0.12, 0);
-    playTone(180, 0.18, 'triangle', 0.08, 0.02);
-  }, 520);
+    playTone(300, 0.14, 'sine', 0.12, 0);
+    playTone(220, 0.18, 'triangle', 0.08, 0.02);
+  }, 540);
 }
 
 /* ============ STORAGE ============ */
@@ -1198,19 +1235,31 @@ function showScreen(id){
   if(id==='screen-all') document.querySelector('[data-nav="quick"]').classList.add('active');
 }
 document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>showScreen('screen-menu')));
+
+/* ============ GAME LIST ============ */
 const ALL_GAMES = [
-  {id:'slots', name:'Мини-казино', emoji:'🎰', provider:'KyrgyzSoft', cat:['slots'], play:true, bg:'bg-1'},
-  {id:'anubis', name:'Anubis Wrath', emoji:'👑', provider:'PGSoft', cat:['slots','pop'], bg:'bg-2'},
-  {id:'devil', name:'Devil Fire', emoji:'😈', provider:'Tada Gaming', cat:['slots'], bg:'bg-3'},
-  {id:'gems', name:'Gemstones Gold', emoji:'💎', provider:'PGSoft', cat:['slots','pop'], bg:'bg-9'},
-  {id:'crown', name:'Crown Coins', emoji:'👑', provider:'Endorphina', cat:['pop'], bg:'bg-9'},
-  {id:'mummy', name:'Mummy Treasures', emoji:'🧟', provider:'Belatra', cat:['pop'], bg:'bg-8'},
-  {id:'wolf', name:'Lucky Bear', emoji:'🐺', provider:'KyrgyzSoft', cat:['pop'], bg:'bg-3'},
-  {id:'poker', name:'Wild Bounty', emoji:'🃏', provider:'PGSoft', cat:['pop'], bg:'bg-7'},
-  {id:'blackjack', name:'Блэкджек', emoji:'🃏', provider:'KyrgyzSoft', cat:['quick'], play:true, bg:'bg-4'},
-  {id:'roulette', name:'Рулетка', emoji:'🎡', provider:'KyrgyzSoft', cat:['quick'], play:true, bg:'bg-5'},
-  {id:'craps', name:'Крэпс', emoji:'🎲', provider:'KyrgyzSoft', cat:['quick'], bg:'bg-6'},
-  {id:'keno', name:'Кено', emoji:'🎯', provider:'KyrgyzSoft', cat:['quick'], bg:'bg-5'},
+  // Слоты
+  {id:'slots',    name:'Мини-казино',    emoji:'🎰', provider:'KyrgyzSoft', cat:['slots','pop'], play:true, bg:'bg-1'},
+  {id:'anubis',   name:'Anubis Wrath',   emoji:'👑', provider:'PGSoft',     cat:['slots','pop'], bg:'bg-2'},
+  {id:'devil',    name:'Devil Fire',     emoji:'😈', provider:'Tada Gaming',cat:['slots'],       bg:'bg-3'},
+  {id:'gems',     name:'Gemstones Gold', emoji:'💎', provider:'PGSoft',     cat:['slots','pop'], bg:'bg-9'},
+  {id:'crown',    name:'Crown Coins',    emoji:'👑', provider:'Endorphina', cat:['slots','pop'], bg:'bg-9'},
+  {id:'mummy',    name:'Mummy Treasures',emoji:'🧟', provider:'Belatra',    cat:['slots','pop'], bg:'bg-8'},
+  {id:'wolf',     name:'Lucky Bear',     emoji:'🐺', provider:'KyrgyzSoft', cat:['slots','pop'], bg:'bg-3'},
+  {id:'pokerSlot',name:'Wild Bounty',    emoji:'🃏', provider:'PGSoft',     cat:['slots','pop'], bg:'bg-7'},
+  // Карточные
+  {id:'blackjack',name:'Блэкджек',       emoji:'🃏', provider:'KyrgyzSoft', cat:['cards','quick'], play:true, bg:'bg-4'},
+  {id:'texas',    name:"Texas Hold'em",  emoji:'♠️', provider:'KyrgyzSoft', cat:['cards'],       bg:'bg-10'},
+  {id:'russian',  name:'Russian Poker',  emoji:'🇷🇺',provider:'KyrgyzSoft', cat:['cards'],       bg:'bg-3'},
+  {id:'oasis',    name:'Oasis Poker',    emoji:'🌴', provider:'KyrgyzSoft', cat:['cards'],       bg:'bg-10'},
+  {id:'baccarat', name:'Baccarat',       emoji:'👑', provider:'KyrgyzSoft', cat:['cards'],       bg:'bg-12'},
+  {id:'caribbean',name:'Caribbean Stud', emoji:'🏝️', provider:'KyrgyzSoft', cat:['cards'],       bg:'bg-11'},
+  // Быстрые
+  {id:'roulette', name:'Рулетка',        emoji:'🎡', provider:'KyrgyzSoft', cat:['quick','pop'], play:true, bg:'bg-5'},
+  {id:'craps',    name:'Крэпс',          emoji:'🎲', provider:'KyrgyzSoft', cat:['quick'],       bg:'bg-6'},
+  {id:'keno',     name:'Кено',           emoji:'🎯', provider:'KyrgyzSoft', cat:['quick'],       bg:'bg-5'},
+  {id:'wheel',    name:'Колесо Фортуны', emoji:'☸️', provider:'KyrgyzSoft', cat:['quick'],       bg:'bg-6'},
+  {id:'dice',     name:'Кости',          emoji:'🎲', provider:'KyrgyzSoft', cat:['quick'],       bg:'bg-2'},
 ];
 const COMING_INFO = {
   anubis:{emoji:'👑',title:'Anubis Wrath',text:'Слот от PGSoft. Скоро!'},
@@ -1219,9 +1268,16 @@ const COMING_INFO = {
   crown:{emoji:'👑',title:'Crown Coins',text:'Слот от Endorphina. Скоро!'},
   mummy:{emoji:'🧟',title:'Mummy Treasures',text:'Слот от Belatra. Скоро!'},
   wolf:{emoji:'🐺',title:'Lucky Bear',text:'Слот от KyrgyzSoft. Скоро!'},
-  poker:{emoji:'🃏',title:'Wild Bounty',text:'Слот от PGSoft. Скоро!'},
+  pokerSlot:{emoji:'🃏',title:'Wild Bounty',text:'Слот от PGSoft. Скоро!'},
+  texas:{emoji:'♠️',title:"Texas Hold'em",text:'Классический покер. Скоро!'},
+  russian:{emoji:'🇷🇺',title:'Russian Poker',text:'Русский покер. Скоро!'},
+  oasis:{emoji:'🌴',title:'Oasis Poker',text:'Покер против дилера. Скоро!'},
+  baccarat:{emoji:'👑',title:'Baccarat',text:'Ставки на игрока/банкира. Скоро!'},
+  caribbean:{emoji:'🏝️',title:'Caribbean Stud',text:'Покер против дилера. Скоро!'},
   craps:{emoji:'🎲',title:'Крэпс',text:'Кости и ставки. Скоро!'},
-  keno:{emoji:'🎯',title:'Кено',text:'Угадай числа. Скоро!'}
+  keno:{emoji:'🎯',title:'Кено',text:'Угадай числа. Скоро!'},
+  wheel:{emoji:'☸️',title:'Колесо Фортуны',text:'Крути и выигрывай. Скоро!'},
+  dice:{emoji:'🎲',title:'Кости',text:'Простые ставки. Скоро!'}
 };
 function makeCard(g){
   const d=document.createElement('div');
@@ -1316,18 +1372,13 @@ const bjState = {
     { bet: 0, cards: [], done: false, result: null, isSplitAces: false, doubled: false, active: false },
     { bet: 0, cards: [], done: false, result: null, isSplitAces: false, doubled: false, active: false }
   ],
-  currentBox: -1,
-  active: false,
-  dealerHidden: true,
-  awaitingInsurance: false,
-  insuranceBet: 0,
-  _prevDealerCount: 0,
-  _prevBoxCounts: [0,0,0]
+  currentBox: -1, active: false, dealerHidden: true,
+  awaitingInsurance: false, insuranceBet: 0,
+  _prevDealerCount: 0, _prevBoxCounts: [0,0,0]
 };
 function bjRankVal(r){ if(r==='A') return 11; if(r==='K'||r==='Q'||r==='J') return 10; return parseInt(r,10); }
 function bjHandVal(cards){ let sum=0, aces=0; cards.forEach(c=>{ sum+=bjRankVal(c.r); if(c.r==='A') aces++; }); while(sum>21 && aces>0){ sum-=10; aces--; } return sum; }
 function bjNewDeck(){ const d=[]; for(const s of BJ_SUITS) for(const r of BJ_RANKS) d.push({r,s}); for(let i=d.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]];} return d; }
-
 function bjRenderCard(c, hidden, extraClass, inlineStyle) {
   const st = inlineStyle ? ' ' + inlineStyle : '';
   const ex = extraClass ? ' ' + extraClass : '';
@@ -1348,7 +1399,6 @@ function renderChip(amount) {
   else if (amount >= 100) cls = 'c100';
   return `<div class="bj-chip ${cls}">${amount}</div>`;
 }
-/* Строим боксы один раз */
 function bjBuildBoxes(){
   const row = document.getElementById('bjBoxesRow');
   if (!row) return;
@@ -1369,7 +1419,6 @@ function bjBuildBoxes(){
   bjRender();
 }
 function bjRender() {
-  // Dealer
   const prevDealer = bjState._prevDealerCount || 0;
   const dh = document.getElementById('bjDealerHand');
   dh.innerHTML = '';
@@ -1383,21 +1432,16 @@ function bjRender() {
   bjState._prevDealerCount = bjState.dealer.length;
   let dShow = '';
   if (bjState.dealer.length) {
-    dShow = bjState.dealerHidden
-      ? bjHandVal([bjState.dealer[0]]) + ' + ?'
-      : bjHandVal(bjState.dealer);
+    dShow = bjState.dealerHidden ? bjHandVal([bjState.dealer[0]]) + ' + ?' : bjHandVal(bjState.dealer);
   }
   document.getElementById('bjDealerScore').textContent = dShow;
-
-  // Boxes
   const prevBoxes = bjState._prevBoxCounts || [0,0,0];
   const boxEls = document.querySelectorAll('#bjBoxesRow .bj-box');
   boxEls.forEach((el, i) => {
     const box = bjState.boxes[i];
-    el.classList.remove('active', 'win', 'lose', 'push', 'done');
+    el.classList.remove('active', 'win', 'lose', 'push');
     if (box.active) el.classList.add('active');
     if (box.result) el.classList.add(box.result);
-
     const handEl = el.querySelector('.bj-hand');
     const prevCount = prevBoxes[i] || 0;
     let html = '';
@@ -1409,7 +1453,6 @@ function bjRender() {
       html += bjRenderCard(c, false, noAnim, style);
     });
     handEl.innerHTML = html;
-
     const valEl = el.querySelector('.bj-box-val');
     if (box.cards.length > 0 && (box.done || box.active || !bjState.active)){
       valEl.textContent = bjHandVal(box.cards);
@@ -1417,7 +1460,6 @@ function bjRender() {
     } else {
       valEl.style.display = 'none';
     }
-    // Bet chip
     const chipEl = el.querySelector('.bj-box-betchip');
     if (box.bet > 0) chipEl.innerHTML = renderChip(box.bet);
     else chipEl.innerHTML = '';
@@ -1428,12 +1470,11 @@ function bjSetResult(text, type){ const el=document.getElementById('bjResult'); 
 function bjUpdateButtons(){
   const canAct = bjState.active && !bjState.awaitingInsurance;
   const box = bjState.currentBox >= 0 ? bjState.boxes[bjState.currentBox] : null;
-  const has2 = box && box.cards.length===2;
+  const has2 = box && box.cards.length === 2;
   const canDouble = box && has2 && !box.doubled && !box.done && balance >= box.bet;
   document.getElementById('bjHit').disabled = !canAct || !box || box.done || box.isSplitAces;
   document.getElementById('bjStand').disabled = !canAct || !box || box.done;
   document.getElementById('bjDouble').disabled = !canAct || !box || box.done || !canDouble;
-  document.getElementById('bjSplit').style.display = 'none'; // упрощаем
   document.getElementById('bjInsurance').style.display = bjState.awaitingInsurance ? '' : 'none';
   document.getElementById('bjNew').disabled = bjState.active;
   const noIns = document.getElementById('bjNoIns');
@@ -1453,21 +1494,16 @@ function bjResetUI(){
   bjUpdateButtons();
   bjUpdateBetUI();
 }
-/* Клик по боксу: до раздачи ставим/снимаем ставку */
 function bjBoxClick(i){
   if (bjState.active) return;
   const box = bjState.boxes[i];
   if (box.bet > 0){
-    // снять
     balance += box.bet; saveBalance(); updateBalanceUI();
-    box.bet = 0;
-    soundChip();
+    box.bet = 0; soundChip();
   } else {
-    // поставить
     if (balance < bjBet){ showToast('Недостаточно монет'); return; }
     balance -= bjBet; saveBalance(); updateBalanceUI();
-    box.bet = bjBet;
-    soundChip();
+    box.bet = bjBet; soundChip();
     if(tg?.HapticFeedback) tg.HapticFeedback.selectionChanged();
   }
   bjRender();
@@ -1476,75 +1512,42 @@ async function bjDeal(){
   if (bjState.active) return;
   const activeBoxes = bjState.boxes.filter(b => b.bet > 0);
   if (activeBoxes.length === 0){ showToast('Поставь хотя бы на один бокс'); return; }
-  if (balance < 0){ showToast('Недостаточно монет'); return; }
-  // Ставки уже списаны при постановке на боксы
   bjState.deck = bjNewDeck();
   bjState.dealer = [];
-  bjState.boxes.forEach(b => { if (b.bet > 0){ b.cards = []; b.done=false; b.result=null; b.doubled=false; b.isSplitAces=false; b.active=false; } });
+  bjState.boxes.forEach(b => { if (b.bet > 0){ b.cards = []; b.done=false; b.result=null; b.doubled=false; b.active=false; } });
   bjState.dealerHidden = true;
   bjState.insuranceBet = 0;
   bjState._prevDealerCount = 0;
   bjState._prevBoxCounts = [0,0,0];
   bjSetResult('');
-  bjRender();
-  bjUpdateButtons();
-
+  bjRender(); bjUpdateButtons();
   const sleep = ms => new Promise(r => setTimeout(r, ms));
-  const dealTo = async (boxIdx) => {
-    bjState.boxes[boxIdx].cards.push(bjState.deck.pop());
-    bjRender(); soundCard(); await sleep(340);
-  };
-  const dealDealer = async (hidden) => {
-    bjState.dealer.push(bjState.deck.pop());
-    bjRender(); soundCard(); await sleep(340);
-  };
-  // Порядок: по кругу каждой активной руке по карте, потом дилеру 2 карты
+  const dealTo = async (i) => { bjState.boxes[i].cards.push(bjState.deck.pop()); bjRender(); soundCard(); await sleep(340); };
+  const dealDealer = async () => { bjState.dealer.push(bjState.deck.pop()); bjRender(); soundCard(); await sleep(340); };
   for (let round = 0; round < 2; round++){
-    for (let i = 0; i < 3; i++){
-      if (bjState.boxes[i].bet > 0) await dealTo(i);
-    }
+    for (let i = 0; i < 3; i++) if (bjState.boxes[i].bet > 0) await dealTo(i);
     await dealDealer();
   }
-  // Проверка блэкджека на боксах
-  let any21 = false;
-  bjState.boxes.forEach(b => { if (b.bet > 0 && bjHandVal(b.cards) === 21){ any21 = true; } });
-
   if (bjState.dealer[0].r === 'A'){
-    bjState.awaitingInsurance = true;
-    bjUpdateButtons();
-    return;
+    bjState.awaitingInsurance = true; bjUpdateButtons(); return;
   }
   await bjAfterDeal();
 }
 async function bjAfterDeal(){
-  // Активируем первую руку, которая не 21
   for (let i = 0; i < 3; i++){
     const b = bjState.boxes[i];
-    if (b.bet > 0 && bjHandVal(b.cards) === 21){
-      b.done = true;
-      b.result = null; // результат покажем в конце
-    }
+    if (b.bet > 0 && bjHandVal(b.cards) === 21){ b.done = true; }
   }
   bjState.active = true;
   const ok = bjActivateNextBox();
-  if (!ok){
-    // все боксы уже 21 или докручены → дилер
-    await bjDealerPlay();
-  }
+  if (!ok) await bjDealerPlay();
 }
 function bjActivateNextBox(){
   for (let i = 0; i < 3; i++){
     const b = bjState.boxes[i];
-    if (b.bet > 0 && !b.done){
-      bjState.currentBox = i;
-      b.active = true;
-      bjRender();
-      bjUpdateButtons();
-      return true;
-    }
+    if (b.bet > 0 && !b.done){ bjState.currentBox = i; b.active = true; bjRender(); bjUpdateButtons(); return true; }
   }
-  bjState.currentBox = -1;
-  return false;
+  bjState.currentBox = -1; return false;
 }
 async function bjHit(){
   if (!bjState.active || bjState.awaitingInsurance || bjState.currentBox < 0) return;
@@ -1582,9 +1585,7 @@ async function bjNextBox(){
   if (!ok) await bjDealerPlay();
 }
 async function bjDealerPlay(){
-  bjState.active = false;
-  bjState.currentBox = -1;
-  bjState.dealerHidden = false;
+  bjState.active = false; bjState.currentBox = -1; bjState.dealerHidden = false;
   bjRender();
   await new Promise(r => setTimeout(r, 300));
   while (bjHandVal(bjState.dealer) < 17){
@@ -1611,9 +1612,9 @@ async function bjResolve(){
   if (totalPayout > 0){ balance += totalPayout; saveBalance(); updateBalanceUI(); }
   const profit = totalPayout - totalBet;
   let msg = [];
-  if (wins > 0) msg.push('🏆 '+wins);
-  if (loses > 0) msg.push('❌ '+loses);
-  if (pushes > 0) msg.push('🤝 '+pushes);
+  if (wins > 0) msg.push('🏆 ' + wins);
+  if (loses > 0) msg.push('❌ ' + loses);
+  if (pushes > 0) msg.push('🤝 ' + pushes);
   const summary = msg.join(' • ');
   if (profit > 0){ bjSetResult(summary + ' • +' + profit + ' 🪙', 'win'); soundWin(); showBanner('+' + profit, false); }
   else if (profit === 0){ bjSetResult(summary, 'push'); }
@@ -1624,15 +1625,11 @@ async function bjResolve(){
   saveStats(); renderStats(); renderLevel(); checkAchievements();
   bjUpdateButtons();
 }
-/* Insurance — упрощённо (страховка на 1 ставку = bjBet/2, применяется к сумме) */
 async function bjInsuranceChoice(take){
   if (!bjState.awaitingInsurance) return;
   bjState.awaitingInsurance = false;
   const insAmt = Math.floor(bjBet / 2);
-  if (take && balance >= insAmt){
-    bjState.insuranceBet = insAmt;
-    balance -= insAmt; saveBalance(); updateBalanceUI();
-  }
+  if (take && balance >= insAmt){ bjState.insuranceBet = insAmt; balance -= insAmt; saveBalance(); updateBalanceUI(); }
   const dv = bjHandVal(bjState.dealer);
   if (dv === 21){
     bjState.dealerHidden = false; bjRender();
@@ -1643,19 +1640,16 @@ async function bjInsuranceChoice(take){
       soundWin();
     }
     await new Promise(r => setTimeout(r, 700));
-    // Все боксы проигрывают дилерскому BJ
     await bjAfterDeal();
     return;
   }
   await bjAfterDeal();
 }
-
 document.getElementById('bjHit').addEventListener('click', bjHit);
 document.getElementById('bjStand').addEventListener('click', bjStand);
 document.getElementById('bjDouble').addEventListener('click', bjDouble);
 document.getElementById('bjInsurance').addEventListener('click', () => bjInsuranceChoice(true));
 document.getElementById('bjNew').addEventListener('click', bjDeal);
-/* Скрытая кнопка "Без страховки" */
 const noInsBtn = document.createElement('button');
 noInsBtn.textContent='Без страховки';
 noInsBtn.className='bj-btn-insurance';
@@ -1680,18 +1674,15 @@ function bjUpdateBetUI(){
 }
 
 /* ================================================== */
-/* ============ ROULETTE ============================ */
+/* ============ ROULETTE 3D ======================== */
 /* ================================================== */
 const EURO_ORDER = [0,32,15,19,4,21,2,25,17,34,6,27,13,36,11,30,8,23,10,5,24,16,33,1,20,14,31,9,22,18,29,7,28,12,35,3,26];
 const RED_NUMS = new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]);
 const SEG_DEG = 360 / 37;
+const TILT_COS = 0.573; // cos(55°) — компенсация 3D-наклона
 const rState = {
-  chip: 1,          // выбранный номинал чипа
-  bets: {},         // ключ -> сумма
-  history: [],      // LIFO стек поставленных фишек: [{key, amount}]
-  spinning: false,
-  wheelAngle: 0,
-  ballAngle: 0
+  chip: 1, bets: {}, history: [],
+  spinning: false, wheelAngle: 0, ballAngle: 0
 };
 const rHistory = [];
 function rIsRed(n){ return RED_NUMS.has(n); }
@@ -1713,9 +1704,8 @@ function sectorPath(cx, cy, r1, r2, a0, a1){
 function buildWheelSVG(){
   const svg = document.getElementById('wheelSvg');
   if (!svg) return;
-  svg.setAttribute('viewBox', '-20 -30 380 400');
-  const cx = 170, cy = 170;
-  const rIn = 58, rOut = 148;
+  svg.setAttribute('viewBox', '0 0 340 340');
+  const cx = 170, cy = 170, rIn = 58, rOut = 148;
   const sectorsG = document.getElementById('sectorsG');
   const numbersG = document.getElementById('numbersG');
   sectorsG.innerHTML = ''; numbersG.innerHTML = '';
@@ -1754,8 +1744,7 @@ function buildTable(){
   const zero = document.createElement('button');
   zero.className = 'rnum zero';
   zero.dataset.bet = 'num:0';
-  zero.style.gridRow = '1 / span 3';
-  zero.style.gridColumn = '1';
+  zero.style.gridRow = '1 / span 3'; zero.style.gridColumn = '1';
   zero.innerHTML = '0<span class="rbet" data-rbet="num:0"></span>';
   t.appendChild(zero);
   const cols = [];
@@ -1776,8 +1765,7 @@ function buildTable(){
     const c = document.createElement('button');
     c.className = 'rnum rcol';
     c.dataset.bet = 'col:' + (3 - row);
-    c.style.gridColumn = '14';
-    c.style.gridRow = String(row + 1);
+    c.style.gridColumn = '14'; c.style.gridRow = String(row + 1);
     c.innerHTML = '2:1<span class="rbet" data-rbet="col:' + (3-row) + '"></span>';
     t.appendChild(c);
   }
@@ -1843,7 +1831,6 @@ function refreshRouletteUI(){
   });
 }
 function rClearBets(){
-  // Только полная очистка через длинное нажатие — на всякий случай оставим
   if (rState.spinning) return;
   if (rState.history.length === 0) return;
   if (!confirm('Снять ВСЕ ставки?')) return;
@@ -1853,6 +1840,23 @@ function rClearBets(){
   rState.bets = {}; rState.history = [];
   refreshRouletteUI();
   showToast('↩ Возврат ' + refund + ' 🪙');
+}
+function renderRHistoryBoard(){
+  const board = document.getElementById('rHistoryBoard');
+  if (!board) return;
+  board.innerHTML = '';
+  const total = 8;
+  for (let i = 0; i < total; i++){
+    const cell = document.createElement('div');
+    if (i < rHistory.length){
+      const h = rHistory[i];
+      cell.className = 'rh ' + (h.n === 0 ? 'green' : (h.red ? 'red' : 'black'));
+      cell.textContent = h.n;
+    } else {
+      cell.className = 'rh empty';
+    }
+    board.appendChild(cell);
+  }
 }
 async function rSpin(){
   if (rState.spinning) return;
@@ -1880,10 +1884,10 @@ async function rSpin(){
   const ballTurns = 11 + Math.floor(Math.random() * 4);
   const Bfinal = B0 - 360 * ballTurns;
 
-  const duration = 8200; // долгий спин
+  const duration = 8200;
   const t0 = performance.now();
   let lastTickT = t0;
-  const ball = document.getElementById('ballSvg');
+  const ball = document.getElementById('wheelBall');
   const sectorsG = document.getElementById('sectorsG');
   const numbersG = document.getElementById('numbersG');
 
@@ -1900,13 +1904,15 @@ async function rSpin(){
       const B = B0 + (Bfinal - B0) * eB;
       rState.ballAngle = B;
 
-      const rBall = 158 - 18 * Math.pow(p, 1.4);
-      const bPos = polToXY(170, 170, rBall, B);
-      ball.setAttribute('cx', bPos.x.toFixed(2));
-      ball.setAttribute('cy', bPos.y.toFixed(2));
+      const rBall = 138 - 12 * Math.pow(p, 1.3);
+      const B_rad = B * Math.PI / 180;
+      const bx = 170 + rBall * Math.sin(B_rad);
+      const by = 170 - rBall * Math.cos(B_rad) * TILT_COS;
+      // Переводим в пиксели относительно слоя 340x340 (по факту центр слоя = 170,170)
+      ball.style.left = bx.toFixed(2) + 'px';
+      ball.style.top  = by.toFixed(2) + 'px';
 
-      // Тики — замедляющиеся
-      const interval = 50 + p * 280;
+      const interval = 45 + p * 260;
       if (now - lastTickT > interval && p < 0.97){
         lastTickT = now;
         soundWheelTick(p);
@@ -1930,36 +1936,37 @@ function finishSpin(num, total, res){
   document.getElementById('rPrompt').textContent = 'РЕЗУЛЬТАТ';
   document.getElementById('rSpin').disabled = false;
   rState.spinning = false;
-
   const isRed = rIsRed(num), isBlack = !isRed && num !== 0;
   let payout = 0;
   for (const k in rState.bets){
     const amt = rState.bets[k];
     const [type, val] = k.split(':');
     let win = false, mult = 0;
-    if (type === 'num'){
-      if (parseInt(val,10) === num){ win = true; mult = 36; }
-    } else if (type === 'color'){
+    if (type === 'num'){ if (parseInt(val,10) === num){ win = true; mult = 36; } }
+    else if (type === 'color'){
       if (val === 'red' && isRed){ win = true; mult = 2; }
       if (val === 'black' && isBlack){ win = true; mult = 2; }
-    } else if (type === 'parity'){
+    }
+    else if (type === 'parity'){
       if (num !== 0){
         if (val === 'even' && num % 2 === 0){ win = true; mult = 2; }
         if (val === 'odd' && num % 2 === 1){ win = true; mult = 2; }
       }
-    } else if (type === 'range'){
+    }
+    else if (type === 'range'){
       if (val === 'low' && num >= 1 && num <= 18){ win = true; mult = 2; }
       if (val === 'high' && num >= 19 && num <= 36){ win = true; mult = 2; }
-    } else if (type === 'doz'){
+    }
+    else if (type === 'doz'){
       const d = parseInt(val,10);
       if (num >= 1 + (d-1)*12 && num <= d*12){ win = true; mult = 3; }
-    } else if (type === 'col'){
+    }
+    else if (type === 'col'){
       const c = parseInt(val,10);
       if (num !== 0 && ((num - 1) % 3) === (c - 1)){ win = true; mult = 3; }
     }
     if (win) payout += amt * mult;
   }
-
   if (payout > 0){
     balance += payout; saveBalance(); updateBalanceUI();
     const profit = payout - total;
@@ -1972,33 +1979,16 @@ function finishSpin(num, total, res){
     res.textContent = 'Выпало ' + num + ' • −' + total + ' 🪙';
     setTimeout(soundLose, 200);
   }
-
   rHistory.unshift({n: num, red: isRed});
-  if (rHistory.length > 10) rHistory.length = 10;
-  renderRHistory();
-
+  if (rHistory.length > 8) rHistory.length = 8;
+  renderRHistoryBoard();
   stats.spins++;
   stats.totalBet += total;
   if (payout > 0){ stats.totalWon += payout; if (payout > stats.bestWin) stats.bestWin = payout; }
   saveStats(); renderStats(); checkAchievements();
-
   rState.bets = {}; rState.history = [];
   refreshRouletteUI();
   setTimeout(()=>{ document.getElementById('rPrompt').textContent = 'СДЕЛАЙТЕ СТАВКУ'; }, 1500);
-}
-function renderRHistory(){
-  const el = document.getElementById('rHistory');
-  if (!el) return;
-  el.innerHTML = '';
-  rHistory.forEach(h=>{
-    const d = document.createElement('div');
-    d.className = 'history-item';
-    d.style.background = h.n === 0 ? 'rgba(16,185,129,.75)' : (h.red ? 'rgba(239,68,68,.85)' : 'rgba(15,23,42,.9)');
-    d.style.color = '#fff';
-    d.style.border = '1px solid rgba(255,255,255,0.1)';
-    d.textContent = h.n;
-    el.appendChild(d);
-  });
 }
 
 /* Chip buttons */
@@ -2011,12 +2001,9 @@ document.querySelectorAll('.rchip-btn').forEach(b=>{
     if(tg?.HapticFeedback) tg.HapticFeedback.selectionChanged();
   });
 });
-/* Установим активный чип по умолчанию */
 document.querySelector('.rchip-btn[data-chip="1"]').classList.add('active');
-
 document.getElementById('rSpin').addEventListener('click', rSpin);
 document.getElementById('rClear').addEventListener('click', rRemoveLastBet);
-/* Двойной тап по СНЯТЬ для полной очистки — но оставим на всякий случай через долгое нажатие */
 let rClearHoldTimer = null;
 const rClearBtn = document.getElementById('rClear');
 rClearBtn.addEventListener('touchstart', ()=>{
@@ -2041,6 +2028,7 @@ updateBetUI();
 updateControls();
 updateFreeBar();
 fillRow('row-slots','slots');
+fillRow('row-cards','cards');
 fillRow('row-quick','quick');
 fillRow('row-pop','pop');
 bjBuildBoxes();
@@ -2048,7 +2036,7 @@ bjUpdateBetUI();
 buildWheelSVG();
 buildTable();
 refreshRouletteUI();
-renderRHistory();
+renderRHistoryBoard();
 checkAchievements();
 setInterval(updateBonusBtn, 60000);
 </script>
