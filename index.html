@@ -51,11 +51,19 @@
     }
     .slots { display: flex; gap: 10px; justify-content: center; margin: 8px 0 14px; }
     .slot {
-      width: 80px; height: 80px; background: #fff; color: #111827;
-      border-radius: 16px; display: flex; align-items: center; justify-content: center;
-      font-size: 42px; box-shadow: 0 8px 25px rgba(0,0,0,.3);
-      transition: transform .15s, box-shadow .3s;
-      overflow: hidden;
+      width: 80px; height: 80px; background: #fff;
+      border-radius: 16px; overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 25px rgba(0,0,0,.3);
+      transition: box-shadow .3s;
+    }
+    .reel {
+      position: absolute; top: 0; left: 0; width: 100%;
+      will-change: transform;
+    }
+    .sym {
+      height: 80px; display: flex; align-items: center; justify-content: center;
+      font-size: 42px; color: #111827; user-select: none;
     }
     .slot.win {
       box-shadow: 0 0 0 3px #f59e0b, 0 0 25px #f59e0b;
@@ -118,7 +126,6 @@
       border: 1px solid rgba(255,255,255,0.08);
       display: flex; align-items: center; justify-content: center;
       font-size: 20px; opacity: .35;
-      cursor: help;
     }
     .ach.unlocked {
       opacity: 1; background: rgba(245,158,11,0.15);
@@ -213,9 +220,9 @@
 
     <div class="machine">
       <div class="slots">
-        <div class="slot" id="slot1">🍒</div>
-        <div class="slot" id="slot2">🍋</div>
-        <div class="slot" id="slot3">⭐</div>
+        <div class="slot" id="slot1"><div class="reel" id="reel1"></div></div>
+        <div class="slot" id="slot2"><div class="reel" id="reel2"></div></div>
+        <div class="slot" id="slot3"><div class="reel" id="reel3"></div></div>
       </div>
 
       <div class="bets-title">Ставка</div>
@@ -304,27 +311,52 @@
         o.start(); o.stop(ctx.currentTime + dur);
       } catch (e) {}
     }
-    // Звук крутящегося барабана (глухой стук)
-    function soundReelTick() { playTone(180, 0.025, 'square', 0.05); }
-    // Звук остановки барабана (дзынь)
-    function soundReelStop() { playTone(900, 0.08, 'sine', 0.15); }
-    // Звон монет при выигрыше
-    function soundCoins() {
-      const notes = [1047, 1319, 1568, 2093, 2637];
-      for (let round = 0; round < 3; round++) {
-        notes.forEach((f, i) => {
-          setTimeout(() => playTone(f + round * 80, 0.07, 'triangle', 0.14), round * 180 + i * 35);
-        });
+
+    // Глухой механический стук (для кручения)
+    function soundReelTick() {
+      playTone(120, 0.02, 'square', 0.06);
+      playTone(80, 0.03, 'sine', 0.05);
+    }
+
+    // Дзынь остановки барабана
+    function soundReelStop() {
+      playTone(700, 0.05, 'sine', 0.18);
+      playTone(1400, 0.08, 'sine', 0.10);
+      setTimeout(() => playTone(200, 0.06, 'square', 0.06), 20);
+    }
+
+    // Звон одной монеты
+    function coinDing(delay, freq, vol) {
+      setTimeout(() => {
+        playTone(freq, 0.10, 'sine', vol);
+        playTone(freq * 2, 0.06, 'sine', vol * 0.5);
+      }, delay);
+    }
+
+    // Небольшой выигрыш — быстрые "дзынь-дзынь"
+    function soundWin() {
+      for (let i = 0; i < 7; i++) {
+        const freq = 1800 + Math.random() * 1500;
+        coinDing(i * 65 + Math.random() * 25, freq, 0.18);
       }
     }
+
+    // Джекпот — фанфары + каскад монет "дзынь-дзынь-дзынь..."
     function soundJackpot() {
-      const fanfare = [523, 659, 784, 1047, 1319, 1568, 2093];
-      fanfare.forEach((f, i) => setTimeout(() => playTone(f, 0.2, 'sine', 0.22), i * 110));
-      setTimeout(soundCoins, 800);
+      // Фанфары
+      const fanfare = [523, 659, 784, 1047, 1319];
+      fanfare.forEach((f, i) => setTimeout(() => playTone(f, 0.18, 'sine', 0.20), i * 100));
+      // Каскад монет — 40 штук за ~2.8 секунды
+      for (let i = 0; i < 40; i++) {
+        const freq = 1500 + Math.random() * 2400;
+        coinDing(500 + i * 65 + Math.random() * 40, freq, 0.15 + Math.random() * 0.08);
+      }
     }
+
+    // Проигрыш
     function soundLose() {
-      playTone(300, 0.2, 'sawtooth', 0.08);
-      setTimeout(() => playTone(200, 0.3, 'sawtooth', 0.08), 150);
+      playTone(320, 0.18, 'sawtooth', 0.07);
+      setTimeout(() => playTone(200, 0.3, 'sawtooth', 0.07), 140);
     }
 
     // ========== Хранилище ==========
@@ -362,10 +394,7 @@
     function getLevel() {
       let cur = LEVELS[0], next = null;
       for (let i = 0; i < LEVELS.length; i++) {
-        if (stats.spins >= LEVELS[i].spins) {
-          cur = LEVELS[i];
-          next = LEVELS[i + 1] || null;
-        }
+        if (stats.spins >= LEVELS[i].spins) { cur = LEVELS[i]; next = LEVELS[i + 1] || null; }
       }
       return { cur, next };
     }
@@ -385,21 +414,21 @@
 
     // ========== Достижения ==========
     const ACHIEVEMENTS = [
-      { id: 'first_spin',   icon: '🎯', title: 'Первый спин',   cond: () => stats.spins >= 1 },
-      { id: 'spins_10',     icon: '🔟', title: '10 спинов',     cond: () => stats.spins >= 10 },
-      { id: 'spins_100',    icon: '💯', title: '100 спинов',    cond: () => stats.spins >= 100 },
-      { id: 'spins_500',    icon: '🚀', title: '500 спинов',    cond: () => stats.spins >= 500 },
-      { id: 'jackpot_1',    icon: '🎰', title: 'Первый джекпот',cond: () => stats.jackpots >= 1 },
-      { id: 'jackpot_10',   icon: '🏅', title: '10 джекпотов',  cond: () => stats.jackpots >= 10 },
-      { id: 'diamond',      icon: '💎', title: 'Три алмаза',    cond: () => stats.diamonds >= 1 },
-      { id: 'lucky7',       icon: '7️⃣', title: 'Лаки 7',        cond: () => stats.lucky7 >= 1 },
-      { id: 'rich',         icon: '💰', title: 'Богач (10к)',   cond: () => balance >= 10000 },
-      { id: 'millionaire',  icon: '🏆', title: 'Миллионер',     cond: () => balance >= 100000 },
-      { id: 'big_win',      icon: '🔥', title: 'Куш 10 000',    cond: () => stats.bestWin >= 10000 },
-      { id: 'big_win_50',   icon: '💥', title: 'Куш 50 000',    cond: () => stats.bestWin >= 50000 },
-      { id: 'loser',        icon: '😅', title: 'Полоса неудач', cond: () => false },
-      { id: 'spin_all',     icon: '🎲', title: 'Разные ставки', cond: () => false },
-      { id: 'night',        icon: '🌙', title: 'Ночной игрок',  cond: () => false }
+      { id: 'first_spin',   icon: '🎯', title: 'Первый спин',    cond: () => stats.spins >= 1 },
+      { id: 'spins_10',     icon: '🔟', title: '10 спинов',      cond: () => stats.spins >= 10 },
+      { id: 'spins_100',    icon: '💯', title: '100 спинов',     cond: () => stats.spins >= 100 },
+      { id: 'spins_500',    icon: '🚀', title: '500 спинов',     cond: () => stats.spins >= 500 },
+      { id: 'jackpot_1',    icon: '🎰', title: 'Первый джекпот', cond: () => stats.jackpots >= 1 },
+      { id: 'jackpot_10',   icon: '🏅', title: '10 джекпотов',   cond: () => stats.jackpots >= 10 },
+      { id: 'diamond',      icon: '💎', title: 'Три алмаза',     cond: () => stats.diamonds >= 1 },
+      { id: 'lucky7',       icon: '7️⃣', title: 'Лаки 7',         cond: () => stats.lucky7 >= 1 },
+      { id: 'rich',         icon: '💰', title: 'Богач (10к)',    cond: () => balance >= 10000 },
+      { id: 'millionaire',  icon: '🏆', title: 'Миллионер',      cond: () => balance >= 100000 },
+      { id: 'big_win',      icon: '🔥', title: 'Куш 10 000',     cond: () => stats.bestWin >= 10000 },
+      { id: 'big_win_50',   icon: '💥', title: 'Куш 50 000',     cond: () => stats.bestWin >= 50000 },
+      { id: 'spin_auto',    icon: '⚡', title: 'Автоспинер',     cond: () => false },
+      { id: 'bonus_taken',  icon: '🎁', title: 'Первый бонус',   cond: () => loadNum('casino_last_bonus', 0) > 0 },
+      { id: 'all_ach',      icon: '👑', title: 'Король казино',  cond: () => false }
     ];
     function renderAchievements() {
       const grid = document.getElementById('achGrid');
@@ -426,9 +455,9 @@
     // ========== Ежедневные задания ==========
     function todayKey() { return new Date().toISOString().slice(0, 10); }
     const DAILY_TASKS = [
-      { id: 'spins20',   title: '20 спинов сегодня', reward: 300, target: 20 },
-      { id: 'jackpot',   title: 'Сорви джекпот',    reward: 1000, target: 1 },
-      { id: 'bet1000',   title: 'Потрать 1000 монет', reward: 200, target: 1000 }
+      { id: 'spins20', title: '20 спинов сегодня',    reward: 300,  target: 20 },
+      { id: 'jackpot', title: 'Сорви джекпот',        reward: 1000, target: 1 },
+      { id: 'bet1000', title: 'Потрать 1000 монет',   reward: 200,  target: 1000 }
     ];
     let daily = JSON.parse(localStorage.getItem('casino_daily') || 'null');
     if (!daily || daily.date !== todayKey()) {
@@ -448,7 +477,7 @@
         div.innerHTML =
           '<div class="task-info">' +
             '<div class="task-title">' + t.title + '</div>' +
-            '<div class="task-progress">' + prog + ' / ' + t.target + ' • +' + t.reward + ' 🪙</div>' +
+            '<div class="task-progress">' + Math.min(prog, t.target) + ' / ' + t.target + ' • +' + t.reward + ' 🪙</div>' +
           '</div>' +
           '<button class="task-claim' + (isClaimed ? ' done' : '') + '" ' + (!done || isClaimed ? 'disabled' : '') + '>' +
             (isClaimed ? '✓ Получено' : 'Забрать') +
@@ -458,12 +487,12 @@
           daily.claimed.push(t.id);
           saveDaily();
           balance += t.reward;
-          saveBalance();
-          updateBalanceUI();
+          saveBalance(); updateBalanceUI();
           messageEl.textContent = '🎁 Награда получена! +' + t.reward + ' 🪙';
-          soundCoins();
+          soundWin();
           showToast('+' + t.reward + ' 🪙 за задание');
           renderDaily();
+          checkAchievements();
         });
         box.appendChild(div);
       });
@@ -485,10 +514,15 @@
     const messageEl = document.getElementById('message');
     const bonusBtn = document.getElementById('bonus');
     const betButtons = document.querySelectorAll('.bet[data-bet]');
-    const slots = [
+    const slotEls = [
       document.getElementById('slot1'),
       document.getElementById('slot2'),
       document.getElementById('slot3')
+    ];
+    const reelEls = [
+      document.getElementById('reel1'),
+      document.getElementById('reel2'),
+      document.getElementById('reel3')
     ];
 
     let isSpinning = false, autoRunning = false;
@@ -595,7 +629,7 @@
       localStorage.setItem(BONUS_KEY, String(Date.now()));
       updateBonusBtn();
       messageEl.textContent = '🎁 Бонус получен! +' + BONUS_AMOUNT + ' 🪙';
-      soundCoins();
+      soundWin();
       showBanner('🎁 +' + BONUS_AMOUNT, false);
       checkAchievements();
     });
@@ -616,48 +650,123 @@
       setTimeout(() => el.classList.remove('show'), 2500);
     }
 
-    // ========== Игра ==========
+    // ========== Реальные барабаны ==========
     const symbols = ["🍒", "🍋", "🍊", "🍉", "⭐", "💎", "7️⃣"];
+    const SYM_H = 80;
+    const CYCLE = symbols.length * SYM_H; // 560
+    const REEL_COPIES = 6;
+
+    // Текущее вертикальное смещение лент (в пикселях, отрицательные — вниз)
+    const reelOffsets = [0, -SYM_H, -4 * SYM_H]; // 🍒, 🍋, ⭐
+
+    function buildReel(el) {
+      el.innerHTML = '';
+      for (let c = 0; c < REEL_COPIES; c++) {
+        symbols.forEach(s => {
+          const d = document.createElement('div');
+          d.className = 'sym';
+          d.textContent = s;
+          el.appendChild(d);
+        });
+      }
+    }
+
+    function initReels() {
+      reelEls.forEach((el, i) => {
+        buildReel(el);
+        el.style.transform = 'translateY(' + reelOffsets[i] + 'px)';
+      });
+    }
 
     function vibrate(type = 'medium') {
       if (tg?.HapticFeedback) tg.HapticFeedback.impactOccurred(type);
       else if (navigator.vibrate) navigator.vibrate(30);
     }
-    function clearWinGlow() { slots.forEach(s => s.classList.remove('win')); }
+    function clearWinGlow() { slotEls.forEach(s => s.classList.remove('win')); }
 
-    // Настоящая анимация барабанов: символы идут по кругу, останавливаются по очереди
+    // Настоящее кручение: лента едет вниз, замедляется, доводится до нужного символа
     function animateReels() {
       return new Promise(resolve => {
-        const positions = [0, 0, 0];
-        const stopAt = [17, 25, 33]; // через сколько тиков остановится каждый барабан
-        const results = [null, null, null];
-        let ticks = 0;
+        const results = [0, 1, 2].map(() => Math.floor(Math.random() * symbols.length));
+        const now = performance.now();
 
-        // Звук прокрутки — глухой стук, пока крутится
-        const tickSound = setInterval(soundReelTick, 60);
+        const spinSpeed = 1000;                  // пикселей в секунду при разгоне
+        const stopTimes = [now + 1200, now + 1600, now + 2000]; // когда начинать тормозить
+        const decelTime = 750;                   // длительность торможения, мс
 
-        const anim = setInterval(() => {
-          ticks++;
+        // Вычислить финальные позиции
+        const targets = [0, 0, 0];
+        for (let i = 0; i < 3; i++) {
+          const spinDur = (stopTimes[i] - now) / 1000;
+          const offsetAtStop = reelOffsets[i] - spinSpeed * spinDur;
+          // Позиция mod CYCLE, где верхний символ = results[i]
+          const targetMod = ((-results[i] * SYM_H) % CYCLE + CYCLE) % CYCLE;
+          const currentMod = ((offsetAtStop % CYCLE) + CYCLE) % CYCLE;
+          let delta = (currentMod - targetMod + CYCLE) % CYCLE;
+          delta += CYCLE; // ещё один полный оборот для красоты
+          targets[i] = offsetAtStop - delta;
+        }
+
+        const stopping = [false, false, false];
+        const done = [false, false, false];
+        const stopStart = [0, 0, 0];
+        const stopStartOffset = [0, 0, 0];
+        const lastSymIdx = [0, 0, 0];
+
+        let lastTickTime = now;
+        let lastFrameTime = now;
+
+        function frame(t) {
+          const dt = Math.min(0.05, (t - lastFrameTime) / 1000);
+          lastFrameTime = t;
+
           for (let i = 0; i < 3; i++) {
-            if (ticks < stopAt[i]) {
-              // Крутим: сдвигаем символ на 1 позицию по кругу
-              positions[i] = (positions[i] + 1) % symbols.length;
-              slots[i].textContent = symbols[positions[i]];
-            } else if (results[i] === null) {
-              // Останавливаем барабан: выбираем случайный финальный символ
-              const finalIdx = Math.floor(Math.random() * symbols.length);
-              results[i] = symbols[finalIdx];
-              slots[i].textContent = results[i];
-              soundReelStop();
-              vibrate('light');
+            if (done[i]) continue;
+
+            if (!stopping[i]) {
+              if (t < stopTimes[i]) {
+                // Быстрое вращение
+                reelOffsets[i] -= spinSpeed * dt;
+                if (reelOffsets[i] < -CYCLE * 4) reelOffsets[i] += CYCLE;
+                // Звук стука на каждой новой позиции
+                const symIdx = Math.floor(-reelOffsets[i] / SYM_H) % symbols.length;
+                if (symIdx !== lastSymIdx[i]) {
+                  if (t - lastTickTime > 60) {
+                    soundReelTick();
+                    lastTickTime = t;
+                  }
+                  lastSymIdx[i] = symIdx;
+                }
+              } else {
+                stopping[i] = true;
+                stopStart[i] = t;
+                stopStartOffset[i] = reelOffsets[i];
+              }
+            } else {
+              // Торможение с ease-out (кубическая кривая)
+              const progress = Math.min(1, (t - stopStart[i]) / decelTime);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              reelOffsets[i] = stopStartOffset[i] + (targets[i] - stopStartOffset[i]) * eased;
+              // Звук стука на каждой новой позиции (замедляется вместе с барабаном)
+              const symIdx = Math.floor(-reelOffsets[i] / SYM_H) % symbols.length;
+              if (symIdx !== lastSymIdx[i]) {
+                soundReelTick();
+                lastSymIdx[i] = symIdx;
+              }
+              if (progress >= 1) {
+                done[i] = true;
+                soundReelStop();
+                vibrate('light');
+              }
             }
+
+            reelEls[i].style.transform = 'translateY(' + reelOffsets[i] + 'px)';
           }
-          if (results.every(r => r !== null)) {
-            clearInterval(anim);
-            clearInterval(tickSound);
-            resolve(results);
-          }
-        }, 60);
+
+          if (done.every(d => d)) { resolve(results.map(i => symbols[i])); return; }
+          requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
       });
     }
 
@@ -688,15 +797,15 @@
         win = Math.round(bet * mult * (1 + levelBonus / 100));
         stats.jackpots++;
         messageEl.textContent = '🎉 ДЖЕКПОТ! +' + win + ' 🪙';
-        slots.forEach(s => s.classList.add('win'));
+        slotEls.forEach(s => s.classList.add('win'));
         soundJackpot();
         showBanner('🎉 +' + win, true);
         progressDaily('jackpot', 1);
       } else if (a === b || b === c || a === c) {
         win = Math.round(bet * 2 * (1 + levelBonus / 100));
         messageEl.textContent = '👍 Совпадение! +' + win + ' 🪙';
-        slots.forEach(s => s.classList.add('win'));
-        soundCoins();
+        slotEls.forEach(s => s.classList.add('win'));
+        soundWin();
         showBanner('+' + win, false);
       } else {
         messageEl.textContent = 'Попробуйте ещё раз';
@@ -758,6 +867,7 @@
     });
 
     // ========== Инициализация ==========
+    initReels();
     updateBalanceUI();
     renderHistory();
     renderStats();
