@@ -14,66 +14,70 @@
       color: white;
       display: flex; justify-content: center; align-items: center;
     }
-    .casino { width: 100%; max-width: 430px; padding: 20px 16px 30px; text-align: center; }
-    .greeting { color: #9ca3af; font-size: 14px; margin-bottom: 6px; }
-    h1 { margin: 0 0 8px; font-size: 28px; }
-    .subtitle { color: #9ca3af; margin-bottom: 16px; font-size: 14px; }
+    .casino { width: 100%; max-width: 430px; padding: 18px 14px 30px; text-align: center; }
+    .greeting { color: #9ca3af; font-size: 13px; margin-bottom: 4px; }
+    h1 { margin: 0 0 6px; font-size: 26px; }
+    .subtitle { color: #9ca3af; margin-bottom: 14px; font-size: 13px; }
 
     .level-bar {
       background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px; padding: 10px 14px; margin-bottom: 12px; text-align: left;
+      border-radius: 14px; padding: 9px 12px; margin-bottom: 10px; text-align: left;
     }
-    .level-top { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; }
+    .level-top { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
     .level-name { font-weight: bold; color: #f59e0b; }
     .level-count { color: #9ca3af; }
-    .level-track { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+    .level-track { height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
     .level-fill { height: 100%; background: #f59e0b; width: 0%; transition: width .4s; }
-    .level-bonus { font-size: 11px; color: #9ca3af; margin-top: 5px; }
+    .level-bonus { font-size: 11px; color: #9ca3af; margin-top: 4px; }
 
     .balance {
       background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px; padding: 12px; margin-bottom: 12px;
+      border-radius: 16px; padding: 10px; margin-bottom: 10px;
     }
-    .balance-title { font-size: 12px; color: #9ca3af; margin-bottom: 4px; }
-    .coins { font-size: 26px; font-weight: bold; }
+    .balance-title { font-size: 12px; color: #9ca3af; margin-bottom: 3px; }
+    .coins { font-size: 24px; font-weight: bold; }
 
     .bonus {
-      width: 100%; padding: 11px; margin-bottom: 14px;
-      border-radius: 14px; border: 1px dashed #f59e0b;
+      width: 100%; padding: 10px; margin-bottom: 12px;
+      border-radius: 13px; border: 1px dashed #f59e0b;
       background: rgba(245,158,11,0.1); color: #f59e0b;
       font-weight: bold; font-size: 14px; cursor: pointer;
     }
     .bonus:disabled { opacity: .45; cursor: default; border-style: solid; color: #9ca3af; border-color: rgba(255,255,255,0.15); background: transparent; }
 
     .machine {
-      background: rgba(255,255,255,0.08); border-radius: 24px;
-      padding: 20px 14px; border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.08); border-radius: 22px;
+      padding: 14px 12px; border: 1px solid rgba(255,255,255,0.12);
     }
-    .slots { display: flex; gap: 10px; justify-content: center; margin: 8px 0 14px; }
+    .slots {
+      display: flex; gap: 8px; justify-content: center;
+      padding: 8px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 16px;
+      margin-bottom: 14px;
+      box-shadow: inset 0 4px 12px rgba(0,0,0,0.6);
+    }
     .slot {
-      width: 80px; height: 80px; background: #fff;
-      border-radius: 16px; overflow: hidden;
+      flex: 1;
+      height: 165px;
+      background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
+      border-radius: 12px;
+      overflow: hidden;
       position: relative;
-      box-shadow: 0 8px 25px rgba(0,0,0,.3);
-      transition: box-shadow .3s;
+      box-shadow: inset 0 4px 10px rgba(0,0,0,0.35), inset 0 -4px 10px rgba(0,0,0,0.35);
     }
     .reel {
-      position: absolute; top: 0; left: 0; width: 100%;
+      position: absolute; top: 0; left: 0; right: 0;
       will-change: transform;
     }
     .sym {
-      height: 80px; display: flex; align-items: center; justify-content: center;
-      font-size: 42px; color: #111827; user-select: none;
+      height: 55px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 38px; line-height: 1;
+      color: #111827;
+      user-select: none;
     }
-    .slot.win {
-      box-shadow: 0 0 0 3px #f59e0b, 0 0 25px #f59e0b;
-      animation: pop .5s;
-    }
-    @keyframes pop {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.12); }
-      100% { transform: scale(1); }
-    }
+    .slot.win { box-shadow: 0 0 0 3px #f59e0b, 0 0 22px #f59e0b, inset 0 4px 10px rgba(0,0,0,0.35); }
 
     .bets-title { font-size: 11px; color: #9ca3af; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
     .bets { display: flex; gap: 5px; justify-content: center; margin-bottom: 12px; }
@@ -109,23 +113,23 @@
       border: 1px solid rgba(255,255,255,0.15);
     }
 
-    .message { min-height: 26px; margin-top: 14px; font-weight: bold; font-size: 15px; }
+    .message { min-height: 26px; margin-top: 12px; font-weight: bold; font-size: 14px; }
 
     .panel {
-      margin-top: 16px; padding: 14px;
+      margin-top: 14px; padding: 12px;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
+      border-radius: 14px;
     }
-    .panel-title { font-size: 11px; color: #9ca3af; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    .panel-title { font-size: 11px; color: #9ca3af; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
 
-    .achievements { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .achievements { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
     .ach {
-      aspect-ratio: 1; border-radius: 10px;
+      aspect-ratio: 1; border-radius: 9px;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px; opacity: .35;
+      font-size: 19px; opacity: .35;
     }
     .ach.unlocked {
       opacity: 1; background: rgba(245,158,11,0.15);
@@ -135,7 +139,7 @@
 
     .task {
       display: flex; align-items: center; gap: 10px;
-      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
       font-size: 13px; text-align: left;
     }
     .task:last-child { border-bottom: 0; }
@@ -150,20 +154,20 @@
     .task-claim:disabled { background: rgba(255,255,255,0.1); color: #9ca3af; cursor: default; }
     .task-claim.done { background: transparent; color: #4ade80; border: 1px solid #4ade80; }
 
-    .stat-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 13px; }
+    .stat-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 13px; }
     .stat-label { color: #9ca3af; }
     .stat-value { font-weight: bold; }
     .stat-value.pos { color: #4ade80; }
     .stat-value.neg { color: #f87171; }
 
-    .history-list { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; min-height: 28px; }
+    .history-list { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; min-height: 26px; }
     .history-item {
-      background: rgba(255,255,255,0.1); border-radius: 8px;
-      padding: 4px 7px; font-size: 18px; letter-spacing: 1px;
+      background: rgba(255,255,255,0.1); border-radius: 7px;
+      padding: 3px 6px; font-size: 12px; font-weight: bold;
     }
-    .history-item.jackpot { background: rgba(245,158,11,0.3); }
+    .history-item.jackpot { background: rgba(245,158,11,0.3); color: #f59e0b; }
 
-    .info { color: #9ca3af; font-size: 12px; margin-top: 14px; }
+    .info { color: #9ca3af; font-size: 11px; margin-top: 12px; }
 
     .win-banner {
       position: fixed; top: 50%; left: 50%;
@@ -220,9 +224,9 @@
 
     <div class="machine">
       <div class="slots">
+        <div class="slot" id="slot0"><div class="reel" id="reel0"></div></div>
         <div class="slot" id="slot1"><div class="reel" id="reel1"></div></div>
         <div class="slot" id="slot2"><div class="reel" id="reel2"></div></div>
-        <div class="slot" id="slot3"><div class="reel" id="reel3"></div></div>
       </div>
 
       <div class="bets-title">Ставка</div>
@@ -299,64 +303,58 @@
     ['touchstart','click','touchend'].forEach(ev =>
       document.addEventListener(ev, unlockAudio, { passive: true }));
 
-    function playTone(freq, dur, type = 'sine', vol = 0.15) {
+    function playTone(freq, dur, type = 'sine', vol = 0.15, when = 0) {
       const ctx = getAudio();
       if (!ctx || ctx.state !== 'running') return;
       try {
+        const t0 = ctx.currentTime + when;
         const o = ctx.createOscillator(), g = ctx.createGain();
         o.type = type; o.frequency.value = freq;
-        g.gain.setValueAtTime(vol, ctx.currentTime);
-        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+        g.gain.setValueAtTime(vol, t0);
+        g.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
         o.connect(g); g.connect(ctx.destination);
-        o.start(); o.stop(ctx.currentTime + dur);
+        o.start(t0); o.stop(t0 + dur);
       } catch (e) {}
     }
 
-    // Глухой механический стук (для кручения)
+    // Глухой стук барабана
     function soundReelTick() {
-      playTone(120, 0.02, 'square', 0.06);
-      playTone(80, 0.03, 'sine', 0.05);
+      playTone(120, 0.025, 'square', 0.06);
+      playTone(75, 0.04, 'sine', 0.05);
     }
-
-    // Дзынь остановки барабана
+    // Дзынь остановки
     function soundReelStop() {
-      playTone(700, 0.05, 'sine', 0.18);
-      playTone(1400, 0.08, 'sine', 0.10);
-      setTimeout(() => playTone(200, 0.06, 'square', 0.06), 20);
+      playTone(760, 0.06, 'sine', 0.16);
+      playTone(1520, 0.09, 'sine', 0.09);
+      playTone(180, 0.05, 'square', 0.05);
     }
-
-    // Звон одной монеты
-    function coinDing(delay, freq, vol) {
+    // Одиночный звон монеты
+    function coinDing(when, freq, vol) {
       setTimeout(() => {
         playTone(freq, 0.10, 'sine', vol);
-        playTone(freq * 2, 0.06, 'sine', vol * 0.5);
-      }, delay);
+        playTone(freq * 1.7, 0.06, 'triangle', vol * 0.6);
+        playTone(freq * 2.5, 0.04, 'sine', vol * 0.4);
+      }, when);
     }
-
-    // Небольшой выигрыш — быстрые "дзынь-дзынь"
+    // Выигрыш — звон монет (7-10 монет)
     function soundWin() {
-      for (let i = 0; i < 7; i++) {
-        const freq = 1800 + Math.random() * 1500;
-        coinDing(i * 65 + Math.random() * 25, freq, 0.18);
+      for (let i = 0; i < 9; i++) {
+        const freq = 1700 + Math.random() * 1300;
+        coinDing(i * 70 + Math.random() * 30, freq, 0.16);
       }
     }
-
-    // Джекпот — фанфары + каскад монет "дзынь-дзынь-дзынь..."
+    // Джекпот — фанфары + длинный каскад монет
     function soundJackpot() {
-      // Фанфары
       const fanfare = [523, 659, 784, 1047, 1319];
       fanfare.forEach((f, i) => setTimeout(() => playTone(f, 0.18, 'sine', 0.20), i * 100));
-      // Каскад монет — 40 штук за ~2.8 секунды
-      for (let i = 0; i < 40; i++) {
-        const freq = 1500 + Math.random() * 2400;
-        coinDing(500 + i * 65 + Math.random() * 40, freq, 0.15 + Math.random() * 0.08);
+      for (let i = 0; i < 35; i++) {
+        const freq = 1400 + Math.random() * 2400;
+        coinDing(600 + i * 70 + Math.random() * 40, freq, 0.14 + Math.random() * 0.08);
       }
     }
-
-    // Проигрыш
     function soundLose() {
-      playTone(320, 0.18, 'sawtooth', 0.07);
-      setTimeout(() => playTone(200, 0.3, 'sawtooth', 0.07), 140);
+      playTone(320, 0.18, 'sawtooth', 0.06);
+      setTimeout(() => playTone(200, 0.28, 'sawtooth', 0.06), 140);
     }
 
     // ========== Хранилище ==========
@@ -414,21 +412,21 @@
 
     // ========== Достижения ==========
     const ACHIEVEMENTS = [
-      { id: 'first_spin',   icon: '🎯', title: 'Первый спин',    cond: () => stats.spins >= 1 },
-      { id: 'spins_10',     icon: '🔟', title: '10 спинов',      cond: () => stats.spins >= 10 },
-      { id: 'spins_100',    icon: '💯', title: '100 спинов',     cond: () => stats.spins >= 100 },
-      { id: 'spins_500',    icon: '🚀', title: '500 спинов',     cond: () => stats.spins >= 500 },
-      { id: 'jackpot_1',    icon: '🎰', title: 'Первый джекпот', cond: () => stats.jackpots >= 1 },
-      { id: 'jackpot_10',   icon: '🏅', title: '10 джекпотов',   cond: () => stats.jackpots >= 10 },
-      { id: 'diamond',      icon: '💎', title: 'Три алмаза',     cond: () => stats.diamonds >= 1 },
-      { id: 'lucky7',       icon: '7️⃣', title: 'Лаки 7',         cond: () => stats.lucky7 >= 1 },
-      { id: 'rich',         icon: '💰', title: 'Богач (10к)',    cond: () => balance >= 10000 },
-      { id: 'millionaire',  icon: '🏆', title: 'Миллионер',      cond: () => balance >= 100000 },
-      { id: 'big_win',      icon: '🔥', title: 'Куш 10 000',     cond: () => stats.bestWin >= 10000 },
-      { id: 'big_win_50',   icon: '💥', title: 'Куш 50 000',     cond: () => stats.bestWin >= 50000 },
-      { id: 'spin_auto',    icon: '⚡', title: 'Автоспинер',     cond: () => false },
-      { id: 'bonus_taken',  icon: '🎁', title: 'Первый бонус',   cond: () => loadNum('casino_last_bonus', 0) > 0 },
-      { id: 'all_ach',      icon: '👑', title: 'Король казино',  cond: () => false }
+      { id: 'first_spin',  icon: '🎯', title: 'Первый спин',    cond: () => stats.spins >= 1 },
+      { id: 'spins_10',    icon: '🔟', title: '10 спинов',      cond: () => stats.spins >= 10 },
+      { id: 'spins_100',   icon: '💯', title: '100 спинов',     cond: () => stats.spins >= 100 },
+      { id: 'spins_500',   icon: '🚀', title: '500 спинов',     cond: () => stats.spins >= 500 },
+      { id: 'jackpot_1',   icon: '🎰', title: 'Первый джекпот', cond: () => stats.jackpots >= 1 },
+      { id: 'jackpot_10',  icon: '🏅', title: '10 джекпотов',   cond: () => stats.jackpots >= 10 },
+      { id: 'diamond',     icon: '💎', title: 'Три алмаза',     cond: () => stats.diamonds >= 1 },
+      { id: 'lucky7',      icon: '7️⃣', title: 'Лаки 7',         cond: () => stats.lucky7 >= 1 },
+      { id: 'rich',        icon: '💰', title: 'Богач (10к)',    cond: () => balance >= 10000 },
+      { id: 'millionaire', icon: '🏆', title: 'Миллионер',      cond: () => balance >= 100000 },
+      { id: 'big_win',     icon: '🔥', title: 'Куш 10 000',     cond: () => stats.bestWin >= 10000 },
+      { id: 'big_win_50',  icon: '💥', title: 'Куш 50 000',     cond: () => stats.bestWin >= 50000 },
+      { id: 'spin_auto',   icon: '⚡', title: 'Автоспинер',     cond: () => false },
+      { id: 'bonus_taken', icon: '🎁', title: 'Первый бонус',   cond: () => loadNum('casino_last_bonus', 0) > 0 },
+      { id: 'all_ach',     icon: '👑', title: 'Король казино',  cond: () => false }
     ];
     function renderAchievements() {
       const grid = document.getElementById('achGrid');
@@ -455,9 +453,9 @@
     // ========== Ежедневные задания ==========
     function todayKey() { return new Date().toISOString().slice(0, 10); }
     const DAILY_TASKS = [
-      { id: 'spins20', title: '20 спинов сегодня',    reward: 300,  target: 20 },
-      { id: 'jackpot', title: 'Сорви джекпот',        reward: 1000, target: 1 },
-      { id: 'bet1000', title: 'Потрать 1000 монет',   reward: 200,  target: 1000 }
+      { id: 'spins20', title: '20 спинов сегодня',  reward: 300,  target: 20 },
+      { id: 'jackpot', title: 'Сорви джекпот',      reward: 1000, target: 1 },
+      { id: 'bet1000', title: 'Потрать 1000 монет', reward: 200,  target: 1000 }
     ];
     let daily = JSON.parse(localStorage.getItem('casino_daily') || 'null');
     if (!daily || daily.date !== todayKey()) {
@@ -515,14 +513,14 @@
     const bonusBtn = document.getElementById('bonus');
     const betButtons = document.querySelectorAll('.bet[data-bet]');
     const slotEls = [
+      document.getElementById('slot0'),
       document.getElementById('slot1'),
-      document.getElementById('slot2'),
-      document.getElementById('slot3')
+      document.getElementById('slot2')
     ];
     const reelEls = [
+      document.getElementById('reel0'),
       document.getElementById('reel1'),
-      document.getElementById('reel2'),
-      document.getElementById('reel3')
+      document.getElementById('reel2')
     ];
 
     let isSpinning = false, autoRunning = false;
@@ -556,7 +554,6 @@
       resetButton.disabled = lock;
       resetStatsBtn.disabled = lock;
       shareBtn.disabled = lock;
-
       if (autoRunning) {
         autoBtn.disabled = false;
         autoBtn.textContent = '⏹ СТОП';
@@ -594,7 +591,7 @@
       history.slice(0, 5).forEach(item => {
         const d = document.createElement('div');
         d.className = 'history-item' + (item.jackpot ? ' jackpot' : '');
-        d.textContent = item.symbols.join('');
+        d.textContent = item.symbols.join(' ');
         el.appendChild(d);
       });
     }
@@ -650,19 +647,21 @@
       setTimeout(() => el.classList.remove('show'), 2500);
     }
 
-    // ========== Реальные барабаны ==========
-    const symbols = ["🍒", "🍋", "🍊", "🍉", "⭐", "💎", "7️⃣"];
-    const SYM_H = 80;
-    const CYCLE = symbols.length * SYM_H; // 560
-    const REEL_COPIES = 6;
+    // ========== БАРАБАНЫ ==========
+    const SYMBOLS = ["🍒", "🍋", "🍊", "🍇", "🍉", "🍌", "🔔", "⭐", "💎", "7️⃣"];
+    const SYM_H = 55;                 // высота одного символа в px
+    const WINDOW_H = SYM_H * 3;       // 165, окно показывает 3 символа
+    const CYCLE_LEN = SYMBOLS.length * SYM_H;   // 550
+    const STRIP_CYCLES = 14;          // сколько циклов в ленте (для запаса)
+    const STRIP_LEN = STRIP_CYCLES * CYCLE_LEN;
 
-    // Текущее вертикальное смещение лент (в пикселях, отрицательные — вниз)
-    const reelOffsets = [0, -SYM_H, -4 * SYM_H]; // 🍒, 🍋, ⭐
+    // Текущие translateY каждой ленты
+    const reelOffsets = [0, 0, 0];
 
-    function buildReel(el) {
+    function buildStrip(el) {
       el.innerHTML = '';
-      for (let c = 0; c < REEL_COPIES; c++) {
-        symbols.forEach(s => {
+      for (let c = 0; c < STRIP_CYCLES; c++) {
+        SYMBOLS.forEach(s => {
           const d = document.createElement('div');
           d.className = 'sym';
           d.textContent = s;
@@ -673,7 +672,9 @@
 
     function initReels() {
       reelEls.forEach((el, i) => {
-        buildReel(el);
+        buildStrip(el);
+        // стартовое положение: середина = символ с индексом i
+        reelOffsets[i] = SYM_H * (1 - i);
         el.style.transform = 'translateY(' + reelOffsets[i] + 'px)';
       });
     }
@@ -684,92 +685,102 @@
     }
     function clearWinGlow() { slotEls.forEach(s => s.classList.remove('win')); }
 
-    // Настоящее кручение: лента едет вниз, замедляется, доводится до нужного символа
-    function animateReels() {
+    // Куда сдвинуть ленту, чтобы в СЕРЕДИНЕ оказался символ symIdx
+    // Символ symIdx находится в ленте на пикселе symIdx * SYM_H
+    // Хотим, чтобы после сдвига y он оказался в окне на y = SYM_H (середина окна)
+    //   symIdx * SYM_H + y = SYM_H  =>  y = SYM_H * (1 - symIdx)
+    // Добавляем минус K * CYCLE_LEN, чтобы y был сильно отрицательным (эффект кручения)
+    function calcTargetY(currentY, symIdx) {
+      const baseY = SYM_H * (1 - symIdx);
+      const minDrop = 3 * CYCLE_LEN; // минимум 3 полных оборота
+      const K = Math.ceil((baseY - currentY + minDrop) / CYCLE_LEN);
+      return baseY - K * CYCLE_LEN;
+    }
+
+    // Анимировать один барабан от currentY до targetY с ease-out
+    function animateReel(reelIdx, targetSymIdx, duration) {
       return new Promise(resolve => {
-        const results = [0, 1, 2].map(() => Math.floor(Math.random() * symbols.length));
-        const now = performance.now();
-
-        const spinSpeed = 1000;                  // пикселей в секунду при разгоне
-        const stopTimes = [now + 1200, now + 1600, now + 2000]; // когда начинать тормозить
-        const decelTime = 750;                   // длительность торможения, мс
-
-        // Вычислить финальные позиции
-        const targets = [0, 0, 0];
-        for (let i = 0; i < 3; i++) {
-          const spinDur = (stopTimes[i] - now) / 1000;
-          const offsetAtStop = reelOffsets[i] - spinSpeed * spinDur;
-          // Позиция mod CYCLE, где верхний символ = results[i]
-          const targetMod = ((-results[i] * SYM_H) % CYCLE + CYCLE) % CYCLE;
-          const currentMod = ((offsetAtStop % CYCLE) + CYCLE) % CYCLE;
-          let delta = (currentMod - targetMod + CYCLE) % CYCLE;
-          delta += CYCLE; // ещё один полный оборот для красоты
-          targets[i] = offsetAtStop - delta;
-        }
-
-        const stopping = [false, false, false];
-        const done = [false, false, false];
-        const stopStart = [0, 0, 0];
-        const stopStartOffset = [0, 0, 0];
-        const lastSymIdx = [0, 0, 0];
-
-        let lastTickTime = now;
-        let lastFrameTime = now;
+        const startY = reelOffsets[reelIdx];
+        const targetY = calcTargetY(startY, targetSymIdx);
+        const startTime = performance.now();
+        let lastTickIdx = Math.floor(-startY / SYM_H);
+        let lastTickTime = 0;
 
         function frame(t) {
-          const dt = Math.min(0.05, (t - lastFrameTime) / 1000);
-          lastFrameTime = t;
+          const elapsed = t - startTime;
+          const progress = Math.min(1, elapsed / duration);
+          const eased = 1 - Math.pow(1 - progress, 4);   // ease-out quart
+          const y = startY + (targetY - startY) * eased;
+          reelOffsets[reelIdx] = y;
+          reelEls[reelIdx].style.transform = 'translateY(' + y + 'px)';
 
-          for (let i = 0; i < 3; i++) {
-            if (done[i]) continue;
-
-            if (!stopping[i]) {
-              if (t < stopTimes[i]) {
-                // Быстрое вращение
-                reelOffsets[i] -= spinSpeed * dt;
-                if (reelOffsets[i] < -CYCLE * 4) reelOffsets[i] += CYCLE;
-                // Звук стука на каждой новой позиции
-                const symIdx = Math.floor(-reelOffsets[i] / SYM_H) % symbols.length;
-                if (symIdx !== lastSymIdx[i]) {
-                  if (t - lastTickTime > 60) {
-                    soundReelTick();
-                    lastTickTime = t;
-                  }
-                  lastSymIdx[i] = symIdx;
-                }
-              } else {
-                stopping[i] = true;
-                stopStart[i] = t;
-                stopStartOffset[i] = reelOffsets[i];
-              }
-            } else {
-              // Торможение с ease-out (кубическая кривая)
-              const progress = Math.min(1, (t - stopStart[i]) / decelTime);
-              const eased = 1 - Math.pow(1 - progress, 3);
-              reelOffsets[i] = stopStartOffset[i] + (targets[i] - stopStartOffset[i]) * eased;
-              // Звук стука на каждой новой позиции (замедляется вместе с барабаном)
-              const symIdx = Math.floor(-reelOffsets[i] / SYM_H) % symbols.length;
-              if (symIdx !== lastSymIdx[i]) {
-                soundReelTick();
-                lastSymIdx[i] = symIdx;
-              }
-              if (progress >= 1) {
-                done[i] = true;
-                soundReelStop();
-                vibrate('light');
-              }
+          // Стук при проходе нового символа через верх окна
+          const tickIdx = Math.floor(-y / SYM_H);
+          if (tickIdx > lastTickIdx) {
+            if (t - lastTickTime > 32) {  // ограничение ~30 тиков/сек
+              soundReelTick();
+              lastTickTime = t;
             }
-
-            reelEls[i].style.transform = 'translateY(' + reelOffsets[i] + 'px)';
+            lastTickIdx = tickIdx;
           }
 
-          if (done.every(d => d)) { resolve(results.map(i => symbols[i])); return; }
+          if (progress >= 1) {
+            soundReelStop();
+            vibrate('light');
+            resolve();
+            return;
+          }
           requestAnimationFrame(frame);
         }
         requestAnimationFrame(frame);
       });
     }
 
+    function animateAllReels(resultIdxs) {
+      // Каждый барабан останавливается в свой момент
+      return Promise.all([
+        animateReel(0, resultIdxs[0], 1500),
+        animateReel(1, resultIdxs[1], 1900),
+        animateReel(2, resultIdxs[2], 2300)
+      ]);
+    }
+
+    // ========== Оценка выигрыша ==========
+    const PAYOUTS = {
+      "7️⃣": 40, "💎": 25, "🔔": 15, "⭐": 10,
+      "🍇": 8, "🍉": 6, "🍌": 5, "🍊": 4, "🍋": 3, "🍒": 2
+    };
+
+    function evaluateGrid(midIdxs) {
+      const len = SYMBOLS.length;
+      // Строим видимую сетку: grid[reel][row] где row 0=top, 1=mid, 2=bot
+      const grid = [[], [], []];
+      for (let r = 0; r < 3; r++) {
+        const m = midIdxs[r];
+        grid[r][0] = SYMBOLS[(m - 1 + len) % len];
+        grid[r][1] = SYMBOLS[m];
+        grid[r][2] = SYMBOLS[(m + 1) % len];
+      }
+      // 5 линий: top, mid, bot, diagDown, diagUp
+      const lines = [
+        [grid[0][0], grid[1][0], grid[2][0]],
+        [grid[0][1], grid[1][1], grid[2][1]],
+        [grid[0][2], grid[1][2], grid[2][2]],
+        [grid[0][0], grid[1][1], grid[2][2]],
+        [grid[0][2], grid[1][1], grid[2][0]]
+      ];
+      let totalMult = 0;
+      let winLines = 0;
+      lines.forEach(line => {
+        if (line[0] === line[1] && line[1] === line[2]) {
+          winLines++;
+          totalMult += PAYOUTS[line[0]] || 2;
+        }
+      });
+      return { totalMult, winLines, grid };
+    }
+
+    // ========== Спин ==========
     async function spinOnce() {
       if (balance < bet) {
         messageEl.textContent = 'Недостаточно монет для ставки ' + bet;
@@ -782,37 +793,49 @@
       messageEl.textContent = 'Крутим...';
       vibrate();
 
-      const result = await animateReels();
+      // Случайные "средние" символы для каждого барабана
+      const midIdxs = [
+        Math.floor(Math.random() * SYMBOLS.length),
+        Math.floor(Math.random() * SYMBOLS.length),
+        Math.floor(Math.random() * SYMBOLS.length)
+      ];
+
+      await animateAllReels(midIdxs);
+
+      const { totalMult, winLines, grid } = evaluateGrid(midIdxs);
       const { cur } = getLevel();
       const levelBonus = cur.bonus;
 
-      let win = 0, isJackpot = false;
-      const [a, b, c] = result;
+      let win = 0;
+      let isJackpot = false;
 
-      if (a === b && b === c) {
-        isJackpot = true;
-        let mult = 10;
-        if (a === '💎') { mult = 30; stats.diamonds++; }
-        if (a === '7️⃣') { mult = 50; stats.lucky7++; }
-        win = Math.round(bet * mult * (1 + levelBonus / 100));
-        stats.jackpots++;
-        messageEl.textContent = '🎉 ДЖЕКПОТ! +' + win + ' 🪙';
+      if (totalMult > 0) {
+        win = Math.round(bet * totalMult * (1 + levelBonus / 100));
+
+        // Отмечаем выигрышные слоты (все три подсветить, если есть хоть одна линия)
         slotEls.forEach(s => s.classList.add('win'));
-        soundJackpot();
-        showBanner('🎉 +' + win, true);
-        progressDaily('jackpot', 1);
-      } else if (a === b || b === c || a === c) {
-        win = Math.round(bet * 2 * (1 + levelBonus / 100));
-        messageEl.textContent = '👍 Совпадение! +' + win + ' 🪙';
-        slotEls.forEach(s => s.classList.add('win'));
-        soundWin();
-        showBanner('+' + win, false);
+
+        if (totalMult >= 40) {
+          isJackpot = true;
+          stats.jackpots++;
+          if (grid[0][1] === '💎' && grid[1][1] === '💎' && grid[2][1] === '💎') stats.diamonds++;
+          if (grid[0][1] === '7️⃣' && grid[1][1] === '7️⃣' && grid[2][1] === '7️⃣') stats.lucky7++;
+          messageEl.textContent = '🎉 ДЖЕКПОТ! +' + win + ' 🪙';
+          soundJackpot();
+          showBanner('🎉 +' + win, true);
+          progressDaily('jackpot', 1);
+        } else {
+          messageEl.textContent = '👍 Выигрыш! +' + win + ' 🪙 (' + winLines + ' лин.)';
+          soundWin();
+          showBanner('+' + win, false);
+        }
+
+        balance += win;
+        saveBalance(); updateBalanceUI();
       } else {
         messageEl.textContent = 'Попробуйте ещё раз';
         soundLose();
       }
-
-      if (win > 0) { balance += win; saveBalance(); updateBalanceUI(); }
 
       stats.spins++;
       stats.totalBet += bet;
@@ -822,7 +845,8 @@
       renderStats(); renderLevel();
       progressDaily('spins20', 1);
       progressDaily('bet1000', bet);
-      addHistory(result, isJackpot);
+      // В истории сохраняем среднюю линию
+      addHistory([grid[0][1], grid[1][1], grid[2][1]], isJackpot);
       checkAchievements();
     }
 
@@ -841,7 +865,7 @@
         if (!autoRunning) break;
         if (balance < bet) { messageEl.textContent = 'Недостаточно монет'; break; }
         await spinOnce();
-        await new Promise(r => setTimeout(r, 250));
+        await new Promise(r => setTimeout(r, 300));
       }
       autoRunning = false; isSpinning = false; updateControls();
     }
