@@ -18,7 +18,7 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
   position:sticky; top:6px; z-index:100; backdrop-filter: blur(8px); }
 .header-btn { background:rgba(251,191,36,0.1); border:1px solid rgba(251,191,36,0.4);
   color:#fbbf24; font-size:17px; width:38px; height:38px; border-radius:10px;
-  cursor:pointer; display:flex; align-items:center; justify-content:center; transition: all .15s; }
+  cursor:pointer; display:flex; align-items:center; justify-content:center; }
 .header-btn:active { background:rgba(251,191,36,0.25); transform:scale(0.95); }
 .header-title { font-weight:bold; font-size:15px; color:#fbbf24; letter-spacing:1px; }
 .header-balance { display:flex; align-items:center; gap:4px; font-weight:bold; font-size:14px; }
@@ -39,18 +39,17 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
 .lobby-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; padding:0 2px; }
 .lobby-title { font-size:15px; font-weight:bold; color:#fff; display:flex; align-items:center; gap:6px; }
 .lobby-all { font-size:12px; color:#fbbf24; cursor:pointer; background:transparent; border:0; padding:0; }
-.game-row { display:flex; gap:8px; overflow-x:auto; overflow-y:hidden; padding:2px 2px 8px; scrollbar-width:none; }
+.game-row { display:flex; gap:8px; overflow-x:auto; padding:2px 2px 8px; scrollbar-width:none; }
 .game-row::-webkit-scrollbar { display:none; }
 .game-card { flex:0 0 108px; height:150px; border-radius:12px; position:relative; overflow:hidden;
-  cursor:pointer; border:1px solid rgba(251,191,36,0.25); transition:transform .12s, border-color .12s;
+  cursor:pointer; border:1px solid rgba(251,191,36,0.25);
   display:flex; flex-direction:column; justify-content:space-between; }
 .game-card:active { transform:scale(0.96); border-color:#fbbf24; }
-.game-card-emoji { flex:1; display:flex; align-items:center; justify-content:center; font-size:52px; text-shadow:0 4px 12px rgba(0,0,0,0.6); }
+.game-card-emoji { flex:1; display:flex; align-items:center; justify-content:center; font-size:52px; }
 .game-card-name { padding:4px 6px 2px; font-size:10px; font-weight:bold; color:#fff;
-  text-align:center; line-height:1.15; text-shadow:0 2px 6px rgba(0,0,0,0.9);
-  min-height:22px; display:flex; align-items:center; justify-content:center; }
-.game-card-provider { background:rgba(0,0,0,0.55); color:#fbbf24; font-size:7px; text-align:center;
-  padding:2px 0; letter-spacing:1px; font-weight:bold; text-transform:uppercase; }
+  text-align:center; min-height:22px; display:flex; align-items:center; justify-content:center; }
+.game-card-provider { background:rgba(0,0,0,0.55); color:#fbbf24; font-size:7px;
+  text-align:center; padding:2px 0; letter-spacing:1px; font-weight:bold; }
 .game-card.coming::after { content:"СКОРО"; position:absolute; top:4px; right:4px;
   background:#7f1d1d; color:#fca5a5; font-size:7px; padding:2px 5px; border-radius:4px; font-weight:bold; }
 .bg-1{background:linear-gradient(180deg,#92400e 0%,#7c2d12 45%,#450a0a 100%);}
@@ -71,12 +70,11 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
 .profile-panel { position:fixed; top:0; left:0; bottom:0; width:82%; max-width:340px;
   background:linear-gradient(180deg, #1a0d08, #0b0503);
   border-right:1px solid rgba(251,191,36,0.4); z-index:201; padding:20px 16px;
-  transform: translateX(-100%); transition: transform .3s cubic-bezier(.4,0,.2,1); overflow-y:auto; }
+  transform: translateX(-100%); transition: transform .3s; overflow-y:auto; }
 .profile-panel.open { transform: translateX(0); }
 .profile-avatar { width:70px; height:70px; border-radius:50%;
   background: radial-gradient(circle at 35% 30%, #fde047 0%, #f59e0b 60%, #b45309 100%);
-  display:flex; align-items:center; justify-content:center; font-size:34px; margin-bottom:12px;
-  box-shadow:0 0 20px rgba(251,191,36,0.5); }
+  display:flex; align-items:center; justify-content:center; font-size:34px; margin-bottom:12px; }
 .profile-name { font-size:18px; font-weight:bold; color:#fbbf24; margin-bottom:2px; }
 .profile-id { font-size:11px; color:#9ca3af; margin-bottom:16px; }
 .profile-balance { background:linear-gradient(135deg, rgba(251,191,36,0.15), rgba(245,158,11,0.05));
@@ -95,14 +93,14 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
   border:1px solid rgba(255,255,255,0.15); color:#fff; width:32px; height:32px;
   border-radius:8px; font-size:16px; cursor:pointer; }
 
-/* ====== BALANCE TOP-UP MODAL ====== */
 .deposit-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.78); z-index:250;
-  opacity:0; pointer-events:none; transition:opacity .25s; display:flex; align-items:center; justify-content:center; padding:20px; }
+  opacity:0; pointer-events:none; transition:opacity .25s;
+  display:flex; align-items:center; justify-content:center; padding:20px; }
 .deposit-overlay.open { opacity:1; pointer-events:auto; }
 .deposit-modal { width:100%; max-width:360px; background:linear-gradient(180deg,#1a0d08,#0b0503);
   border:1.5px solid rgba(251,191,36,0.5); border-radius:18px; padding:22px 18px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(251,191,36,0.2);
-  position:relative; transform: translateY(30px); transition: transform .3s cubic-bezier(.22,.9,.3,1); }
+  box-shadow:0 20px 60px rgba(0,0,0,0.8); position:relative;
+  transform: translateY(30px); transition: transform .3s; }
 .deposit-overlay.open .deposit-modal { transform: translateY(0); }
 .deposit-close { position:absolute; top:12px; right:12px; background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.15); color:#fff; width:30px; height:30px;
@@ -114,99 +112,72 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
 .deposit-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
 .deposit-amount { padding:14px 8px; border-radius:12px; border:1px solid rgba(251,191,36,0.35);
   background:linear-gradient(180deg, rgba(124,45,18,0.4), rgba(69,10,10,0.25));
-  color:#fbbf24; font-weight:bold; font-size:15px; cursor:pointer;
-  transition: transform .08s, box-shadow .15s; }
-.deposit-amount:active { transform: scale(0.96); }
-.deposit-amount.best { border-color:#fbbf24; box-shadow:0 0 0 1px rgba(251,191,36,0.6), 0 0 20px rgba(251,191,36,0.4); position:relative; }
-.deposit-amount.best::after { content:"🔥 ХИТ"; position:absolute; top:-8px; right:8px;
-  background:#fbbf24; color:#450a0a; font-size:8px; font-weight:900; padding:2px 6px;
-  border-radius:6px; letter-spacing:0.5px; }
+  color:#fbbf24; font-weight:bold; font-size:15px; cursor:pointer; }
+.deposit-amount.best { border-color:#fbbf24; box-shadow: 0 0 0 1px rgba(251,191,36,0.6), 0 0 20px rgba(251,191,36,0.4); }
 .deposit-btn { width:100%; padding:14px; border-radius:14px; border:0; font-weight:900;
   font-size:15px; letter-spacing:1px; cursor:pointer;
   background:radial-gradient(circle at 35% 30%, #fde047, #f59e0b 45%, #b45309 100%);
-  color:#450a0a; box-shadow:0 5px 0 #78350f, 0 8px 18px rgba(245,158,11,0.45),
-    inset 0 2px 0 rgba(255,255,255,0.4); transition: transform .08s; }
-.deposit-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #78350f, inset 0 2px 0 rgba(255,255,255,0.4); }
-.deposit-note { margin-top:12px; font-size:10px; color:#6b7280; text-align:center; line-height:1.4; }
+  color:#450a0a; box-shadow:0 5px 0 #78350f, 0 8px 18px rgba(245,158,11,0.45); }
+.deposit-note { margin-top:12px; font-size:10px; color:#6b7280; text-align:center; }
 
 .back-btn { display:inline-flex; align-items:center; gap:6px;
   background:rgba(251,191,36,0.1); border:1px solid rgba(251,191,36,0.4);
   color:#fbbf24; padding:8px 14px; border-radius:10px; font-size:13px; font-weight:bold;
   cursor:pointer; margin-bottom:10px; }
-.back-btn:active { background:rgba(251,191,36,0.25); }
-
 .greeting { color:#9ca3af; font-size:12px; margin-bottom:3px; }
-h1 { margin:0 0 4px; font-size:22px; color:#fbbf24; text-shadow:0 0 12px rgba(251,191,36,0.5); }
-.level-bar { background:rgba(255,255,255,0.06); border:1px solid rgba(251,191,36,0.25); border-radius:12px; padding:8px 10px; margin-bottom:8px; text-align:left; }
+h1 { margin:0 0 4px; font-size:22px; color:#fbbf24; }
+
+.level-bar { background:rgba(255,255,255,0.06); border:1px solid rgba(251,191,36,0.25); border-radius:12px; padding:8px 10px; margin-bottom:8px; }
 .level-top { display:flex; justify-content:space-between; font-size:11px; margin-bottom:4px; }
 .level-name { font-weight:bold; color:#fbbf24; }
 .level-count { color:#9ca3af; }
 .level-track { height:4px; background:rgba(255,255,255,0.1); border-radius:2px; overflow:hidden; }
-.level-fill { height:100%; background:linear-gradient(90deg,#f59e0b,#fbbf24); width:0%; transition:width .4s; }
+.level-fill { height:100%; background:linear-gradient(90deg,#f59e0b,#fbbf24); width:0%; }
 .level-bonus { font-size:10px; color:#9ca3af; margin-top:3px; }
-
 .bonus { width:100%; padding:9px; margin-bottom:10px; border-radius:12px;
   border:1px dashed #f59e0b; background:rgba(245,158,11,0.1); color:#f59e0b;
   font-weight:bold; font-size:13px; cursor:pointer; }
-.bonus:disabled { opacity:.45; cursor:default; border-style:solid; color:#9ca3af;
-  border-color:rgba(255,255,255,0.15); background:transparent; }
+.bonus:disabled { opacity:.45; }
 
 .machine { background:linear-gradient(180deg,#2a1a10,#0b0503); border-radius:18px;
-  padding:8px 8px 12px; border:2px solid #7c2d12;
-  box-shadow:0 10px 30px rgba(0,0,0,0.7), inset 0 1px 0 rgba(251,191,36,0.15); }
+  padding:8px 8px 12px; border:2px solid #7c2d12; }
 .paytable { background:linear-gradient(180deg,#7c2d12,#450a0a); border:1px solid #fbbf24;
   border-radius:8px; padding:4px 6px; margin-bottom:8px; }
 .paytable-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:4px 2px; }
 .pt-cell { display:flex; flex-direction:column; align-items:center; line-height:1; }
 .pt-sym { font-size:16px; }
-.pt-val { font-size:8px; color:#fbbf24; font-weight:bold; margin-top:1px; white-space:nowrap; }
+.pt-val { font-size:8px; color:#fbbf24; font-weight:bold; margin-top:1px; }
 .pt-extra { font-size:9px; color:#fde68a; margin-top:3px; text-align:center; }
-
 .free-bar { background:linear-gradient(90deg,#7c2d12,#fbbf24,#7c2d12); color:#000;
   font-weight:bold; font-size:12px; padding:4px; border-radius:6px; margin-bottom:6px;
-  letter-spacing:1px; display:none; }
+  display:none; }
 .free-bar.active { display:block; }
 .slots-wrap { padding:6px; background:#000; border-radius:12px;
-  box-shadow:inset 0 4px 14px rgba(0,0,0,0.9); border:2px solid #b45309; margin-bottom:10px; }
+  border:2px solid #b45309; margin-bottom:10px; }
 .slots { display:flex; gap:4px; }
 .slot { flex:1; height:138px; background:linear-gradient(180deg,#fef9e7,#fde68a 50%,#fef9e7);
-  border-radius:8px; overflow:hidden; position:relative;
-  box-shadow:inset 0 5px 10px rgba(120,53,15,0.6), inset 0 -5px 10px rgba(120,53,15,0.6); }
-.reel { position:absolute; top:0; left:0; right:0;
-  will-change:transform; backface-visibility:hidden; transform:translate3d(0,0,0); }
-.sym { height:46px; line-height:46px; text-align:center; font-size:28px; user-select:none; }
+  border-radius:8px; overflow:hidden; position:relative; }
+.reel { position:absolute; top:0; left:0; right:0; will-change:transform; }
+.sym { height:46px; line-height:46px; text-align:center; font-size:28px; }
 .sym.wild { filter:drop-shadow(0 0 6px #fbbf24); }
-.slot.win { box-shadow:0 0 0 3px #fbbf24, 0 0 22px #f59e0b, inset 0 5px 10px rgba(120,53,15,0.3); animation:pop .5s; }
-@keyframes pop { 0%{transform:scale(1);} 50%{transform:scale(1.08);} 100%{transform:scale(1);} }
+.slot.win { box-shadow:0 0 0 3px #fbbf24, 0 0 22px #f59e0b; }
 
 .bets-title { font-size:10px; color:#fbbf24; margin-bottom:5px; text-transform:uppercase; letter-spacing:1px; }
 .bets { display:flex; gap:4px; justify-content:center; margin-bottom:10px; }
 .bet { flex:1; padding:8px 2px; border-radius:8px;
   background:linear-gradient(180deg,#450a0a,#1c0606); color:#fecaca;
-  border:1px solid #7f1d1d;
-  box-shadow:inset 0 1px 0 rgba(251,191,36,0.15), 0 3px 0 #0b0503;
-  font-size:11px; font-weight:bold; cursor:pointer; transition:all .08s; }
-.bet:active:not(:disabled) { transform:translateY(2px); }
-.bet.active { background:linear-gradient(180deg,#fbbf24,#d97706); color:#111827; border-color:#fbbf24;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.3), 0 3px 0 #78350f, 0 4px 10px rgba(251,191,36,0.5); }
-.bet.max { background:linear-gradient(180deg,#7f1d1d,#450a0a); color:#fca5a5; }
+  border:1px solid #7f1d1d; box-shadow:inset 0 1px 0 rgba(251,191,36,0.15), 0 3px 0 #0b0503;
+  font-size:11px; font-weight:bold; cursor:pointer; }
+.bet.active { background:linear-gradient(180deg,#fbbf24,#d97706); color:#111827; border-color:#fbbf24; }
 
 .spin-wrap { display:flex; justify-content:center; margin-bottom:8px; }
 button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f1d1d;
   background:radial-gradient(circle at 35% 30%, #fde047 0%, #f59e0b 35%, #b45309 70%, #451a03 100%);
-  box-shadow:0 10px 24px rgba(245,158,11,0.55), inset 0 -8px 14px rgba(0,0,0,0.5), inset 0 8px 12px rgba(255,255,255,0.35);
-  color:#450a0a; font-size:19px; font-weight:900; letter-spacing:2px;
-  text-shadow:0 1px 2px rgba(255,255,255,0.4); cursor:pointer; }
-button.spin:active:not(:disabled) { transform:translateY(3px) scale(0.98); }
-button.spin:disabled { opacity:.55; cursor:not-allowed; }
-
+  color:#450a0a; font-size:19px; font-weight:900; letter-spacing:2px; cursor:pointer; }
 .actions { display:flex; gap:6px; margin-top:5px; }
 .actions button { flex:1; padding:9px; border-radius:10px; border:1px solid #7c2d12;
   background:linear-gradient(180deg,#450a0a,#1c0606); color:#fecaca;
   font-weight:bold; font-size:12px; cursor:pointer; }
-.actions button:active:not(:disabled) { transform:translateY(2px); }
-.actions button.auto-running { background:linear-gradient(180deg,#dc2626,#991b1b); border-color:#ef4444; }
-
 .reset { margin-top:7px; padding:8px; font-size:11px; width:100%; border-radius:10px; cursor:pointer;
   background:transparent; color:#9ca3af; border:1px solid rgba(255,255,255,0.15); }
 .message { min-height:22px; margin-top:8px; font-weight:bold; font-size:13px; color:#fbbf24; }
@@ -217,17 +188,16 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .ach { aspect-ratio:1; border-radius:8px; background:rgba(255,255,255,0.04);
   border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center;
   justify-content:center; font-size:17px; opacity:.3; }
-.ach.unlocked { opacity:1; background:rgba(251,191,36,0.15);
-  border-color:rgba(251,191,36,0.5); box-shadow:0 0 10px rgba(251,191,36,0.4); }
+.ach.unlocked { opacity:1; background:rgba(251,191,36,0.15); border-color:rgba(251,191,36,0.5); }
 .task { display:flex; align-items:center; gap:8px; padding:6px 0;
-  border-bottom:1px solid rgba(255,255,255,0.06); font-size:12px; text-align:left; }
+  border-bottom:1px solid rgba(255,255,255,0.06); font-size:12px; }
 .task:last-child { border-bottom:0; }
 .task-info { flex:1; }
 .task-title { font-weight:bold; }
 .task-progress { font-size:10px; color:#9ca3af; margin-top:2px; }
 .task-claim { padding:5px 9px; border-radius:7px; border:0;
   background:#fbbf24; color:#111827; font-weight:bold; font-size:10px; cursor:pointer; }
-.task-claim:disabled { background:rgba(255,255,255,0.1); color:#9ca3af; cursor:default; }
+.task-claim:disabled { background:rgba(255,255,255,0.1); color:#9ca3af; }
 .task-claim.done { background:transparent; color:#4ade80; border:1px solid #4ade80; }
 .stat-row { display:flex; justify-content:space-between; padding:4px 0; font-size:12px; }
 .stat-label { color:#9ca3af; }
@@ -242,53 +212,46 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .win-banner { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0);
   font-size:46px; font-weight:900; color:#fbbf24;
   text-shadow:0 0 30px rgba(251,191,36,0.9), 0 4px 20px rgba(0,0,0,0.9);
-  pointer-events:none; z-index:999; opacity:0; white-space:nowrap; }
+  pointer-events:none; z-index:999; opacity:0; }
 .win-banner.show { animation:bannerPop 2s ease-out forwards; }
-.win-banner.small { font-size:34px; color:#4ade80;
-  text-shadow:0 0 25px rgba(74,222,128,0.8), 0 4px 20px rgba(0,0,0,0.9); }
+.win-banner.small { font-size:34px; color:#4ade80; }
 @keyframes bannerPop {
   0%{transform:translate(-50%,-50%) scale(0); opacity:0;}
   20%{transform:translate(-50%,-50%) scale(1.2); opacity:1;}
   40%{transform:translate(-50%,-50%) scale(1); opacity:1;}
   80%{transform:translate(-50%,-50%) scale(1); opacity:1;}
-  100%{transform:translate(-50%,-50%) scale(1.3); opacity:0;} }
+  100%{transform:translate(-50%,-50%) scale(1.3); opacity:0;}
+}
 
 .toast { position:fixed; left:50%; bottom:100px; transform:translateX(-50%) translateY(120px);
   background:linear-gradient(135deg,#fbbf24,#d97706); color:#111827;
   padding:10px 18px; border-radius:12px; font-weight:bold; font-size:13px; z-index:1000;
-  box-shadow:0 10px 30px rgba(251,191,36,0.5); transition:transform .4s;
-  max-width:90vw; text-align:center; }
+  box-shadow:0 10px 30px rgba(251,191,36,0.5); transition:transform .4s; }
 .toast.show { transform:translateX(-50%) translateY(0); }
 
 .bottom-nav { position:fixed; bottom:0; left:0; right:0; z-index:150;
   background:linear-gradient(180deg, rgba(26,13,8,0.95), rgba(11,5,3,0.98));
   border-top:1px solid rgba(251,191,36,0.3); display:flex; justify-content:space-around;
-  align-items:center; padding:8px 4px 10px; max-width:480px; margin:0 auto;
-  backdrop-filter: blur(10px); }
+  padding:8px 4px 10px; max-width:480px; margin:0 auto; }
 .bn-item { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px;
   background:transparent; border:0; color:#9ca3af; cursor:pointer;
   padding:4px 0; font-size:10px; font-weight:bold; }
-.bn-item .bn-icon { font-size:20px; line-height:1; }
+.bn-item .bn-icon { font-size:20px; }
 .bn-item.active { color:#fbbf24; }
-.bn-item.active .bn-icon { filter: drop-shadow(0 0 6px rgba(251,191,36,0.6)); }
-.bn-item:active { transform:scale(0.95); }
 
 .coming-soon { text-align:center; padding:60px 20px;
   background:linear-gradient(180deg,#2a1a10,#0b0503);
   border:1px solid rgba(251,191,36,0.3); border-radius:16px; }
-.coming-soon-emoji { font-size:80px; margin-bottom:16px; animation:float 3s ease-in-out infinite; }
-@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+.coming-soon-emoji { font-size:80px; margin-bottom:16px; }
 .coming-soon-title { font-size:22px; color:#fbbf24; font-weight:bold; margin-bottom:8px; }
 .coming-soon-text { font-size:13px; color:#9ca3af; }
 
 .search-box { width:100%; padding:11px 14px; border-radius:12px; font-size:14px;
   background:rgba(255,255,255,0.06); border:1px solid rgba(251,191,36,0.3);
   color:#fff; outline:none; margin-bottom:12px; }
-.search-box:focus { border-color:#fbbf24; background:rgba(251,191,36,0.08); }
 .all-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
 .all-grid .game-card { flex:auto; height:140px; }
-.category-tabs { display:flex; gap:6px; overflow-x:auto; margin-bottom:12px; scrollbar-width:none; padding-bottom:4px; }
-.category-tabs::-webkit-scrollbar { display:none; }
+.category-tabs { display:flex; gap:6px; overflow-x:auto; margin-bottom:12px; }
 .cat-tab { flex:0 0 auto; padding:7px 14px; border-radius:20px;
   background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
   color:#9ca3af; font-size:12px; font-weight:bold; cursor:pointer; }
@@ -298,37 +261,26 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .bj-table { position: relative; margin: 16px 4px 22px; padding: 28px 10px 18px; min-height: 420px;
   border-radius: 50% 50% 46% 46% / 58% 58% 42% 42%;
   background: radial-gradient(ellipse at 50% 25%, #1e8a52 0%, #0f6a3d 35%, #084a29 65%, #052e19 100%);
-  border: 5px solid #6b4423;
-  box-shadow: 0 0 0 3px #3b2412, 0 0 0 10px #22150a, 0 22px 50px rgba(0,0,0,0.75),
-    inset 0 0 90px rgba(0,0,0,0.55), inset 0 6px 30px rgba(0,0,0,0.7);
-  overflow: hidden; isolation: isolate; }
-.bj-table::after { content:"BLACKJACK PAYS 3 TO 2  •  INSURANCE PAYS 2 TO 1";
+  border: 5px solid #6b4423; overflow: hidden; }
+.bj-table::after { content:"BLACKJACK PAYS 3 TO 2";
   position: absolute; top: 34%; left: 50%; transform: translateX(-50%) rotate(-2.5deg);
   font-family: Georgia, serif; font-size: 9px; letter-spacing: 2px;
-  color: rgba(251,191,36,0.28); font-weight: bold; white-space: nowrap;
-  pointer-events: none; z-index: 0; }
+  color: rgba(251,191,36,0.28); font-weight: bold; pointer-events: none; }
 .bj-shoe { position: absolute; top: 8px; right: 12px; width: 44px; height: 58px;
   background: linear-gradient(180deg, #2b1a0e, #0d0704);
-  border: 2px solid #8b5a2b; border-radius: 6px 6px 3px 3px;
-  box-shadow: inset 0 -8px 12px rgba(0,0,0,0.85), 0 6px 14px rgba(0,0,0,0.65); z-index: 3; }
-.bj-shoe::after { content:""; position:absolute; bottom: 6px; left: 6px; right: 6px; height: 28px;
-  background: repeating-linear-gradient(180deg, #f5f5f5 0 2px, #dcdcdc 2px 4px);
-  border-radius: 2px; opacity: 0.85; }
-
+  border: 2px solid #8b5a2b; border-radius: 6px; }
 .bj-row { position: relative; z-index: 2; margin-bottom: 10px; }
 .bj-label { font-size: 10px; color: #fcd34d; letter-spacing: 2px; font-weight: bold;
   display: flex; justify-content: space-between; padding: 0 8px; text-transform: uppercase; }
-.bj-hand { display: flex; align-items: center; justify-content: center;
-  min-height: 74px; padding: 4px 0; }
+.bj-hand { display: flex; align-items: center; justify-content: center; min-height: 74px; }
 
 .bj-card { width: 46px; height: 66px; margin-left: -14px; border-radius: 6px;
   background: linear-gradient(180deg, #fffdf5, #ece2c9); color: #111827;
   display: flex; flex-direction: column; justify-content: space-between;
   padding: 3px 4px; font-weight: bold;
   box-shadow: 0 4px 10px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.18);
-  transform-origin: 50% 130%; transform: rotate(var(--rot, 0deg));
-  animation: cardFly 0.55s cubic-bezier(.22,.9,.25,1.05) both;
-  position: relative; }
+  transform: rotate(var(--rot, 0deg));
+  animation: cardFly 0.55s cubic-bezier(.22,.9,.25,1.05) both; }
 .bj-card:first-child { margin-left: 0; }
 .bj-card:nth-child(odd) { --rot: -2.5deg; }
 .bj-card:nth-child(even) { --rot: 2.5deg; }
@@ -342,58 +294,40 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .bj-card.back { background: radial-gradient(circle at 50% 50%, #2b3a8f 0%, #1a2560 45%, #0c1440 100%);
   border: 1px solid #0c1440; }
 .bj-card.back::before { content:""; position:absolute; inset: 4px;
-  border: 1.5px solid rgba(251,191,36,0.45); border-radius: 3px;
-  background-image: repeating-linear-gradient(45deg, rgba(251,191,36,0.12) 0 2px, transparent 2px 4px); }
-.bj-card-top { font-size: 10px; line-height: 1; }
-.bj-card-suit { font-size: 18px; text-align: center; line-height: 1; }
-.bj-card-bot { font-size: 10px; line-height: 1; text-align: right; }
+  border: 1.5px solid rgba(251,191,36,0.45); border-radius: 3px; }
+.bj-card-top { font-size: 10px; }
+.bj-card-suit { font-size: 18px; text-align: center; }
+.bj-card-bot { font-size: 10px; text-align: right; }
 
-.bj-boxes-row { position: relative; z-index: 2; display: flex; gap: 6px; justify-content: center;
-  padding: 6px 0 4px; }
+.bj-boxes-row { display: flex; gap: 6px; justify-content: center; padding: 6px 0 4px; }
 .bj-box { flex: 1; max-width: 130px; min-height: 150px; position: relative;
   display: flex; flex-direction: column; align-items: center; padding: 6px 4px 22px;
   border-radius: 12px; background: rgba(0,0,0,0.14);
   border: 2px dashed rgba(251,191,36,0.18); transition: all .25s; cursor: pointer; }
-.bj-box:active { transform: scale(0.98); }
 .bj-box.has-bet { border-style: solid; border-color: #fbbf24; background: rgba(251,191,36,0.06); }
 .bj-box.active { border-style: solid; border-color: #fbbf24;
-  box-shadow: 0 0 0 1px rgba(251,191,36,0.6), 0 0 24px rgba(251,191,36,0.5);
-  transform: translateY(-2px); }
-.bj-box.win { border-style: solid; border-color: #4ade80; background: rgba(74,222,128,0.08);
-  box-shadow: 0 0 0 1px rgba(74,222,128,0.5), 0 0 26px rgba(74,222,128,0.55); }
+  box-shadow: 0 0 0 1px rgba(251,191,36,0.6), 0 0 24px rgba(251,191,36,0.5); }
+.bj-box.win { border-style: solid; border-color: #4ade80; background: rgba(74,222,128,0.08); }
 .bj-box.lose { border-style: solid; border-color: #f87171; opacity: 0.75; }
-.bj-box.push { border-style: solid; border-color: #fbbf24; opacity: 1; }
+.bj-box.push { border-style: solid; border-color: #fbbf24; }
 .bj-box-label { font-size: 8px; color: #9ca3af; letter-spacing: 1.5px;
-  text-transform: uppercase; font-weight: bold; margin-bottom: 2px; }
+  text-transform: uppercase; font-weight: bold; }
 .bj-box-val { font-size: 10px; color: #0b0503; font-weight: 900;
   background: linear-gradient(180deg, #fbbf24, #d97706);
-  padding: 2px 8px; border-radius: 8px; letter-spacing: 1px; margin-top: 2px;
-  min-height: 16px; display: flex; align-items: center; }
-.bj-box .bj-hand { min-height: 64px; padding: 2px 0; }
-.bj-box .bj-card { width: 38px; height: 56px; margin-left: -12px; padding: 2px 3px; border-radius: 5px; }
+  padding: 2px 8px; border-radius: 8px; margin-top: 2px; }
+.bj-box .bj-card { width: 38px; height: 56px; margin-left: -12px; padding: 2px 3px; }
 .bj-box .bj-card-top { font-size: 9px; }
 .bj-box .bj-card-suit { font-size: 14px; }
 .bj-box .bj-card-bot { font-size: 9px; }
-.bj-box-betchip { position: absolute; bottom: -10px; left: 50%;
-  transform: translateX(-50%); z-index: 5;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
+.bj-box-betchip { position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); z-index: 5; }
 .bj-chip { width: 34px; height: 34px; border-radius: 50%;
   background: radial-gradient(circle at 38% 30%, #fff 0 8%, #e74c3c 14% 55%, #a83226 72%, #6b1c14 100%);
-  border: 2px dashed rgba(255,255,255,0.85);
-  color: #fff; font-size: 9px; font-weight: 900;
-  display: flex; align-items: center; justify-content: center;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.85);
-  box-shadow: 0 3px 0 rgba(0,0,0,0.45), inset 0 2px 4px rgba(255,255,255,0.45);
-  outline: 2px solid rgba(0,0,0,0.30); outline-offset: -6px;
-  animation: chipDrop 0.35s cubic-bezier(.2,1.2,.3,1) both; }
+  border: 2px dashed rgba(255,255,255,0.85); color: #fff; font-size: 9px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center; }
 .bj-chip.c100  { background: radial-gradient(circle at 38% 30%, #fff 0 8%, #3498db 14% 55%, #1f618d 72%, #0c2c47 100%); }
 .bj-chip.c200  { background: radial-gradient(circle at 38% 30%, #fff 0 8%, #e67e22 14% 55%, #a04000 72%, #4a1e00 100%); }
 .bj-chip.c500  { background: radial-gradient(circle at 38% 30%, #fff 0 8%, #27ae60 14% 55%, #17623a 72%, #072716 100%); }
 .bj-chip.c1000 { background: radial-gradient(circle at 38% 30%, #fff 0 8%, #9b59b6 14% 55%, #5b2c6f 72%, #2a1235 100%); }
-@keyframes chipDrop {
-  0%   { transform: translateY(-30px) scale(0.6); opacity: 0; }
-  70%  { transform: translateY(3px) scale(1.05); opacity: 1; }
-  100% { transform: translateY(0) scale(1); opacity: 1; } }
 
 .bj-result { text-align: center; font-weight: bold; font-size: 13px;
   padding: 10px; border-radius: 10px; margin-bottom: 10px; min-height: 22px; }
@@ -403,18 +337,15 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 
 .bj-bets { display:flex; gap:4px; justify-content:center; margin-bottom:10px; }
 .bj-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
-.bj-actions button { padding:14px; border-radius:12px; border:0; font-size:14px; font-weight:bold;
-  cursor:pointer; }
-.bj-actions button:active:not(:disabled) { transform:translateY(2px); }
-.bj-actions button:disabled { opacity:.35; cursor:not-allowed; }
-.bj-btn-hit { background:linear-gradient(180deg,#10b981,#047857); color:#fff; box-shadow:0 4px 0 #022c22; }
-.bj-btn-stand { background:linear-gradient(180deg,#ef4444,#991b1b); color:#fff; box-shadow:0 4px 0 #450a0a; }
-.bj-btn-double { background:linear-gradient(180deg,#f59e0b,#b45309); color:#111827; box-shadow:0 4px 0 #451a03; }
-.bj-btn-split { background:linear-gradient(180deg,#8b5cf6,#6d28d9); color:#fff; box-shadow:0 4px 0 #3b0764; }
-.bj-btn-insurance { background:linear-gradient(180deg,#06b6d4,#0e7490); color:#fff; box-shadow:0 4px 0 #083344; grid-column: span 2; }
-.bj-btn-new { background:linear-gradient(180deg,#6366f1,#3730a3); color:#fff; box-shadow:0 4px 0 #1e1b4b; grid-column: span 2; }
+.bj-actions button { padding:14px; border-radius:12px; border:0; font-size:14px; font-weight:bold; cursor:pointer; }
+.bj-actions button:disabled { opacity:.35; }
+.bj-btn-hit { background:linear-gradient(180deg,#10b981,#047857); color:#fff; }
+.bj-btn-stand { background:linear-gradient(180deg,#ef4444,#991b1b); color:#fff; }
+.bj-btn-double { background:linear-gradient(180deg,#f59e0b,#b45309); color:#111827; }
+.bj-btn-insurance { background:linear-gradient(180deg,#06b6d4,#0e7490); color:#fff; grid-column: span 2; }
+.bj-btn-new { background:linear-gradient(180deg,#6366f1,#3730a3); color:#fff; grid-column: span 2; }
 
-/* ============ ROULETTE 3D ============ */
+/* ============ ROULETTE ============ */
 .roulette-section { padding: 0 4px; position: relative; }
 
 .wheel-stage {
@@ -423,43 +354,38 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
   max-width: 400px;
   margin: 4px auto 12px;
   height: 300px;
-  perspective: 1100px;
-  perspective-origin: 50% 20%;
+  perspective: 1200px;
+  perspective-origin: 50% 25%;
 }
-/* Тень под колесом на столе */
 .wheel-shadow {
   position: absolute;
-  left: 50%;
-  bottom: 8px;
-  width: 320px;
-  height: 80px;
-  margin-left: -160px;
+  left: 50%; bottom: 4px;
+  width: 340px; height: 90px;
+  margin-left: -170px;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 40%, transparent 75%);
-  filter: blur(6px);
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 40%, transparent 75%);
+  filter: blur(8px);
   pointer-events: none;
   z-index: 0;
 }
-/* Сам наклонённый диск */
 .wheel-tilt {
   position: absolute;
-  top: 16px;
+  top: 18px;
   left: 50%;
   width: 340px;
   height: 340px;
   margin-left: -170px;
-  transform-style: preserve-3d;
   transform: rotateX(58deg);
-  filter: drop-shadow(0 22px 22px rgba(0,0,0,0.6));
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 18px 24px rgba(0,0,0,0.6));
   will-change: transform;
   z-index: 2;
 }
 .wheel-svg { width: 100%; height: 100%; display: block; overflow: visible; }
 
-/* Слой для шарика — плоский, чтобы шар оставался круглым */
 .ball-layer {
   position: absolute;
-  top: 16px;
+  top: 18px;
   left: 50%;
   width: 340px;
   height: 340px;
@@ -469,26 +395,21 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 }
 .wheel-ball {
   position: absolute;
-  width: 17px;
-  height: 17px;
-  margin: -8.5px 0 0 -8.5px;
+  width: 16px; height: 16px;
+  margin: -8px 0 0 -8px;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 32% 26%, #ffffff 0%, #fef9c3 18%, #e5e7eb 55%, #6b7280 100%);
+  background: radial-gradient(circle at 30% 26%, #ffffff 0%, #f8fafc 15%, #cbd5e1 55%, #475569 100%);
   box-shadow:
-    0 0 12px rgba(255,255,255,0.5),
-    0 4px 8px rgba(0,0,0,0.8),
-    inset -2px -2px 4px rgba(0,0,0,0.55),
+    0 0 12px rgba(255,255,255,0.6),
+    0 4px 8px rgba(0,0,0,0.85),
+    inset -2px -2px 4px rgba(0,0,0,0.5),
     inset 2px 2px 5px rgba(255,255,255,0.95);
   will-change: left, top;
-  transform: translateZ(0);
 }
 
-/* Табло сверху справа */
 .wheel-history-board {
   position: absolute;
-  top: 0;
-  right: 4px;
+  top: 0; right: 4px;
   z-index: 20;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -497,37 +418,32 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
   background: linear-gradient(180deg, rgba(20,10,5,0.96), rgba(10,5,2,0.96));
   border: 1.5px solid rgba(251,191,36,0.55);
   border-radius: 8px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.75), inset 0 1px 0 rgba(251,191,36,0.25);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.75);
 }
 .wheel-history-board .rh {
   width: 22px; height: 22px;
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; font-weight: 900; border-radius: 50%; color: #fff;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 1px 2px rgba(0,0,0,0.4);
 }
 .wheel-history-board .rh.red { background: #b91c1c; }
 .wheel-history-board .rh.black { background: #1f2937; }
 .wheel-history-board .rh.green { background: #15803d; }
-.wheel-history-board .rh.empty { background: rgba(255,255,255,0.05); box-shadow: none; }
+.wheel-history-board .rh.empty { background: rgba(255,255,255,0.05); }
 
 .rprompt { text-align: center; font-size: 11px; font-weight: 900;
-  color: #fbbf24; letter-spacing: 3px; margin-bottom: 6px; text-transform: uppercase;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.9); min-height: 14px; }
+  color: #fbbf24; letter-spacing: 3px; margin-bottom: 6px; text-transform: uppercase; }
 
 .rtable {
   display: grid;
   grid-template-columns: 26px repeat(12, minmax(0, 1fr)) 26px;
   grid-template-rows: 28px 28px 28px 24px 24px;
   gap: 2px; background: #0a3d1c; padding: 3px; border-radius: 6px;
-  border: 2px solid #14532d;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.55);
-  font-size: 11px; font-weight: 900;
+  border: 2px solid #14532d; font-size: 11px; font-weight: 900;
 }
 .rnum { position: relative; display: flex; align-items: center; justify-content: center;
   padding: 0; border: 0; margin: 0; background: #15803d; color: #fff;
-  border-radius: 3px; cursor: pointer; user-select: none; font: inherit; font-weight: 900; }
-.rnum:active { filter: brightness(1.35); transform: scale(0.95); }
+  border-radius: 3px; cursor: pointer; font: inherit; font-weight: 900; }
+.rnum:active { filter: brightness(1.35); }
 .rnum.red { background: #b91c1c; }
 .rnum.black { background: #0f172a; }
 .rnum.zero { grid-row: 1 / span 3; grid-column: 1; font-size: 14px; }
@@ -538,13 +454,11 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 .rnum .rbet {
   position: absolute; top: -3px; right: -3px;
   min-width: 16px; height: 16px; padding: 0 3px;
-  display: flex; align-items: center; justify-content: center;
+  display: none; align-items: center; justify-content: center;
   background: radial-gradient(circle at 35% 30%, #fde047, #d97706 60%, #78350f);
   color: #111827; border-radius: 8px;
   font-size: 8px; font-weight: 900;
-  border: 1.5px solid #fef3c7;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.6);
-  pointer-events: none; z-index: 2; display: none;
+  border: 1.5px solid #fef3c7; z-index: 2;
 }
 .rnum.has-bet .rbet { display: flex; }
 .rnum.has-bet { box-shadow: inset 0 0 0 2px #fbbf24; }
@@ -560,40 +474,33 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
   border-radius: 50%; border: 2px solid rgba(255,255,255,0.35);
   color: #fff; font-size: 10px; font-weight: 900;
   display: flex; align-items: center; justify-content: center;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.85);
   cursor: pointer; padding: 0;
-  transition: transform .1s, box-shadow .1s;
   outline: 2px solid rgba(0,0,0,0.3); outline-offset: -5px;
 }
-.rchip-btn:active { transform: scale(0.9); }
 .rchip-btn.active { transform: scale(1.14);
-  box-shadow: 0 0 0 3px #fbbf24, 0 0 18px rgba(251,191,36,0.7),
-    inset 0 0 0 1px rgba(255,255,255,0.5); }
-.rchip-btn[data-chip="1"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #f3f4f6 12% 55%, #9ca3af 72%, #4b5563 100%); color: #111; text-shadow: 1px 1px 1px rgba(255,255,255,0.7); }
+  box-shadow: 0 0 0 3px #fbbf24, 0 0 18px rgba(251,191,36,0.7); }
+.rchip-btn[data-chip="1"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #f3f4f6 12% 55%, #9ca3af 72%, #4b5563 100%); color: #111; }
 .rchip-btn[data-chip="2"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #f87171 12% 55%, #991b1b 72%, #450a0a 100%); }
-.rchip-btn[data-chip="5"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #fbbf24 12% 55%, #b45309 72%, #451a03 100%); color: #111; text-shadow: none; }
+.rchip-btn[data-chip="5"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #fbbf24 12% 55%, #b45309 72%, #451a03 100%); color: #111; }
 .rchip-btn[data-chip="10"]  { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #60a5fa 12% 55%, #1e40af 72%, #0c1a4b 100%); }
 .rchip-btn[data-chip="25"]  { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #4ade80 12% 55%, #15803d 72%, #052e16 100%); }
 .rchip-btn[data-chip="50"]  { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #c084fc 12% 55%, #6d28d9 72%, #2e1065 100%); }
 .rchip-btn[data-chip="100"] { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #1f2937 12% 55%, #0f172a 72%, #000 100%); }
-.rchip-btn[data-chip="500"] { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #fde68a 12% 55%, #b45309 72%, #451a03 100%); color: #111; text-shadow: none; }
+.rchip-btn[data-chip="500"] { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #fde68a 12% 55%, #b45309 72%, #451a03 100%); color: #111; }
 
 .roulette-result { text-align: center; font-weight: bold; font-size: 13px;
   padding: 10px; border-radius: 10px; min-height: 22px; margin: 4px 0 8px; }
 .roulette-result.win  { background: rgba(74,222,128,0.15); color:#4ade80; border:1px solid #4ade80; }
 .roulette-result.lose { background: rgba(248,113,113,0.15); color:#f87171; border:1px solid #f87171; }
-.roulette-result.neutral { color: #fbbf24; border:1px solid rgba(251,191,36,0.3); background: rgba(251,191,36,0.05); }
+.roulette-result.neutral { color: #fbbf24; border:1px solid rgba(251,191,36,0.3); }
 
 .rcontrols { display: grid; grid-template-columns: 1fr 2fr; gap: 8px; margin-top: 4px; }
 .rcontrols button { padding: 14px 8px; border-radius: 14px; border: 0; font-weight: 900;
   cursor: pointer; font-size: 14px; letter-spacing: 1px; }
-.rcontrols button:active:not(:disabled) { transform: translateY(3px); }
-.rcontrols button:disabled { opacity:.45; cursor:not-allowed; }
-.rclear { background: linear-gradient(180deg,#dc2626,#7f1d1d); color:#fff; box-shadow:0 4px 0 #450a0a; }
+.rcontrols button:disabled { opacity:.45; }
+.rclear { background: linear-gradient(180deg,#dc2626,#7f1d1d); color:#fff; }
 .rspin { background: radial-gradient(circle at 35% 30%, #fde047, #f59e0b 45%, #b45309 100%);
-  color: #450a0a; box-shadow: 0 5px 0 #78350f, 0 8px 18px rgba(245,158,11,0.45),
-    inset 0 2px 0 rgba(255,255,255,0.4); font-size: 16px; }
-.rspin:active:not(:disabled) { box-shadow: 0 2px 0 #78350f !important; }
+  color: #450a0a; font-size: 16px; }
 </style>
 </head>
 <body>
@@ -612,7 +519,7 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
     <div class="profile-section-title">Уровень</div>
     <div class="profile-row"><span class="profile-row-label">Ранг</span><span class="profile-row-value" id="profileLevel">Новичок</span></div>
     <div class="profile-row"><span class="profile-row-label">Спинов</span><span class="profile-row-value" id="profileSpins">0</span></div>
-    <div class="profile-row"><span class="profile-row-label">Бонус к выигрышу</span><span class="profile-row-value" id="profileBonus">+0%</span></div>
+    <div class="profile-row"><span class="profile-row-label">Бонус</span><span class="profile-row-value" id="profileBonus">+0%</span></div>
   </div>
   <div class="profile-section">
     <div class="profile-section-title">Статистика</div>
@@ -624,7 +531,6 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
   <button class="reset" id="profileShare" style="margin-top:14px;">📤 Поделиться ботом</button>
 </aside>
 
-<!-- Depozit modal -->
 <div class="deposit-overlay" id="depositOverlay">
   <div class="deposit-modal">
     <button class="deposit-close" id="depositClose">✕</button>
@@ -640,7 +546,7 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
       <button class="deposit-amount" data-amt="100000">+100 000 🪙</button>
     </div>
     <button class="deposit-btn" id="depositGo">ПОПОЛНИТЬ</button>
-    <div class="deposit-note">Демо-пополнение · Игровые монеты. Реальные деньги не участвуют.</div>
+    <div class="deposit-note">Демо-пополнение · Игровые монеты.</div>
   </div>
 </div>
 
@@ -681,7 +587,7 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
     <div class="level-bar">
       <div class="level-top"><span class="level-name" id="levelName">Новичок</span><span class="level-count" id="levelCount">0 / 50</span></div>
       <div class="level-track"><div class="level-fill" id="levelFill"></div></div>
-      <div class="level-bonus" id="levelBonus">Бонус к выигрышу: +0%</div>
+      <div class="level-bonus" id="levelBonus">Бонус: +0%</div>
     </div>
     <button class="bonus" id="bonus">🎁 Забрать бонус +500</button>
     <div class="machine">
@@ -712,8 +618,8 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
     <div class="panel">
       <div class="panel-title">📊 Статистика</div>
       <div class="stat-row"><span class="stat-label">Спинов</span><span class="stat-value" id="statSpins">0</span></div>
-      <div class="stat-row"><span class="stat-label">Всего выиграно</span><span class="stat-value" id="statWon">0 🪙</span></div>
-      <div class="stat-row"><span class="stat-label">Лучший выигрыш</span><span class="stat-value" id="statBest">0 🪙</span></div>
+      <div class="stat-row"><span class="stat-label">Выиграно</span><span class="stat-value" id="statWon">0 🪙</span></div>
+      <div class="stat-row"><span class="stat-label">Лучший</span><span class="stat-value" id="statBest">0 🪙</span></div>
       <div class="stat-row"><span class="stat-label">Джекпотов</span><span class="stat-value" id="statJackpots">0</span></div>
       <div class="stat-row"><span class="stat-label">Итог</span><span class="stat-value" id="statNet">0 🪙</span></div>
       <button class="reset" id="resetStats">Сбросить статистику</button>
@@ -733,7 +639,7 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
       <div class="bj-boxes-row" id="bjBoxesRow"></div>
     </div>
     <div class="bj-result" id="bjResult"></div>
-    <div class="bets-title">Размер ставки на бокс</div>
+    <div class="bets-title">Ставка на бокс</div>
     <div class="bj-bets">
       <button class="bet bj-bet" data-bjbet="50">50</button>
       <button class="bet bj-bet" data-bjbet="100">100</button>
@@ -760,86 +666,110 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
         <div class="wheel-tilt">
           <svg class="wheel-svg" id="wheelSvg" viewBox="0 0 340 340">
             <defs>
-              <radialGradient id="gWood" cx="50%" cy="35%" r="65%">
-                <stop offset="0%" stop-color="#c2803e"/>
-                <stop offset="50%" stop-color="#7a4a1f"/>
-                <stop offset="100%" stop-color="#1f1206"/>
+              <radialGradient id="gWoodOuter" cx="50%" cy="50%" r="50%">
+                <stop offset="55%" stop-color="#6b3a10"/>
+                <stop offset="72%" stop-color="#b97622"/>
+                <stop offset="88%" stop-color="#7a4218"/>
+                <stop offset="100%" stop-color="#2a1405"/>
               </radialGradient>
-              <radialGradient id="gGoldOuter" cx="50%" cy="30%" r="70%">
-                <stop offset="0%" stop-color="#fef3c7"/>
-                <stop offset="35%" stop-color="#d4a017"/>
-                <stop offset="75%" stop-color="#8a5a1c"/>
-                <stop offset="100%" stop-color="#3a2308"/>
-              </radialGradient>
+              <linearGradient id="gChrome" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f1f5f9"/>
+                <stop offset="20%" stop-color="#cbd5e1"/>
+                <stop offset="40%" stop-color="#475569"/>
+                <stop offset="55%" stop-color="#e2e8f0"/>
+                <stop offset="78%" stop-color="#334155"/>
+                <stop offset="100%" stop-color="#0f172a"/>
+              </linearGradient>
+              <linearGradient id="gChromeRing" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#94a3b8"/>
+                <stop offset="30%" stop-color="#f8fafc"/>
+                <stop offset="50%" stop-color="#64748b"/>
+                <stop offset="70%" stop-color="#e2e8f0"/>
+                <stop offset="100%" stop-color="#334155"/>
+              </linearGradient>
               <radialGradient id="gTrack" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#1c0f05"/>
-                <stop offset="70%" stop-color="#0a0502"/>
-                <stop offset="100%" stop-color="#000"/>
+                <stop offset="60%" stop-color="#0a0a0a"/>
+                <stop offset="100%" stop-color="#1f1f1f"/>
               </radialGradient>
-              <radialGradient id="gBowl" cx="50%" cy="38%" r="70%">
-                <stop offset="0%" stop-color="#fef3c7"/>
-                <stop offset="25%" stop-color="#e0a934"/>
-                <stop offset="55%" stop-color="#a87020"/>
-                <stop offset="85%" stop-color="#5c3608"/>
-                <stop offset="100%" stop-color="#2a1608"/>
+              <radialGradient id="gWoodInner" cx="45%" cy="40%" r="70%">
+                <stop offset="0%" stop-color="#e5b977"/>
+                <stop offset="45%" stop-color="#b87d2e"/>
+                <stop offset="80%" stop-color="#7a4a14"/>
+                <stop offset="100%" stop-color="#3a2008"/>
               </radialGradient>
-              <radialGradient id="gHub" cx="40%" cy="30%" r="80%">
-                <stop offset="0%" stop-color="#fffbea"/>
-                <stop offset="40%" stop-color="#fbbf24"/>
-                <stop offset="80%" stop-color="#92400e"/>
-                <stop offset="100%" stop-color="#451a03"/>
+              <radialGradient id="gHub" cx="32%" cy="28%" r="80%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="25%" stop-color="#e2e8f0"/>
+                <stop offset="55%" stop-color="#94a3b8"/>
+                <stop offset="85%" stop-color="#475569"/>
+                <stop offset="100%" stop-color="#1e293b"/>
               </radialGradient>
-              <radialGradient id="gBowlDeep" cx="50%" cy="35%" r="70%">
-                <stop offset="0%" stop-color="#2a1608"/>
-                <stop offset="55%" stop-color="#1a0d04"/>
-                <stop offset="100%" stop-color="#000"/>
+              <radialGradient id="gHighlight" cx="35%" cy="25%" r="65%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
               </radialGradient>
-              <filter id="fInner" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="2"/>
-              </filter>
             </defs>
 
-            <!-- Внешний деревянный обод -->
-            <circle cx="170" cy="170" r="169" fill="url(#gWood)"/>
-            <circle cx="170" cy="170" r="169" fill="none" stroke="#0a0502" stroke-width="2"/>
-            <!-- Золотое кольцо обода -->
-            <circle cx="170" cy="170" r="160" fill="url(#gGoldOuter)"/>
-            <circle cx="170" cy="170" r="160" fill="none" stroke="#3a2308" stroke-width="1"/>
-            <!-- Тёмный трек, где катится шарик -->
-            <circle cx="170" cy="170" r="150" fill="url(#gTrack)"/>
-            <!-- Глубокая тень трека -->
-            <circle cx="170" cy="170" r="150" fill="none" stroke="#000" stroke-width="3" opacity="0.6"/>
-            <!-- Медная/золотая наклонная чаша -->
-            <circle cx="170" cy="170" r="142" fill="url(#gBowl)"/>
-            <circle cx="170" cy="170" r="142" fill="none" stroke="#3a2308" stroke-width="1.5"/>
+            <!-- Внешний деревянный диск -->
+            <circle cx="170" cy="170" r="169" fill="url(#gWoodOuter)"/>
+            <!-- Тонкая текстура дерева -->
+            <circle cx="170" cy="170" r="169" fill="none" stroke="#2a1405" stroke-width="0.6" opacity="0.4"/>
+            <circle cx="170" cy="170" r="158" fill="none" stroke="#8a5420" stroke-width="0.4" opacity="0.5"/>
+            <circle cx="170" cy="170" r="150" fill="none" stroke="#8a5420" stroke-width="0.4" opacity="0.4"/>
 
-            <!-- Номерные сектора -->
+            <!-- Хромированное кольцо между деревом и чёрным -->
+            <circle cx="170" cy="170" r="168" fill="none" stroke="url(#gChrome)" stroke-width="3"/>
+            <circle cx="170" cy="170" r="162" fill="none" stroke="#000" stroke-width="1"/>
+
+            <!-- Чёрный обод -->
+            <circle cx="170" cy="170" r="162" fill="#0a0a0a"/>
+            <circle cx="170" cy="170" r="158" fill="none" stroke="#1f2937" stroke-width="0.8"/>
+
+            <!-- Хромированное кольцо трека (где катится шарик) -->
+            <circle cx="170" cy="170" r="154" fill="none" stroke="url(#gChromeRing)" stroke-width="6"/>
+            <circle cx="170" cy="170" r="148" fill="#000"/>
+            <circle cx="170" cy="170" r="148" fill="url(#gTrack)"/>
+
+            <!-- Внешняя тёмная граница секторов -->
+            <circle cx="170" cy="170" r="146" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+            <!-- Сектора и числа (заполняются из JS) -->
             <g id="sectorsG"></g>
             <g id="numbersG"></g>
 
-            <!-- Внутренний конус-вертушка -->
-            <circle cx="170" cy="170" r="58" fill="#0a0502"/>
-            <circle cx="170" cy="170" r="56" fill="url(#gBowlDeep)"/>
-            <circle cx="170" cy="170" r="44" fill="url(#gHub)"/>
-            <!-- Спицы вертушки -->
-            <g id="spokesG" opacity="0.9">
-              <line x1="170" y1="126" x2="170" y2="100" stroke="#3a2308" stroke-width="3" stroke-linecap="round"/>
-              <line x1="170" y1="214" x2="170" y2="240" stroke="#3a2308" stroke-width="3" stroke-linecap="round"/>
-              <line x1="126" y1="170" x2="100" y2="170" stroke="#3a2308" stroke-width="3" stroke-linecap="round"/>
-              <line x1="214" y1="170" x2="240" y2="170" stroke="#3a2308" stroke-width="3" stroke-linecap="round"/>
-            </g>
-            <!-- Центральная ось -->
-            <circle cx="170" cy="170" r="16" fill="url(#gHub)"/>
-            <circle cx="170" cy="170" r="8" fill="#fffbea"/>
-            <circle cx="170" cy="170" r="4" fill="#451a03"/>
-            <text id="centerNum" x="170" y="170" text-anchor="middle" dominant-baseline="central"
-                  font-size="26" font-weight="900" fill="#3a2308" opacity="0"
-                  font-family="Arial, sans-serif">—</text>
+            <!-- Хромированное тонкое кольцо внутри секторов -->
+            <circle cx="170" cy="170" r="112" fill="none" stroke="url(#gChrome)" stroke-width="2"/>
+            <circle cx="170" cy="170" r="110" fill="none" stroke="#000" stroke-width="0.6"/>
+
+            <!-- Внутренний деревянный конус -->
+            <circle cx="170" cy="170" r="109" fill="url(#gWoodInner)"/>
+            <circle cx="170" cy="170" r="109" fill="none" stroke="#3a2008" stroke-width="0.6"/>
+
+            <!-- Спицы на конусе (заполняются из JS) -->
+            <g id="spokesG"></g>
+
+            <!-- Хромированная ступица (стопка дисков) -->
+            <circle cx="170" cy="170" r="60" fill="#0a0a0a"/>
+            <circle cx="170" cy="170" r="58" fill="url(#gHub)"/>
+            <circle cx="170" cy="170" r="50" fill="#0a0a0a"/>
+            <circle cx="170" cy="170" r="48" fill="url(#gHub)"/>
+            <circle cx="170" cy="170" r="40" fill="#0a0a0a"/>
+            <circle cx="170" cy="170" r="38" fill="url(#gHub)"/>
+            <circle cx="170" cy="170" r="28" fill="#0a0a0a"/>
+            <circle cx="170" cy="170" r="26" fill="url(#gHub)"/>
+            <circle cx="170" cy="170" r="16" fill="#0a0a0a"/>
+            <circle cx="170" cy="170" r="14" fill="url(#gHub)"/>
+            <circle cx="170" cy="170" r="6" fill="#f8fafc"/>
+            <circle cx="170" cy="170" r="3" fill="#ffffff"/>
+
+            <!-- Блик сверху слева -->
+            <ellipse cx="130" cy="100" rx="90" ry="55" fill="url(#gHighlight)" pointer-events="none"/>
           </svg>
         </div>
         <div class="ball-layer">
           <div class="wheel-ball" id="wheelBall"></div>
         </div>
+        <div class="wheel-pointer" style="position:absolute;top:2px;left:50%;transform:translateX(-50%);z-index:6;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:14px solid #fbbf24;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.9));"></div>
       </div>
       <div class="rprompt" id="rPrompt">СДЕЛАЙТЕ СТАВКУ</div>
       <div class="rtable" id="rtable"></div>
@@ -883,7 +813,7 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
     <div class="coming-soon">
       <div class="coming-soon-emoji" id="comingEmoji">🃏</div>
       <div class="coming-soon-title" id="comingTitle">Скоро</div>
-      <div class="coming-soon-text" id="comingText">Эта игра появится в следующем обновлении.</div>
+      <div class="coming-soon-text" id="comingText">Эта игра появится позже.</div>
     </div>
   </div>
 </div>
@@ -960,24 +890,22 @@ function soundJackpot(){
 function soundCard(){ noiseBurst(0.09,0.06,900,0,5); playTone(720,0.04,'sine',0.04,0); }
 function soundScatter(){ [659,988,1319,1976].forEach((f,i)=>playTone(f,0.22,'triangle',0.15,i*0.10)); }
 function soundChip(){ playTone(1400,0.025,'triangle',0.05,0); playTone(2100,0.02,'sine',0.035,0.005); }
-/* Глухой мягкий тик колеса */
 function soundWheelTick(p){
-  const vol = 0.018 + (1-p) * 0.025;
-  noiseBurst(0.012, vol, 2400 + Math.random()*600, 0, 10);
-  playTone(1100 + Math.random()*300, 0.012, 'triangle', vol*0.5, 0);
+  const vol = 0.015 + (1-p) * 0.022;
+  noiseBurst(0.010, vol, 2200 + Math.random()*500, 0, 10);
+  playTone(1050 + Math.random()*300, 0.010, 'triangle', vol*0.5, 0);
 }
-/* Шарик падает в сектор */
 function soundBallDrop(){
-  const times = [0, 0.07, 0.15, 0.24, 0.34, 0.46];
+  const times = [0, 0.06, 0.13, 0.21, 0.30, 0.41, 0.54];
   times.forEach((t, i) => {
-    const f = 480 - i * 50;
-    playTone(f, 0.05, 'triangle', 0.10 - i * 0.008, t);
-    noiseBurst(0.03, 0.07 - i*0.006, 900, t, 8);
+    const f = 520 - i * 45;
+    playTone(f, 0.045, 'triangle', 0.09 - i * 0.008, t);
+    noiseBurst(0.028, 0.06 - i*0.006, 900, t, 8);
   });
   setTimeout(() => {
-    playTone(300, 0.14, 'sine', 0.12, 0);
-    playTone(220, 0.18, 'triangle', 0.08, 0.02);
-  }, 540);
+    playTone(280, 0.14, 'sine', 0.12, 0);
+    playTone(200, 0.18, 'triangle', 0.08, 0.02);
+  }, 620);
 }
 
 /* ============ STORAGE ============ */
@@ -1011,7 +939,7 @@ function getLevel(){let c=LEVELS[0],n=null;for(let i=0;i<LEVELS.length;i++){if(s
 function renderLevel(){
   const {cur,next}=getLevel();
   document.getElementById('levelName').textContent=cur.name;
-  document.getElementById('levelBonus').textContent='Бонус к выигрышу: +'+cur.bonus+'%';
+  document.getElementById('levelBonus').textContent='Бонус: +'+cur.bonus+'%';
   if(next){ document.getElementById('levelCount').textContent=stats.spins+' / '+next.spins;
     document.getElementById('levelFill').style.width=Math.min(100,((stats.spins-cur.spins)/(next.spins-cur.spins))*100)+'%'; }
   else { document.getElementById('levelCount').textContent=stats.spins+' (макс)'; document.getElementById('levelFill').style.width='100%'; }
@@ -1312,12 +1240,11 @@ function showScreen(id){
 }
 document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>showScreen('screen-menu')));
 
-/* ============ DEPOSIT (пополнение баланса) ============ */
+/* ============ DEPOSIT ============ */
 const depositOverlay=document.getElementById('depositOverlay');
 let selectedDepositAmount=1000;
 document.getElementById('depositBtn').addEventListener('click',()=>{
-  depositOverlay.classList.add('open');
-  updateBalanceUI();
+  depositOverlay.classList.add('open'); updateBalanceUI();
 });
 document.getElementById('depositClose').addEventListener('click',()=>depositOverlay.classList.remove('open'));
 depositOverlay.addEventListener('click',(e)=>{
@@ -1328,6 +1255,7 @@ document.querySelectorAll('.deposit-amount').forEach(b=>{
     document.querySelectorAll('.deposit-amount').forEach(x=>x.classList.remove('best'));
     b.classList.add('best');
     selectedDepositAmount=parseInt(b.dataset.amt,10);
+    soundChip();
   });
 });
 document.getElementById('depositGo').addEventListener('click',()=>{
@@ -1758,7 +1686,7 @@ function bjUpdateBetUI(){
 }
 
 /* ================================================== */
-/* ============ ROULETTE 3D ======================== */
+/* ============ ROULETTE =========================== */
 /* ================================================== */
 const EURO_ORDER = [0,32,15,19,4,21,2,25,17,34,6,27,13,36,11,30,8,23,10,5,24,16,33,1,20,14,31,9,22,18,29,7,28,12,35,3,26];
 const RED_NUMS = new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]);
@@ -1766,8 +1694,7 @@ const SEG_DEG = 360 / 37;
 const TILT_COS = 0.530; // cos(58°)
 const rState = {
   chip: 1, bets: {}, history: [],
-  spinning: false, wheelAngle: 0, ballAngle: 0,
-  ballRadius: 150
+  spinning: false, wheelAngle: 0, ballAngle: 0
 };
 const rHistory = [];
 function rIsRed(n){ return RED_NUMS.has(n); }
@@ -1790,7 +1717,9 @@ function buildWheelSVG(){
   const svg = document.getElementById('wheelSvg');
   if (!svg) return;
   svg.setAttribute('viewBox', '0 0 340 340');
-  const cx = 170, cy = 170, rIn = 66, rOut = 138;
+  const cx = 170, cy = 170;
+  // Сектора идут между хром-кольцами: внутренний r=112, внешний r=146
+  const rIn = 112, rOut = 146;
   const sectorsG = document.getElementById('sectorsG');
   const numbersG = document.getElementById('numbersG');
   sectorsG.innerHTML = ''; numbersG.innerHTML = '';
@@ -1799,27 +1728,57 @@ function buildWheelSVG(){
     const aCenter = i * SEG_DEG;
     const a0 = aCenter - SEG_DEG / 2;
     const a1 = aCenter + SEG_DEG / 2;
-    const color = num === 0 ? '#15803d' : (rIsRed(num) ? '#b91c1c' : '#0f0f0f');
+    const color = num === 0 ? '#0f7a37' : (rIsRed(num) ? '#b81c1c' : '#0a0a0a');
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', sectorPath(cx, cy, rIn, rOut, a0, a1));
     path.setAttribute('fill', color);
     path.setAttribute('stroke', '#000');
-    path.setAttribute('stroke-width', '0.5');
-    path.setAttribute('stroke-opacity', '0.85');
+    path.setAttribute('stroke-width', '0.6');
+    path.setAttribute('stroke-opacity', '0.9');
     sectorsG.appendChild(path);
+
     const mid = polToXY(cx, cy, (rIn + rOut) / 2, aCenter);
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', mid.x.toFixed(2));
     text.setAttribute('y', mid.y.toFixed(2));
     text.setAttribute('text-anchor', 'middle');
     text.setAttribute('dominant-baseline', 'central');
-    text.setAttribute('font-size', '9');
+    text.setAttribute('font-size', '10');
     text.setAttribute('font-weight', '900');
     text.setAttribute('font-family', 'Arial, sans-serif');
     text.setAttribute('fill', '#fff');
     text.setAttribute('transform', `rotate(${aCenter.toFixed(2)} ${mid.x.toFixed(2)} ${mid.y.toFixed(2)})`);
     text.textContent = num;
     numbersG.appendChild(text);
+  }
+
+  // Спицы вертушки — от края ступицы (r=58) до внутреннего деревянного конуса (r=108)
+  const spokesG = document.getElementById('spokesG');
+  spokesG.innerHTML = '';
+  const spokesCount = 8;
+  for (let i = 0; i < spokesCount; i++){
+    const a = i * (360 / spokesCount) + 22.5;
+    const p1 = polToXY(cx, cy, 60, a);
+    const p2 = polToXY(cx, cy, 108, a);
+    const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    ln.setAttribute('x1', p1.x.toFixed(2));
+    ln.setAttribute('y1', p1.y.toFixed(2));
+    ln.setAttribute('x2', p2.x.toFixed(2));
+    ln.setAttribute('y2', p2.y.toFixed(2));
+    ln.setAttribute('stroke', '#0f172a');
+    ln.setAttribute('stroke-width', '1.6');
+    ln.setAttribute('stroke-linecap', 'round');
+    spokesG.appendChild(ln);
+    // Хром-блик поверх
+    const hl = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    hl.setAttribute('x1', (p1.x - 0.6).toFixed(2));
+    hl.setAttribute('y1', (p1.y - 0.6).toFixed(2));
+    hl.setAttribute('x2', (p2.x - 0.6).toFixed(2));
+    hl.setAttribute('y2', (p2.y - 0.6).toFixed(2));
+    hl.setAttribute('stroke', '#cbd5e1');
+    hl.setAttribute('stroke-width', '0.5');
+    hl.setAttribute('opacity', '0.85');
+    spokesG.appendChild(hl);
   }
 }
 function buildTable(){
@@ -1978,25 +1937,23 @@ async function rSpin(){
     function frame(now){
       const p = Math.min(1, (now - t0) / duration);
 
-      // Колесо вращается (по часовой)
+      // Колесо — по часовой, ease-out cubic
       const eW = 1 - Math.pow(1 - p, 3);
       const W = W0 + (W1 - W0) * eW;
       rState.wheelAngle = W;
       sectorsG.setAttribute('transform', `rotate(${W.toFixed(3)} 170 170)`);
       numbersG.setAttribute('transform', `rotate(${W.toFixed(3)} 170 170)`);
-      if (spokesG) spokesG.setAttribute('transform', `rotate(${(W*1.6).toFixed(3)} 170 170)`);
+      if (spokesG) spokesG.setAttribute('transform', `rotate(${(W*1.7).toFixed(3)} 170 170)`);
 
-      // Шарик: стартует на внешнем треке, катится против часовой и спускается внутрь
+      // Шарик — против часовой, ease-out quart
       const eB = 1 - Math.pow(1 - p, 4);
       const B = B0 + (Bfinal - B0) * eB;
       rState.ballAngle = B;
 
-      // Радиус: с 150 (внешний трек) до 138 (в секторах)
-      const rBall = 150 - 12 * Math.pow(p, 1.6);
-      rState.ballRadius = rBall;
+      // Радиус: 150 (внешний трек) → 128 (в секторах)
+      const rBall = 150 - 22 * Math.pow(p, 1.7);
 
       const B_rad = B * Math.PI / 180;
-      // Компенсация наклона по вертикали
       const bx = 170 + rBall * Math.sin(B_rad);
       const by = 170 - rBall * Math.cos(B_rad) * TILT_COS;
       ball.style.left = bx.toFixed(2) + 'px';
