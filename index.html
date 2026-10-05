@@ -269,7 +269,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
   color:#9ca3af; font-size:12px; font-weight:bold; cursor:pointer; }
 .cat-tab.active { background:linear-gradient(180deg,#fbbf24,#d97706); color:#111827; border-color:#fbbf24; }
 
-/* BLACKJACK */
 .bj-table { position: relative; margin: 6px 4px 10px; padding: 16px 10px 10px; min-height: 280px;
   border-radius: 50% 50% 46% 46% / 58% 58% 42% 42%;
   background: radial-gradient(ellipse at 50% 25%, #1e8a52 0%, #0f6a3d 35%, #084a29 65%, #052e19 100%);
@@ -339,7 +338,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 .bj-btn-insurance { background:linear-gradient(180deg,#06b6d4,#0e7490); color:#fff; grid-column: span 2; }
 .bj-btn-new { background:linear-gradient(180deg,#6366f1,#3730a3); color:#fff; grid-column: span 2; padding:12px 6px; font-size:13px; }
 
-/* ROULETTE */
 .roulette-section { padding: 0 4px; position: relative; padding-top: 78px; }
 .wheel-stage { position: relative; width: 100%; max-width: 400px; margin: -78px auto 10px;
   height: 340px; perspective: 1200px; }
@@ -424,7 +422,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 .rspin { background: radial-gradient(circle at 35% 30%, #fde047, #f59e0b 45%, #b45309 100%);
   color: #450a0a; font-size: 16px; }
 
-/* GENERAL GAME PANEL */
 .gs-screen { padding: 0 4px; }
 .gs-panel { background: radial-gradient(ellipse at 50% 20%, #1e8a52 0%, #0d5c32 55%, #042a17 100%);
   border: 4px solid #6b4423; border-radius: 18px; padding: 14px 12px; margin-bottom: 12px; position: relative; }
@@ -443,7 +440,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 .gs-btn-green { background: linear-gradient(180deg,#10b981,#047857); color:#fff; }
 .gs-btn-blue { background: linear-gradient(180deg,#3b82f6,#1e40af); color:#fff; }
 
-/* BACCARAT */
 .bac-history-board { display: flex; flex-direction: row; gap: 3px; padding: 5px 6px;
   background: linear-gradient(180deg, rgba(20,10,5,0.96), rgba(10,5,2,0.96));
   border: 1.5px solid rgba(251,191,36,0.55); border-radius: 8px;
@@ -474,7 +470,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
   padding: 2px 8px; margin-top: 6px; min-width: 30px; border: 1.5px solid #fef3c7; }
 .bac-bet-chip.empty { visibility: hidden; }
 
-/* KENO */
 .keno-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px;
   background: #0a3d1c; padding: 6px; border-radius: 10px; margin-bottom: 10px;
   border: 2px solid #14532d; }
@@ -488,7 +483,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 .keno-info { display: flex; justify-content: space-between; font-size: 11px;
   color: #fbbf24; margin-bottom: 6px; padding: 0 4px; font-weight: bold; }
 
-/* DICE */
 .dice-row { display: flex; gap: 16px; justify-content: center; margin: 16px 0; }
 .die { width: 70px; height: 70px; border-radius: 12px;
   background: linear-gradient(180deg,#fffdf5,#ece2c9);
@@ -506,7 +500,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 .dice-bet.active { border-color: #fbbf24; background: rgba(251,191,36,0.15); }
 .dice-bet .dice-payout { font-size: 10px; color: #fcd34d; }
 
-/* FORTUNE WHEEL */
 .fwheel-wrap { position: relative; width: 100%; max-width: 340px; margin: 0 auto 10px;
   aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
 .fwheel { width: 100%; height: 100%; border-radius: 50%;
@@ -525,7 +518,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
   font-size: 11px; font-weight: 900; color: #fff; white-space: nowrap;
   transform-origin: 0 0; text-shadow: 1px 1px 2px #000; pointer-events: none; }
 
-/* POKER */
 .poker-row { margin-bottom: 10px; }
 .poker-label { font-size: 10px; color: #fcd34d; letter-spacing: 2px; font-weight: bold;
   display: flex; justify-content: space-between; padding: 0 6px; text-transform: uppercase;
@@ -547,8 +539,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 .poker-card-top { font-size: 11px; }
 .poker-card-suit { font-size: 20px; text-align: center; }
 .poker-card-bot { font-size: 11px; text-align: right; }
-
-/* TEXAS */
 .texas-community { display: flex; gap: 4px; justify-content: center;
   padding: 8px; background: rgba(0,0,0,0.3); border-radius: 10px;
   border: 2px dashed rgba(251,191,36,0.35); margin-bottom: 8px; min-height: 76px;
@@ -1033,31 +1023,23 @@ if (tg) {
 
 /* ===== LANGUAGE ===== */
 const T = {
-  ru:{continue:'Продолжить',change_lang:'🌐 Сменить язык',balance:'Баланс',level:'Уровень',rank:'Ранг',spins:'Спинов',bonus_pct:'Бонус',statistics:'📊 Статистика',total_won:'Всего выиграно',best_win:'Лучший выигрыш',jackpots:'Джекпотов',net:'Итог',share_bot:'📤 Поделиться ботом',won:'Выиграно',best:'Лучший',reset_stats:'Сбросить статистику',last_spins:'Последние спины',deposit_title:'⭐ Пополнение через Telegram Stars',deposit_sub:'Выбери пакет — оплата внутри Telegram',pay:'ОПЛАТИТЬ',deposit_note:'Оплата через Telegram Stars',menu_sub:'Выберите игру и вперёд за выигрышем',cat_slots:'🎰 Слоты',cat_cards:'🃏 Карточные',cat_quick:'⚡ Быстрые игры',cat_popular:'🔥 Популярные',all_link:'Все →',back_menu:'← В меню',slots_title:'🎰 Слоты',bet:'Ставка',max:'МАКС',spin:'СПИН',share:'📤 Поделиться',achievements:'🎖 Достижения',tasks:'📅 Задания',bj_title:'🃏 Блэкджек',dealer:'Дилер',bet_box:'Ставка на бокс',hit:'Взять',stand:'Хватит',double:'Удвоить',insurance:'🛡 Страховка',deal:'Раздать',roul_title:'🎡 Рулетка',clear_bets:'✖ СНЯТЬ',spin_wheel:'🎡 КРУТИТЬ',keno_title:'🎯 Кено',picked:'Выбрано',ready:'Готов',clear:'✖ ОЧИСТИТЬ',play:'🎯 ИГРАТЬ',dice_title:'🎲 Кости',under7:'🔽 МЕНЬШЕ 7',exact7:'🎯 РОВНО 7',over7:'🔼 БОЛЬШЕ 7',even:'⚖️ ЧЁТНОЕ',odd:'🔀 НЕЧЁТНОЕ',dbl:'👯 ДУБЛЬ',roll:'🎲 БРОСИТЬ',fwheel_title:'☸️ Колесо Фортуны',all_games:'Все игры',tab_all:'Все',soon:'Скоро',soon_text:'Скоро',nav_casino:'Казино',nav_quick:'Быстрые',nav_bonus:'Бонусы',nav_profile:'Профиль',insufficient:'Недостаточно монет',place_bet:'Сначала поставь',pick_num:'Выбери число',max10:'Макс. 10 чисел',no_bets:'Нет ставок',confirm_clear:'Снять ВСЕ ставки?',you:'Вы',play_action:'✔ ИГРАТЬ',pot:'Банк',level_1:'Новичок',level_2:'Любитель',level_3:'Профи',level_4:'Хайроллер',level_5:'Легенда',bonus_btn:'🎁 Бонус +500',bonus_wait:'🎁 Бонус через ',h:' ч ',m:' мин',bet_short:'Ставка'},
-  en:{continue:'Continue',change_lang:'🌐 Change language',balance:'Balance',level:'Level',rank:'Rank',spins:'Spins',bonus_pct:'Bonus',statistics:'📊 Statistics',total_won:'Total won',best_win:'Best win',jackpots:'Jackpots',net:'Net',share_bot:'📤 Share bot',won:'Won',best:'Best',reset_stats:'Reset stats',last_spins:'Recent spins',deposit_title:'⭐ Deposit via Telegram Stars',deposit_sub:'Choose a package',pay:'PAY',deposit_note:'Payment via Telegram Stars',menu_sub:'Choose a game and win',cat_slots:'🎰 Slots',cat_cards:'🃏 Card games',cat_quick:'⚡ Quick games',cat_popular:'🔥 Popular',all_link:'All →',back_menu:'← Back',slots_title:'🎰 Slots',bet:'Bet',max:'MAX',spin:'SPIN',share:'📤 Share',achievements:'🎖 Achievements',tasks:'📅 Tasks',bj_title:'🃏 Blackjack',dealer:'Dealer',bet_box:'Bet per box',hit:'Hit',stand:'Stand',double:'Double',insurance:'🛡 Insurance',deal:'Deal',roul_title:'🎡 Roulette',clear_bets:'✖ CLEAR',spin_wheel:'🎡 SPIN',keno_title:'🎯 Keno',picked:'Picked',ready:'Ready',clear:'✖ CLEAR',play:'🎯 PLAY',dice_title:'🎲 Dice',under7:'🔽 UNDER 7',exact7:'🎯 EXACTLY 7',over7:'🔼 OVER 7',even:'⚖️ EVEN',odd:'🔀 ODD',dbl:'👯 DOUBLE',roll:'🎲 ROLL',fwheel_title:'☸️ Wheel of Fortune',all_games:'All games',tab_all:'All',soon:'Soon',soon_text:'Soon',nav_casino:'Casino',nav_quick:'Quick',nav_bonus:'Bonus',nav_profile:'Profile',insufficient:'Not enough coins',place_bet:'Place a bet',pick_num:'Pick a number',max10:'Max 10 numbers',no_bets:'No bets',confirm_clear:'Clear ALL bets?',you:'You',play_action:'✔ PLAY',pot:'Pot',level_1:'Beginner',level_2:'Amateur',level_3:'Pro',level_4:'High roller',level_5:'Legend',bonus_btn:'🎁 Bonus +500',bonus_wait:'🎁 Bonus in ',h:' h ',m:' min',bet_short:'Bet'},
-  zh:{continue:'继续',change_lang:'🌐 更改语言',balance:'余额',level:'等级',rank:'段位',spins:'转数',bonus_pct:'奖励',statistics:'📊 统计',total_won:'总赢得',best_win:'最大赢得',jackpots:'头奖',net:'净赢',share_bot:'📤 分享',won:'赢得',best:'最佳',reset_stats:'重置',last_spins:'最近',deposit_title:'⭐ 充值',deposit_sub:'选择套餐',pay:'支付',deposit_note:'Telegram Stars',menu_sub:'选择游戏',cat_slots:'🎰 老虎机',cat_cards:'🃏 纸牌',cat_quick:'⚡ 快速',cat_popular:'🔥 热门',all_link:'全部 →',back_menu:'← 返回',slots_title:'🎰 老虎机',bet:'下注',max:'最大',spin:'旋转',share:'📤 分享',achievements:'🎖 成就',tasks:'📅 任务',bj_title:'🃏 二十一点',dealer:'庄家',bet_box:'每注',hit:'要牌',stand:'停牌',double:'加倍',insurance:'🛡 保险',deal:'发牌',roul_title:'🎡 轮盘',clear_bets:'✖ 清除',spin_wheel:'🎡 旋转',keno_title:'🎯 基诺',picked:'已选',ready:'就绪',clear:'✖ 清除',play:'🎯 开始',dice_title:'🎲 骰子',under7:'🔽 小于7',exact7:'🎯 正好7',over7:'🔼 大于7',even:'⚖️ 双数',odd:'🔀 单数',dbl:'👯 对子',roll:'🎲 掷',fwheel_title:'☸️ 幸运轮盘',all_games:'所有游戏',tab_all:'全部',soon:'即将推出',soon_text:'即将推出',nav_casino:'赌场',nav_quick:'快速',nav_bonus:'奖金',nav_profile:'个人',insufficient:'金币不足',place_bet:'请先下注',pick_num:'选号码',max10:'最多10',no_bets:'没有',confirm_clear:'清除?',you:'你',play_action:'✔ 玩',pot:'底池',level_1:'新手',level_2:'爱好者',level_3:'职业',level_4:'豪客',level_5:'传奇',bonus_btn:'🎁 奖金 +500',bonus_wait:'🎁 倒计时 ',h:' 时 ',m:' 分',bet_short:'下注'},
-  kk:{continue:'Жалғастыру',change_lang:'🌐 Тілді өзгерту',balance:'Теңгерім',level:'Деңгей',rank:'Дәреже',spins:'Айналдыру',bonus_pct:'Бонус',statistics:'📊 Статистика',total_won:'Ұтылды',best_win:'Үздік',jackpots:'Джекпот',net:'Қорытынды',share_bot:'📤 Бөлісу',won:'Ұтылды',best:'Үздік',reset_stats:'Тазалау',last_spins:'Соңғы',deposit_title:'⭐ Telegram Stars',deposit_sub:'Пакетті таңдаңыз',pay:'ТӨЛЕУ',deposit_note:'Telegram Stars',menu_sub:'Ойын таңдаңыз',cat_slots:'🎰 Слоттар',cat_cards:'🃏 Карта',cat_quick:'⚡ Жылдам',cat_popular:'🔥 Танымал',all_link:'Барлығы →',back_menu:'← Мәзірге',slots_title:'🎰 Слоттар',bet:'Ставка',max:'МАКС',spin:'АЙНАЛДЫРУ',share:'📤 Бөлісу',achievements:'🎖 Жетістіктер',tasks:'📅 Тапсырмалар',bj_title:'🃏 Блэкджек',dealer:'Дилер',bet_box:'Ұяшық',hit:'Алу',stand:'Тоқтау',double:'Екі есе',insurance:'🛡 Сақтандыру',deal:'Тарату',roul_title:'🎡 Рулетка',clear_bets:'✖ АЛУ',spin_wheel:'🎡 АЙНАЛДЫРУ',keno_title:'🎯 Кено',picked:'Таңдалды',ready:'Дайын',clear:'✖ ТАЗАЛАУ',play:'🎯 ОЙНАУ',dice_title:'🎲 Сүйектер',under7:'🔽 7-ДЕН АЗ',exact7:'🎯 ДӘЛ 7',over7:'🔼 7-ДЕН КӨП',even:'⚖️ ЖҰП',odd:'🔀 ТАҚ',dbl:'👯 ҚОС',roll:'🎲 ТАСТАУ',fwheel_title:'☸️ Сәттілік дөңгелегі',all_games:'Барлық ойындар',tab_all:'Барлығы',soon:'Жақында',soon_text:'Жақында',nav_casino:'Казино',nav_quick:'Жылдам',nav_bonus:'Бонустар',nav_profile:'Профиль',insufficient:'Монеталар жетпейді',place_bet:'Алдымен ставка',pick_num:'Нөмір таңдаңыз',max10:'Макс. 10',no_bets:'Жоқ',confirm_clear:'Барлығын алу?',you:'Сіз',play_action:'✔ ОЙНАУ',pot:'Банк',level_1:'Жаңадан',level_2:'Әуесқой',level_3:'Кәсіби',level_4:'Хайроллер',level_5:'Аңыз',bonus_btn:'🎁 Бонус +500',bonus_wait:'🎁 Бонус ',h:' сағ ',m:' мин',bet_short:'Ставка'},
-  ky:{continue:'Улантуу',change_lang:'🌐 Тилди өзгөртүү',balance:'Баланс',level:'Деңгээл',rank:'Даража',spins:'Айландыруу',bonus_pct:'Бонус',statistics:'📊 Статистика',total_won:'Утулду',best_win:'Эң мыкты',jackpots:'Джекпот',net:'Жыйынтык',share_bot:'📤 Бөлүшүү',won:'Утулду',best:'Эң мыкты',reset_stats:'Тазалоо',last_spins:'Акыркы',deposit_title:'⭐ Telegram Stars',deposit_sub:'Пакетти тандаңыз',pay:'ТӨЛӨӨ',deposit_note:'Telegram Stars',menu_sub:'Оюнду тандаңыз',cat_slots:'🎰 Слоттор',cat_cards:'🃏 Карта',cat_quick:'⚡ Тез',cat_popular:'🔥 Популярдуу',all_link:'Баары →',back_menu:'← Менюга',slots_title:'🎰 Слоттор',bet:'Ставка',max:'МАКС',spin:'АЙЛАНДЫРУ',share:'📤 Бөлүшүү',achievements:'🎖 Жетишкендиктер',tasks:'📅 Тапшырмалар',bj_title:'🃏 Блэкджек',dealer:'Дилер',bet_box:'Кутучага',hit:'Алуу',stand:'Токтоо',double:'Эки эсе',insurance:'🛡 Камсыздандыруу',deal:'Таратуу',roul_title:'🎡 Рулетка',clear_bets:'✖ АЛУУ',spin_wheel:'🎡 АЙЛАНДЫРУУ',keno_title:'🎯 Кено',picked:'Тандалды',ready:'Дайын',clear:'✖ ТАЗАЛОО',play:'🎯 ОЙНОО',dice_title:'🎲 Сөөктөр',under7:'🔽 7-ДЕН АЗ',exact7:'🎯 ТАК 7',over7:'🔼 7-ДЕН КӨП',even:'⚖️ ЖҮП',odd:'🔀 ТАК',dbl:'👯 КОШ',roll:'🎲 ТАШТОО',fwheel_title:'☸️ Ийгилик дөңгөлөгү',all_games:'Баары оюндар',tab_all:'Баары',soon:'Жакында',soon_text:'Жакында',nav_casino:'Казино',nav_quick:'Тез',nav_bonus:'Бонустар',nav_profile:'Профиль',insufficient:'Монеталар жетпейт',place_bet:'Алгач ставка',pick_num:'Сан тандаңыз',max10:'Макс. 10',no_bets:'Жок',confirm_clear:'Баарын алуу?',you:'Сиз',play_action:'✔ ОЙНОО',pot:'Банк',level_1:'Жаңы',level_2:'Ашкере',level_3:'Профи',level_4:'Хайроллер',level_5:'Легенда',bonus_btn:'🎁 Бонус +500',bonus_wait:'🎁 Бонус ',h:' с ',m:' мүн',bet_short:'Ставка'},
-  uz:{continue:'Davom etish',change_lang:"🌐 Tilni o'zgartirish",balance:'Balans',level:'Daraja',rank:'Rutba',spins:'Aylanishlar',bonus_pct:'Bonus',statistics:"📊 Statistika",total_won:'Yutildi',best_win:'Eng yaxshi',jackpots:'Jekpotlar',net:'Yakuniy',share_bot:'📤 Ulashish',won:'Yutildi',best:'Eng yaxshi',reset_stats:'Tiklash',last_spins:'Oxirgi',deposit_title:"⭐ Telegram Stars",deposit_sub:'Paketni tanlang',pay:"TO'LASH",deposit_note:'Telegram Stars',menu_sub:"O'yinni tanlang",cat_slots:'🎰 Slotlar',cat_cards:"🃏 Karta",cat_quick:'⚡ Tez',cat_popular:'🔥 Mashhur',all_link:'Hammasi →',back_menu:'← Menyu',slots_title:'🎰 Slotlar',bet:'Stavka',max:'MAKS',spin:'AYLANTIRISH',share:'📤 Ulashish',achievements:'🎖 Yutuqlar',tasks:'📅 Vazifalar',bj_title:'🃏 Blackjack',dealer:'Diler',bet_box:'Qutiga',hit:'Olish',stand:"To'xtash",double:'Ikki baravar',insurance:"🛡 Sug'urta",deal:'Taqsimlash',roul_title:'🎡 Ruletka',clear_bets:'✖ OLISH',spin_wheel:'🎡 AYLANTIRISH',keno_title:'🎯 Keno',picked:'Tanlandi',ready:'Tayyor',clear:'✖ TOZALASH',play:"🎯 O'YNASH",dice_title:'🎲 Zarlar',under7:'🔽 7-DAN KAM',exact7:'🎯 ANIQ 7',over7:"🔼 7-DAN KO'P",even:'⚖️ JUFT',odd:'🔀 TOQ',dbl:'👯 JUFT',roll:'🎲 TASHLASH',fwheel_title:"☸️ Omad g'ildiragi",all_games:"Barcha o'yinlar",tab_all:'Hammasi',soon:'Tez orada',soon_text:'Tez orada',nav_casino:'Kazino',nav_quick:'Tez',nav_bonus:'Bonuslar',nav_profile:'Profil',insufficient:'Tangalar yetmaydi',place_bet:'Avval stavka',pick_num:'Raqam tanlang',max10:'Maks. 10',no_bets:"Yo'q",confirm_clear:'Hammasini?',you:'Siz',play_action:"✔ O'YNASH",pot:'Bank',level_1:'Yangi',level_2:'Havaskor',level_3:'Profi',level_4:'Xayroller',level_5:'Afsona',bonus_btn:'🎁 Bonus +500',bonus_wait:'🎁 Bonus ',h:' soat ',m:' daq',bet_short:'Stavka'},
-  pl:{continue:'Kontynuuj',change_lang:'🌐 Zmień język',balance:'Saldo',level:'Poziom',rank:'Ranga',spins:'Obroty',bonus_pct:'Bonus',statistics:'📊 Statystyki',total_won:'Wygrane',best_win:'Najlepsza',jackpots:'Jackpoty',net:'Wynik',share_bot:'📤 Udostępnij',won:'Wygrane',best:'Najlepsza',reset_stats:'Reset',last_spins:'Ostatnie',deposit_title:'⭐ Wpłata przez Telegram Stars',deposit_sub:'Wybierz pakiet',pay:'ZAPŁAĆ',deposit_note:'Telegram Stars',menu_sub:'Wybierz grę',cat_slots:'🎰 Sloty',cat_cards:'🃏 Karciane',cat_quick:'⚡ Szybkie',cat_popular:'🔥 Popularne',all_link:'Wszystkie →',back_menu:'← Menu',slots_title:'🎰 Sloty',bet:'Zakład',max:'MAX',spin:'KRĘĆ',share:'📤 Udostępnij',achievements:'🎖 Osiągnięcia',tasks:'📅 Zadania',bj_title:'🃏 Blackjack',dealer:'Krupier',bet_box:'Na pole',hit:'Dobierz',stand:'Stój',double:'Podwój',insurance:'🛡 Ubezpieczenie',deal:'Rozdaj',roul_title:'🎡 Ruletka',clear_bets:'✖ USUŃ',spin_wheel:'🎡 KRĘĆ',keno_title:'🎯 Keno',picked:'Wybrano',ready:'Gotowe',clear:'✖ WYCZYŚĆ',play:'🎯 GRAJ',dice_title:'🎲 Kości',under7:'🔽 PONIŻEJ 7',exact7:'🎯 DOKŁADNIE 7',over7:'🔼 POWYŻEJ 7',even:'⚖️ PARZYSTE',odd:'🔀 NIEPARZYSTE',dbl:'👯 DUBLET',roll:'🎲 RZUĆ',fwheel_title:'☸️ Koło Fortuny',all_games:'Wszystkie gry',tab_all:'Wszystkie',soon:'Wkrótce',soon_text:'Wkrótce',nav_casino:'Kasyno',nav_quick:'Szybkie',nav_bonus:'Bonusy',nav_profile:'Profil',insufficient:'Za mało monet',place_bet:'Najpierw postaw',pick_num:'Wybierz numer',max10:'Maks. 10',no_bets:'Brak',confirm_clear:'Usunąć?',you:'Ty',play_action:'✔ GRAJ',pot:'Pula',level_1:'Nowicjusz',level_2:'Amator',level_3:'Pro',level_4:'High roller',level_5:'Legenda',bonus_btn:'🎁 Bonus +500',bonus_wait:'🎁 Bonus za ',h:' godz ',m:' min',bet_short:'Zakład'}
+  ru:{continue:'Продолжить',change_lang:'🌐 Сменить язык',balance:'Баланс',level:'Уровень',rank:'Ранг',spins:'Спинов',bonus_pct:'Бонус',statistics:'📊 Статистика',total_won:'Всего выиграно',best_win:'Лучший выигрыш',jackpots:'Джекпотов',net:'Итог',share_bot:'📤 Поделиться ботом',won:'Выиграно',best:'Лучший',reset_stats:'Сбросить статистику',last_spins:'Последние спины',deposit_title:'⭐ Пополнение через Telegram Stars',deposit_sub:'Выбери пакет',pay:'ОПЛАТИТЬ',deposit_note:'Оплата через Telegram Stars',menu_sub:'Выберите игру',cat_slots:'🎰 Слоты',cat_cards:'🃏 Карточные',cat_quick:'⚡ Быстрые',cat_popular:'🔥 Популярные',all_link:'Все →',back_menu:'← В меню',slots_title:'🎰 Слоты',bet:'Ставка',max:'МАКС',spin:'СПИН',share:'📤 Поделиться',achievements:'🎖 Достижения',tasks:'📅 Задания',bj_title:'🃏 Блэкджек',dealer:'Дилер',bet_box:'Ставка на бокс',hit:'Взять',stand:'Хватит',double:'Удвоить',insurance:'🛡 Страховка',deal:'Раздать',roul_title:'🎡 Рулетка',clear_bets:'✖ СНЯТЬ',spin_wheel:'🎡 КРУТИТЬ',keno_title:'🎯 Кено',picked:'Выбрано',ready:'Готов',clear:'✖ ОЧИСТИТЬ',play:'🎯 ИГРАТЬ',dice_title:'🎲 Кости',under7:'🔽 МЕНЬШЕ 7',exact7:'🎯 РОВНО 7',over7:'🔼 БОЛЬШЕ 7',even:'⚖️ ЧЁТНОЕ',odd:'🔀 НЕЧЁТНОЕ',dbl:'👯 ДУБЛЬ',roll:'🎲 БРОСИТЬ',fwheel_title:'☸️ Колесо',all_games:'Все игры',tab_all:'Все',soon:'Скоро',soon_text:'Скоро',nav_casino:'Казино',nav_quick:'Быстрые',nav_bonus:'Бонусы',nav_profile:'Профиль',insufficient:'Недостаточно монет',place_bet:'Сначала поставь',pick_num:'Выбери число',max10:'Макс. 10 чисел',no_bets:'Нет ставок',confirm_clear:'Снять ВСЕ ставки?',you:'Вы',play_action:'✔ ИГРАТЬ',pot:'Банк',bonus_btn:'🎁 Бонус +500',bonus_wait:'🎁 Бонус через ',h:' ч ',m:' мин'},
+  en:{continue:'Continue',change_lang:'🌐 Change language',balance:'Balance',level:'Level',rank:'Rank',spins:'Spins',bonus_pct:'Bonus',statistics:'📊 Statistics',total_won:'Total won',best_win:'Best win',jackpots:'Jackpots',net:'Net',share_bot:'📤 Share',won:'Won',best:'Best',reset_stats:'Reset',last_spins:'Recent',deposit_title:'⭐ Deposit',deposit_sub:'Choose package',pay:'PAY',deposit_note:'Telegram Stars',menu_sub:'Choose a game',cat_slots:'🎰 Slots',cat_cards:'🃏 Cards',cat_quick:'⚡ Quick',cat_popular:'🔥 Popular',all_link:'All →',back_menu:'← Back',slots_title:'🎰 Slots',bet:'Bet',max:'MAX',spin:'SPIN',share:'📤 Share',achievements:'🎖 Achievements',tasks:'📅 Tasks',bj_title:'🃏 Blackjack',dealer:'Dealer',bet_box:'Bet',hit:'Hit',stand:'Stand',double:'Double',insurance:'🛡 Insurance',deal:'Deal',roul_title:'🎡 Roulette',clear_bets:'✖ CLEAR',spin_wheel:'🎡 SPIN',keno_title:'🎯 Keno',picked:'Picked',ready:'Ready',clear:'✖ CLEAR',play:'🎯 PLAY',dice_title:'🎲 Dice',under7:'🔽 UNDER 7',exact7:'🎯 EXACTLY 7',over7:'🔼 OVER 7',even:'⚖️ EVEN',odd:'🔀 ODD',dbl:'👯 DOUBLE',roll:'🎲 ROLL',fwheel_title:'☸️ Wheel',all_games:'All games',tab_all:'All',soon:'Soon',soon_text:'Soon',nav_casino:'Casino',nav_quick:'Quick',nav_bonus:'Bonus',nav_profile:'Profile',insufficient:'Not enough coins',place_bet:'Place a bet',pick_num:'Pick a number',max10:'Max 10',no_bets:'No bets',confirm_clear:'Clear ALL?',you:'You',play_action:'✔ PLAY',pot:'Pot',bonus_btn:'🎁 Bonus +500',bonus_wait:'🎁 Bonus in ',h:' h ',m:' min'},
+  zh:{continue:'继续',change_lang:'🌐 更改语言',balance:'余额',level:'等级',rank:'段位',spins:'转数',bonus_pct:'奖励',statistics:'📊 统计',total_won:'总赢得',best_win:'最大赢得',jackpots:'头奖',net:'净赢',share_bot:'📤 分享',won:'赢得',best:'最佳',reset_stats:'重置',last_spins:'最近',deposit_title:'⭐ 充值',deposit_sub:'选择套餐',pay:'支付',deposit_note:'Stars',menu_sub:'选择游戏',cat_slots:'🎰 老虎机',cat_cards:'🃏 纸牌',cat_quick:'⚡ 快速',cat_popular:'🔥 热门',all_link:'全部 →',back_menu:'← 返回',slots_title:'🎰 老虎机',bet:'下注',max:'最大',spin:'旋转',share:'📤 分享',achievements:'🎖 成就',tasks:'📅 任务',bj_title:'🃏 二十一点',dealer:'庄家',bet_box:'每注',hit:'要牌',stand:'停牌',double:'加倍',insurance:'🛡 保险',deal:'发牌',roul_title:'🎡 轮盘',clear_bets:'✖ 清除',spin_wheel:'🎡 旋转',keno_title:'🎯 基诺',picked:'已选',ready:'就绪',clear:'✖ 清除',play:'🎯 开始',dice_title:'🎲 骰子',under7:'🔽 小于7',exact7:'🎯 正好7',over7:'🔼 大于7',even:'⚖️ 双',odd:'🔀 单',dbl:'👯 对',roll:'🎲 掷',fwheel_title:'☸️ 轮盘',all_games:'所有',tab_all:'全部',soon:'即将',soon_text:'即将',nav_casino:'赌场',nav_quick:'快速',nav_bonus:'奖金',nav_profile:'个人',insufficient:'金币不足',place_bet:'请先下注',pick_num:'选号码',max10:'最多10',no_bets:'没有',confirm_clear:'清除?',you:'你',play_action:'✔ 玩',pot:'底池',bonus_btn:'🎁 奖金 +500',bonus_wait:'🎁 倒计时 ',h:' 时 ',m:' 分'},
+  kk:{continue:'Жалғастыру',change_lang:'🌐 Тіл',balance:'Теңгерім',level:'Деңгей',rank:'Дәреже',spins:'Айналдыру',bonus_pct:'Бонус',statistics:'📊 Статистика',total_won:'Ұтылды',best_win:'Үздік',jackpots:'Джекпот',net:'Қорытынды',share_bot:'📤 Бөлісу',won:'Ұтылды',best:'Үздік',reset_stats:'Тазалау',last_spins:'Соңғы',deposit_title:'⭐ Толтыру',deposit_sub:'Пакет',pay:'ТӨЛЕУ',deposit_note:'Stars',menu_sub:'Ойын таңдаңыз',cat_slots:'🎰 Слоттар',cat_cards:'🃏 Карта',cat_quick:'⚡ Жылдам',cat_popular:'🔥 Танымал',all_link:'Барлығы →',back_menu:'← Мәзірге',slots_title:'🎰 Слоттар',bet:'Ставка',max:'МАКС',spin:'АЙНАЛДЫРУ',share:'📤 Бөлісу',achievements:'🎖 Жетістіктер',tasks:'📅 Тапсырмалар',bj_title:'🃏 Блэкджек',dealer:'Дилер',bet_box:'Ұяшық',hit:'Алу',stand:'Тоқтау',double:'Екі есе',insurance:'🛡 Сақтандыру',deal:'Тарату',roul_title:'🎡 Рулетка',clear_bets:'✖ АЛУ',spin_wheel:'🎡 АЙНАЛДЫРУ',keno_title:'🎯 Кено',picked:'Таңдалды',ready:'Дайын',clear:'✖ ТАЗАЛАУ',play:'🎯 ОЙНАУ',dice_title:'🎲 Сүйектер',under7:'🔽 7-ДЕН АЗ',exact7:'🎯 ДӘЛ 7',over7:'🔼 7-ДЕН КӨП',even:'⚖️ ЖҰП',odd:'🔀 ТАҚ',dbl:'👯 ҚОС',roll:'🎲 ТАСТАУ',fwheel_title:'☸️ Дөңгелек',all_games:'Барлығы',tab_all:'Барлығы',soon:'Жақында',soon_text:'Жақында',nav_casino:'Казино',nav_quick:'Жылдам',nav_bonus:'Бонустар',nav_profile:'Профиль',insufficient:'Монета жетпейді',place_bet:'Алдымен ставка',pick_num:'Нөмір',max10:'Макс. 10',no_bets:'Жоқ',confirm_clear:'Барлығын?',you:'Сіз',play_action:'✔ ОЙНАУ',pot:'Банк',bonus_btn:'🎁 Бонус +500',bonus_wait:'🎁 Бонус ',h:' сағ ',m:' мин'},
+  ky:{continue:'Улантуу',change_lang:'🌐 Тил',balance:'Баланс',level:'Деңгээл',rank:'Даража',spins:'Айландыруу',bonus_pct:'Бонус',statistics:'📊 Статистика',total_won:'Утулду',best_win:'Эң мыкты',jackpots:'Джекпот',net:'Жыйынтык',share_bot:'📤 Бөлүшүү',won:'Утулду',best:'Эң мыкты',reset_stats:'Тазалоо',last_spins:'Акыркы',deposit_title:'⭐ Толуктоо',deposit_sub:'Пакет',pay:'ТӨЛӨӨ',deposit_note:'Stars',menu_sub:'Оюнду тандаңыз',cat_slots:'🎰 Слоттор',cat_cards:'🃏 Карта',cat_quick:'⚡ Тез',cat_popular:'🔥 Популярдуу',all_link:'Баары →',back_menu:'← Менюга',slots_title:'🎰 Слоттор',bet:'Ставка',max:'МАКС',spin:'АЙЛАНДЫРУ',share:'📤 Бөлүшүү',achievements:'🎖 Жетишкендиктер',tasks:'📅 Тапшырмалар',bj_title:'🃏 Блэкджек',dealer:'Дилер',bet_box:'Кутучага',hit:'Алуу',stand:'Токтоо',double:'Эки эсе',insurance:'🛡 Камсыздандыруу',deal:'Таратуу',roul_title:'🎡 Рулетка',clear_bets:'✖ АЛУУ',spin_wheel:'🎡 АЙЛАНДЫРУУ',keno_title:'🎯 Кено',picked:'Тандалды',ready:'Дайын',clear:'✖ ТАЗАЛОО',play:'🎯 ОЙНОО',dice_title:'🎲 Сөөктөр',under7:'🔽 7-ДЕН АЗ',exact7:'🎯 ТАК 7',over7:'🔼 7-ДЕН КӨП',even:'⚖️ ЖҮП',odd:'🔀 ТАК',dbl:'👯 КОШ',roll:'🎲 ТАШТОО',fwheel_title:'☸️ Дөңгөлөк',all_games:'Баары',tab_all:'Баары',soon:'Жакында',soon_text:'Жакында',nav_casino:'Казино',nav_quick:'Тез',nav_bonus:'Бонустар',nav_profile:'Профиль',insufficient:'Монета жетпейт',place_bet:'Алгач ставка',pick_num:'Сан',max10:'Макс. 10',no_bets:'Жок',confirm_clear:'Баарын?',you:'Сиз',play_action:'✔ ОЙНОО',pot:'Банк',bonus_btn:'🎁 Бонус +500',bonus_wait:'🎁 Бонус ',h:' с ',m:' мүн'},
+  uz:{continue:'Davom etish',change_lang:"🌐 Til",balance:'Balans',level:'Daraja',rank:'Rutba',spins:'Aylanishlar',bonus_pct:'Bonus',statistics:"📊 Statistika",total_won:'Yutildi',best_win:'Eng yaxshi',jackpots:'Jekpotlar',net:'Yakuniy',share_bot:'📤 Ulashish',won:'Yutildi',best:'Eng yaxshi',reset_stats:'Tiklash',last_spins:'Oxirgi',deposit_title:"⭐ To'ldirish",deposit_sub:'Paket',pay:"TO'LASH",deposit_note:'Stars',menu_sub:"O'yin tanlang",cat_slots:'🎰 Slotlar',cat_cards:"🃏 Karta",cat_quick:'⚡ Tez',cat_popular:'🔥 Mashhur',all_link:'Hammasi →',back_menu:'← Menyu',slots_title:'🎰 Slotlar',bet:'Stavka',max:'MAKS',spin:'AYLANTIRISH',share:'📤 Ulashish',achievements:'🎖 Yutuqlar',tasks:'📅 Vazifalar',bj_title:'🃏 Blackjack',dealer:'Diler',bet_box:'Qutiga',hit:'Olish',stand:"To'xtash",double:'Ikki',insurance:"🛡 Sug'urta",deal:'Taqsimlash',roul_title:'🎡 Ruletka',clear_bets:'✖ OLISH',spin_wheel:'🎡 AYLANTIRISH',keno_title:'🎯 Keno',picked:'Tanlandi',ready:'Tayyor',clear:'✖ TOZALASH',play:"🎯 O'YNASH",dice_title:'🎲 Zarlar',under7:'🔽 7-DAN KAM',exact7:'🎯 ANIQ 7',over7:"🔼 7-DAN KO'P",even:'⚖️ JUFT',odd:'🔀 TOQ',dbl:'👯 JUFT',roll:'🎲 TASHLASH',fwheel_title:"☸️ G'ildirak",all_games:"Barcha",tab_all:'Hammasi',soon:'Tez orada',soon_text:'Tez orada',nav_casino:'Kazino',nav_quick:'Tez',nav_bonus:'Bonuslar',nav_profile:'Profil',insufficient:'Tangalar yetmaydi',place_bet:'Avval stavka',pick_num:'Raqam',max10:'Maks. 10',no_bets:"Yo'q",confirm_clear:'Hammasini?',you:'Siz',play_action:"✔ O'YNASH",pot:'Bank',bonus_btn:'🎁 Bonus +500',bonus_wait:'🎁 Bonus ',h:' soat ',m:' daq'},
+  pl:{continue:'Kontynuuj',change_lang:'🌐 Język',balance:'Saldo',level:'Poziom',rank:'Ranga',spins:'Obroty',bonus_pct:'Bonus',statistics:'📊 Statystyki',total_won:'Wygrane',best_win:'Najlepsza',jackpots:'Jackpoty',net:'Wynik',share_bot:'📤 Udostępnij',won:'Wygrane',best:'Najlepsza',reset_stats:'Reset',last_spins:'Ostatnie',deposit_title:'⭐ Wpłata',deposit_sub:'Pakiet',pay:'ZAPŁAĆ',deposit_note:'Stars',menu_sub:'Wybierz grę',cat_slots:'🎰 Sloty',cat_cards:'🃏 Karciane',cat_quick:'⚡ Szybkie',cat_popular:'🔥 Popularne',all_link:'Wszystkie →',back_menu:'← Menu',slots_title:'🎰 Sloty',bet:'Zakład',max:'MAX',spin:'KRĘĆ',share:'📤 Udostępnij',achievements:'🎖 Osiągnięcia',tasks:'📅 Zadania',bj_title:'🃏 Blackjack',dealer:'Krupier',bet_box:'Na pole',hit:'Dobierz',stand:'Stój',double:'Podwój',insurance:'🛡 Ubezpieczenie',deal:'Rozdaj',roul_title:'🎡 Ruletka',clear_bets:'✖ USUŃ',spin_wheel:'🎡 KRĘĆ',keno_title:'🎯 Keno',picked:'Wybrano',ready:'Gotowe',clear:'✖ WYCZYŚĆ',play:'🎯 GRAJ',dice_title:'🎲 Kości',under7:'🔽 PONIŻEJ 7',exact7:'🎯 DOKŁADNIE 7',over7:'🔼 POWYŻEJ 7',even:'⚖️ PARZYSTE',odd:'🔀 NIEPARZYSTE',dbl:'👯 DUBLET',roll:'🎲 RZUĆ',fwheel_title:'☸️ Koło',all_games:'Wszystkie',tab_all:'Wszystkie',soon:'Wkrótce',soon_text:'Wkrótce',nav_casino:'Kasyno',nav_quick:'Szybkie',nav_bonus:'Bonusy',nav_profile:'Profil',insufficient:'Za mało monet',place_bet:'Najpierw postaw',pick_num:'Wybierz numer',max10:'Maks. 10',no_bets:'Brak',confirm_clear:'Usunąć?',you:'Ty',play_action:'✔ GRAJ',pot:'Pula',bonus_btn:'🎁 Bonus +500',bonus_wait:'🎁 Bonus za ',h:' godz ',m:' min'}
 };
 let currentLang = localStorage.getItem('casino_lang') || null;
 function t(key){ const d=T[currentLang||'ru']||T.ru; return d[key]!==undefined?d[key]:(T.ru[key]!==undefined?T.ru[key]:key); }
 function applyTranslations(){
   document.querySelectorAll('[data-i18n]').forEach(el=>{ const k=el.dataset.i18n; if(T.ru[k]!==undefined) el.textContent=t(k); });
-  refreshDynamicTexts();
-}
-function refreshDynamicTexts(){
   renderLevel(); renderStats(); updateBonusBtn();
-  const greet=document.getElementById('greeting');
-  const hi={ru:'Привет',en:'Hi',zh:'你好',kk:'Сәлем',ky:'Салам',uz:'Salom',pl:'Cześć'}[currentLang]||'Привет';
-  if(greet) greet.textContent=hi+', '+userName+'!';
-  const mg=document.getElementById('menuGreeting');
-  if(mg) mg.textContent=hi+', '+userName+'!';
-  const rp=document.getElementById('rPrompt');
-  if(rp && !rState.spinning) rp.textContent={ru:'СДЕЛАЙТЕ СТАВКУ',en:'PLACE YOUR BET',zh:'请下注',kk:'СТАВКА ҚОЮ',ky:'СТАВКА КОЮУ',uz:"STAVKA QO'YISH",pl:'POSTAW ZAKŁAD'}[currentLang]||'СДЕЛАЙТЕ СТАВКУ';
+  const hi={ru:'Привет',en:'Hi',zh:'你好',kk:'Сәлем',ky:'Салам',uz:'Salom',pl:'Cześć'}[currentLang||'ru']||'Привет';
+  const gr=document.getElementById('greeting'); if(gr) gr.textContent=hi+', '+userName+'!';
+  const mg=document.getElementById('menuGreeting'); if(mg) mg.textContent=hi+', '+userName+'!';
 }
-
 function showLangScreen(){ document.getElementById('langScreen').classList.add('active');
   const sel=currentLang||'ru';
   document.querySelectorAll('.lang-option').forEach(b=>b.classList.toggle('selected',b.dataset.lang===sel));
@@ -1107,7 +1089,7 @@ function soundScatter(){[659,988,1319,1976].forEach((f,i)=>playTone(f,0.22,'tria
 function soundChip(){playTone(1400,0.025,'triangle',0.05,0); playTone(2100,0.02,'sine',0.035,0.005);}
 function soundWheelTick(p){const v=0.015+(1-p)*0.022; noiseBurst(0.010,v,2200+Math.random()*500,0,10); playTone(1050+Math.random()*300,0.010,'triangle',v*0.5,0);}
 function soundBallDrop(){let tt=0; for(let i=0;i<12;i++){const f=2600+Math.random()*1800-i*80; const v=0.06*(1-i/12)+0.01;
-  playTone(f,0.028,'sine',v,tt); playTone(f*1.87,0.020,'sine',v*0.6,tt+0.001); noiseBurst(0.008,v*0.6,f*0.8,tt,14); tt+=0.052+i*0.006;}}
+  playTone(f,0.028,'sine',v,tt); playTone(f*1.87,0.020,'sine',v*0.6,tt+0.001); noiseBr给(0.008,v*0.6,f*0.8,tt,14); tt+=0.052+i*0.006;}}
 function soundDiceRoll(){for(let i=0;i<10;i++) noiseBurst(0.02,0.08,900+Math.random()*300,i*0.08,6);}
 function soundKeno(){playTone(1200,0.05,'sine',0.06,0); playTone(1600,0.04,'sine',0.05,0.05);}
 function vibrate(tt){tt=tt||'medium'; if(tg?.HapticFeedback) tg.HapticFeedback.impactOccurred(tt);}
@@ -1126,36 +1108,31 @@ let unlocked=JSON.parse(localStorage.getItem('casino_ach')||'[]');
 function saveBalance(){localStorage.setItem('casino_balance',String(balance));}
 function saveStats(){localStorage.setItem('casino_stats',JSON.stringify(stats));}
 function saveAch(){localStorage.setItem('casino_ach',JSON.stringify(unlocked));}
-
-function updateBalanceUI(){
-  const b=balance.toLocaleString('ru-RU');
+function updateBalanceUI(){const b=balance.toLocaleString('ru-RU');
   const hb=document.getElementById('headerBalance'); if(hb) hb.textContent=b;
   const pb=document.getElementById('profileBalance'); if(pb) pb.textContent=b;
-  const dp=document.getElementById('depositBalance'); if(dp) dp.textContent=b;
-}
+  const dp=document.getElementById('depositBalance'); if(dp) dp.textContent=b;}
 function showBanner(txt,b){const el=document.getElementById('winBanner'); if(!el) return; el.textContent=txt; el.classList.toggle('small',!b); el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');}
 function showToast(txt){const el=document.getElementById('toast'); if(!el) return; el.textContent=txt; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),2500);}
 
-/* ===== LEVELS/ACHIEVEMENTS/DAILY ===== */
-const LEVELS=[{name:'level_1',spins:0,bonus:0},{name:'level_2',spins:50,bonus:2},{name:'level_3',spins:200,bonus:5},{name:'level_4',spins:500,bonus:10},{name:'level_5',spins:1000,bonus:15}];
+/* ===== LEVELS ===== */
+const LEVELS=[{n:'level_1',spins:0,bonus:0},{n:'level_2',spins:50,bonus:2},{n:'level_3',spins:200,bonus:5},{n:'level_4',spins:500,bonus:10},{n:'level_5',spins:1000,bonus:15}];
 function getLevel(){let c=LEVELS[0],n=null; for(let i=0;i<LEVELS.length;i++){if(stats.spins>=LEVELS[i].spins){c=LEVELS[i]; n=LEVELS[i+1]||null;}} return {cur:c,next:n};}
-function renderLevel(){
-  const el=document.getElementById('levelName'); if(!el) return;
-  const {cur,next}=getLevel();
-  el.textContent=t(cur.name);
-  document.getElementById('levelBonus').textContent=t('bonus_pct')+': +'+cur.bonus+'%';
+function renderLevel(){const el=document.getElementById('levelName'); if(!el) return; const {cur,next}=getLevel();
+  el.textContent=cur.n==='level_1'?'Новичок':cur.n==='level_2'?'Любитель':cur.n==='level_3'?'Профи':cur.n==='level_4'?'Хайроллер':'Легенда';
+  document.getElementById('levelBonus').textContent='+'+cur.bonus+'%';
   if(next){document.getElementById('levelCount').textContent=stats.spins+' / '+next.spins;
     document.getElementById('levelFill').style.width=Math.min(100,((stats.spins-cur.spins)/(next.spins-cur.spins))*100)+'%';}
   else{document.getElementById('levelCount').textContent=stats.spins; document.getElementById('levelFill').style.width='100%';}
-  document.getElementById('profileLevel').textContent=t(cur.name);
+  document.getElementById('profileLevel').textContent=el.textContent;
   document.getElementById('profileSpins').textContent=stats.spins;
-  document.getElementById('profileBonus').textContent='+'+cur.bonus+'%';
-}
-const ACH=[{id:'first_spin',icon:'🎯',cond:()=>stats.spins>=1},{id:'spins_50',icon:'🔟',cond:()=>stats.spins>=50},{id:'spins_200',icon:'💯',cond:()=>stats.spins>=200},{id:'spins_1000',icon:'🚀',cond:()=>stats.spins>=1000},{id:'jackpot_1',icon:'🎰',cond:()=>stats.jackpots>=1},{id:'jackpot_10',icon:'🏅',cond:()=>stats.jackpots>=10},{id:'scatter_1',icon:'💎',cond:()=>stats.scatters>=1},{id:'scatter_5',icon:'🌟',cond:()=>stats.scatters>=5},{id:'rich',icon:'💰',cond:()=>balance>=50000},{id:'millionaire',icon:'🏆',cond:()=>balance>=1000000},{id:'big_win',icon:'🔥',cond:()=>stats.bestWin>=50000},{id:'big_win_500',icon:'💥',cond:()=>stats.bestWin>=500000},{id:'bj_first',icon:'🃏',cond:()=>false},{id:'bonus_taken',icon:'🎁',cond:()=>loadNum('casino_last_bonus',0)>0},{id:'all_ach',icon:'👑',cond:()=>false}];
+  document.getElementById('profileBonus').textContent='+'+cur.bonus+'%';}
+const ACH=[{id:'s1',icon:'🎯',c:()=>stats.spins>=1},{id:'s50',icon:'🔟',c:()=>stats.spins>=50},{id:'s200',icon:'💯',c:()=>stats.spins>=200},{id:'s1000',icon:'🚀',c:()=>stats.spins>=1000},{id:'j1',icon:'🎰',c:()=>stats.jackpots>=1},{id:'j10',icon:'🏅',c:()=>stats.jackpots>=10},{id:'sc1',icon:'💎',c:()=>stats.scatters>=1},{id:'sc5',icon:'🌟',c:()=>stats.scatters>=5},{id:'rich',icon:'💰',c:()=>balance>=50000},{id:'mil',icon:'🏆',c:()=>balance>=1000000},{id:'bw',icon:'🔥',c:()=>stats.bestWin>=50000},{id:'bw5',icon:'💥',c:()=>stats.bestWin>=500000},{id:'bj',icon:'🃏',c:()=>false},{id:'bt',icon:'🎁',c:()=>loadNum('casino_last_bonus',0)>0},{id:'all',icon:'👑',c:()=>false}];
 function renderAchievements(){const g=document.getElementById('achGrid'); if(!g) return; g.innerHTML='';
   ACH.forEach(a=>{const d=document.createElement('div'); d.className='ach'+(unlocked.includes(a.id)?' unlocked':''); d.textContent=a.icon; g.appendChild(d);});}
-function checkAchievements(){ACH.forEach(a=>{if(!unlocked.includes(a.id)&&a.cond()){unlocked.push(a.id); saveAch(); showToast('🎖'); renderAchievements();}});}
+function checkAchievements(){ACH.forEach(a=>{if(!unlocked.includes(a.id)&&a.c()){unlocked.push(a.id); saveAch(); renderAchievements();}});}
 
+/* ===== DAILY ===== */
 function todayKey(){return new Date().toISOString().slice(0,10);}
 const DAILY=[{id:'spins20',title:'20 spins',reward:300,target:20},{id:'jackpot',title:'Jackpot',reward:1000,target:1},{id:'bet1000',title:'Bet 1000',reward:200,target:1000}];
 let daily=JSON.parse(localStorage.getItem('casino_daily')||'null');
@@ -1168,24 +1145,18 @@ function renderDaily(){const b=document.getElementById('tasksList'); if(!b) retu
     d.querySelector('button').addEventListener('click',()=>{if(!done||cl)return; daily.claimed.push(tk.id); saveDaily(); balance+=tk.reward; saveBalance(); updateBalanceUI(); soundWin(); renderDaily(); checkAchievements();});
     b.appendChild(d);});}
 function progressDaily(id,amt){daily.progress[id]=(daily.progress[id]||0)+amt; saveDaily(); renderDaily();}
-
-function renderStats(){
-  const el=document.getElementById('statSpins'); if(!el) return;
-  el.textContent=stats.spins;
+function renderStats(){const el=document.getElementById('statSpins'); if(!el) return; el.textContent=stats.spins;
   document.getElementById('statWon').textContent=stats.totalWon.toLocaleString('ru-RU')+' 🪙';
   document.getElementById('statBest').textContent=stats.bestWin.toLocaleString('ru-RU')+' 🪙';
   document.getElementById('statJackpots').textContent=stats.jackpots;
   const net=stats.totalWon-stats.totalBet;
-  const ne=document.getElementById('statNet');
-  ne.textContent=(net>=0?'+':'')+net.toLocaleString('ru-RU')+' 🪙';
+  const ne=document.getElementById('statNet'); ne.textContent=(net>=0?'+':'')+net.toLocaleString('ru-RU')+' 🪙';
   ne.className='stat-value '+(net>=0?'pos':'neg');
   document.getElementById('profileWon').textContent=stats.totalWon.toLocaleString('ru-RU')+' 🪙';
   document.getElementById('profileBest').textContent=stats.bestWin.toLocaleString('ru-RU')+' 🪙';
   document.getElementById('profileJackpots').textContent=stats.jackpots;
-  const pe=document.getElementById('profileNet');
-  pe.textContent=(net>=0?'+':'')+net.toLocaleString('ru-RU')+' 🪙';
-  pe.className='profile-row-value '+(net>=0?'pos':'neg');
-}
+  const pe=document.getElementById('profileNet'); pe.textContent=(net>=0?'+':'')+net.toLocaleString('ru-RU')+' 🪙';
+  pe.className='profile-row-value '+(net>=0?'pos':'neg');}
 
 /* ===== BONUS ===== */
 const BONUS_KEY='casino_last_bonus', BONUS_AMOUNT=500, BONUS_CD=24*60*60*1000;
@@ -1236,9 +1207,9 @@ function evaluateSpin(mid){const len=SYM.length,grid=[];
   return {totalWin:tw,wins,grid,scatterCount:sc};}
 function highlightWins(wins){clearWinGlow(); const set=new Set(); wins.forEach(w=>{for(let r=0;r<w.count;r++)set.add(r);}); set.forEach(r=>{const s=document.getElementById('slot'+r); if(s)s.classList.add('win');});}
 let isSpinning=false,autoRunning=false,freeSpinsLeft=0,freeSpinsTotal=0;
-async function performSpin(){
-  const isFree=freeSpinsLeft>0,cost=isFree?0:bet;
-  if(!isFree&&balance<bet){messageEl.textContent=t('insufficient'); return false;}
+const messageEl=document.getElementById('message');
+async function performSpin(){const isFree=freeSpinsLeft>0,cost=isFree?0:bet;
+  if(!isFree&&balance<bet){if(messageEl)messageEl.textContent=t('insufficient'); return false;}
   unlockAudio(); clearWinGlow();
   if(!isFree){balance-=cost; saveBalance(); updateBalanceUI();}
   vibrate();
@@ -1260,8 +1231,7 @@ async function performSpin(){
   saveStats(); renderStats(); renderLevel(); progressDaily('spins20',1); progressDaily('bet1000',bet);
   addHistory(grid.map(r=>r[1]),isJp); checkAchievements();
   if(isFree){freeSpinsLeft--; updateFreeBar();}
-  return true;
-}
+  return true;}
 function updateFreeBar(){const fb=document.getElementById('freeBar'); if(!fb) return; if(freeSpinsLeft>0){fb.classList.add('active'); document.getElementById('freeCounter').textContent=(freeSpinsTotal-freeSpinsLeft+1);} else fb.classList.remove('active');}
 async function spin(){if(isSpinning)return; isSpinning=true; updateControls(); await performSpin(); while(freeSpinsLeft>0){await new Promise(r=>setTimeout(r,800)); const ok=await performSpin(); if(!ok)break;} isSpinning=false; updateControls();}
 async function startAuto(){if(autoRunning){autoRunning=false; return;} if(isSpinning)return; autoRunning=true; isSpinning=true; updateControls();
@@ -1284,11 +1254,11 @@ function addHistory(syms,jp){history.unshift({symbols:syms,jackpot:jp}); history
 
 /* ===== BLACKJACK ===== */
 const BJ_S=['♠','♥','♦','♣'], BJ_R=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
-const bjState={deck:[],dealer:[],boxes:[{bet:0,cards:[],done:false,result:null,isSplitAces:false,doubled:false,active:false},{bet:0,cards:[],done:false,result:null,isSplitAces:false,doubled:false,active:false},{bet:0,cards:[],done:false,result:null,isSplitAces:false,doubled:false,active:false}],currentBox:-1,active:false,dealerHidden:true,awaitingInsurance:false,insuranceBet:0,_prevDealerCount:0,_prevBoxCounts:[0,0,0]};
+const bjState={deck:[],dealer:[],boxes:[{bet:0,cards:[],done:false,result:null,isSplitAces:false,doubled:false,active:false},{bet:0,cards:[],done:false,result:null,isSplitAces:false,doubled:false,active:false},{bet:0,cards:[],done:false,result:null,isSplitAces:false,doubled:false,active:false}],currentBox:-1,active:false,dealerHidden:true,awaitingInsurance:false,insuranceBet:0,_pd:0,_pb:[0,0,0]};
 function bjRankVal(r){if(r==='A')return 11; if(r==='K'||r==='Q'||r==='J')return 10; return parseInt(r,10);}
 function bjHandVal(cards){let sum=0,aces=0; cards.forEach(c=>{sum+=bjRankVal(c.r); if(c.r==='A')aces++;}); while(sum>21&&aces>0){sum-=10; aces--;} return sum;}
 function bjNewDeck(){const d=[]; for(const s of BJ_S)for(const r of BJ_R)d.push({r,s}); for(let i=d.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [d[i],d[j]]=[d[j],d[i]];} return d;}
-function bjRenderCard(c,hidden,extraClass,inlineStyle){const st=inlineStyle?' '+inlineStyle:''; const ex=extraClass?' '+extraClass:'';
+function bjRenderCard(c,hidden,ex,st){st=st?' '+st:''; ex=ex?' '+ex:'';
   if(hidden) return '<div class="bj-card back'+ex+'"'+st+'><div class="bj-card-top">?</div><div class="bj-card-suit">?</div><div class="bj-card-bot">?</div></div>';
   const isRed=c.s==='♥'||c.s==='♦';
   return '<div class="bj-card'+(isRed?' red':'')+ex+'"'+st+'><div class="bj-card-top">'+c.r+'</div><div class="bj-card-suit">'+c.s+'</div><div class="bj-card-bot">'+c.r+'</div></div>';}
@@ -1299,32 +1269,24 @@ function bjBuildBoxes(){const row=document.getElementById('bjBoxesRow'); if(!row
     el.addEventListener('click',()=>bjBoxClick(i));
     row.appendChild(el);}
   bjRender();}
-function bjRender(){
-  const prevDealer=bjState._prevDealerCount||0;
+function bjRender(){const pd=bjState._pd||0;
   const dh=document.getElementById('bjDealerHand'); if(!dh) return; dh.innerHTML='';
-  bjState.dealer.forEach((c,i)=>{const isNew=i>=prevDealer; const delay=isNew?(i-prevDealer)*0.14:0;
-    const cls=isNew?'':'no-anim'; const style=isNew?'style="animation-delay:'+delay+'s"':'';
-    dh.innerHTML+=bjRenderCard(c,bjState.dealerHidden&&i===1,cls,style);});
-  bjState._prevDealerCount=bjState.dealer.length;
+  bjState.dealer.forEach((c,i)=>{const isNew=i>=pd; const delay=isNew?(i-pd)*0.14:0; const cls=isNew?'':'no-anim'; const style=isNew?'style="animation-delay:'+delay+'s"':''; dh.innerHTML+=bjRenderCard(c,bjState.dealerHidden&&i===1,cls,style);});
+  bjState._pd=bjState.dealer.length;
   let dShow=''; if(bjState.dealer.length) dShow=bjState.dealerHidden?bjHandVal([bjState.dealer[0]])+' + ?':bjHandVal(bjState.dealer);
   document.getElementById('bjDealerScore').textContent=dShow;
-  const prevBoxes=bjState._prevBoxCounts||[0,0,0];
-  document.querySelectorAll('#bjBoxesRow .bj-box').forEach((el,i)=>{
-    const box=bjState.boxes[i]; el.classList.remove('active','win','lose','push');
+  const pb=bjState._pb||[0,0,0];
+  document.querySelectorAll('#bjBoxesRow .bj-box').forEach((el,i)=>{const box=bjState.boxes[i]; el.classList.remove('active','win','lose','push');
     if(box.active)el.classList.add('active'); if(box.result)el.classList.add(box.result);
-    const handEl=el.querySelector('.bj-hand'); const prevCount=prevBoxes[i]||0;
-    let html='';
-    box.cards.forEach((c,k)=>{const isNew=k>=prevCount; const delay=isNew?(k-prevCount)*0.14:0;
-      const noAnim=isNew?'':'no-anim'; const style=isNew?'style="animation-delay:'+delay+'s"':''; html+=bjRenderCard(c,false,noAnim,style);});
+    const handEl=el.querySelector('.bj-hand'); const pc=pb[i]||0; let html='';
+    box.cards.forEach((c,k)=>{const isNew=k>=pc; const delay=isNew?(k-pc)*0.14:0; const noAnim=isNew?'':'no-anim'; const style=isNew?'style="animation-delay:'+delay+'s"':''; html+=bjRenderCard(c,false,noAnim,style);});
     handEl.innerHTML=html;
     const valEl=el.querySelector('.bj-box-val');
     if(box.cards.length>0&&(box.done||box.active||!bjState.active)){valEl.textContent=bjHandVal(box.cards); valEl.style.display='flex';} else valEl.style.display='none';
     el.querySelector('.bj-box-betchip').innerHTML=box.bet>0?renderChip(box.bet):'';});
-  bjState._prevBoxCounts=bjState.boxes.map(b=>b.cards.length);
-}
+  bjState._pb=bjState.boxes.map(b=>b.cards.length);}
 function bjSetResult(txt,type){const el=document.getElementById('bjResult'); el.textContent=txt||''; el.className='bj-result'+(type?' '+type:'');}
-function bjUpdateButtons(){
-  const canAct=bjState.active&&!bjState.awaitingInsurance;
+function bjUpdateButtons(){const canAct=bjState.active&&!bjState.awaitingInsurance;
   const box=bjState.currentBox>=0?bjState.boxes[bjState.currentBox]:null;
   const has2=box&&box.cards.length===2;
   const canDouble=box&&has2&&!box.doubled&&!box.done&&balance>=box.bet;
@@ -1333,106 +1295,74 @@ function bjUpdateButtons(){
   document.getElementById('bjDouble').disabled=!canAct||!box||box.done||!canDouble;
   document.getElementById('bjInsurance').style.display=bjState.awaitingInsurance?'':'none';
   document.getElementById('bjNew').disabled=bjState.active;
-  const ni=document.getElementById('bjNoIns'); if(ni) ni.style.display=bjState.awaitingInsurance?'':'none';
-}
-function bjResetUI(){
-  bjState.deck=[]; bjState.dealer=[];
+  const ni=document.getElementById('bjNoIns'); if(ni) ni.style.display=bjState.awaitingInsurance?'':'none';}
+function bjResetUI(){bjState.deck=[]; bjState.dealer=[];
   bjState.boxes.forEach(b=>{b.bet=0; b.cards=[]; b.done=false; b.result=null; b.isSplitAces=false; b.doubled=false; b.active=false;});
   bjState.currentBox=-1; bjState.active=false; bjState.dealerHidden=true; bjState.awaitingInsurance=false; bjState.insuranceBet=0;
-  bjState._prevDealerCount=0; bjState._prevBoxCounts=[0,0,0];
+  bjState._pd=0; bjState._pb=[0,0,0];
   document.getElementById('bjDealerHand').innerHTML='';
   document.getElementById('bjDealerScore').textContent='';
-  bjSetResult(t('bet_box')); bjRender(); bjUpdateButtons(); bjUpdateBetUI();
-}
-function bjBoxClick(i){
-  if(bjState.active)return;
-  const box=bjState.boxes[i];
+  bjSetResult('—'); bjRender(); bjUpdateButtons(); bjUpdateBetUI();}
+function bjBoxClick(i){if(bjState.active)return; const box=bjState.boxes[i];
   if(box.bet>0){balance+=box.bet; saveBalance(); updateBalanceUI(); box.bet=0; soundChip();}
   else{if(balance<bjBet){showToast(t('insufficient')); return;} balance-=bjBet; saveBalance(); updateBalanceUI(); box.bet=bjBet; soundChip();}
-  bjRender();
-}
-async function bjDeal(){
-  if(bjState.active)return;
+  bjRender();}
+async function bjDeal(){if(bjState.active)return;
   if(bjState.boxes.filter(b=>b.bet>0).length===0){showToast(t('place_bet')); return;}
   bjState.deck=bjNewDeck(); bjState.dealer=[];
   bjState.boxes.forEach(b=>{if(b.bet>0){b.cards=[]; b.done=false; b.result=null; b.doubled=false; b.active=false;}});
-  bjState.dealerHidden=true; bjState.insuranceBet=0; bjState._prevDealerCount=0; bjState._prevBoxCounts=[0,0,0];
+  bjState.dealerHidden=true; bjState.insuranceBet=0; bjState._pd=0; bjState._pb=[0,0,0];
   bjSetResult(''); bjRender(); bjUpdateButtons();
   const sleep=ms=>new Promise(r=>setTimeout(r,ms));
   for(let round=0;round<2;round++){
     for(let i=0;i<3;i++) if(bjState.boxes[i].bet>0){bjState.boxes[i].cards.push(bjState.deck.pop()); bjRender(); soundCard(); await sleep(340);}
-    bjState.dealer.push(bjState.deck.pop()); bjRender(); soundCard(); await sleep(340);
-  }
+    bjState.dealer.push(bjState.deck.pop()); bjRender(); soundCard(); await sleep(340);}
   if(bjState.dealer[0].r==='A'){bjState.awaitingInsurance=true; bjUpdateButtons(); return;}
-  await bjAfterDeal();
-}
-async function bjAfterDeal(){
-  for(let i=0;i<3;i++){const b=bjState.boxes[i]; if(b.bet>0&&bjHandVal(b.cards)===21){b.done=true;}}
-  bjState.active=true;
-  if(!bjActivateNextBox()) await bjDealerPlay();
-}
-function bjActivateNextBox(){
-  for(let i=0;i<3;i++){const b=bjState.boxes[i]; if(b.bet>0&&!b.done){bjState.currentBox=i; b.active=true; bjRender(); bjUpdateButtons(); return true;}}
-  bjState.currentBox=-1; return false;
-}
-async function bjHit(){
-  if(!bjState.active||bjState.awaitingInsurance||bjState.currentBox<0)return;
+  await bjAfterDeal();}
+async function bjAfterDeal(){for(let i=0;i<3;i++){const b=bjState.boxes[i]; if(b.bet>0&&bjHandVal(b.cards)===21){b.done=true;}}
+  bjState.active=true; if(!bjActivateNextBox()) await bjDealerPlay();}
+function bjActivateNextBox(){for(let i=0;i<3;i++){const b=bjState.boxes[i]; if(b.bet>0&&!b.done){bjState.currentBox=i; b.active=true; bjRender(); bjUpdateButtons(); return true;}} bjState.currentBox=-1; return false;}
+async function bjHit(){if(!bjState.active||bjState.awaitingInsurance||bjState.currentBox<0)return;
   const box=bjState.boxes[bjState.currentBox]; if(!box||box.done)return;
   box.cards.push(bjState.deck.pop()); bjRender(); soundCard();
   const v=bjHandVal(box.cards);
-  if(v>21||v===21){box.done=true; box.active=false; await bjNextBox();}
-  else bjUpdateButtons();
-}
-async function bjStand(){
-  if(!bjState.active||bjState.awaitingInsurance||bjState.currentBox<0)return;
+  if(v>21||v===21){box.done=true; box.active=false; await bjNextBox();} else bjUpdateButtons();}
+async function bjStand(){if(!bjState.active||bjState.awaitingInsurance||bjState.currentBox<0)return;
   const box=bjState.boxes[bjState.currentBox]; if(!box||box.done)return;
-  box.done=true; box.active=false; await bjNextBox();
-}
-async function bjDouble(){
-  if(!bjState.active||bjState.awaitingInsurance||bjState.currentBox<0)return;
+  box.done=true; box.active=false; await bjNextBox();}
+async function bjDouble(){if(!bjState.active||bjState.awaitingInsurance||bjState.currentBox<0)return;
   const box=bjState.boxes[bjState.currentBox];
   if(!box||box.done||box.cards.length!==2||balance<box.bet)return;
   balance-=box.bet; saveBalance(); updateBalanceUI(); box.bet*=2; box.doubled=true;
   box.cards.push(bjState.deck.pop()); bjRender(); soundCard();
-  box.done=true; box.active=false; await bjNextBox();
-}
+  box.done=true; box.active=false; await bjNextBox();}
 async function bjNextBox(){bjRender(); if(!bjActivateNextBox()) await bjDealerPlay();}
-async function bjDealerPlay(){
-  bjState.active=false; bjState.currentBox=-1; bjState.dealerHidden=false; bjRender();
+async function bjDealerPlay(){bjState.active=false; bjState.currentBox=-1; bjState.dealerHidden=false; bjRender();
   await new Promise(r=>setTimeout(r,300));
   while(bjHandVal(bjState.dealer)<17){bjState.dealer.push(bjState.deck.pop()); bjRender(); soundCard(); await new Promise(r=>setTimeout(r,400));}
-  await bjResolve();
-}
-async function bjResolve(){
-  const dv=bjHandVal(bjState.dealer),db=dv>21;
+  await bjResolve();}
+async function bjResolve(){const dv=bjHandVal(bjState.dealer),db=dv>21;
   let totalPayout=0,totalBet=0,wins=0,loses=0,pushes=0;
   bjState.boxes.forEach(box=>{if(box.bet<=0)return; totalBet+=box.bet; const pv=bjHandVal(box.cards);
-    if(pv>21){box.result='lose'; loses++;}
-    else if(db){box.result='win'; totalPayout+=box.bet*2; wins++;}
-    else if(pv>dv){box.result='win'; totalPayout+=box.bet*2; wins++;}
-    else if(pv<dv){box.result='lose'; loses++;}
+    if(pv>21){box.result='lose'; loses++;} else if(db){box.result='win'; totalPayout+=box.bet*2; wins++;}
+    else if(pv>dv){box.result='win'; totalPayout+=box.bet*2; wins++;} else if(pv<dv){box.result='lose'; loses++;}
     else{box.result='push'; totalPayout+=box.bet; pushes++;}});
   bjRender(); if(totalPayout>0){balance+=totalPayout; saveBalance(); updateBalanceUI();}
   const profit=totalPayout-totalBet;
   const msg=[]; if(wins>0)msg.push('🏆 '+wins); if(loses>0)msg.push('❌ '+loses); if(pushes>0)msg.push('🤝 '+pushes);
   const summary=msg.join(' • ');
   if(profit>0){bjSetResult(summary+' • +'+profit+' 🪙','win'); soundWin(); showBanner('+'+profit,false);}
-  else if(profit===0){bjSetResult(summary,'push');}
-  else{bjSetResult(summary+' • '+profit+' 🪙','lose'); soundLose();}
-  stats.spins++; stats.totalBet+=totalBet;
-  if(profit>0){stats.totalWon+=profit; if(profit>stats.bestWin)stats.bestWin=profit;}
-  saveStats(); renderStats(); renderLevel(); checkAchievements(); bjUpdateButtons();
-}
-async function bjInsuranceChoice(take){
-  if(!bjState.awaitingInsurance)return; bjState.awaitingInsurance=false;
+  else if(profit===0){bjSetResult(summary,'push');} else{bjSetResult(summary+' • '+profit+' 🪙','lose'); soundLose();}
+  stats.spins++; stats.totalBet+=totalBet; if(profit>0){stats.totalWon+=profit; if(profit>stats.bestWin)stats.bestWin=profit;}
+  saveStats(); renderStats(); renderLevel(); checkAchievements(); bjUpdateButtons();}
+async function bjInsuranceChoice(take){if(!bjState.awaitingInsurance)return; bjState.awaitingInsurance=false;
   const insAmt=Math.floor(bjBet/2);
   if(take&&balance>=insAmt){bjState.insuranceBet=insAmt; balance-=insAmt; saveBalance(); updateBalanceUI();}
   const dv=bjHandVal(bjState.dealer);
   if(dv===21){bjState.dealerHidden=false; bjRender();
     if(bjState.insuranceBet>0){const payout=bjState.insuranceBet*3; balance+=payout; saveBalance(); updateBalanceUI(); soundWin();}
     await new Promise(r=>setTimeout(r,700)); await bjAfterDeal(); return;}
-  await bjAfterDeal();
-}
+  await bjAfterDeal();}
 document.getElementById('bjHit').addEventListener('click',bjHit);
 document.getElementById('bjStand').addEventListener('click',bjStand);
 document.getElementById('bjDouble').addEventListener('click',bjDouble);
@@ -1478,21 +1408,17 @@ function buildWheelSVG(){const svg=document.getElementById('wheelSvg'); if(!svg)
     const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
     ln.setAttribute('x1',p1.x.toFixed(2)); ln.setAttribute('y1',p1.y.toFixed(2));
     ln.setAttribute('x2',p2.x.toFixed(2)); ln.setAttribute('y2',p2.y.toFixed(2));
-    ln.setAttribute('stroke','#0f172a'); ln.setAttribute('stroke-width','1.6'); spG.appendChild(ln);}
-}
+    ln.setAttribute('stroke','#0f172a'); ln.setAttribute('stroke-width','1.6'); spG.appendChild(ln);}}
 function buildTable(){const tb=document.getElementById('rtable'); if(!tb) return;
   tb.innerHTML='';
-  const zero=document.createElement('button');
-  zero.className='rnum zero'; zero.dataset.bet='num:0';
+  const zero=document.createElement('button'); zero.className='rnum zero'; zero.dataset.bet='num:0';
   zero.style.gridRow='1 / span 3'; zero.style.gridColumn='1';
-  zero.innerHTML='0<span class="rbet" data-rbet="num:0"></span>';
-  tb.appendChild(zero);
+  zero.innerHTML='0<span class="rbet" data-rbet="num:0"></span>'; tb.appendChild(zero);
   const cols=[]; for(let c=0;c<12;c++)cols.push([3+c*3,2+c*3,1+c*3]);
   for(let row=0;row<3;row++) for(let col=0;col<12;col++){const n=cols[col][row];
     const b=document.createElement('button'); b.className='rnum '+(rIsRed(n)?'red':'black'); b.dataset.bet='num:'+n;
     b.style.gridColumn=String(col+2); b.style.gridRow=String(row+1);
-    b.innerHTML=n+'<span class="rbet" data-rbet="num:'+n+'"></span>';
-    tb.appendChild(b);}
+    b.innerHTML=n+'<span class="rbet" data-rbet="num:'+n+'"></span>'; tb.appendChild(b);}
   for(let row=0;row<3;row++){const c=document.createElement('button'); c.className='rnum rcol'; c.dataset.bet='col:'+(3-row);
     c.style.gridColumn='14'; c.style.gridRow=String(row+1);
     c.innerHTML='2:1<span class="rbet" data-rbet="col:'+(3-row)+'"></span>'; tb.appendChild(c);}
@@ -1503,8 +1429,7 @@ function buildTable(){const tb=document.getElementById('rtable'); if(!tb) return
   low.forEach((item,i)=>{const c=document.createElement('button'); c.className='rnum rhalf '+(item.cls||''); c.dataset.bet=item.key;
     c.style.gridColumn=(2+i*2)+' / span 2'; c.style.gridRow='5';
     c.innerHTML=item.label+'<span class="rbet" data-rbet="'+item.key+'"></span>'; tb.appendChild(c);});
-  tb.querySelectorAll('.rnum').forEach(cell=>{cell.addEventListener('click',()=>rPlaceBet(cell.dataset.bet));});
-}
+  tb.querySelectorAll('.rnum').forEach(cell=>{cell.addEventListener('click',()=>rPlaceBet(cell.dataset.bet));});}
 function updateRBetTotal(){const el=document.getElementById('rBetTotalVal'); if(!el) return; el.textContent=Object.values(rState.bets).reduce((a,b)=>a+b,0);}
 function rPlaceBet(key){if(rState.spinning)return; const amt=rState.chip; if(balance<amt){showToast(t('insufficient')); return;}
   balance-=amt; saveBalance(); updateBalanceUI(); rState.bets[key]=(rState.bets[key]||0)+amt; rState.history.push({key,amount:amt}); soundChip(); refreshRouletteUI();}
@@ -1521,8 +1446,7 @@ function renderRHistoryBoard(){const board=document.getElementById('rHistoryBoar
   for(let i=0;i<8;i++){const cell=document.createElement('div');
     if(i<rHistory.length){const h=rHistory[i]; cell.className='rh '+(h.n===0?'green':(h.red?'red':'black')); cell.textContent=h.n;}
     else cell.className='rh empty'; board.appendChild(cell);}}
-async function rSpin(){
-  if(rState.spinning)return;
+async function rSpin(){if(rState.spinning)return;
   const total=Object.values(rState.bets).reduce((a,b)=>a+b,0);
   if(total<=0){showToast(t('place_bet')); return;}
   rState.spinning=true; document.getElementById('rSpin').disabled=true;
@@ -1547,8 +1471,7 @@ async function rSpin(){
     if(p<1) requestAnimationFrame(frame);
     else{rState.wheelAngle=W1; rState.ballAngle=Bfinal%360; soundBallDrop(); finishSpin(num,total,res); resolve();}}
     requestAnimationFrame(frame);});}
-function finishSpin(num,total,res){
-  document.getElementById('rSpin').disabled=false; rState.spinning=false;
+function finishSpin(num,total,res){document.getElementById('rSpin').disabled=false; rState.spinning=false;
   const isRed=rIsRed(num),isBlack=!isRed&&num!==0; let payout=0;
   for(const k in rState.bets){const amt=rState.bets[k]; const [type,val]=k.split(':'); let win=false,mult=0;
     if(type==='num'){if(parseInt(val,10)===num){win=true; mult=36;}}
@@ -1578,8 +1501,7 @@ rCB.addEventListener('touchend',()=>{if(rCH){clearTimeout(rCH); rCH=null;}});
 /* ===== BACCARAT ===== */
 const bacHistory=[];
 const bacState={bets:{player:0,banker:0,tie:0},chip:50,dealt:false};
-function bacInit(){
-  bacState.bets={player:0,banker:0,tie:0}; bacState.chip=50; bacState.dealt=false;
+function bacInit(){bacState.bets={player:0,banker:0,tie:0}; bacState.chip=50; bacState.dealt=false;
   document.querySelectorAll('.bac-betchip').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.bacbet,10)===50));
   document.getElementById('bacPlayerCards').innerHTML=''; document.getElementById('bacBankerCards').innerHTML='';
   document.getElementById('bacPlayerScore').textContent='—'; document.getElementById('bacBankerScore').textContent='—';
@@ -1624,8 +1546,7 @@ document.getElementById('bacDeal').addEventListener('click',async ()=>{
     else if(bv===3&&player.length===2){const c=deck.pop(); banker.push(c); bEl.innerHTML+=bacCardHtml(c,false); soundCard(); await new Promise(r=>setTimeout(r,400)); bv=bacHandValue(banker);}
     else if(bv===4&&player.length===2){const c=deck.pop(); banker.push(c); bEl.innerHTML+=bacCardHtml(c,false); soundCard(); await new Promise(r=>setTimeout(r,400)); bv=bacHandValue(banker);}
     else if(bv===5&&player.length===2){const c=deck.pop(); banker.push(c); bEl.innerHTML+=bacCardHtml(c,false); soundCard(); await new Promise(r=>setTimeout(r,400)); bv=bacHandValue(banker);}
-    else if(bv===6&&player.length===3){const c=deck.pop(); banker.push(c); bEl.innerHTML+=bacCardHtml(c,false); soundCard(); await new Promise(r=>setTimeout(r,400)); bv=bacHandValue(banker);}
-  }
+    else if(bv===6&&player.length===3){const c=deck.pop(); banker.push(c); bEl.innerHTML+=bacCardHtml(c,false); soundCard(); await new Promise(r=>setTimeout(r,400)); bv=bacHandValue(banker);}}
   pv=bacHandValue(player); bv=bacHandValue(banker);
   document.getElementById('bacPlayerScore').textContent=pv; document.getElementById('bacBankerScore').textContent=bv;
   let winner='tie'; if(pv>bv)winner='player'; else if(bv>pv)winner='banker';
@@ -1669,8 +1590,7 @@ document.getElementById('kenoPlay').addEventListener('click',async ()=>{
   const paytables={1:[0,3],2:[0,0,9],3:[0,0,2,20],4:[0,0,1,5,40],5:[0,0,0,3,15,80],6:[0,0,0,2,8,40,150],7:[0,0,0,0,5,20,80,300],8:[0,0,0,0,4,15,60,200,700],9:[0,0,0,0,3,12,45,150,500,2000],10:[0,0,0,0,2,10,40,130,500,2000,10000]};
   const pt=paytables[kenoState.picked.size]||[]; const mult=pt[hits]||0; const win=Math.round(kenoState.bet*mult);
   const res=document.getElementById('kenoResult');
-  if(win>0){balance+=win; saveBalance(); updateBalanceUI(); res.className='gs-result win'; res.textContent='🎯 '+hits+'/'+kenoState.picked.size+' • +'+(win-kenoState.bet)+' 🪙';
-    setTimeout(soundWin,300); showBanner('+'+win,false);}
+  if(win>0){balance+=win; saveBalance(); updateBalanceUI(); res.className='gs-result win'; res.textContent='🎯 '+hits+'/'+kenoState.picked.size+' • +'+(win-kenoState.bet)+' 🪙'; setTimeout(soundWin,300); showBanner('+'+win,false);}
   else{res.className='gs-result lose'; res.textContent='🎯 '+hits+'/'+kenoState.picked.size+' • −'+kenoState.bet+' 🪙'; setTimeout(soundLose,300);}
   stats.spins++; stats.totalBet+=kenoState.bet; if(win>0){stats.totalWon+=win; if(win>stats.bestWin)stats.bestWin=win;}
   saveStats(); renderStats(); checkAchievements(); setTimeout(()=>{kenoInit();},3000);});
@@ -1681,8 +1601,7 @@ function diceInit(){diceState.rolling=false;
   document.getElementById('die1').textContent='?'; document.getElementById('die2').textContent='?';
   document.getElementById('diceTotal').textContent='—'; document.getElementById('diceResult').className='gs-result neutral'; document.getElementById('diceResult').textContent='—';
   document.getElementById('diceRoll').disabled=false; updateDiceBetUI();}
-function updateDiceBetUI(){
-  document.querySelectorAll('[data-dicebet]').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.dicebet,10)===diceState.bet));
+function updateDiceBetUI(){document.querySelectorAll('[data-dicebet]').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.dicebet,10)===diceState.bet));
   document.querySelectorAll('.dice-bet').forEach(b=>b.classList.toggle('active',b.dataset.dicepick===diceState.pick));}
 document.querySelectorAll('[data-dicebet]').forEach(b=>b.addEventListener('click',()=>{if(diceState.rolling)return; diceState.bet=parseInt(b.dataset.dicebet,10); updateDiceBetUI(); soundChip();}));
 document.querySelectorAll('.dice-bet').forEach(b=>b.addEventListener('click',()=>{if(diceState.rolling)return; diceState.pick=b.dataset.dicepick; updateDiceBetUI(); soundChip();}));
@@ -1695,7 +1614,7 @@ document.getElementById('diceRoll').addEventListener('click',async ()=>{
   d1.classList.remove('rolling'); d2.classList.remove('rolling');
   const v1=1+Math.floor(Math.random()*6),v2=1+Math.floor(Math.random()*6);
   d1.textContent=v1; d2.textContent=v2; const sum=v1+v2;
-  document.getElementById('diceTotal').textContent='Sum: '+sum;
+  document.getElementById('diceTotal').textContent='Сумма: '+sum;
   let win=false,mult=0; const isDouble=v1===v2;
   switch(diceState.pick){
     case 'under': if(sum<7){win=true; mult=2;} break;
@@ -1703,13 +1622,11 @@ document.getElementById('diceRoll').addEventListener('click',async ()=>{
     case 'seven': if(sum===7){win=true; mult=5;} break;
     case 'even': if(sum%2===0){win=true; mult=2;} break;
     case 'odd': if(sum%2===1){win=true; mult=2;} break;
-    case 'double': if(isDouble){win=true; mult=6;} break;
-  }
+    case 'double': if(isDouble){win=true; mult=6;} break;}
   const res=document.getElementById('diceResult');
   if(win){const payout=Math.round(diceState.bet*mult); balance+=payout; saveBalance(); updateBalanceUI();
     res.className='gs-result win'; res.textContent='🎲 '+v1+'+'+v2+'='+sum+' • +'+(payout-diceState.bet)+' 🪙';
-    setTimeout(soundWin,200); showBanner('+'+payout,false);
-    stats.totalWon+=payout; if(payout>stats.bestWin)stats.bestWin=payout;}
+    setTimeout(soundWin,200); showBanner('+'+payout,false); stats.totalWon+=payout; if(payout>stats.bestWin)stats.bestWin=payout;}
   else{res.className='gs-result lose'; res.textContent='🎲 '+v1+'+'+v2+'='+sum+' • −'+diceState.bet+' 🪙'; setTimeout(soundLose,200);}
   stats.spins++; stats.totalBet+=diceState.bet; saveStats(); renderStats(); checkAchievements();
   diceState.rolling=false; document.getElementById('diceRoll').disabled=false;});
@@ -1753,59 +1670,42 @@ document.getElementById('fwSpin').addEventListener('click',async ()=>{
   stats.spins++; stats.totalBet+=fwState.bet; saveStats(); renderStats(); checkAchievements();
   fwState.spinning=false; document.getElementById('fwSpin').disabled=false;});
 
-/* ===== POKER (Caribbean / Oasis / Russian / Three Card) ===== */
+/* ===== POKER ===== */
 const PKS=['♠','♥','♦','♣'], PKR=['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
 const pokerState={type:'caribbean',bet:50,deck:[],player:[],dealer:[],stage:'bet',selected:[]};
-function pkCardHtml(c,hidden,selectable,idx){
+function pkCardHtml(c,hidden,sel,idx){
   if(hidden) return '<div class="poker-card back"><div class="poker-card-top">?</div><div class="poker-card-suit">?</div><div class="poker-card-bot">?</div></div>';
-  const isRed=c.s==='♥'||c.s==='♦'; const sel=c.selected?' selected':'';
-  return '<div class="poker-card'+(isRed?' red':'')+sel+(selectable?' selectable':'')+'"'+(idx!==undefined?' data-idx="'+idx+'"':'')+'><div class="poker-card-top">'+c.r+'</div><div class="poker-card-suit">'+c.s+'</div><div class="poker-card-bot">'+c.r+'</div></div>';
-}
+  const isRed=c.s==='♥'||c.s==='♦'; const s=c.selected?' selected':'';
+  return '<div class="poker-card'+(isRed?' red':'')+s+(sel?' selectable':'')+'"'+(idx!==undefined?' data-idx="'+idx+'"':'')+'><div class="poker-card-top">'+c.r+'</div><div class="poker-card-suit">'+c.s+'</div><div class="poker-card-bot">'+c.r+'</div></div>';}
 function pkRankVal(r){return PKR.indexOf(r)+2;}
 function pkHandName(cards){
-  if(cards.length<5){
-    if(cards.length===3){const s=new Set(cards.map(c=>c.s)); const r=cards.map(c=>pkRankVal(c.r)).sort((a,b)=>b-a);
-      if(r[0]===14&&r[1]===13&&r[2]===12)return 'Straight Flush';
-      if(s.size===1)return 'Flush';
-      if(r[0]===r[1]&&r[1]===r[2])return 'Three of a Kind';
-      if(r[0]===r[1]||r[1]===r[2])return 'Pair';
-      if(r[0]===r[1]+1&&r[1]===r[2]+1)return 'Straight';
-      return 'High Card';}
-    return '—';
-  }
+  if(cards.length<5){if(cards.length===3){const s=new Set(cards.map(c=>c.s)); const r=cards.map(c=>pkRankVal(c.r)).sort((a,b)=>b-a);
+    if(r[0]===14&&r[1]===13&&r[2]===12)return 'Straight Flush'; if(s.size===1)return 'Flush';
+    if(r[0]===r[1]&&r[1]===r[2])return 'Three of a Kind'; if(r[0]===r[1]||r[1]===r[2])return 'Pair';
+    if(r[0]===r[1]+1&&r[1]===r[2]+1)return 'Straight'; return 'High Card';} return '—';}
   const r=cards.map(c=>pkRankVal(c.r)).sort((a,b)=>b-a); const s=new Set(cards.map(c=>c.s));
   const cnt={}; r.forEach(x=>cnt[x]=(cnt[x]||0)+1); const counts=Object.values(cnt).sort((a,b)=>b-a);
   const isFlush=s.size===1; const isStraight=r[0]-r[4]===4&&new Set(r).size===5;
-  if(isFlush&&isStraight&&r[0]===14)return 'Royal Flush';
-  if(isFlush&&isStraight)return 'Straight Flush';
-  if(counts[0]===4)return 'Four of a Kind';
-  if(counts[0]===3&&counts[1]===2)return 'Full House';
-  if(isFlush)return 'Flush';
-  if(isStraight)return 'Straight';
-  if(counts[0]===3)return 'Three of a Kind';
-  if(counts[0]===2&&counts[1]===2)return 'Two Pair';
-  if(counts[0]===2)return 'Pair';
-  return 'High Card';
-}
+  if(isFlush&&isStraight&&r[0]===14)return 'Royal Flush'; if(isFlush&&isStraight)return 'Straight Flush';
+  if(counts[0]===4)return 'Four of a Kind'; if(counts[0]===3&&counts[1]===2)return 'Full House';
+  if(isFlush)return 'Flush'; if(isStraight)return 'Straight'; if(counts[0]===3)return 'Three of a Kind';
+  if(counts[0]===2&&counts[1]===2)return 'Two Pair'; if(counts[0]===2)return 'Pair'; return 'High Card';}
 function pkHandScore(cards){const names={'High Card':0,Pair:1,'Two Pair':2,'Three of a Kind':3,Straight:4,Flush:5,'Full House':6,'Four of a Kind':7,'Straight Flush':8,'Royal Flush':9};
   const n=pkHandName(cards); const base=names[n]||0; const r=cards.map(c=>pkRankVal(c.r)).sort((a,b)=>b-a);
   return base*1000000+r.reduce((a,b,i)=>a+b*Math.pow(15,4-i),0);}
 function pkDealCard(){return pokerState.deck.pop();}
 function pokerInit(type){
-  pokerState.type=type; pokerState.bet=50;
-  pokerState.deck=[]; pokerState.player=[]; pokerState.dealer=[]; pokerState.stage='bet'; pokerState.selected=[];
+  pokerState.type=type; pokerState.bet=50; pokerState.deck=[]; pokerState.player=[]; pokerState.dealer=[]; pokerState.stage='bet'; pokerState.selected=[];
   const title=document.getElementById('pokerTitle');
-  const names={caribbean:'🏝️ Caribbean Stud',oasis:'🌴 Oasis Poker',russian:'🇷🇺 Russian Poker',threecard:'🃏 Three Card Poker'};
+  const names={caribbean:'🏝️ Caribbean Stud',oasis:'🌴 Oasis Poker',russian:'🇷🇺 Russian Poker',threecard:'🃏 Three Card'};
   title.textContent=names[type]||'Poker';
   for(const s of PKS)for(const r of PKR) pokerState.deck.push({r,s});
   for(let i=pokerState.deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [pokerState.deck[i],pokerState.deck[j]]=[pokerState.deck[j],pokerState.deck[i]];}
   document.getElementById('pokerDealerHand').innerHTML=''; document.getElementById('pokerPlayerHand').innerHTML='';
   document.getElementById('pokerDealerName').textContent='—'; document.getElementById('pokerPlayerName').textContent='—';
   document.getElementById('pokerResult').textContent='—'; document.getElementById('pokerResult').className='gs-result neutral';
-  const ex=document.getElementById('pokerExchange');
-  if(ex) ex.style.display=(type==='oasis'||type==='russian')?'':'none';
-  document.querySelectorAll('[data-pokerbet]').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.pokerbet,10)===50));
-}
+  const ex=document.getElementById('pokerExchange'); if(ex) ex.style.display=(type==='oasis'||type==='russian')?'':'none';
+  document.querySelectorAll('[data-pokerbet]').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.pokerbet,10)===50));}
 document.querySelectorAll('[data-pokerbet]').forEach(b=>b.addEventListener('click',()=>{if(pokerState.stage!=='bet')return; pokerState.bet=parseInt(b.dataset.pokerbet,10);
   document.querySelectorAll('[data-pokerbet]').forEach(x=>x.classList.toggle('active',x===b)); soundChip();}));
 document.getElementById('pokerFold').addEventListener('click',()=>{
@@ -1813,8 +1713,7 @@ document.getElementById('pokerFold').addEventListener('click',()=>{
   if(pokerState.stage==='decision'){soundLose(); const res=document.getElementById('pokerResult'); res.className='gs-result lose'; res.textContent='Fold • −'+pokerState.bet+' 🪙';
     stats.spins++; stats.totalBet+=pokerState.bet; saveStats(); renderStats(); pokerState.stage='bet'; setTimeout(()=>pokerInit(pokerState.type),1500);}});
 document.getElementById('pokerExchange').addEventListener('click',()=>{
-  if(pokerState.stage!=='decision')return;
-  if(pokerState.selected.length===0)return;
+  if(pokerState.stage!=='decision')return; if(pokerState.selected.length===0)return;
   pokerState.selected.sort((a,b)=>b-a).forEach(i=>{pokerState.player[i]=pkDealCard();});
   pokerState.selected=[]; pokerState.player.forEach(c=>c.selected=false); renderPokerHands(true); soundCard();});
 function renderPokerHands(allowSelect){
@@ -1835,32 +1734,21 @@ document.getElementById('pokerPlay').addEventListener('click',async ()=>{
     pokerState.player=[]; pokerState.dealer=[];
     for(let i=0;i<n;i++){pokerState.player.push(pkDealCard()); soundCard(); await new Promise(r=>setTimeout(r,120));}
     for(let i=0;i<n;i++){pokerState.dealer.push(pkDealCard());}
-    // Show player
     renderPokerHands(false);
-    // Dealer hidden
     const dH=document.getElementById('pokerDealerHand'); dH.innerHTML='';
     for(let i=0;i<n;i++) dH.innerHTML+=pkCardHtml(null,true);
     pokerState.stage='decision';
-    const res=document.getElementById('pokerResult'); res.className='gs-result neutral';
-    res.textContent=(currentLang==='en'?'Exchange / PLAY / FOLD':'Обмен / ИГРАТЬ / FOLD');
-    return;
-  }
+    const res=document.getElementById('pokerResult'); res.className='gs-result neutral'; res.textContent='ИГРАТЬ / FOLD';
+    return;}
   if(pokerState.stage==='decision'){
     pokerState.player.forEach(c=>c.selected=false); pokerState.selected=[];
     renderPokerHands(false); soundCard(); await new Promise(r=>setTimeout(r,400));
     const pv=pkHandScore(pokerState.player); const dv=pkHandScore(pokerState.dealer);
     let winner='',payout=0;
-    if(pokerState.type==='threecard'){
-      const pn=pkHandName(pokerState.player); const dNames={'Straight Flush':40,'Three of a Kind':30,Straight:6,Flush:4,Pair:2,'High Card':0};
-      const anteMult=dNames[pn]||0;
-      if(pv>dv){winner='win'; payout=pokerState.bet*(anteMult+2);}
-      else if(pv===dv){winner='push'; payout=pokerState.bet;}
-      else{winner='lose'; payout=0;}
-    } else {
-      if(pv>dv){winner='win'; payout=pokerState.bet*2;}
-      else if(pv===dv){winner='push'; payout=pokerState.bet;}
-      else{winner='lose'; payout=0;}
-    }
+    if(pokerState.type==='threecard'){const pn=pkHandName(pokerState.player); const dN={'Straight Flush':40,'Three of a Kind':30,Straight:6,Flush:4,Pair:2,'High Card':0};
+      const am=dN[pn]||0;
+      if(pv>dv){winner='win'; payout=pokerState.bet*(am+2);} else if(pv===dv){winner='push'; payout=pokerState.bet;} else{winner='lose'; payout=0;}}
+    else{if(pv>dv){winner='win'; payout=pokerState.bet*2;} else if(pv===dv){winner='push'; payout=pokerState.bet;} else{winner='lose'; payout=0;}}
     const profit=payout-pokerState.bet; const res=document.getElementById('pokerResult');
     if(winner==='win'){balance+=payout; saveBalance(); updateBalanceUI();
       res.className='gs-result win'; res.textContent='🏆 '+pkHandName(pokerState.player)+' • +'+profit+' 🪙';
@@ -1868,17 +1756,16 @@ document.getElementById('pokerPlay').addEventListener('click',async ()=>{
     else if(winner==='push'){balance+=payout; saveBalance(); updateBalanceUI(); res.className='gs-result neutral'; res.textContent='🤝 Push';}
     else{res.className='gs-result lose'; res.textContent='−'+pokerState.bet+' 🪙'; setTimeout(soundLose,200);}
     stats.spins++; stats.totalBet+=pokerState.bet; saveStats(); renderStats(); checkAchievements();
-    pokerState.stage='bet'; setTimeout(()=>pokerInit(pokerState.type),2000);
-  }});
+    pokerState.stage='bet'; setTimeout(()=>pokerInit(pokerState.type),2000);}});
 
-/* ===== TEXAS HOLD'EM ===== */
+/* ===== TEXAS ===== */
 const txState={bet:50,deck:[],player:[],dealer:[],community:[],pot:0,stage:'bet'};
 function texasInit(){txState.bet=50; txState.deck=[]; txState.player=[]; txState.dealer=[]; txState.community=[]; txState.pot=0; txState.stage='bet';
   document.getElementById('texasPlayerHand').innerHTML=''; document.getElementById('texasDealerHand').innerHTML='';
   document.getElementById('texasCommunity').innerHTML='';
   document.getElementById('texasPlayerName').textContent='—'; document.getElementById('texasDealerName').textContent='—';
   document.getElementById('texasResult').className='gs-result neutral'; document.getElementById('texasResult').textContent='—';
-  document.getElementById('texasPot').textContent=t('pot')+': 0 🪙';
+  document.getElementById('texasPot').textContent='Pot: 0 🪙';
   document.querySelectorAll('[data-txbet]').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.txbet,10)===50));}
 document.querySelectorAll('[data-txbet]').forEach(b=>b.addEventListener('click',()=>{if(txState.stage!=='bet')return; txState.bet=parseInt(b.dataset.txbet,10);
   document.querySelectorAll('[data-txbet]').forEach(x=>x.classList.toggle('active',x===b)); soundChip();}));
@@ -1891,12 +1778,12 @@ document.getElementById('txRaise').addEventListener('click',()=>{
   if(txState.stage==='bet')return;
   if(balance<txState.bet){showToast(t('insufficient')); return;}
   balance-=txState.bet; saveBalance(); updateBalanceUI(); txState.pot+=txState.bet*2;
-  document.getElementById('texasPot').textContent=t('pot')+': '+txState.pot+' 🪙'; soundChip();});
+  document.getElementById('texasPot').textContent='Pot: '+txState.pot+' 🪙'; soundChip();});
 document.getElementById('txCall').addEventListener('click',async ()=>{
   if(txState.stage==='bet'){
     if(balance<txState.bet){showToast(t('insufficient')); return;}
     balance-=txState.bet; saveBalance(); updateBalanceUI(); txState.pot=txState.bet*2;
-    document.getElementById('texasPot').textContent=t('pot')+': '+txState.pot+' 🪙';
+    document.getElementById('texasPot').textContent='Pot: '+txState.pot+' 🪙';
     for(const s of PKS)for(const r of PKR) txState.deck.push({r,s});
     for(let i=txState.deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [txState.deck[i],txState.deck[j]]=[txState.deck[j],txState.deck[i]];}
     txState.player=[txState.deck.pop(),txState.deck.pop()];
@@ -1907,44 +1794,37 @@ document.getElementById('txCall').addEventListener('click',async ()=>{
     document.getElementById('texasCommunity').innerHTML='';
     soundCard(); txState.stage='flop';
     document.getElementById('texasResult').className='gs-result neutral'; document.getElementById('texasResult').textContent='CALL → flop';
-    return;
-  }
+    return;}
   if(txState.stage==='flop'){
     for(let i=0;i<3;i++){txState.community.push(txState.deck.pop()); soundCard(); await new Promise(r=>setTimeout(r,150));}
     document.getElementById('texasCommunity').innerHTML=txState.community.map(c=>pkCardHtml(c,false,false)).join('');
-    txState.stage='turn'; document.getElementById('texasResult').textContent='CALL → turn'; return;
-  }
+    txState.stage='turn'; document.getElementById('texasResult').textContent='CALL → turn'; return;}
   if(txState.stage==='turn'){
     txState.community.push(txState.deck.pop()); soundCard();
     document.getElementById('texasCommunity').innerHTML=txState.community.map(c=>pkCardHtml(c,false,false)).join('');
-    txState.stage='river'; document.getElementById('texasResult').textContent='CALL → river'; return;
-  }
+    txState.stage='river'; document.getElementById('texasResult').textContent='CALL → river'; return;}
   if(txState.stage==='river'){
     txState.community.push(txState.deck.pop()); soundCard();
     document.getElementById('texasCommunity').innerHTML=txState.community.map(c=>pkCardHtml(c,false,false)).join('');
     document.getElementById('texasDealerHand').innerHTML=txState.dealer.map(c=>pkCardHtml(c,false,false)).join('');
-    const pBest=bestOf7([...txState.player,...txState.community]);
-    const dBest=bestOf7([...txState.dealer,...txState.community]);
-    const pv=pkHandScore(pBest), dv=pkHandScore(dBest);
+    const pB=bestOf7([...txState.player,...txState.community]);
+    const dB=bestOf7([...txState.dealer,...txState.community]);
+    const pv=pkHandScore(pB), dv=pkHandScore(dB);
     const res=document.getElementById('texasResult');
     if(pv>dv){balance+=txState.pot; saveBalance(); updateBalanceUI();
-      res.className='gs-result win'; res.textContent='🏆 '+pkHandName(pBest)+' • +'+(txState.pot-txState.bet*2)+' 🪙';
+      res.className='gs-result win'; res.textContent='🏆 '+pkHandName(pB)+' • +'+(txState.pot-txState.bet*2)+' 🪙';
       setTimeout(soundWin,200); showBanner('+'+txState.pot,false); stats.totalWon+=txState.pot; if(txState.pot>stats.bestWin)stats.bestWin=txState.pot;}
     else if(pv===dv){balance+=txState.pot/2; saveBalance(); updateBalanceUI(); res.className='gs-result neutral'; res.textContent='🤝 Push';}
     else{res.className='gs-result lose'; res.textContent='−'+txState.bet+' 🪙'; setTimeout(soundLose,200);}
     stats.spins++; stats.totalBet+=txState.bet; saveStats(); renderStats(); checkAchievements();
-    txState.stage='bet'; setTimeout(()=>texasInit(),2500);
-  }});
-function bestOf7(cards){
-  if(cards.length<=5) return cards.slice();
-  let best=cards.slice(0,5),bestScore=pkHandScore(best);
-  const n=cards.length;
+    txState.stage='bet'; setTimeout(()=>texasInit(),2500);}});
+function bestOf7(cards){if(cards.length<=5) return cards.slice();
+  let best=cards.slice(0,5),bs=pkHandScore(best); const n=cards.length;
   for(let a=0;a<n-4;a++)for(let b=a+1;b<n-3;b++)for(let c=b+1;c<n-2;c++)for(let d=c+1;d<n-1;d++)for(let e=d+1;e<n;e++){
-    const combo=[cards[a],cards[b],cards[c],cards[d],cards[e]]; const s=pkHandScore(combo);
-    if(s>bestScore){bestScore=s; best=combo;}}
+    const combo=[cards[a],cards[b],cards[c],cards[d],cards[e]]; const s=pkHandScore(combo); if(s>bs){bs=s; best=combo;}}
   return best;}
 
-/* ===== GAME LIST ===== */
+/* ===== GAMES LIST ===== */
 const ALL_GAMES=[
   {id:'slots',name:'Slots',emoji:'🎰',provider:'KyrgyzSoft',cat:['slots','pop'],play:true,bg:'bg-1'},
   {id:'anubis',name:'Anubis Wrath',emoji:'👑',provider:'PGSoft',cat:['slots','pop'],bg:'bg-2'},
@@ -1963,8 +1843,7 @@ const ALL_GAMES=[
   {id:'roulette',name:'Roulette',emoji:'🎡',provider:'KyrgyzSoft',cat:['quick','pop'],play:true,bg:'bg-5'},
   {id:'keno',name:'Keno',emoji:'🎯',provider:'KyrgyzSoft',cat:['quick','pop'],play:true,bg:'bg-5'},
   {id:'dice',name:'Dice',emoji:'🎲',provider:'KyrgyzSoft',cat:['quick'],play:true,bg:'bg-2'},
-  {id:'fwheel',name:'Fortune Wheel',emoji:'☸️',provider:'KyrgyzSoft',cat:['quick'],play:true,bg:'bg-6'}
-];
+  {id:'fwheel',name:'Fortune Wheel',emoji:'☸️',provider:'KyrgyzSoft',cat:['quick'],play:true,bg:'bg-6'}];
 function makeCard(g){const d=document.createElement('div'); d.className='game-card '+g.bg+(g.play?'':' coming'); d.dataset.game=g.id;
   d.innerHTML='<div class="game-card-emoji">'+g.emoji+'</div><div class="game-card-name">'+g.name+'</div><div class="game-card-provider">'+g.provider+'</div>';
   d.addEventListener('click',()=>openGame(g.id)); return d;}
@@ -1980,15 +1859,11 @@ function openGame(id){
   if(id==='fwheel'){fwInit(); showScreen('screen-fwheel'); return;}
   if(id==='caribbean'||id==='oasis'||id==='russian'||id==='threecard'){pokerInit(id); showScreen('screen-poker'); return;}
   if(id==='texas'){texasInit(); showScreen('screen-texas'); return;}
-  showScreen('screen-coming');
-}
+  showScreen('screen-coming');}
 let currentTab='all', currentSearch='';
 function renderAll(){const grid=document.getElementById('allGrid'); if(!grid) return; grid.innerHTML='';
   const q=currentSearch.trim().toLowerCase();
-  const list=ALL_GAMES.filter(g=>{
-    if(currentTab!=='all'&&!g.cat.includes(currentTab))return false;
-    if(q&&!g.name.toLowerCase().includes(q))return false;
-    return true;});
+  const list=ALL_GAMES.filter(g=>{if(currentTab!=='all'&&!g.cat.includes(currentTab))return false; if(q&&!g.name.toLowerCase().includes(q))return false; return true;});
   list.forEach(g=>grid.appendChild(makeCard(g)));}
 document.querySelectorAll('.cat-tab').forEach(tb=>tb.addEventListener('click',()=>{
   document.querySelectorAll('.cat-tab').forEach(x=>x.classList.remove('active'));
@@ -2031,27 +1906,45 @@ dop.addEventListener('click',(e)=>{if(e.target===dop) dop.classList.remove('open
 document.querySelectorAll('.deposit-amount').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('.deposit-amount').forEach(x=>x.classList.remove('best'));
   b.classList.add('best'); selAmt=parseInt(b.dataset.amt,10); selStars=parseInt(b.dataset.stars,10); soundChip();}));
+
+/* ===== DEPOSIT — РЕАЛЬНАЯ ОПЛАТА ЧЕРЕЗ СЕРВЕР ===== */
 document.getElementById('depositGo').addEventListener('click', async ()=>{
-  unlockAudio(); const stars=selStars, coins=selAmt;
-  if(tg && typeof tg.openInvoice==='function'){
-    try{const resp=await fetch('https://your-backend.example.com/create-invoice',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({user_id:userId||0,stars,coins})});
-      if(resp.ok){const data=await resp.json(); if(data&&data.invoice_link){tg.openInvoice(data.invoice_link,(status)=>{if(status==='paid'){soundJackpot(); showBanner('⭐ +'+coins,true);}}); return;}}
-    }catch(e){}
+  unlockAudio();
+  const stars = selStars, coins = selAmt;
+  try {
+    const resp = await fetch('https://web-production-e894b9.up.railway.app/api/create-invoice', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ user_id: userId || 0, stars, coins })
+    });
+    const data = await resp.json();
+    if (data.invoice_link && tg && typeof tg.openInvoice === 'function') {
+      tg.openInvoice(data.invoice_link, (status)=>{
+        if (status === 'paid') {
+          soundJackpot();
+          showBanner('⭐ Оплата прошла!', true);
+          setTimeout(()=>location.reload(), 2000);
+        } else if (status === 'cancelled') {
+          showToast('Оплата отменена');
+        }
+      });
+    } else {
+      showToast('Ошибка: сервер не вернул ссылку');
+    }
+  } catch(e) {
+    showToast('Сервер недоступен');
+    console.error(e);
   }
-  if(!confirm(stars+' ⭐ → '+coins+' 🪙\n\nDemo. Continue?'))return;
-  balance+=coins; saveBalance(); updateBalanceUI(); soundJackpot(); showBanner('+'+coins+' 🪙',true); dop.classList.remove('open'); checkAchievements();});
+});
 
 /* ===== INIT ===== */
 function applyUserUI(){
-  const greet=document.getElementById('greeting');
   const hi={ru:'Привет',en:'Hi',zh:'你好',kk:'Сәлем',ky:'Салам',uz:'Salom',pl:'Cześć'}[currentLang||'ru']||'Привет';
-  if(greet) greet.textContent=hi+', '+userName+'!';
+  const gr=document.getElementById('greeting'); if(gr) gr.textContent=hi+', '+userName+'!';
   document.getElementById('profileName').textContent=userName;
   document.getElementById('profileId').textContent=userId?('ID: '+userId):'—';
   if(userPhoto){const av=document.getElementById('profileAvatar'); av.style.background='url('+userPhoto+') center/cover'; av.textContent='';}
-  else document.getElementById('profileAvatar').textContent=userName.charAt(0).toUpperCase();
-}
-const messageEl=document.getElementById('message');
+  else document.getElementById('profileAvatar').textContent=userName.charAt(0).toUpperCase();}
 document.getElementById('spin').addEventListener('click',spin);
 document.getElementById('autoBtn').addEventListener('click',()=>{if(autoRunning)autoRunning=false; else startAuto();});
 const SHARE_URL='https://t.me/kyrgyz_casino_bot/minicasino';
