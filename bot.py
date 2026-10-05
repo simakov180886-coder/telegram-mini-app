@@ -9,7 +9,16 @@ BASE_URL = os.getenv("BASE_URL", "")
 
 bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/api/create-invoice")
 async def create_invoice(request: Request):
