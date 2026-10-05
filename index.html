@@ -91,7 +91,6 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
   border:1px solid rgba(255,255,255,0.15); color:#fff; width:32px; height:32px;
   border-radius:8px; font-size:16px; cursor:pointer; }
 
-/* RULES PANEL */
 .rules-panel { position:fixed; top:0; right:0; bottom:0; width:90%; max-width:400px;
   background:linear-gradient(180deg, #1a0d08, #0b0503);
   border-left:1px solid rgba(251,191,36,0.4); z-index:201; padding:20px 16px;
@@ -274,7 +273,6 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
   color:#9ca3af; font-size:12px; font-weight:bold; cursor:pointer; transition:all .15s; }
 .cat-tab.active { background:linear-gradient(180deg,#fbbf24,#d97706); color:#111827; border-color:#fbbf24; }
 
-/* BLACKJACK */
 .bj-table { background: radial-gradient(ellipse at center, #166534 0%, #064e3b 60%, #022c22 100%);
   border:3px solid #b45309; border-radius:18px; padding:14px 10px;
   box-shadow: inset 0 0 30px rgba(0,0,0,0.5), 0 10px 30px rgba(0,0,0,0.6);
@@ -364,7 +362,6 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
       <li><b>💎 Scatter</b> — 3+ по экрану → 5 бесплатных спинов ×2</li>
       <li>3 одинаковых = базовый выигрыш, 4 = больше, 5 = максимум</li>
     </ul>
-
     <h3>🃏 Блэкджек</h3>
     <p><b>Цель</b> — набрать больше очков чем дилер, но не более 21.</p>
     <p><b>Очки</b>: 2–10 = номинал, J/Q/K = 10, A = 1 или 11.</p>
@@ -376,13 +373,8 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
       <li><b>Сплит</b> — разделить пару на две руки (до 4 рук)</li>
       <li><b>Страховка</b> — если у дилера A. Ставка ½, при блэкджеке дилера платит 2:1</li>
     </ul>
-    <p><b>Выплаты:</b></p>
-    <ul>
-      <li>Победа — ×2</li>
-      <li>Блэкджек (21 с раздачи) — ×2.5</li>
-      <li>Ничья — возврат ставки</li>
-    </ul>
-    <p><b>Дилер</b> добирает до 17 включительно (стоит на 17+).</p>
+    <p><b>Выплаты:</b> победа ×2 · блэкджек ×2.5 · ничья — возврат</p>
+    <p><b>Дилер</b> добирает до 17 включительно.</p>
   </div>
 </aside>
 
@@ -398,17 +390,14 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
       <h2 id="menuGreeting">Добро пожаловать!</h2>
       <p>Выберите игру и вперёд за выигрышем</p>
     </div>
-
     <div class="lobby-section">
       <div class="lobby-head"><div class="lobby-title">🎰 Слоты</div><button class="lobby-all" data-cat="slots">Все →</button></div>
       <div class="game-row" id="row-slots"></div>
     </div>
-
     <div class="lobby-section">
       <div class="lobby-head"><div class="lobby-title">⚡ Быстрые игры</div><button class="lobby-all" data-cat="quick">Все →</button></div>
       <div class="game-row" id="row-quick"></div>
     </div>
-
     <div class="lobby-section">
       <div class="lobby-head"><div class="lobby-title">🔥 Популярные</div><button class="lobby-all" data-cat="pop">Все →</button></div>
       <div class="game-row" id="row-pop"></div>
@@ -462,7 +451,6 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
     <div class="panel"><div class="panel-title">Последние спины</div><div class="history-list" id="historyList"></div></div>
   </div>
 
-  <!-- BLACKJACK -->
   <div class="screen" id="screen-blackjack">
     <button class="back-btn" data-back>← В меню</button>
     <h1>🃏 Блэкджек</h1>
@@ -526,10 +514,7 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 </nav>
 
 <div class="win-banner" id="winBanner"></div>
-<div class="toast" id="toast"></div>
-
-<script>
-// ===== Telegram =====
+<div class="toast" id="toast"></div><script>
 const tg = window.Telegram?.WebApp;
 let userName='Гость', userId=null, userPhoto=null;
 if (tg) {
@@ -547,8 +532,6 @@ function applyUserUI(){
     av.style.background='url('+userPhoto+') center/cover'; av.textContent='';
   } else document.getElementById('profileAvatar').textContent=userName.charAt(0).toUpperCase();
 }
-
-// ===== Звук =====
 let audioCtx=null;
 function getAudio(){ if(!audioCtx){try{audioCtx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}} return audioCtx; }
 function unlockAudio(){const c=getAudio();if(c&&c.state==='suspended')c.resume().catch(()=>{});}
@@ -594,8 +577,6 @@ function soundJackpot(){
 }
 function soundLose(){ playTone(300,0.15,'sawtooth',0.05,0); playTone(180,0.24,'sawtooth',0.05,0.13); }
 function soundScatter(){ [659,988,1319,1976].forEach((f,i)=>playTone(f,0.22,'triangle',0.15,i*0.10)); }
-
-// ===== Хранилище =====
 const START_BALANCE=1000;
 function loadNum(k,d){const v=parseInt(localStorage.getItem(k),10);return isNaN(v)?d:v;}
 let balance=loadNum('casino_balance',START_BALANCE);
@@ -611,8 +592,6 @@ let unlocked=JSON.parse(localStorage.getItem('casino_ach')||'[]');
 function saveBalance(){localStorage.setItem('casino_balance',String(balance));}
 function saveStats(){localStorage.setItem('casino_stats',JSON.stringify(stats));}
 function saveAch(){localStorage.setItem('casino_ach',JSON.stringify(unlocked));}
-
-// ===== Символы =====
 const SYMBOLS=["🍒","🍋","🍊","🍇","🍉","🍌","🔔","⭐","👑","🏆","🍒","🍋","🍊","🍇","🍉","🍌","🍒","🍋","🍊","🍇","🍒","🍋","🍊","🌟","🌟","👑","🏆","🔔","💎","🍒"];
 const WILD_IDX=SYMBOLS.indexOf("🌟");
 const PAYS={"🏆":[0,0,5,15,40],"👑":[0,0,3,10,25],"⭐":[0,0,2,6,15],"🔔":[0,0,1.5,4,10],"🍌":[0,0,1,3,8],"🍉":[0,0,0.8,2,5],"🍇":[0,0,0.6,1.5,4],"🍊":[0,0,0.5,1.2,3],"🍋":[0,0,0.4,1,2.5],"🍒":[0,0,0.3,0.8,2]};
@@ -621,8 +600,6 @@ function renderPaytable(){
   const order=["🏆","👑","⭐","🔔","🍌","🍉","🍇","🍊","🍋","🍒"];
   document.getElementById('paytableGrid').innerHTML=order.map(s=>{const p=PAYS[s];return '<div class="pt-cell"><div class="pt-sym">'+s+'</div><div class="pt-val">'+p[2]+'·'+p[3]+'·'+p[4]+'</div></div>';}).join('');
 }
-
-// ===== Уровни =====
 const LEVELS=[{name:'Новичок',spins:0,bonus:0},{name:'Любитель',spins:50,bonus:2},{name:'Профи',spins:200,bonus:5},{name:'Хайроллер',spins:500,bonus:10},{name:'Легенда',spins:1000,bonus:15}];
 function getLevel(){let c=LEVELS[0],n=null;for(let i=0;i<LEVELS.length;i++){if(stats.spins>=LEVELS[i].spins){c=LEVELS[i];n=LEVELS[i+1]||null;}}return{cur:c,next:n};}
 function renderLevel(){
@@ -636,8 +613,6 @@ function renderLevel(){
   document.getElementById('profileSpins').textContent=stats.spins;
   document.getElementById('profileBonus').textContent='+'+cur.bonus+'%';
 }
-
-// ===== Достижения =====
 const ACHIEVEMENTS=[
   {id:'first_spin',icon:'🎯',title:'Первый спин',cond:()=>stats.spins>=1},
   {id:'spins_50',icon:'🔟',title:'50 игр',cond:()=>stats.spins>=50},
@@ -670,8 +645,6 @@ function checkAchievements(){
     }
   });
 }
-
-// ===== Задания =====
 function todayKey(){return new Date().toISOString().slice(0,10);}
 const DAILY_TASKS=[
   {id:'spins20',title:'20 игр сегодня',reward:300,target:20},
@@ -696,8 +669,6 @@ function renderDaily(){
   });
 }
 function progressDaily(id,amt){daily.progress[id]=(daily.progress[id]||0)+amt;saveDaily();renderDaily();}
-
-// ===== Элементы =====
 const headerBalance=document.getElementById('headerBalance');
 const profileBalance=document.getElementById('profileBalance');
 const spinButton=document.getElementById('spin');
@@ -716,8 +687,6 @@ function updateBalanceUI(){
   const b=balance.toLocaleString('ru-RU');
   headerBalance.textContent=b; profileBalance.textContent=b;
 }
-
-// ===== Барабаны =====
 const REELS=5, ROWS=3, SYM_H=46, CYCLE_LEN=SYMBOLS.length*SYM_H;
 const STRIP_CYCLES=5;
 const slotsContainer=document.getElementById('slots');
@@ -765,8 +734,6 @@ function animateReel(idx,sym,dur){
   });
 }
 async function animateAllReels(mid){ await Promise.all(mid.map((m,i)=>animateReel(i,m,4500+i*500))); }
-
-// ===== Оценка слотов =====
 function evaluateSpin(mid){
   const len=SYMBOLS.length, grid=[];
   for(let r=0;r<REELS;r++){const m=mid[r]; grid[r]=[SYMBOLS[(m-1+len)%len],SYMBOLS[m],SYMBOLS[(m+1)%len]];}
@@ -926,8 +893,6 @@ function doShare(){
 }
 shareBtn.addEventListener('click',doShare);
 document.getElementById('profileShare').addEventListener('click',doShare);
-
-// ===== NAV =====
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -937,8 +902,6 @@ function showScreen(id){
   if(id==='screen-all') document.querySelector('[data-nav="quick"]').classList.add('active');
 }
 document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>showScreen('screen-menu')));
-
-// ===== GAMES DATA =====
 const ALL_GAMES = [
   {id:'slots', name:'Мини-казино', emoji:'🎰', provider:'KyrgyzSoft', cat:['slots'], play:true, bg:'bg-1'},
   {id:'anubis', name:'Anubis Wrath', emoji:'👑', provider:'PGSoft', cat:['slots','pop'], bg:'bg-2'},
@@ -1034,55 +997,270 @@ document.querySelectorAll('.bn-item').forEach(b=>{
     else if(nav==='profile'){ openProfile(); }
   });
 });
-
-// ===== PROFILE =====
 const profileOverlay=document.getElementById('profileOverlay'), profilePanel=document.getElementById('profilePanel');
 function openProfile(){profileOverlay.classList.add('open');profilePanel.classList.add('open');}
 function closeProfile(){profileOverlay.classList.remove('open');profilePanel.classList.remove('open');}
 document.getElementById('profileClose').addEventListener('click',closeProfile);
 profileOverlay.addEventListener('click',closeProfile);
-
-// ===== RULES =====
 const rulesPanel=document.getElementById('rulesPanel');
 document.getElementById('rulesBtn').addEventListener('click',()=>{rulesPanel.classList.add('open');profileOverlay.classList.add('open');});
 document.getElementById('rulesClose').addEventListener('click',()=>{rulesPanel.classList.remove('open');profileOverlay.classList.remove('open');});
 profileOverlay.addEventListener('click',()=>{rulesPanel.classList.remove('open');});
-
-// ===== BLACKJACK =====
 const BJ_SUITS=['♠','♥','♦','♣'];
 const BJ_RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
-const bjState = {
-  deck: [], dealer: [], playerHands: [], currentHand: 0,
-  active: false, dealerHidden: true, awaitingInsurance: false,
-  insuranceBet: 0
-};
-function bjRankVal(r){
-  if(r==='A') return 11;
-  if(r==='K'||r==='Q'||r==='J') return 10;
-  return parseInt(r,10);
-}
-function bjHandVal(cards){
-  let sum=0, aces=0;
-  cards.forEach(c=>{ sum+=bjRankVal(c.r); if(c.r==='A') aces++; });
-  while(sum>21 && aces>0){ sum-=10; aces--; }
-  return sum;
-}
-function bjNewDeck(){
-  const d=[];
-  for(const s of BJ_SUITS) for(const r of BJ_RANKS) d.push({r,s});
-  for(let i=d.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]];}
-  return d;
-}
-function bjIsPair(cards){
-  if(cards.length!==2) return false;
-  return bjRankVal(cards[0].r) === bjRankVal(cards[1].r);
-}
+const bjState = { deck:[], dealer:[], playerHands:[], currentHand:0, active:false, dealerHidden:true, awaitingInsurance:false, insuranceBet:0 };
+function bjRankVal(r){ if(r==='A') return 11; if(r==='K'||r==='Q'||r==='J') return 10; return parseInt(r,10); }
+function bjHandVal(cards){ let sum=0, aces=0; cards.forEach(c=>{ sum+=bjRankVal(c.r); if(c.r==='A') aces++; }); while(sum>21 && aces>0){ sum-=10; aces--; } return sum; }
+function bjNewDeck(){ const d=[]; for(const s of BJ_SUITS) for(const r of BJ_RANKS) d.push({r,s}); for(let i=d.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]];} return d; }
+function bjIsPair(cards){ if(cards.length!==2) return false; return bjRankVal(cards[0].r) === bjRankVal(cards[1].r); }
 function bjRenderCard(c, hidden){
   if(hidden) return '<div class="bj-card back"><div class="bj-card-top">?</div><div class="bj-card-suit">?</div><div class="bj-card-bot">?</div></div>';
   const isRed = c.s==='♥'||c.s==='♦';
   return '<div class="bj-card'+(isRed?' red':'')+'"><div class="bj-card-top">'+c.r+'</div><div class="bj-card-suit">'+c.s+'</div><div class="bj-card-bot">'+c.r+'</div></div>';
 }
 function bjRender(){
-  const dh=document.getElementById('bjDealerHand');
-  dh.innerHTML='';
-  bjState.de
+  const dh=document.getElementById('bjDealerHand'); dh.innerHTML='';
+  bjState.dealer.forEach((c,i)=>{ dh.innerHTML += bjRenderCard(c, bjState.dealerHidden && i===1); });
+  let dShow='';
+  if(bjState.dealer.length){ if(bjState.dealerHidden) dShow = bjHandVal([bjState.dealer[0]])+' + ?'; else dShow = bjHandVal(bjState.dealer); }
+  document.getElementById('bjDealerScore').textContent = dShow;
+  const cont=document.getElementById('bjPlayerHands'); cont.innerHTML='';
+  bjState.playerHands.forEach((hand, idx)=>{
+    const isActive = idx===bjState.currentHand && bjState.active;
+    let cls='bj-hand-wrap';
+    if(isActive) cls+=' active';
+    if(hand.result) cls+=' '+hand.result;
+    if(hand.done && bjState.active && !isActive) cls+=' done';
+    const wrap=document.createElement('div'); wrap.className=cls;
+    const showLabel = bjState.playerHands.length > 1;
+    const label = showLabel ? '<div class="bj-hand-label">Рука '+(idx+1)+'</div>' : '';
+    let cardsHtml=''; hand.cards.forEach(c=>{ cardsHtml += bjRenderCard(c, false); });
+    const val = bjHandVal(hand.cards);
+    const valHtml = (hand.done || isActive || !bjState.active) ? '<div class="bj-hand-val">'+val+'</div>' : '';
+    wrap.innerHTML = label + '<div class="bj-hand">'+cardsHtml+'</div>' + valHtml;
+    cont.appendChild(wrap);
+  });
+  if(bjState.playerHands.length===1 && bjState.playerHands[0]) document.getElementById('bjPlayerScore').textContent = bjHandVal(bjState.playerHands[0].cards);
+  else document.getElementById('bjPlayerScore').textContent = '';
+}
+function bjSetResult(text, type){ const el=document.getElementById('bjResult'); el.textContent=text||''; el.className='bj-result'+(type?' '+type:''); }
+function bjUpdateButtons(){
+  const canAct = bjState.active && !bjState.awaitingInsurance;
+  const hand = bjState.playerHands[bjState.currentHand];
+  const has2 = hand && hand.cards.length===2;
+  const isPair = hand && bjIsPair(hand.cards) && bjState.playerHands.length < 4;
+  document.getElementById('bjHit').disabled = !canAct || !hand || hand.done || (hand.isSplitAces);
+  document.getElementById('bjStand').disabled = !canAct || !hand || hand.done;
+  document.getElementById('bjDouble').disabled = !canAct || !hand || hand.done || !has2 || balance < hand.bet;
+  const showSplit = canAct && hand && !hand.done && isPair && balance >= hand.bet && !hand.isSplitAces;
+  document.getElementById('bjSplit').style.display = showSplit ? '' : 'none';
+  document.getElementById('bjInsurance').style.display = bjState.awaitingInsurance ? '' : 'none';
+  document.getElementById('bjNew').disabled = bjState.active;
+  const noIns = document.getElementById('bjNoIns');
+  if(noIns) noIns.style.display = bjState.awaitingInsurance ? '' : 'none';
+}
+function bjResetUI(){
+  bjState.deck=[]; bjState.dealer=[]; bjState.playerHands=[]; bjState.currentHand=0;
+  bjState.active=false; bjState.dealerHidden=true; bjState.awaitingInsurance=false; bjState.insuranceBet=0;
+  document.getElementById('bjDealerHand').innerHTML='';
+  document.getElementById('bjPlayerHands').innerHTML='';
+  document.getElementById('bjDealerScore').textContent='';
+  document.getElementById('bjPlayerScore').textContent='';
+  bjSetResult('Нажмите «Раздать»');
+  bjUpdateButtons(); bjUpdateBetUI();
+}
+async function bjDeal(){
+  if(bjState.active) return;
+  if(balance < bjBet){ showToast('Недостаточно монет'); return; }
+  balance -= bjBet; saveBalance(); updateBalanceUI();
+  bjState.deck=bjNewDeck();
+  bjState.dealer=[bjState.deck.pop(), bjState.deck.pop()];
+  bjState.playerHands=[{cards:[bjState.deck.pop(), bjState.deck.pop()], bet: bjBet, done:false, doubled:false, isSplitAces:false, result:null}];
+  bjState.currentHand=0; bjState.active=true; bjState.dealerHidden=true; bjState.insuranceBet=0;
+  bjSetResult(''); bjRender();
+  const pv = bjHandVal(bjState.playerHands[0].cards);
+  if (bjState.dealer[0].r === 'A'){ bjState.awaitingInsurance = true; bjUpdateButtons(); return; }
+  if (pv === 21){ await bjDealerPeek(); return; }
+  bjUpdateButtons();
+}
+async function bjDealerPeek(){
+  bjState.dealerHidden=false; bjRender();
+  await new Promise(r=>setTimeout(r,300));
+  const dv = bjHandVal(bjState.dealer), pv = bjHandVal(bjState.playerHands[0].cards);
+  if (dv === 21){ if (pv === 21) bjFinishFinal('push'); else bjFinishFinal('dealer_bj'); }
+  else { if (pv === 21) bjFinishFinal('bj'); else bjUpdateButtons(); }
+}
+async function bjInsuranceChoice(take){
+  if (!bjState.awaitingInsurance) return;
+  bjState.awaitingInsurance=false;
+  const insAmt = Math.floor(bjBet/2);
+  if (take && balance >= insAmt){ bjState.insuranceBet = insAmt; balance -= insAmt; saveBalance(); updateBalanceUI(); }
+  const dv = bjHandVal(bjState.dealer), pv = bjHandVal(bjState.playerHands[0].cards);
+  if (dv === 21){
+    bjState.dealerHidden=false; bjRender();
+    if (bjState.insuranceBet > 0){ const payout = bjState.insuranceBet * 3; balance += payout; saveBalance(); updateBalanceUI(); showToast('🛡 Страховка сыграла! +'+(payout-bjState.insuranceBet)); soundWin(); }
+    await new Promise(r=>setTimeout(r,700));
+    if (pv === 21) bjFinishFinal('push'); else bjFinishFinal('dealer_bj');
+    return;
+  }
+  if (pv === 21){ bjState.dealerHidden=false; bjRender(); await new Promise(r=>setTimeout(r,300)); bjFinishFinal('bj'); return; }
+  bjRender(); bjUpdateButtons();
+}
+async function bjHit(){
+  if(!bjState.active || bjState.awaitingInsurance) return;
+  const hand = bjState.playerHands[bjState.currentHand];
+  if(!hand || hand.done) return;
+  hand.cards.push(bjState.deck.pop()); bjRender();
+  const v = bjHandVal(hand.cards);
+  if(v > 21){ hand.done=true; await bjNextHand(); }
+  else if(v === 21){ hand.done=true; await bjNextHand(); }
+  else bjUpdateButtons();
+}
+async function bjStand(){
+  if(!bjState.active || bjState.awaitingInsurance) return;
+  const hand = bjState.playerHands[bjState.currentHand];
+  if(!hand || hand.done) return;
+  hand.done=true; await bjNextHand();
+}
+async function bjDouble(){
+  if(!bjState.active || bjState.awaitingInsurance) return;
+  const hand = bjState.playerHands[bjState.currentHand];
+  if(!hand || hand.done || hand.cards.length!==2) return;
+  if(balance < hand.bet) return;
+  balance -= hand.bet; saveBalance(); updateBalanceUI();
+  hand.bet *= 2; hand.doubled = true;
+  hand.cards.push(bjState.deck.pop()); bjRender();
+  hand.done = true; await bjNextHand();
+}
+async function bjSplit(){
+  if(!bjState.active || bjState.awaitingInsurance) return;
+  const hand = bjState.playerHands[bjState.currentHand];
+  if(!hand || hand.done) return;
+  if(!bjIsPair(hand.cards)) return;
+  if(balance < hand.bet) return;
+  if(bjState.playerHands.length >= 4) return;
+  balance -= hand.bet; saveBalance(); updateBalanceUI();
+  const isAces = hand.cards[0].r === 'A';
+  const c2 = hand.cards.pop();
+  hand.cards.push(bjState.deck.pop());
+  const newHand = { cards:[c2, bjState.deck.pop()], bet: bjBet, done:false, doubled:false, isSplitAces: isAces, result:null };
+  bjState.playerHands.splice(bjState.currentHand+1, 0, newHand);
+  if(isAces){ hand.isSplitAces = true; hand.done = true; newHand.isSplitAces = true; newHand.done = true; bjRender(); await bjNextHand(); }
+  else { bjRender(); bjUpdateButtons(); }
+}
+async function bjNextHand(){
+  bjState.currentHand++;
+  while(bjState.currentHand < bjState.playerHands.length && bjState.playerHands[bjState.currentHand].done){ bjState.currentHand++; }
+  if(bjState.currentHand >= bjState.playerHands.length){ await bjDealerPlay(); }
+  else {
+    const hand = bjState.playerHands[bjState.currentHand];
+    if(bjHandVal(hand.cards) >= 21){ hand.done = true; await bjNextHand(); }
+    else { bjRender(); bjUpdateButtons(); }
+  }
+}
+async function bjDealerPlay(){
+  bjState.dealerHidden = false; bjRender();
+  while(bjHandVal(bjState.dealer) < 17){ bjState.dealer.push(bjState.deck.pop()); bjRender(); await new Promise(r=>setTimeout(r,400)); }
+  await bjResolve();
+}
+async function bjResolve(){
+  const dv = bjHandVal(bjState.dealer), dealerBust = dv > 21;
+  let totalPayout = 0, totalBet = 0, wins=0, loses=0, pushes=0;
+  bjState.playerHands.forEach(hand=>{
+    totalBet += hand.bet;
+    const pv = bjHandVal(hand.cards);
+    if(pv > 21){ hand.result='lose'; loses++; }
+    else if(dealerBust){ hand.result='win'; totalPayout += hand.bet*2; wins++; }
+    else if(pv > dv){ hand.result='win'; totalPayout += hand.bet*2; wins++; }
+    else if(pv < dv){ hand.result='lose'; loses++; }
+    else { hand.result='push'; totalPayout += hand.bet; pushes++; }
+  });
+  bjState.active = false; bjRender();
+  if(totalPayout > 0){ balance += totalPayout; saveBalance(); updateBalanceUI(); }
+  const profit = totalPayout - totalBet;
+  let msg = '';
+  if(wins>0) msg += '🏆 Побед: '+wins+' ';
+  if(loses>0) msg += '❌ Проигрышей: '+loses+' ';
+  if(pushes>0) msg += '🤝 Ничьих: '+pushes;
+  if(profit > 0){ bjSetResult(msg+' • +'+profit+' 🪙', 'win'); soundWin(); showBanner('+'+profit, false); }
+  else if(profit === 0){ bjSetResult(msg, 'push'); }
+  else { bjSetResult(msg+' • '+profit+' 🪙', 'lose'); soundLose(); }
+  stats.spins++; stats.totalBet += totalBet;
+  if(profit > 0){ stats.totalWon += profit; if(profit > stats.bestWin) stats.bestWin = profit; }
+  saveStats(); renderStats(); renderLevel(); checkAchievements();
+  bjUpdateButtons();
+}
+function bjFinishFinal(reason){
+  bjState.active = false; bjState.dealerHidden = false; bjRender();
+  let payout = 0, msg = '';
+  const hand = bjState.playerHands[0];
+  if(reason === 'push'){ payout = hand.bet; msg = '🤝 Ничья — возврат'; bjSetResult(msg, 'push'); }
+  else if(reason === 'bj'){
+    payout = Math.round(hand.bet * 2.5); msg = '🃏 BLACKJACK! +'+(payout-hand.bet)+' 🪙';
+    bjSetResult(msg, 'win'); soundJackpot(); showBanner('BLACKJACK! +'+(payout-hand.bet), true);
+    if(!unlocked.includes('bj_first')){ unlocked.push('bj_first'); saveAch(); renderAchievements(); showToast('🎖 Первый блэкджек'); }
+  }
+  else if(reason === 'dealer_bj'){ msg = '❌ Блэкджек у дилера'; bjSetResult(msg, 'lose'); soundLose(); }
+  if(payout > 0){ balance += payout; saveBalance(); updateBalanceUI(); }
+  const profit = payout - hand.bet;
+  stats.spins++; stats.totalBet += hand.bet;
+  if(profit > 0){ stats.totalWon += profit; if(profit > stats.bestWin) stats.bestWin = profit; }
+  saveStats(); renderStats(); renderLevel(); checkAchievements();
+  bjUpdateButtons();
+}
+document.getElementById('bjHit').addEventListener('click', bjHit);
+document.getElementById('bjStand').addEventListener('click', bjStand);
+document.getElementById('bjDouble').addEventListener('click', bjDouble);
+document.getElementById('bjSplit').addEventListener('click', bjSplit);
+document.getElementById('bjInsurance').addEventListener('click', ()=>bjInsuranceChoice(true));
+document.getElementById('bjNew').addEventListener('click', bjDeal);
+const noInsBtn = document.createElement('button');
+noInsBtn.textContent='Без страховки';
+noInsBtn.className='bj-btn-insurance';
+noInsBtn.style.cssText='background:linear-gradient(180deg,#475569,#1e293b); color:#fff; box-shadow:0 4px 0 #0f172a; grid-column: span 2; display:none;';
+noInsBtn.id='bjNoIns';
+document.querySelector('.bj-actions').insertBefore(noInsBtn, document.getElementById('bjNew'));
+noInsBtn.addEventListener('click', ()=>bjInsuranceChoice(false));
+document.querySelectorAll('.bj-bet').forEach(b=>{
+  b.addEventListener('click',()=>{
+    if(bjState.active)return;
+    bjBet=parseInt(b.dataset.bjbet,10);
+    localStorage.setItem('casino_bjbet',String(bjBet));
+    bjUpdateBetUI();
+  });
+});
+document.getElementById('bjMaxBtn').addEventListener('click',()=>{
+  if(bjState.active)return;
+  bjBet=[1000,500,100,50].find(p=>p<=balance)||50;
+  localStorage.setItem('casino_bjbet',String(bjBet));
+  bjUpdateBetUI();
+});
+function bjUpdateBetUI(){
+  document.querySelectorAll('.bj-bet').forEach(x=>{
+    const v=parseInt(x.dataset.bjbet,10);
+    x.classList.toggle('active', v===bjBet);
+  });
+  if(![50,100,500,1000].includes(bjBet)) document.getElementById('bjMaxBtn').classList.add('active');
+}
+applyUserUI();
+renderPaytable();
+initReels();
+updateBalanceUI();
+renderHistory();
+renderStats();
+renderLevel();
+renderAchievements();
+renderDaily();
+updateBonusBtn();
+updateBetUI();
+updateControls();
+updateFreeBar();
+fillRow('row-slots','slots');
+fillRow('row-quick','quick');
+fillRow('row-pop','pop');
+bjResetUI();
+checkAchievements();
+setInterval(updateBonusBtn, 60000);
+</script>
+</body>
+</html>
