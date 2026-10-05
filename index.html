@@ -106,14 +106,18 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
   border:1px solid rgba(255,255,255,0.15); color:#fff; width:30px; height:30px;
   border-radius:8px; font-size:14px; cursor:pointer; }
 .deposit-title { font-size:18px; font-weight:bold; color:#fbbf24; margin-bottom:4px; text-align:center; }
-.deposit-sub { font-size:12px; color:#9ca3af; text-align:center; margin-bottom:18px; }
-.deposit-balance { text-align:center; margin-bottom:16px; font-size:13px; color:#fcd34d; }
+.deposit-sub { font-size:12px; color:#9ca3af; text-align:center; margin-bottom:16px; }
+.deposit-balance { text-align:center; margin-bottom:14px; font-size:13px; color:#fcd34d; }
 .deposit-balance b { font-size:20px; color:#fbbf24; }
 .deposit-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
-.deposit-amount { padding:14px 8px; border-radius:12px; border:1px solid rgba(251,191,36,0.35);
+.deposit-amount { padding:12px 8px; border-radius:12px; border:1px solid rgba(251,191,36,0.35);
   background:linear-gradient(180deg, rgba(124,45,18,0.4), rgba(69,10,10,0.25));
-  color:#fbbf24; font-weight:bold; font-size:15px; cursor:pointer; }
-.deposit-amount.best { border-color:#fbbf24; box-shadow: 0 0 0 1px rgba(251,191,36,0.6), 0 0 20px rgba(251,191,36,0.4); }
+  color:#fbbf24; font-weight:bold; font-size:13px; cursor:pointer;
+  display:flex; flex-direction:column; gap:3px; align-items:center; }
+.deposit-amount .stars { font-size:15px; color:#7dd3fc; }
+.deposit-amount .coins { font-size:11px; color:#fbbf24; }
+.deposit-amount.best { border-color:#fbbf24;
+  box-shadow: 0 0 0 1px rgba(251,191,36,0.6), 0 0 20px rgba(251,191,36,0.4); }
 .deposit-btn { width:100%; padding:14px; border-radius:14px; border:0; font-weight:900;
   font-size:15px; letter-spacing:1px; cursor:pointer;
   background:radial-gradient(circle at 35% 30%, #fde047, #f59e0b 45%, #b45309 100%);
@@ -178,8 +182,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 .actions button { flex:1; padding:9px; border-radius:10px; border:1px solid #7c2d12;
   background:linear-gradient(180deg,#450a0a,#1c0606); color:#fecaca;
   font-weight:bold; font-size:12px; cursor:pointer; }
-.reset { margin-top:7px; padding:8px; font-size:11px; width:100%; border-radius:10px; cursor:pointer;
-  background:transparent; color:#9ca3af; border:1px solid rgba(255,255,255,0.15); }
 .message { min-height:22px; margin-top:8px; font-weight:bold; font-size:13px; color:#fbbf24; }
 .panel { margin-top:12px; padding:10px; background:rgba(255,255,255,0.04);
   border:1px solid rgba(251,191,36,0.15); border-radius:12px; }
@@ -257,28 +259,28 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
   color:#9ca3af; font-size:12px; font-weight:bold; cursor:pointer; }
 .cat-tab.active { background:linear-gradient(180deg,#fbbf24,#d97706); color:#111827; border-color:#fbbf24; }
 
-/* ============ BLACKJACK ============ */
-.bj-table { position: relative; margin: 16px 4px 22px; padding: 28px 10px 18px; min-height: 420px;
+/* ============ BLACKJACK — компактный ============ */
+.bj-table { position: relative; margin: 6px 4px 10px; padding: 16px 10px 10px; min-height: 280px;
   border-radius: 50% 50% 46% 46% / 58% 58% 42% 42%;
   background: radial-gradient(ellipse at 50% 25%, #1e8a52 0%, #0f6a3d 35%, #084a29 65%, #052e19 100%);
-  border: 5px solid #6b4423; overflow: hidden; }
+  border: 4px solid #6b4423; overflow: hidden; }
 .bj-table::after { content:"BLACKJACK PAYS 3 TO 2";
   position: absolute; top: 34%; left: 50%; transform: translateX(-50%) rotate(-2.5deg);
-  font-family: Georgia, serif; font-size: 9px; letter-spacing: 2px;
+  font-family: Georgia, serif; font-size: 8px; letter-spacing: 2px;
   color: rgba(251,191,36,0.28); font-weight: bold; pointer-events: none; }
-.bj-shoe { position: absolute; top: 8px; right: 12px; width: 44px; height: 58px;
+.bj-shoe { position: absolute; top: 6px; right: 10px; width: 32px; height: 42px;
   background: linear-gradient(180deg, #2b1a0e, #0d0704);
-  border: 2px solid #8b5a2b; border-radius: 6px; }
-.bj-row { position: relative; z-index: 2; margin-bottom: 10px; }
-.bj-label { font-size: 10px; color: #fcd34d; letter-spacing: 2px; font-weight: bold;
+  border: 2px solid #8b5a2b; border-radius: 5px; }
+.bj-row { position: relative; z-index: 2; margin-bottom: 4px; }
+.bj-label { font-size: 9px; color: #fcd34d; letter-spacing: 2px; font-weight: bold;
   display: flex; justify-content: space-between; padding: 0 8px; text-transform: uppercase; }
-.bj-hand { display: flex; align-items: center; justify-content: center; min-height: 74px; }
+.bj-hand { display: flex; align-items: center; justify-content: center; min-height: 52px; }
 
-.bj-card { width: 46px; height: 66px; margin-left: -14px; border-radius: 6px;
+.bj-card { width: 36px; height: 52px; margin-left: -11px; border-radius: 5px;
   background: linear-gradient(180deg, #fffdf5, #ece2c9); color: #111827;
   display: flex; flex-direction: column; justify-content: space-between;
-  padding: 3px 4px; font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.18);
+  padding: 2px 4px; font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.18);
   transform: rotate(var(--rot, 0deg));
   animation: cardFly 0.55s cubic-bezier(.22,.9,.25,1.05) both; }
 .bj-card:first-child { margin-left: 0; }
@@ -286,74 +288,80 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 .bj-card:nth-child(even) { --rot: 2.5deg; }
 .bj-card.no-anim { animation: none; }
 @keyframes cardFly {
-  0%   { transform: translate(220px, -200px) rotate(55deg) scale(0.35); opacity: 0; }
+  0%   { transform: translate(180px, -160px) rotate(55deg) scale(0.35); opacity: 0; }
   55%  { opacity: 1; }
   100% { transform: translate(0,0) rotate(var(--rot, 0deg)) scale(1); opacity: 1; }
 }
 .bj-card.red { color: #dc2626; }
 .bj-card.back { background: radial-gradient(circle at 50% 50%, #2b3a8f 0%, #1a2560 45%, #0c1440 100%);
   border: 1px solid #0c1440; }
-.bj-card.back::before { content:""; position:absolute; inset: 4px;
-  border: 1.5px solid rgba(251,191,36,0.45); border-radius: 3px; }
-.bj-card-top { font-size: 10px; }
-.bj-card-suit { font-size: 18px; text-align: center; }
-.bj-card-bot { font-size: 10px; text-align: right; }
+.bj-card.back::before { content:""; position:absolute; inset: 3px;
+  border: 1.2px solid rgba(251,191,36,0.45); border-radius: 2px; }
+.bj-card-top { font-size: 8px; }
+.bj-card-suit { font-size: 13px; text-align: center; }
+.bj-card-bot { font-size: 8px; text-align: right; }
 
-.bj-boxes-row { display: flex; gap: 6px; justify-content: center; padding: 6px 0 4px; }
-.bj-box { flex: 1; max-width: 130px; min-height: 150px; position: relative;
-  display: flex; flex-direction: column; align-items: center; padding: 6px 4px 22px;
-  border-radius: 12px; background: rgba(0,0,0,0.14);
+.bj-boxes-row { display: flex; gap: 5px; justify-content: center; padding: 4px 0 2px; }
+.bj-box { flex: 1; max-width: 120px; min-height: 108px; position: relative;
+  display: flex; flex-direction: column; align-items: center; padding: 4px 3px 16px;
+  border-radius: 10px; background: rgba(0,0,0,0.14);
   border: 2px dashed rgba(251,191,36,0.18); transition: all .25s; cursor: pointer; }
 .bj-box.has-bet { border-style: solid; border-color: #fbbf24; background: rgba(251,191,36,0.06); }
 .bj-box.active { border-style: solid; border-color: #fbbf24;
-  box-shadow: 0 0 0 1px rgba(251,191,36,0.6), 0 0 24px rgba(251,191,36,0.5); }
+  box-shadow: 0 0 0 1px rgba(251,191,36,0.6), 0 0 18px rgba(251,191,36,0.5); }
 .bj-box.win { border-style: solid; border-color: #4ade80; background: rgba(74,222,128,0.08); }
 .bj-box.lose { border-style: solid; border-color: #f87171; opacity: 0.75; }
 .bj-box.push { border-style: solid; border-color: #fbbf24; }
-.bj-box-label { font-size: 8px; color: #9ca3af; letter-spacing: 1.5px;
+.bj-box-label { font-size: 7px; color: #9ca3af; letter-spacing: 1.2px;
   text-transform: uppercase; font-weight: bold; }
-.bj-box-val { font-size: 10px; color: #0b0503; font-weight: 900;
+.bj-box-val { font-size: 9px; color: #0b0503; font-weight: 900;
   background: linear-gradient(180deg, #fbbf24, #d97706);
-  padding: 2px 8px; border-radius: 8px; margin-top: 2px; }
-.bj-box .bj-card { width: 38px; height: 56px; margin-left: -12px; padding: 2px 3px; }
-.bj-box .bj-card-top { font-size: 9px; }
-.bj-box .bj-card-suit { font-size: 14px; }
-.bj-box .bj-card-bot { font-size: 9px; }
-.bj-box-betchip { position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); z-index: 5; }
-.bj-chip { width: 34px; height: 34px; border-radius: 50%;
+  padding: 1px 6px; border-radius: 6px; margin-top: 1px; }
+.bj-box .bj-hand { min-height: 44px; }
+.bj-box .bj-card { width: 28px; height: 40px; margin-left: -9px; padding: 2px 2px; }
+.bj-box .bj-card-top { font-size: 7px; }
+.bj-box .bj-card-suit { font-size: 11px; }
+.bj-box .bj-card-bot { font-size: 7px; }
+.bj-box-betchip { position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); z-index: 5; }
+.bj-chip { width: 28px; height: 28px; border-radius: 50%;
   background: radial-gradient(circle at 38% 30%, #fff 0 8%, #e74c3c 14% 55%, #a83226 72%, #6b1c14 100%);
-  border: 2px dashed rgba(255,255,255,0.85); color: #fff; font-size: 9px; font-weight: 900;
+  border: 2px dashed rgba(255,255,255,0.85); color: #fff; font-size: 8px; font-weight: 900;
   display: flex; align-items: center; justify-content: center; }
 .bj-chip.c100  { background: radial-gradient(circle at 38% 30%, #fff 0 8%, #3498db 14% 55%, #1f618d 72%, #0c2c47 100%); }
 .bj-chip.c200  { background: radial-gradient(circle at 38% 30%, #fff 0 8%, #e67e22 14% 55%, #a04000 72%, #4a1e00 100%); }
 .bj-chip.c500  { background: radial-gradient(circle at 38% 30%, #fff 0 8%, #27ae60 14% 55%, #17623a 72%, #072716 100%); }
 .bj-chip.c1000 { background: radial-gradient(circle at 38% 30%, #fff 0 8%, #9b59b6 14% 55%, #5b2c6f 72%, #2a1235 100%); }
 
-.bj-result { text-align: center; font-weight: bold; font-size: 13px;
-  padding: 10px; border-radius: 10px; margin-bottom: 10px; min-height: 22px; }
+.bj-result { text-align: center; font-weight: bold; font-size: 12px;
+  padding: 6px; border-radius: 10px; margin-bottom: 6px; min-height: 18px; }
 .bj-result.win  { background: rgba(74,222,128,0.15); color:#4ade80; border:1px solid #4ade80; }
 .bj-result.lose { background: rgba(248,113,113,0.15); color:#f87171; border:1px solid #f87171; }
 .bj-result.push { background: rgba(251,191,36,0.15); color:#fbbf24; border:1px solid #fbbf24; }
 
-.bj-bets { display:flex; gap:4px; justify-content:center; margin-bottom:10px; }
-.bj-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
-.bj-actions button { padding:14px; border-radius:12px; border:0; font-size:14px; font-weight:bold; cursor:pointer; }
+.bj-bets { display:flex; gap:4px; justify-content:center; margin-bottom:6px; }
+.bj-actions { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:6px; }
+.bj-actions button { padding:9px 6px; border-radius:10px; border:0; font-size:12px; font-weight:bold; cursor:pointer; }
 .bj-actions button:disabled { opacity:.35; }
 .bj-btn-hit { background:linear-gradient(180deg,#10b981,#047857); color:#fff; }
 .bj-btn-stand { background:linear-gradient(180deg,#ef4444,#991b1b); color:#fff; }
 .bj-btn-double { background:linear-gradient(180deg,#f59e0b,#b45309); color:#111827; }
 .bj-btn-insurance { background:linear-gradient(180deg,#06b6d4,#0e7490); color:#fff; grid-column: span 2; }
-.bj-btn-new { background:linear-gradient(180deg,#6366f1,#3730a3); color:#fff; grid-column: span 2; }
+.bj-btn-new { background:linear-gradient(180deg,#6366f1,#3730a3); color:#fff; grid-column: span 2; padding:12px 6px; font-size:13px; }
 
 /* ============ ROULETTE ============ */
-.roulette-section { padding: 0 4px; position: relative; }
-
+/* Верхняя зона под бейджи (табло и сумма ставки) — фиксированной высоты,
+   чтобы они не заезжали на колесо */
+.roulette-section {
+  padding: 0 4px;
+  position: relative;
+  padding-top: 78px;
+}
 .wheel-stage {
   position: relative;
   width: 100%;
   max-width: 400px;
-  margin: 4px auto 12px;
-  height: 300px;
+  margin: -78px auto 10px;   /* компенсируем padding-top, чтобы колесо осталось на месте */
+  height: 340px;
   perspective: 1200px;
   perspective-origin: 50% 25%;
 }
@@ -370,7 +378,7 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 }
 .wheel-tilt {
   position: absolute;
-  top: 18px;
+  top: 50px;
   left: 50%;
   width: 340px;
   height: 340px;
@@ -385,7 +393,7 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 
 .ball-layer {
   position: absolute;
-  top: 18px;
+  top: 50px;
   left: 50%;
   width: 340px;
   height: 340px;
@@ -407,46 +415,40 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
   will-change: left, top;
 }
 
-/* Табло истории — вертикальное, новое снизу */
+/* Табло истории — компактнее и в верхней зоне */
 .wheel-history-board {
   position: absolute;
-  top: 0; right: 4px;
+  top: 2px; right: 4px;
   z-index: 20;
   display: flex;
   flex-direction: column-reverse;
-  gap: 3px;
-  padding: 6px 6px;
+  gap: 2px;
+  padding: 4px 4px;
   background: linear-gradient(180deg, rgba(20,10,5,0.96), rgba(10,5,2,0.96));
   border: 1.5px solid rgba(251,191,36,0.55);
   border-radius: 8px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.75);
 }
 .wheel-history-board .rh {
-  width: 22px; height: 22px;
+  width: 16px; height: 16px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 900; border-radius: 50%; color: #fff;
+  font-size: 8px; font-weight: 900; border-radius: 50%; color: #fff;
 }
 .wheel-history-board .rh.red { background: #b91c1c; }
 .wheel-history-board .rh.black { background: #1f2937; }
 .wheel-history-board .rh.green { background: #15803d; }
 .wheel-history-board .rh.empty { background: rgba(255,255,255,0.06); }
 
-/* Сумма ставки — слева сверху */
 .rbet-total-badge {
   position: absolute;
-  top: 0; left: 4px;
+  top: 2px; left: 4px;
   z-index: 20;
-  padding: 6px 10px;
+  padding: 5px 9px;
   background: linear-gradient(180deg, rgba(20,10,5,0.96), rgba(10,5,2,0.96));
   border: 1.5px solid rgba(251,191,36,0.55);
   border-radius: 8px;
-  font-size: 10px;
-  font-weight: 900;
-  color: #fbbf24;
-  letter-spacing: 0.5px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.75);
-  text-align: center;
-  min-width: 78px;
+  font-size: 10px; font-weight: 900; color: #fbbf24; letter-spacing: 0.5px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.75); text-align: center; min-width: 78px;
 }
 .rbet-total-badge .lbl { display:block; font-size:8px; letter-spacing:1.5px; color:#9ca3af; margin-bottom:2px; text-transform:uppercase; }
 .rbet-total-badge b { color: #fff; font-size: 15px; display:block; line-height:1.1; }
@@ -478,8 +480,7 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
   min-width: 16px; height: 16px; padding: 0 3px;
   display: none; align-items: center; justify-content: center;
   background: radial-gradient(circle at 35% 30%, #fde047, #d97706 60%, #78350f);
-  color: #111827; border-radius: 8px;
-  font-size: 8px; font-weight: 900;
+  color: #111827; border-radius: 8px; font-size: 8px; font-weight: 900;
   border: 1.5px solid #fef3c7; z-index: 2;
 }
 .rnum.has-bet .rbet { display: flex; }
@@ -555,19 +556,31 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 <div class="deposit-overlay" id="depositOverlay">
   <div class="deposit-modal">
     <button class="deposit-close" id="depositClose">✕</button>
-    <div class="deposit-title">💰 Пополнить баланс</div>
-    <div class="deposit-sub">Выбери сумму пополнения</div>
-    <div class="deposit-balance">Текущий баланс: <b><span id="depositBalance">1000</span> 🪙</b></div>
+    <div class="deposit-title">⭐ Пополнение через Telegram Stars</div>
+    <div class="deposit-sub">Выбери пакет — оплата проходит внутри Telegram</div>
+    <div class="deposit-balance">Баланс: <b><span id="depositBalance">1000</span> 🪙</b></div>
     <div class="deposit-grid" id="depositGrid">
-      <button class="deposit-amount" data-amt="500">+500 🪙</button>
-      <button class="deposit-amount best" data-amt="1000">+1000 🪙</button>
-      <button class="deposit-amount" data-amt="5000">+5000 🪙</button>
-      <button class="deposit-amount" data-amt="10000">+10000 🪙</button>
-      <button class="deposit-amount" data-amt="50000">+50 000 🪙</button>
-      <button class="deposit-amount" data-amt="100000">+100 000 🪙</button>
+      <button class="deposit-amount" data-amt="500"   data-stars="10">
+        <span class="stars">⭐ 10</span><span class="coins">→ 500 🪙</span>
+      </button>
+      <button class="deposit-amount best" data-amt="1500" data-stars="25">
+        <span class="stars">⭐ 25</span><span class="coins">→ 1500 🪙</span>
+      </button>
+      <button class="deposit-amount" data-amt="3500"  data-stars="50">
+        <span class="stars">⭐ 50</span><span class="coins">→ 3500 🪙</span>
+      </button>
+      <button class="deposit-amount" data-amt="8000"  data-stars="100">
+        <span class="stars">⭐ 100</span><span class="coins">→ 8000 🪙</span>
+      </button>
+      <button class="deposit-amount" data-amt="22000" data-stars="250">
+        <span class="stars">⭐ 250</span><span class="coins">→ 22 000 🪙</span>
+      </button>
+      <button class="deposit-amount" data-amt="50000" data-stars="500">
+        <span class="stars">⭐ 500</span><span class="coins">→ 50 000 🪙</span>
+      </button>
     </div>
-    <button class="deposit-btn" id="depositGo">ПОПОЛНИТЬ</button>
-    <div class="deposit-note">Демо-пополнение · Игровые монеты.</div>
+    <button class="deposit-btn" id="depositGo">ОПЛАТИТЬ</button>
+    <div class="deposit-note">Оплата идёт через Telegram Stars · Игровые монеты не выводятся.</div>
   </div>
 </div>
 
@@ -631,7 +644,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
         <button id="autoBtn">⚡ АВТО ×5</button>
         <button id="shareBtn">📤 Поделиться</button>
       </div>
-      <button class="reset" id="reset">Сбросить баланс</button>
       <div class="message" id="message"></div>
     </div>
     <div class="panel"><div class="panel-title">🎖 Достижения</div><div class="achievements" id="achGrid"></div></div>
@@ -735,35 +747,19 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
                 <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
               </radialGradient>
             </defs>
-
             <circle cx="170" cy="170" r="169" fill="url(#gWoodOuter)"/>
             <circle cx="170" cy="170" r="169" fill="none" stroke="#2a1405" stroke-width="0.6" opacity="0.4"/>
-            <circle cx="170" cy="170" r="158" fill="none" stroke="#8a5420" stroke-width="0.4" opacity="0.5"/>
-            <circle cx="170" cy="170" r="150" fill="none" stroke="#8a5420" stroke-width="0.4" opacity="0.4"/>
-
             <circle cx="170" cy="170" r="168" fill="none" stroke="url(#gChrome)" stroke-width="3"/>
             <circle cx="170" cy="170" r="162" fill="none" stroke="#000" stroke-width="1"/>
-
             <circle cx="170" cy="170" r="162" fill="#0a0a0a"/>
-            <circle cx="170" cy="170" r="158" fill="none" stroke="#1f2937" stroke-width="0.8"/>
-
             <circle cx="170" cy="170" r="154" fill="none" stroke="url(#gChromeRing)" stroke-width="6"/>
-            <circle cx="170" cy="170" r="148" fill="#000"/>
             <circle cx="170" cy="170" r="148" fill="url(#gTrack)"/>
-
             <circle cx="170" cy="170" r="146" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
-
             <g id="sectorsG"></g>
             <g id="numbersG"></g>
-
             <circle cx="170" cy="170" r="112" fill="none" stroke="url(#gChrome)" stroke-width="2"/>
-            <circle cx="170" cy="170" r="110" fill="none" stroke="#000" stroke-width="0.6"/>
-
             <circle cx="170" cy="170" r="109" fill="url(#gWoodInner)"/>
-            <circle cx="170" cy="170" r="109" fill="none" stroke="#3a2008" stroke-width="0.6"/>
-
             <g id="spokesG"></g>
-
             <circle cx="170" cy="170" r="60" fill="#0a0a0a"/>
             <circle cx="170" cy="170" r="58" fill="url(#gHub)"/>
             <circle cx="170" cy="170" r="50" fill="#0a0a0a"/>
@@ -776,7 +772,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
             <circle cx="170" cy="170" r="14" fill="url(#gHub)"/>
             <circle cx="170" cy="170" r="6" fill="#f8fafc"/>
             <circle cx="170" cy="170" r="3" fill="#ffffff"/>
-
             <ellipse cx="130" cy="100" rx="90" ry="55" fill="url(#gHighlight)" pointer-events="none"/>
           </svg>
         </div>
@@ -893,7 +888,14 @@ function coinClink(delay,vol){
   playTone(b*1.93,0.11,'sine',vol*0.65,delay+0.004);
 }
 function soundReelTick(){ noiseBurst(0.008,0.04,4500,0,4); playTone(1600,0.006,'sine',0.012,0); }
-function soundReelStop(){ noiseBurst(0.03,0.15,1400,0,6); playTone(180,0.06,'square',0.12,0); playTone(1200,0.05,'sine',0.08,0.01); }
+/* Глухой мягкий стоп барабана — как камень о дерево, тихо */
+function soundReelStop(){
+  // низкий глухой "тук" — без резких высоких частот
+  const ctx=getAudio(); if(!ctx||ctx.state!=='running') return;
+  noiseBurst(0.05,0.08,320,0,3);
+  playTone(140,0.09,'sine',0.10,0);
+  playTone(90,0.13,'triangle',0.07,0.01);
+}
 function soundWin(){ [0,.08,.16,.24].forEach((d,i)=>playTone(660*Math.pow(1.26,i),0.22,'triangle',0.13,d)); }
 function soundLose(){ playTone(280,0.18,'sine',0.09,0); playTone(196,0.28,'sine',0.09,0.16); }
 function soundJackpot(){
@@ -903,36 +905,22 @@ function soundJackpot(){
 function soundCard(){ noiseBurst(0.09,0.06,900,0,5); playTone(720,0.04,'sine',0.04,0); }
 function soundScatter(){ [659,988,1319,1976].forEach((f,i)=>playTone(f,0.22,'triangle',0.15,i*0.10)); }
 function soundChip(){ playTone(1400,0.025,'triangle',0.05,0); playTone(2100,0.02,'sine',0.035,0.005); }
-
-/* Глухой мягкий тик колеса */
 function soundWheelTick(p){
   const vol = 0.015 + (1-p) * 0.022;
   noiseBurst(0.010, vol, 2200 + Math.random()*500, 0, 10);
   playTone(1050 + Math.random()*300, 0.010, 'triangle', vol*0.5, 0);
 }
-
-/* ====== МЕТАЛЛИЧЕСКОЕ "ТЫН-ТЫН-ТЫН" — шарик падает в сектор ====== */
 function soundBallDrop(){
-  // Серия коротких металлических ударов, ускоряющихся и затихающих
-  // Плюс финальный "дзынь" когда шар попадает в карман
-  const ctx = getAudio(); if(!ctx || ctx.state!=='running') return;
-  const t0 = ctx.currentTime;
-  
-  // 12 быстрых металлических тиков с интервалом ~55 мс, затухающие
   let t = 0;
   for (let i = 0; i < 12; i++){
     const f = 2600 + Math.random()*1800 - i*80;
     const vol = 0.06 * (1 - i/12) + 0.01;
-    // Металлический "тик" — короткий импульс с двумя гармониками
-    const delay = t;
-    playTone(f, 0.028, 'sine', vol, delay);
-    playTone(f * 1.87, 0.020, 'sine', vol * 0.6, delay + 0.001);
-    playTone(f * 2.65, 0.014, 'sine', vol * 0.35, delay + 0.002);
-    noiseBurst(0.008, vol * 0.6, f * 0.8, delay, 14);
-    t += 0.052 + i * 0.006; // интервал слегка растёт — шар замедляется
+    playTone(f, 0.028, 'sine', vol, t);
+    playTone(f * 1.87, 0.020, 'sine', vol * 0.6, t + 0.001);
+    playTone(f * 2.65, 0.014, 'sine', vol * 0.35, t + 0.002);
+    noiseBurst(0.008, vol * 0.6, f * 0.8, t, 14);
+    t += 0.052 + i * 0.006;
   }
-  
-  // Финальный акцент — шар упал в карман (два тона)
   setTimeout(() => {
     playTone(1100, 0.10, 'triangle', 0.10, 0);
     playTone(1650, 0.14, 'sine', 0.08, 0.015);
@@ -1039,7 +1027,6 @@ function progressDaily(id,amt){daily.progress[id]=(daily.progress[id]||0)+amt;sa
 const headerBalance=document.getElementById('headerBalance');
 const profileBalance=document.getElementById('profileBalance');
 const spinButton=document.getElementById('spin');
-const resetButton=document.getElementById('reset');
 const resetStatsBtn=document.getElementById('resetStats');
 const shareBtn=document.getElementById('shareBtn');
 const autoBtn=document.getElementById('autoBtn');
@@ -1190,7 +1177,7 @@ maxBtn.addEventListener('click',()=>{
 function updateControls(){
   const l=isSpinning;
   spinButton.disabled=l; maxBtn.disabled=l; betButtons.forEach(b=>b.disabled=l);
-  resetButton.disabled=l; resetStatsBtn.disabled=l; shareBtn.disabled=l;
+  resetStatsBtn.disabled=l; shareBtn.disabled=l;
   if(autoRunning){autoBtn.disabled=false;autoBtn.textContent='⏹ СТОП';autoBtn.classList.add('auto-running');}
   else {autoBtn.disabled=l;autoBtn.textContent='⚡ АВТО ×5';autoBtn.classList.remove('auto-running');}
 }
@@ -1250,10 +1237,6 @@ function showToast(t){
 }
 spinButton.addEventListener('click',spin);
 autoBtn.addEventListener('click',()=>{if(autoRunning)autoRunning=false;else startAuto();});
-resetButton.addEventListener('click',()=>{
-  if(!confirm('Сбросить баланс?'))return;
-  balance=START_BALANCE;saveBalance();updateBalanceUI();messageEl.textContent='Баланс сброшен';checkAchievements();
-});
 const SHARE_URL='https://t.me/kyrgyz_casino_bot/minicasino';
 function doShare(){
   const text='Я играю в 🎰 Kyrgyz Casino!';
@@ -1272,9 +1255,11 @@ function showScreen(id){
 }
 document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>showScreen('screen-menu')));
 
-/* ============ DEPOSIT ============ */
+/* ============ DEPOSIT (Telegram Stars) ============ */
 const depositOverlay=document.getElementById('depositOverlay');
-let selectedDepositAmount=1000;
+let selectedDepositAmount=1500;
+let selectedDepositStars=25;
+
 document.getElementById('depositBtn').addEventListener('click',()=>{
   depositOverlay.classList.add('open'); updateBalanceUI();
 });
@@ -1286,15 +1271,65 @@ document.querySelectorAll('.deposit-amount').forEach(b=>{
   b.addEventListener('click',()=>{
     document.querySelectorAll('.deposit-amount').forEach(x=>x.classList.remove('best'));
     b.classList.add('best');
-    selectedDepositAmount=parseInt(b.dataset.amt,10);
+    selectedDepositAmount = parseInt(b.dataset.amt,10);
+    selectedDepositStars  = parseInt(b.dataset.stars,10);
     soundChip();
   });
 });
-document.getElementById('depositGo').addEventListener('click',()=>{
+
+/*
+  Оплата через Telegram Stars.
+  Фронт вызывает tg.invokeMethod? Нет — оплата делается на бэкенде бота:
+  1) Бот присылает инвойс-ссылку через createInvoiceLink (XTR).
+  2) Мы открываем её через tg.openInvoice.
+  3) Бот по successful_payment зачисляет монеты у себя.
+  Здесь: запрашиваем у нашего бота (условно https://t.me/kyrgyz_casino_bot)
+  создать инвойс. Если бэкенда пока нет — fallback: имитируем зачисление.
+*/
+document.getElementById('depositGo').addEventListener('click', async ()=>{
   unlockAudio();
-  balance+=selectedDepositAmount;
+  const stars = selectedDepositStars;
+  const coins = selectedDepositAmount;
+
+  // Пытаемся открыть реальную оплату через Telegram Stars, если бот поддерживает
+  if (tg && typeof tg.openInvoice === 'function') {
+    try {
+      // TODO: подставь сюда свой URL бэкенда, который вызывает createInvoiceLink
+      // и возвращает { invoice_link: "https://t.me/invoice/..." }
+      const resp = await fetch('https://your-backend.example.com/create-invoice', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ user_id: userId || 0, stars, coins, title: coins+' игровых монет' })
+      });
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data && data.invoice_link){
+          tg.openInvoice(data.invoice_link, (status)=>{
+            if (status === 'paid'){
+              // Сервер сам зачислит монеты после successful_payment.
+              // Здесь просто обновим баланс из своей локальной копии при следующем запросе.
+              soundJackpot();
+              showBanner('⭐ Оплата прошла!', true);
+            } else if (status === 'cancelled'){
+              showToast('Оплата отменена');
+            }
+          });
+          return;
+        }
+      }
+    } catch(e){
+      // бэкенда нет — идём в fallback
+    }
+  }
+
+  // ==== Fallback (демо-режим, когда бэкенда ещё нет) ====
+  // Спрашиваем подтверждение и начисляем локально, чтобы можно было поиграть.
+  const ok = confirm('Оплата ' + stars + ' ⭐ за ' + coins + ' 🪙\n\nЭто демо-режим: монеты будут зачислены без реальной оплаты.\nПродолжить?');
+  if (!ok) return;
+
+  balance += coins;
   saveBalance(); updateBalanceUI();
-  soundWin(); showBanner('+'+selectedDepositAmount+' 🪙',false);
+  soundJackpot(); showBanner('+' + coins + ' 🪙', true);
   depositOverlay.classList.remove('open');
   checkAchievements();
 });
@@ -1416,7 +1451,7 @@ document.getElementById('profileClose').addEventListener('click',closeProfile);
 profileOverlay.addEventListener('click',closeProfile);
 
 /* ================================================== */
-/* ============ BLACKJACK — 3 БОКСА ================= */
+/* ============ BLACKJACK ========================== */
 /* ================================================== */
 const BJ_SUITS=['♠','♥','♦','♣'];
 const BJ_RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
@@ -1723,11 +1758,8 @@ function bjUpdateBetUI(){
 const EURO_ORDER = [0,32,15,19,4,21,2,25,17,34,6,27,13,36,11,30,8,23,10,5,24,16,33,1,20,14,31,9,22,18,29,7,28,12,35,3,26];
 const RED_NUMS = new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]);
 const SEG_DEG = 360 / 37;
-const TILT_COS = 0.530; // cos(58°)
-const rState = {
-  chip: 1, bets: {}, history: [],
-  spinning: false, wheelAngle: 0, ballAngle: 0
-};
+const TILT_COS = 0.530;
+const rState = { chip: 1, bets: {}, history: [], spinning: false, wheelAngle: 0, ballAngle: 0 };
 const rHistory = [];
 function rIsRed(n){ return RED_NUMS.has(n); }
 function polToXY(cx, cy, r, deg){
@@ -1749,8 +1781,7 @@ function buildWheelSVG(){
   const svg = document.getElementById('wheelSvg');
   if (!svg) return;
   svg.setAttribute('viewBox', '0 0 340 340');
-  const cx = 170, cy = 170;
-  const rIn = 112, rOut = 146;
+  const cx = 170, cy = 170, rIn = 112, rOut = 146;
   const sectorsG = document.getElementById('sectorsG');
   const numbersG = document.getElementById('numbersG');
   sectorsG.innerHTML = ''; numbersG.innerHTML = '';
@@ -1765,7 +1796,6 @@ function buildWheelSVG(){
     path.setAttribute('fill', color);
     path.setAttribute('stroke', '#000');
     path.setAttribute('stroke-width', '0.6');
-    path.setAttribute('stroke-opacity', '0.9');
     sectorsG.appendChild(path);
     const mid = polToXY(cx, cy, (rIn + rOut) / 2, aCenter);
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -1783,27 +1813,19 @@ function buildWheelSVG(){
   }
   const spokesG = document.getElementById('spokesG');
   spokesG.innerHTML = '';
-  const spokesCount = 8;
-  for (let i = 0; i < spokesCount; i++){
-    const a = i * (360 / spokesCount) + 22.5;
+  for (let i = 0; i < 8; i++){
+    const a = i * 45 + 22.5;
     const p1 = polToXY(cx, cy, 60, a);
     const p2 = polToXY(cx, cy, 108, a);
     const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    ln.setAttribute('x1', p1.x.toFixed(2));
-    ln.setAttribute('y1', p1.y.toFixed(2));
-    ln.setAttribute('x2', p2.x.toFixed(2));
-    ln.setAttribute('y2', p2.y.toFixed(2));
-    ln.setAttribute('stroke', '#0f172a');
-    ln.setAttribute('stroke-width', '1.6');
-    ln.setAttribute('stroke-linecap', 'round');
+    ln.setAttribute('x1', p1.x.toFixed(2)); ln.setAttribute('y1', p1.y.toFixed(2));
+    ln.setAttribute('x2', p2.x.toFixed(2)); ln.setAttribute('y2', p2.y.toFixed(2));
+    ln.setAttribute('stroke', '#0f172a'); ln.setAttribute('stroke-width', '1.6');
     spokesG.appendChild(ln);
     const hl = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    hl.setAttribute('x1', (p1.x - 0.6).toFixed(2));
-    hl.setAttribute('y1', (p1.y - 0.6).toFixed(2));
-    hl.setAttribute('x2', (p2.x - 0.6).toFixed(2));
-    hl.setAttribute('y2', (p2.y - 0.6).toFixed(2));
-    hl.setAttribute('stroke', '#cbd5e1');
-    hl.setAttribute('stroke-width', '0.5');
+    hl.setAttribute('x1', (p1.x - 0.6).toFixed(2)); hl.setAttribute('y1', (p1.y - 0.6).toFixed(2));
+    hl.setAttribute('x2', (p2.x - 0.6).toFixed(2)); hl.setAttribute('y2', (p2.y - 0.6).toFixed(2));
+    hl.setAttribute('stroke', '#cbd5e1'); hl.setAttribute('stroke-width', '0.5');
     hl.setAttribute('opacity', '0.85');
     spokesG.appendChild(hl);
   }
@@ -1813,8 +1835,7 @@ function buildTable(){
   if (!t) return;
   t.innerHTML = '';
   const zero = document.createElement('button');
-  zero.className = 'rnum zero';
-  zero.dataset.bet = 'num:0';
+  zero.className = 'rnum zero'; zero.dataset.bet = 'num:0';
   zero.style.gridRow = '1 / span 3'; zero.style.gridColumn = '1';
   zero.innerHTML = '0<span class="rbet" data-rbet="num:0"></span>';
   t.appendChild(zero);
@@ -1826,43 +1847,38 @@ function buildTable(){
       const b = document.createElement('button');
       b.className = 'rnum ' + (rIsRed(n) ? 'red' : 'black');
       b.dataset.bet = 'num:' + n;
-      b.style.gridColumn = String(col + 2);
-      b.style.gridRow = String(row + 1);
+      b.style.gridColumn = String(col + 2); b.style.gridRow = String(row + 1);
       b.innerHTML = n + '<span class="rbet" data-rbet="num:' + n + '"></span>';
       t.appendChild(b);
     }
   }
   for (let row = 0; row < 3; row++){
     const c = document.createElement('button');
-    c.className = 'rnum rcol';
-    c.dataset.bet = 'col:' + (3 - row);
+    c.className = 'rnum rcol'; c.dataset.bet = 'col:' + (3 - row);
     c.style.gridColumn = '14'; c.style.gridRow = String(row + 1);
     c.innerHTML = '2:1<span class="rbet" data-rbet="col:' + (3-row) + '"></span>';
     t.appendChild(c);
   }
   ['1st 12','2nd 12','3rd 12'].forEach((label, i)=>{
     const c = document.createElement('button');
-    c.className = 'rnum rdoz';
-    c.dataset.bet = 'doz:' + (i + 1);
-    c.style.gridColumn = `${2 + i*4} / span 4`;
-    c.style.gridRow = '4';
+    c.className = 'rnum rdoz'; c.dataset.bet = 'doz:' + (i + 1);
+    c.style.gridColumn = `${2 + i*4} / span 4`; c.style.gridRow = '4';
     c.innerHTML = label + '<span class="rbet" data-rbet="doz:' + (i+1) + '"></span>';
     t.appendChild(c);
   });
   const lowRow = [
-    {label:'1 to 18', key:'range:low', cls:''},
-    {label:'EVEN',    key:'parity:even', cls:''},
+    {label:'1 to 18', key:'range:low'},
+    {label:'EVEN',    key:'parity:even'},
     {label:'RED',     key:'color:red', cls:'red'},
     {label:'BLACK',   key:'color:black', cls:'black'},
-    {label:'ODD',     key:'parity:odd', cls:''},
-    {label:'19 to 36',key:'range:high', cls:''},
+    {label:'ODD',     key:'parity:odd'},
+    {label:'19 to 36',key:'range:high'}
   ];
   lowRow.forEach((item, i)=>{
     const c = document.createElement('button');
-    c.className = 'rnum rhalf ' + item.cls;
+    c.className = 'rnum rhalf ' + (item.cls||'');
     c.dataset.bet = item.key;
-    c.style.gridColumn = `${2 + i*2} / span 2`;
-    c.style.gridRow = '5';
+    c.style.gridColumn = `${2 + i*2} / span 2`; c.style.gridRow = '5';
     c.innerHTML = item.label + '<span class="rbet" data-rbet="' + item.key + '"></span>';
     t.appendChild(c);
   });
@@ -1922,12 +1938,10 @@ function renderRHistoryBoard(){
   if (!board) return;
   board.innerHTML = '';
   const total = 8;
-  // column-reverse: первый элемент в DOM окажется снизу.
-  // Значит, чтобы новые числа были снизу — первыми добавляем самые свежие.
   for (let i = 0; i < total; i++){
     const cell = document.createElement('div');
     if (i < rHistory.length){
-      const h = rHistory[i]; // rHistory[0] — самое новое
+      const h = rHistory[i];
       cell.className = 'rh ' + (h.n === 0 ? 'green' : (h.red ? 'red' : 'black'));
       cell.textContent = h.n;
     } else {
@@ -1941,8 +1955,7 @@ async function rSpin(){
   const total = Object.values(rState.bets).reduce((a,b)=>a+b, 0);
   if (total <= 0){ showToast('Сначала поставь'); return; }
   rState.spinning = true;
-  const spinBtn = document.getElementById('rSpin');
-  spinBtn.disabled = true;
+  document.getElementById('rSpin').disabled = true;
   const res = document.getElementById('rResult');
   res.className = 'roulette-result neutral';
   res.textContent = 'Крутим...';
@@ -1972,7 +1985,6 @@ async function rSpin(){
   return new Promise(resolve => {
     function frame(now){
       const p = Math.min(1, (now - t0) / duration);
-
       const eW = 1 - Math.pow(1 - p, 3);
       const W = W0 + (W1 - W0) * eW;
       rState.wheelAngle = W;
@@ -1985,7 +1997,6 @@ async function rSpin(){
       rState.ballAngle = B;
 
       const rBall = 150 - 22 * Math.pow(p, 1.7);
-
       const B_rad = B * Math.PI / 180;
       const bx = 170 + rBall * Math.sin(B_rad);
       const by = 170 - rBall * Math.cos(B_rad) * TILT_COS;
@@ -1997,10 +2008,8 @@ async function rSpin(){
         lastTickT = now;
         soundWheelTick(p);
       }
-
-      if (p < 1){
-        requestAnimationFrame(frame);
-      } else {
+      if (p < 1){ requestAnimationFrame(frame); }
+      else {
         rState.wheelAngle = W1;
         rState.ballAngle = Bfinal % 360;
         soundBallDrop();
@@ -2069,8 +2078,6 @@ function finishSpin(num, total, res){
   refreshRouletteUI();
   setTimeout(()=>{ document.getElementById('rPrompt').textContent = 'СДЕЛАЙТЕ СТАВКУ'; }, 1500);
 }
-
-/* Chip buttons */
 document.querySelectorAll('.rchip-btn').forEach(b=>{
   b.addEventListener('click', ()=>{
     if (rState.spinning) return;
