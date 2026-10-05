@@ -45,26 +45,38 @@
     }
     .bonus:disabled { opacity: .45; cursor: default; border-style: solid; color: #9ca3af; border-color: rgba(255,255,255,0.15); background: transparent; }
 
+    /* ==== MACHINE ==== */
     .machine {
-      background: rgba(255,255,255,0.08); border-radius: 22px;
-      padding: 14px 12px; border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(180deg, #1f2937, #0b1220);
+      border-radius: 22px;
+      padding: 14px 12px 18px;
+      border: 2px solid #374151;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .reels-row {
+      display: flex;
+      align-items: stretch;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .slots-wrap {
+      flex: 1;
+      padding: 8px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 16px;
+      box-shadow: inset 0 4px 14px rgba(0,0,0,0.7);
     }
     .slots {
-      display: flex; gap: 8px; justify-content: center;
-      padding: 8px;
-      background: rgba(0,0,0,0.4);
-      border-radius: 16px;
-      margin-bottom: 14px;
-      box-shadow: inset 0 4px 12px rgba(0,0,0,0.6);
+      display: flex; gap: 6px; justify-content: center;
     }
     .slot {
       flex: 1;
       height: 165px;
-      background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
-      border-radius: 12px;
+      background: linear-gradient(180deg, #f3f4f6, #d1d5db 50%, #f3f4f6);
+      border-radius: 10px;
       overflow: hidden;
       position: relative;
-      box-shadow: inset 0 4px 10px rgba(0,0,0,0.35), inset 0 -4px 10px rgba(0,0,0,0.35);
+      box-shadow: inset 0 6px 12px rgba(0,0,0,0.35), inset 0 -6px 12px rgba(0,0,0,0.35), 0 2px 6px rgba(0,0,0,0.4);
     }
     .reel {
       position: absolute; top: 0; left: 0; right: 0;
@@ -74,46 +86,142 @@
       height: 55px;
       display: flex; align-items: center; justify-content: center;
       font-size: 38px; line-height: 1;
-      color: #111827;
       user-select: none;
     }
-    .slot.win { box-shadow: 0 0 0 3px #f59e0b, 0 0 22px #f59e0b, inset 0 4px 10px rgba(0,0,0,0.35); }
+    .slot.win {
+      box-shadow: 0 0 0 3px #f59e0b, 0 0 25px #f59e0b, inset 0 6px 12px rgba(0,0,0,0.3);
+    }
 
+    /* ==== LEVER ==== */
+    .lever-wrap {
+      width: 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+      padding-bottom: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lever-base {
+      width: 42px;
+      height: 14px;
+      border-radius: 7px;
+      background: linear-gradient(180deg, #4b5563, #1f2937);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 3px 6px rgba(0,0,0,0.6);
+      position: relative;
+      z-index: 2;
+    }
+    .lever-arm {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      width: 9px;
+      height: 110px;
+      border-radius: 5px;
+      background: linear-gradient(90deg, #6b7280, #e5e7eb 45%, #6b7280);
+      transform-origin: bottom center;
+      transform: translateX(-50%) rotate(-18deg);
+      transition: transform 0.45s cubic-bezier(.5,-0.4,.6,1.4);
+      z-index: 1;
+    }
+    .lever-arm::after {
+      content: "";
+      position: absolute;
+      top: -20px; left: 50%;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, #ff8c8c 0%, #e11d48 45%, #7f1d1d 100%);
+      box-shadow: 0 6px 14px rgba(159,18,57,0.7), inset 0 -5px 10px rgba(0,0,0,0.35), inset 0 4px 6px rgba(255,255,255,0.35);
+      transform: translateX(-50%);
+    }
+    .lever-wrap.pulled .lever-arm {
+      transform: translateX(-50%) rotate(28deg);
+    }
+    .lever-label {
+      position: absolute;
+      top: 0;
+      font-size: 10px;
+      color: #9ca3af;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ==== BETS ==== */
     .bets-title { font-size: 11px; color: #9ca3af; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
-    .bets { display: flex; gap: 5px; justify-content: center; margin-bottom: 12px; }
+    .bets { display: flex; gap: 5px; justify-content: center; margin-bottom: 14px; }
     .bet {
-      flex: 1; padding: 9px 2px; border-radius: 11px;
-      background: rgba(255,255,255,0.06); color: #fff;
-      border: 1px solid rgba(255,255,255,0.15);
+      flex: 1; padding: 10px 2px; border-radius: 9px;
+      background: linear-gradient(180deg, #374151, #1f2937);
+      color: #e5e7eb;
+      border: 1px solid #4b5563;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 3px 0 #0b1220, 0 4px 8px rgba(0,0,0,0.5);
       font-size: 13px; font-weight: bold; cursor: pointer;
+      transition: all .08s;
     }
-    .bet.active { background: #f59e0b; color: #111827; border-color: #f59e0b; }
-    .bet.max { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.5); color: #fca5a5; }
+    .bet:active:not(:disabled) { transform: translateY(2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 0 #0b1220; }
+    .bet.active {
+      background: linear-gradient(180deg, #fbbf24, #d97706);
+      color: #111827; border-color: #f59e0b;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 3px 0 #78350f, 0 4px 10px rgba(245,158,11,0.5);
+    }
+    .bet.max {
+      background: linear-gradient(180deg, #7f1d1d, #450a0a);
+      color: #fecaca; border-color: #991b1b;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 3px 0 #1c0606, 0 4px 8px rgba(0,0,0,0.5);
+    }
 
+    /* ==== SPIN BUTTON (круглая, как на автомате) ==== */
+    .spin-wrap { display: flex; justify-content: center; margin-bottom: 10px; }
     button.spin {
-      width: 100%; border: 0; border-radius: 16px; padding: 15px;
-      font-size: 18px; font-weight: bold; cursor: pointer;
-      background: #f59e0b; color: #111827;
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      border: 4px solid #7f1d1d;
+      background: radial-gradient(circle at 35% 30%, #ff6b6b 0%, #dc2626 35%, #991b1b 70%, #450a0a 100%);
+      box-shadow:
+        0 10px 24px rgba(220,38,38,0.55),
+        inset 0 -8px 14px rgba(0,0,0,0.4),
+        inset 0 8px 12px rgba(255,255,255,0.35);
+      color: #fff;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      cursor: pointer;
+      transition: transform .08s, box-shadow .08s;
     }
-    button:disabled { opacity: .5; }
+    button.spin:active:not(:disabled) {
+      transform: translateY(3px) scale(0.98);
+      box-shadow: 0 4px 12px rgba(220,38,38,0.5), inset 0 -4px 10px rgba(0,0,0,0.4), inset 0 4px 8px rgba(255,255,255,0.25);
+    }
+    button.spin:disabled { opacity: .55; cursor: not-allowed; }
 
-    .actions { display: flex; gap: 8px; margin-top: 10px; }
+    .actions { display: flex; gap: 8px; margin-top: 6px; }
     .actions button {
-      flex: 1; padding: 11px; border-radius: 13px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.06); color: white;
+      flex: 1; padding: 11px; border-radius: 12px;
+      border: 1px solid #4b5563;
+      background: linear-gradient(180deg, #374151, #1f2937);
+      color: white;
       font-weight: bold; font-size: 13px; cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 3px 0 #0b1220;
+      transition: all .08s;
     }
-    .actions button.auto-running { background: #ef4444; border-color: #ef4444; }
+    .actions button:active:not(:disabled) { transform: translateY(2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 0 #0b1220; }
+    .actions button.auto-running {
+      background: linear-gradient(180deg, #dc2626, #991b1b);
+      border-color: #ef4444;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 3px 0 #450a0a;
+    }
 
     .reset {
-      margin-top: 10px; padding: 9px; font-size: 12px; font-weight: normal;
-      width: 100%; border-radius: 13px; cursor: pointer;
+      margin-top: 8px; padding: 9px; font-size: 12px; font-weight: normal;
+      width: 100%; border-radius: 12px; cursor: pointer;
       background: transparent; color: #9ca3af;
       border: 1px solid rgba(255,255,255,0.15);
     }
 
-    .message { min-height: 26px; margin-top: 12px; font-weight: bold; font-size: 14px; }
+    .message { min-height: 26px; margin-top: 10px; font-weight: bold; font-size: 14px; }
 
     .panel {
       margin-top: 14px; padding: 12px;
@@ -163,9 +271,9 @@
     .history-list { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; min-height: 26px; }
     .history-item {
       background: rgba(255,255,255,0.1); border-radius: 7px;
-      padding: 3px 6px; font-size: 12px; font-weight: bold;
+      padding: 3px 6px; font-size: 14px; letter-spacing: 1px;
     }
-    .history-item.jackpot { background: rgba(245,158,11,0.3); color: #f59e0b; }
+    .history-item.jackpot { background: rgba(245,158,11,0.3); }
 
     .info { color: #9ca3af; font-size: 11px; margin-top: 12px; }
 
@@ -223,10 +331,19 @@
     <button class="bonus" id="bonus">🎁 Забрать бонус +500</button>
 
     <div class="machine">
-      <div class="slots">
-        <div class="slot" id="slot0"><div class="reel" id="reel0"></div></div>
-        <div class="slot" id="slot1"><div class="reel" id="reel1"></div></div>
-        <div class="slot" id="slot2"><div class="reel" id="reel2"></div></div>
+      <div class="reels-row">
+        <div class="slots-wrap">
+          <div class="slots">
+            <div class="slot" id="slot0"><div class="reel" id="reel0"></div></div>
+            <div class="slot" id="slot1"><div class="reel" id="reel1"></div></div>
+            <div class="slot" id="slot2"><div class="reel" id="reel2"></div></div>
+          </div>
+        </div>
+        <div class="lever-wrap" id="lever">
+          <div class="lever-label">СПИН</div>
+          <div class="lever-arm"></div>
+          <div class="lever-base"></div>
+        </div>
       </div>
 
       <div class="bets-title">Ставка</div>
@@ -238,7 +355,9 @@
         <button class="bet max" id="maxBtn">МАКС</button>
       </div>
 
-      <button class="spin" id="spin">КРУТИТЬ — 50 🪙</button>
+      <div class="spin-wrap">
+        <button class="spin" id="spin">СПИН</button>
+      </div>
 
       <div class="actions">
         <button id="autoBtn">⚡ АВТО ×5</button>
@@ -290,7 +409,7 @@
       document.getElementById('greeting').textContent = 'Привет, гость! (вне Telegram)';
     }
 
-    // ========== Звук ==========
+    // ========== ЗВУК (Web Audio, всё через ctx.currentTime) ==========
     let audioCtx = null;
     function getAudio() {
       if (!audioCtx) { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
@@ -303,58 +422,101 @@
     ['touchstart','click','touchend'].forEach(ev =>
       document.addEventListener(ev, unlockAudio, { passive: true }));
 
-    function playTone(freq, dur, type = 'sine', vol = 0.15, when = 0) {
+    // Универсальный тон с задержкой (в секундах)
+    function playTone(freq, dur, type, vol, delay) {
       const ctx = getAudio();
       if (!ctx || ctx.state !== 'running') return;
-      try {
-        const t0 = ctx.currentTime + when;
-        const o = ctx.createOscillator(), g = ctx.createGain();
-        o.type = type; o.frequency.value = freq;
-        g.gain.setValueAtTime(vol, t0);
-        g.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
-        o.connect(g); g.connect(ctx.destination);
-        o.start(t0); o.stop(t0 + dur);
-      } catch (e) {}
+      delay = delay || 0;
+      const t0 = ctx.currentTime + delay;
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = type || 'sine';
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.exponentialRampToValueAtTime(vol || 0.15, t0 + 0.005);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+      o.connect(g); g.connect(ctx.destination);
+      o.start(t0); o.stop(t0 + dur + 0.02);
     }
 
-    // Глухой стук барабана
+    // Шумовой всплеск (для механических звуков)
+    function noiseBurst(dur, vol, filterFreq, delay) {
+      const ctx = getAudio();
+      if (!ctx || ctx.state !== 'running') return;
+      delay = delay || 0;
+      const sr = ctx.sampleRate;
+      const len = Math.max(1, Math.floor(sr * dur));
+      const buf = ctx.createBuffer(1, len, sr);
+      const data = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) {
+        const env = Math.pow(1 - i / len, 2.5);
+        data[i] = (Math.random() * 2 - 1) * env;
+      }
+      const src = ctx.createBufferSource();
+      src.buffer = buf;
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.value = filterFreq;
+      filter.Q.value = 3;
+      const gain = ctx.createGain();
+      gain.gain.value = vol;
+      src.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
+      const t0 = ctx.currentTime + delay;
+      src.start(t0);
+      src.stop(t0 + dur + 0.02);
+    }
+
+    // ГЛУХОЙ ЩЁЛК барабана — шум + низкий тон
     function soundReelTick() {
-      playTone(120, 0.025, 'square', 0.06);
-      playTone(75, 0.04, 'sine', 0.05);
+      noiseBurst(0.018, 0.28, 1800, 0);
+      playTone(90, 0.025, 'square', 0.06, 0);
     }
-    // Дзынь остановки
+
+    // ТУК остановки барабана — низкий удар + металлический отзвук
     function soundReelStop() {
-      playTone(760, 0.06, 'sine', 0.16);
-      playTone(1520, 0.09, 'sine', 0.09);
-      playTone(180, 0.05, 'square', 0.05);
+      playTone(140, 0.14, 'sine', 0.22, 0);
+      playTone(70, 0.18, 'sine', 0.16, 0);
+      noiseBurst(0.05, 0.2, 500, 0);
+      // Металлический "дзынь"
+      playTone(1600, 0.09, 'sine', 0.10, 0.01);
+      playTone(2400, 0.06, 'sine', 0.06, 0.02);
     }
-    // Одиночный звон монеты
-    function coinDing(when, freq, vol) {
-      setTimeout(() => {
-        playTone(freq, 0.10, 'sine', vol);
-        playTone(freq * 1.7, 0.06, 'triangle', vol * 0.6);
-        playTone(freq * 2.5, 0.04, 'sine', vol * 0.4);
-      }, when);
+
+    // МЕТАЛЛИЧЕСКИЙ ЗВОН МОНЕТЫ (несколько негармонических обертонов)
+    function coinClink(delay, vol) {
+      vol = vol || 0.14;
+      const baseF = 1900 + Math.random() * 900;
+      playTone(baseF,       0.14, 'sine', vol,        delay);
+      playTone(baseF*1.34,  0.11, 'sine', vol*0.75,   delay + 0.003);
+      playTone(baseF*1.78,  0.09, 'sine', vol*0.55,   delay + 0.006);
+      playTone(baseF*2.53,  0.06, 'sine', vol*0.35,   delay + 0.009);
+      playTone(baseF*3.11,  0.04, 'sine', vol*0.20,   delay + 0.012);
     }
-    // Выигрыш — звон монет (7-10 монет)
+
+    // ВЫИГРЫШ — 6-8 монет быстрым перезвоном
     function soundWin() {
-      for (let i = 0; i < 9; i++) {
-        const freq = 1700 + Math.random() * 1300;
-        coinDing(i * 70 + Math.random() * 30, freq, 0.16);
+      const n = 7;
+      for (let i = 0; i < n; i++) {
+        coinClink(i * 0.075 + Math.random() * 0.025, 0.13);
       }
     }
-    // Джекпот — фанфары + длинный каскад монет
+
+    // ДЖЕКПОТ — фанфары + длинный каскад монет
     function soundJackpot() {
-      const fanfare = [523, 659, 784, 1047, 1319];
-      fanfare.forEach((f, i) => setTimeout(() => playTone(f, 0.18, 'sine', 0.20), i * 100));
-      for (let i = 0; i < 35; i++) {
-        const freq = 1400 + Math.random() * 2400;
-        coinDing(600 + i * 70 + Math.random() * 40, freq, 0.14 + Math.random() * 0.08);
+      // Фанфары (аккорд-восходящая)
+      const fanfare = [523, 659, 784, 1047];
+      fanfare.forEach((f, i) => {
+        playTone(f,     0.22, 'square', 0.13, i * 0.09);
+        playTone(f * 2, 0.18, 'square', 0.06, i * 0.09);
+      });
+      // Долгий каскад монет ~2.5 сек
+      for (let i = 0; i < 30; i++) {
+        coinClink(0.45 + i * 0.075 + Math.random() * 0.03, 0.12);
       }
     }
+
     function soundLose() {
-      playTone(320, 0.18, 'sawtooth', 0.06);
-      setTimeout(() => playTone(200, 0.28, 'sawtooth', 0.06), 140);
+      playTone(320, 0.16, 'sawtooth', 0.06, 0);
+      playTone(200, 0.26, 'sawtooth', 0.06, 0.14);
     }
 
     // ========== Хранилище ==========
@@ -511,6 +673,7 @@
     const maxBtn = document.getElementById('maxBtn');
     const messageEl = document.getElementById('message');
     const bonusBtn = document.getElementById('bonus');
+    const leverEl = document.getElementById('lever');
     const betButtons = document.querySelectorAll('.bet[data-bet]');
     const slotEls = [
       document.getElementById('slot0'),
@@ -530,7 +693,6 @@
     // ========== Ставка ==========
     function updateBetUI() {
       betButtons.forEach(b => b.classList.toggle('active', parseInt(b.dataset.bet, 10) === bet));
-      spinButton.textContent = 'КРУТИТЬ — ' + bet + ' 🪙';
     }
     betButtons.forEach(b => b.addEventListener('click', () => {
       bet = parseInt(b.dataset.bet, 10);
@@ -591,7 +753,7 @@
       history.slice(0, 5).forEach(item => {
         const d = document.createElement('div');
         d.className = 'history-item' + (item.jackpot ? ' jackpot' : '');
-        d.textContent = item.symbols.join(' ');
+        d.textContent = item.symbols.join('');
         el.appendChild(d);
       });
     }
@@ -649,13 +811,11 @@
 
     // ========== БАРАБАНЫ ==========
     const SYMBOLS = ["🍒", "🍋", "🍊", "🍇", "🍉", "🍌", "🔔", "⭐", "💎", "7️⃣"];
-    const SYM_H = 55;                 // высота одного символа в px
-    const WINDOW_H = SYM_H * 3;       // 165, окно показывает 3 символа
+    const SYM_H = 55;
     const CYCLE_LEN = SYMBOLS.length * SYM_H;   // 550
-    const STRIP_CYCLES = 14;          // сколько циклов в ленте (для запаса)
-    const STRIP_LEN = STRIP_CYCLES * CYCLE_LEN;
+    const STRIP_CYCLES = 6;
+    const STRIP_LEN = STRIP_CYCLES * CYCLE_LEN; // 3300
 
-    // Текущие translateY каждой ленты
     const reelOffsets = [0, 0, 0];
 
     function buildStrip(el) {
@@ -673,60 +833,75 @@
     function initReels() {
       reelEls.forEach((el, i) => {
         buildStrip(el);
-        // стартовое положение: середина = символ с индексом i
-        reelOffsets[i] = SYM_H * (1 - i);
-        el.style.transform = 'translateY(' + reelOffsets[i] + 'px)';
+        // стартовое: показать в середине симв. с индексом i*3 (🍒,🍇,🔔)
+        let y = SYM_H * (1 - i * 3);
+        // нормализуем в [-CYCLE_LEN, 0)
+        y = ((y % CYCLE_LEN) + CYCLE_LEN) % CYCLE_LEN - CYCLE_LEN;
+        reelOffsets[i] = y;
+        el.style.transform = 'translateY(' + y + 'px)';
       });
     }
 
-    function vibrate(type = 'medium') {
+    // Нормализовать смещение: после спина оно должно быть в [-CYCLE_LEN, 0)
+    function normalizeOffset(y) {
+      return ((y % CYCLE_LEN) + CYCLE_LEN) % CYCLE_LEN - CYCLE_LEN;
+    }
+
+    function vibrate(type) {
+      type = type || 'medium';
       if (tg?.HapticFeedback) tg.HapticFeedback.impactOccurred(type);
       else if (navigator.vibrate) navigator.vibrate(30);
     }
     function clearWinGlow() { slotEls.forEach(s => s.classList.remove('win')); }
 
-    // Куда сдвинуть ленту, чтобы в СЕРЕДИНЕ оказался символ symIdx
-    // Символ symIdx находится в ленте на пикселе symIdx * SYM_H
-    // Хотим, чтобы после сдвига y он оказался в окне на y = SYM_H (середина окна)
-    //   symIdx * SYM_H + y = SYM_H  =>  y = SYM_H * (1 - symIdx)
-    // Добавляем минус K * CYCLE_LEN, чтобы y был сильно отрицательным (эффект кручения)
-    function calcTargetY(currentY, symIdx) {
+    // Куда должна приехать лента, чтобы символ symIdx оказался в середине окна
+    // при условии движения ВНИЗ (offset становится более отрицательным)
+    function calcTargetY(startY, symIdx) {
+      // базовое положение: символ в середине
       const baseY = SYM_H * (1 - symIdx);
-      const minDrop = 3 * CYCLE_LEN; // минимум 3 полных оборота
-      const K = Math.ceil((baseY - currentY + minDrop) / CYCLE_LEN);
+      // хотим ниже startY как минимум на 3 цикла
+      const minDrop = 3 * CYCLE_LEN;
+      const need = baseY - startY + minDrop;
+      const K = Math.max(3, Math.ceil(need / CYCLE_LEN));
       return baseY - K * CYCLE_LEN;
     }
 
-    // Анимировать один барабан от currentY до targetY с ease-out
+    // ========== Анимация одного барабана ==========
     function animateReel(reelIdx, targetSymIdx, duration) {
       return new Promise(resolve => {
         const startY = reelOffsets[reelIdx];
         const targetY = calcTargetY(startY, targetSymIdx);
         const startTime = performance.now();
-        let lastTickIdx = Math.floor(-startY / SYM_H);
+        let lastTickSym = Math.floor(-startY / SYM_H);
         let lastTickTime = 0;
+        let soundEnabled = true;
 
         function frame(t) {
           const elapsed = t - startTime;
-          const progress = Math.min(1, elapsed / duration);
-          const eased = 1 - Math.pow(1 - progress, 4);   // ease-out quart
+          const p = Math.min(1, elapsed / duration);
+          // ease-out quint: очень плавное торможение в конце
+          const eased = 1 - Math.pow(1 - p, 5);
           const y = startY + (targetY - startY) * eased;
           reelOffsets[reelIdx] = y;
           reelEls[reelIdx].style.transform = 'translateY(' + y + 'px)';
 
-          // Стук при проходе нового символа через верх окна
-          const tickIdx = Math.floor(-y / SYM_H);
-          if (tickIdx > lastTickIdx) {
-            if (t - lastTickTime > 32) {  // ограничение ~30 тиков/сек
+          // стук при проходе нового символа
+          const curSym = Math.floor(-y / SYM_H);
+          if (curSym !== lastTickSym && soundEnabled) {
+            if (t - lastTickTime > 38) {
               soundReelTick();
               lastTickTime = t;
             }
-            lastTickIdx = tickIdx;
+            lastTickSym = curSym;
           }
 
-          if (progress >= 1) {
+          if (p >= 1) {
             soundReelStop();
             vibrate('light');
+            // сбросить позицию в нормализованный диапазон без визуального прыжка
+            const norm = normalizeOffset(reelOffsets[reelIdx]);
+            reelOffsets[reelIdx] = norm;
+            reelEls[reelIdx].style.transform = 'translateY(' + norm + 'px)';
             resolve();
             return;
           }
@@ -736,16 +911,21 @@
       });
     }
 
-    function animateAllReels(resultIdxs) {
-      // Каждый барабан останавливается в свой момент
-      return Promise.all([
-        animateReel(0, resultIdxs[0], 1500),
-        animateReel(1, resultIdxs[1], 1900),
-        animateReel(2, resultIdxs[2], 2300)
+    // ========== Запуск барабанов ==========
+    async function animateAllReels(midIdxs) {
+      // Тянем рычаг
+      leverEl.classList.add('pulled');
+      setTimeout(() => leverEl.classList.remove('pulled'), 600);
+
+      // Медленнее и дольше: 2.4, 2.9, 3.4 сек
+      await Promise.all([
+        animateReel(0, midIdxs[0], 2400),
+        animateReel(1, midIdxs[1], 2900),
+        animateReel(2, midIdxs[2], 3400)
       ]);
     }
 
-    // ========== Оценка выигрыша ==========
+    // ========== Таблица выплат ==========
     const PAYOUTS = {
       "7️⃣": 40, "💎": 25, "🔔": 15, "⭐": 10,
       "🍇": 8, "🍉": 6, "🍌": 5, "🍊": 4, "🍋": 3, "🍒": 2
@@ -753,7 +933,6 @@
 
     function evaluateGrid(midIdxs) {
       const len = SYMBOLS.length;
-      // Строим видимую сетку: grid[reel][row] где row 0=top, 1=mid, 2=bot
       const grid = [[], [], []];
       for (let r = 0; r < 3; r++) {
         const m = midIdxs[r];
@@ -761,7 +940,6 @@
         grid[r][1] = SYMBOLS[m];
         grid[r][2] = SYMBOLS[(m + 1) % len];
       }
-      // 5 линий: top, mid, bot, diagDown, diagUp
       const lines = [
         [grid[0][0], grid[1][0], grid[2][0]],
         [grid[0][1], grid[1][1], grid[2][1]],
@@ -769,8 +947,7 @@
         [grid[0][0], grid[1][1], grid[2][2]],
         [grid[0][2], grid[1][1], grid[2][0]]
       ];
-      let totalMult = 0;
-      let winLines = 0;
+      let totalMult = 0, winLines = 0;
       lines.forEach(line => {
         if (line[0] === line[1] && line[1] === line[2]) {
           winLines++;
@@ -793,7 +970,6 @@
       messageEl.textContent = 'Крутим...';
       vibrate();
 
-      // Случайные "средние" символы для каждого барабана
       const midIdxs = [
         Math.floor(Math.random() * SYMBOLS.length),
         Math.floor(Math.random() * SYMBOLS.length),
@@ -806,13 +982,10 @@
       const { cur } = getLevel();
       const levelBonus = cur.bonus;
 
-      let win = 0;
-      let isJackpot = false;
+      let win = 0, isJackpot = false;
 
       if (totalMult > 0) {
         win = Math.round(bet * totalMult * (1 + levelBonus / 100));
-
-        // Отмечаем выигрышные слоты (все три подсветить, если есть хоть одна линия)
         slotEls.forEach(s => s.classList.add('win'));
 
         if (totalMult >= 40) {
@@ -829,7 +1002,6 @@
           soundWin();
           showBanner('+' + win, false);
         }
-
         balance += win;
         saveBalance(); updateBalanceUI();
       } else {
@@ -845,7 +1017,6 @@
       renderStats(); renderLevel();
       progressDaily('spins20', 1);
       progressDaily('bet1000', bet);
-      // В истории сохраняем среднюю линию
       addHistory([grid[0][1], grid[1][1], grid[2][1]], isJackpot);
       checkAchievements();
     }
@@ -870,7 +1041,9 @@
       autoRunning = false; isSpinning = false; updateControls();
     }
 
+    // ========== Обработчики ==========
     spinButton.addEventListener('click', spin);
+    leverEl.addEventListener('click', spin);
     autoBtn.addEventListener('click', () => { if (autoRunning) autoRunning = false; else startAuto(); });
 
     resetButton.addEventListener('click', () => {
@@ -881,7 +1054,6 @@
       checkAchievements();
     });
 
-    // ========== Поделиться ==========
     const SHARE_URL = 'https://t.me/kyrgyz_casino_bot/minicasino';
     shareBtn.addEventListener('click', () => {
       const text = 'Я играю в 🎰 Мини-казино! Попробуй и ты — там джекпоты и уровни.';
