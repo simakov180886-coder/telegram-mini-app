@@ -45,7 +45,6 @@
     }
     .bonus:disabled { opacity: .45; cursor: default; border-style: solid; color: #9ca3af; border-color: rgba(255,255,255,0.15); background: transparent; }
 
-    /* ==== MACHINE ==== */
     .machine {
       background: linear-gradient(180deg, #1f2937, #0b1220);
       border-radius: 22px;
@@ -56,11 +55,12 @@
     .reels-row {
       display: flex;
       align-items: stretch;
-      gap: 10px;
+      gap: 8px;
       margin-bottom: 14px;
     }
     .slots-wrap {
-      flex: 1;
+      flex: 1 1 auto;
+      min-width: 0;
       padding: 8px;
       background: rgba(0,0,0,0.5);
       border-radius: 16px;
@@ -81,6 +81,8 @@
     .reel {
       position: absolute; top: 0; left: 0; right: 0;
       will-change: transform;
+      backface-visibility: hidden;
+      transform: translate3d(0, 0, 0);
     }
     .sym {
       height: 55px;
@@ -92,22 +94,23 @@
       box-shadow: 0 0 0 3px #f59e0b, 0 0 25px #f59e0b, inset 0 6px 12px rgba(0,0,0,0.3);
     }
 
-    /* ==== LEVER ==== */
     .lever-wrap {
-      width: 56px;
+      flex: 0 0 44px;
+      width: 44px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
       position: relative;
-      padding-bottom: 8px;
+      padding-bottom: 12px;
       cursor: pointer;
       user-select: none;
+      overflow: visible;
     }
     .lever-base {
-      width: 42px;
-      height: 14px;
-      border-radius: 7px;
+      width: 36px;
+      height: 12px;
+      border-radius: 6px;
       background: linear-gradient(180deg, #4b5563, #1f2937);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 3px 6px rgba(0,0,0,0.6);
       position: relative;
@@ -115,40 +118,40 @@
     }
     .lever-arm {
       position: absolute;
-      bottom: 18px;
+      bottom: 16px;
       left: 50%;
-      width: 9px;
-      height: 110px;
-      border-radius: 5px;
+      width: 7px;
+      height: 100px;
+      border-radius: 4px;
       background: linear-gradient(90deg, #6b7280, #e5e7eb 45%, #6b7280);
       transform-origin: bottom center;
-      transform: translateX(-50%) rotate(-18deg);
-      transition: transform 0.45s cubic-bezier(.5,-0.4,.6,1.4);
+      transform: translate3d(-50%, 0, 0) rotate(-14deg);
+      transition: transform 0.5s cubic-bezier(.5,-0.4,.6,1.4);
       z-index: 1;
+      backface-visibility: hidden;
     }
     .lever-arm::after {
       content: "";
       position: absolute;
       top: -20px; left: 50%;
-      width: 38px; height: 38px;
+      width: 26px; height: 26px;
       border-radius: 50%;
       background: radial-gradient(circle at 32% 28%, #ff8c8c 0%, #e11d48 45%, #7f1d1d 100%);
-      box-shadow: 0 6px 14px rgba(159,18,57,0.7), inset 0 -5px 10px rgba(0,0,0,0.35), inset 0 4px 6px rgba(255,255,255,0.35);
-      transform: translateX(-50%);
+      box-shadow: 0 4px 10px rgba(159,18,57,0.7), inset 0 -4px 8px rgba(0,0,0,0.35), inset 0 3px 5px rgba(255,255,255,0.35);
+      transform: translate3d(-50%, 0, 0);
     }
     .lever-wrap.pulled .lever-arm {
-      transform: translateX(-50%) rotate(28deg);
+      transform: translate3d(-50%, 0, 0) rotate(22deg);
     }
     .lever-label {
       position: absolute;
-      top: 0;
+      top: 4px;
       font-size: 10px;
       color: #9ca3af;
       letter-spacing: 1px;
       text-transform: uppercase;
     }
 
-    /* ==== BETS ==== */
     .bets-title { font-size: 11px; color: #9ca3af; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
     .bets { display: flex; gap: 5px; justify-content: center; margin-bottom: 14px; }
     .bet {
@@ -172,10 +175,9 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 3px 0 #1c0606, 0 4px 8px rgba(0,0,0,0.5);
     }
 
-    /* ==== SPIN BUTTON (круглая, как на автомате) ==== */
     .spin-wrap { display: flex; justify-content: center; margin-bottom: 10px; }
     button.spin {
-      width: 130px; height: 130px;
+      width: 120px; height: 120px;
       border-radius: 50%;
       border: 4px solid #7f1d1d;
       background: radial-gradient(circle at 35% 30%, #ff6b6b 0%, #dc2626 35%, #991b1b 70%, #450a0a 100%);
@@ -184,7 +186,7 @@
         inset 0 -8px 14px rgba(0,0,0,0.4),
         inset 0 8px 12px rgba(255,255,255,0.35);
       color: #fff;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 900;
       letter-spacing: 2px;
       text-shadow: 0 2px 4px rgba(0,0,0,0.6);
@@ -409,7 +411,7 @@
       document.getElementById('greeting').textContent = 'Привет, гость! (вне Telegram)';
     }
 
-    // ========== ЗВУК (Web Audio, всё через ctx.currentTime) ==========
+    // ========== ЗВУК ==========
     let audioCtx = null;
     function getAudio() {
       if (!audioCtx) { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
@@ -422,7 +424,6 @@
     ['touchstart','click','touchend'].forEach(ev =>
       document.addEventListener(ev, unlockAudio, { passive: true }));
 
-    // Универсальный тон с задержкой (в секундах)
     function playTone(freq, dur, type, vol, delay) {
       const ctx = getAudio();
       if (!ctx || ctx.state !== 'running') return;
@@ -438,7 +439,6 @@
       o.start(t0); o.stop(t0 + dur + 0.02);
     }
 
-    // Шумовой всплеск (для механических звуков)
     function noiseBurst(dur, vol, filterFreq, delay) {
       const ctx = getAudio();
       if (!ctx || ctx.state !== 'running') return;
@@ -448,7 +448,7 @@
       const buf = ctx.createBuffer(1, len, sr);
       const data = buf.getChannelData(0);
       for (let i = 0; i < len; i++) {
-        const env = Math.pow(1 - i / len, 2.5);
+        const env = Math.pow(1 - i / len, 3);
         data[i] = (Math.random() * 2 - 1) * env;
       }
       const src = ctx.createBufferSource();
@@ -456,7 +456,7 @@
       const filter = ctx.createBiquadFilter();
       filter.type = 'bandpass';
       filter.frequency.value = filterFreq;
-      filter.Q.value = 3;
+      filter.Q.value = 4;
       const gain = ctx.createGain();
       gain.gain.value = vol;
       src.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
@@ -465,23 +465,22 @@
       src.stop(t0 + dur + 0.02);
     }
 
-    // ГЛУХОЙ ЩЁЛК барабана — шум + низкий тон
+    // Щелчок барабана — чистый тихий "клик"
     function soundReelTick() {
-      noiseBurst(0.018, 0.28, 1800, 0);
-      playTone(90, 0.025, 'square', 0.06, 0);
+      noiseBurst(0.012, 0.18, 2200, 0);
+      playTone(110, 0.02, 'triangle', 0.04, 0);
     }
 
-    // ТУК остановки барабана — низкий удар + металлический отзвук
+    // Остановка барабана — низкий тук + металлический отзвук
     function soundReelStop() {
-      playTone(140, 0.14, 'sine', 0.22, 0);
-      playTone(70, 0.18, 'sine', 0.16, 0);
-      noiseBurst(0.05, 0.2, 500, 0);
-      // Металлический "дзынь"
-      playTone(1600, 0.09, 'sine', 0.10, 0.01);
-      playTone(2400, 0.06, 'sine', 0.06, 0.02);
+      playTone(150, 0.12, 'sine', 0.20, 0);
+      playTone(75, 0.16, 'sine', 0.15, 0);
+      noiseBurst(0.04, 0.15, 600, 0);
+      playTone(1700, 0.08, 'sine', 0.09, 0.01);
+      playTone(2500, 0.05, 'sine', 0.05, 0.02);
     }
 
-    // МЕТАЛЛИЧЕСКИЙ ЗВОН МОНЕТЫ (несколько негармонических обертонов)
+    // Металлический звон монеты
     function coinClink(delay, vol) {
       vol = vol || 0.14;
       const baseF = 1900 + Math.random() * 900;
@@ -492,7 +491,6 @@
       playTone(baseF*3.11,  0.04, 'sine', vol*0.20,   delay + 0.012);
     }
 
-    // ВЫИГРЫШ — 6-8 монет быстрым перезвоном
     function soundWin() {
       const n = 7;
       for (let i = 0; i < n; i++) {
@@ -500,15 +498,12 @@
       }
     }
 
-    // ДЖЕКПОТ — фанфары + длинный каскад монет
     function soundJackpot() {
-      // Фанфары (аккорд-восходящая)
       const fanfare = [523, 659, 784, 1047];
       fanfare.forEach((f, i) => {
         playTone(f,     0.22, 'square', 0.13, i * 0.09);
         playTone(f * 2, 0.18, 'square', 0.06, i * 0.09);
       });
-      // Долгий каскад монет ~2.5 сек
       for (let i = 0; i < 30; i++) {
         coinClink(0.45 + i * 0.075 + Math.random() * 0.03, 0.12);
       }
@@ -812,9 +807,8 @@
     // ========== БАРАБАНЫ ==========
     const SYMBOLS = ["🍒", "🍋", "🍊", "🍇", "🍉", "🍌", "🔔", "⭐", "💎", "7️⃣"];
     const SYM_H = 55;
-    const CYCLE_LEN = SYMBOLS.length * SYM_H;   // 550
+    const CYCLE_LEN = SYMBOLS.length * SYM_H;
     const STRIP_CYCLES = 6;
-    const STRIP_LEN = STRIP_CYCLES * CYCLE_LEN; // 3300
 
     const reelOffsets = [0, 0, 0];
 
@@ -833,16 +827,13 @@
     function initReels() {
       reelEls.forEach((el, i) => {
         buildStrip(el);
-        // стартовое: показать в середине симв. с индексом i*3 (🍒,🍇,🔔)
         let y = SYM_H * (1 - i * 3);
-        // нормализуем в [-CYCLE_LEN, 0)
         y = ((y % CYCLE_LEN) + CYCLE_LEN) % CYCLE_LEN - CYCLE_LEN;
         reelOffsets[i] = y;
-        el.style.transform = 'translateY(' + y + 'px)';
+        el.style.transform = 'translate3d(0, ' + y + 'px, 0)';
       });
     }
 
-    // Нормализовать смещение: после спина оно должно быть в [-CYCLE_LEN, 0)
     function normalizeOffset(y) {
       return ((y % CYCLE_LEN) + CYCLE_LEN) % CYCLE_LEN - CYCLE_LEN;
     }
@@ -854,12 +845,8 @@
     }
     function clearWinGlow() { slotEls.forEach(s => s.classList.remove('win')); }
 
-    // Куда должна приехать лента, чтобы символ symIdx оказался в середине окна
-    // при условии движения ВНИЗ (offset становится более отрицательным)
     function calcTargetY(startY, symIdx) {
-      // базовое положение: символ в середине
       const baseY = SYM_H * (1 - symIdx);
-      // хотим ниже startY как минимум на 3 цикла
       const minDrop = 3 * CYCLE_LEN;
       const need = baseY - startY + minDrop;
       const K = Math.max(3, Math.ceil(need / CYCLE_LEN));
@@ -867,6 +854,7 @@
     }
 
     // ========== Анимация одного барабана ==========
+    // Плавная: медленный старт → разгон → плавное торможение (ease-in-out)
     function animateReel(reelIdx, targetSymIdx, duration) {
       return new Promise(resolve => {
         const startY = reelOffsets[reelIdx];
@@ -874,21 +862,19 @@
         const startTime = performance.now();
         let lastTickSym = Math.floor(-startY / SYM_H);
         let lastTickTime = 0;
-        let soundEnabled = true;
 
         function frame(t) {
-          const elapsed = t - startTime;
-          const p = Math.min(1, elapsed / duration);
-          // ease-out quint: очень плавное торможение в конце
-          const eased = 1 - Math.pow(1 - p, 5);
+          const p = Math.min(1, (t - startTime) / duration);
+          // easeInOutCubic — медленно стартует, быстро в середине, плавно тормозит
+          const eased = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2;
           const y = startY + (targetY - startY) * eased;
           reelOffsets[reelIdx] = y;
-          reelEls[reelIdx].style.transform = 'translateY(' + y + 'px)';
+          reelEls[reelIdx].style.transform = 'translate3d(0, ' + y + 'px, 0)';
 
-          // стук при проходе нового символа
+          // Тик: не чаще 8 раз в секунду
           const curSym = Math.floor(-y / SYM_H);
-          if (curSym !== lastTickSym && soundEnabled) {
-            if (t - lastTickTime > 38) {
+          if (curSym !== lastTickSym) {
+            if (t - lastTickTime > 125) {
               soundReelTick();
               lastTickTime = t;
             }
@@ -898,10 +884,9 @@
           if (p >= 1) {
             soundReelStop();
             vibrate('light');
-            // сбросить позицию в нормализованный диапазон без визуального прыжка
             const norm = normalizeOffset(reelOffsets[reelIdx]);
             reelOffsets[reelIdx] = norm;
-            reelEls[reelIdx].style.transform = 'translateY(' + norm + 'px)';
+            reelEls[reelIdx].style.transform = 'translate3d(0, ' + norm + 'px, 0)';
             resolve();
             return;
           }
@@ -911,50 +896,76 @@
       });
     }
 
-    // ========== Запуск барабанов ==========
     async function animateAllReels(midIdxs) {
-      // Тянем рычаг
       leverEl.classList.add('pulled');
       setTimeout(() => leverEl.classList.remove('pulled'), 600);
 
-      // Медленнее и дольше: 2.4, 2.9, 3.4 сек
+      // Медленнее: 3.2 / 3.8 / 4.4 сек
       await Promise.all([
-        animateReel(0, midIdxs[0], 2400),
-        animateReel(1, midIdxs[1], 2900),
-        animateReel(2, midIdxs[2], 3400)
+        animateReel(0, midIdxs[0], 3200),
+        animateReel(1, midIdxs[1], 3800),
+        animateReel(2, midIdxs[2], 4400)
       ]);
     }
 
     // ========== Таблица выплат ==========
-    const PAYOUTS = {
+    // За 3 в линию (умножается на ставку)
+    const PAY3 = {
       "7️⃣": 40, "💎": 25, "🔔": 15, "⭐": 10,
       "🍇": 8, "🍉": 6, "🍌": 5, "🍊": 4, "🍋": 3, "🍒": 2
     };
+    // За 2 в линию (слева, умножается на ставку)
+    const PAY2 = {
+      "7️⃣": 1, "💎": 0.8, "🔔": 0.6, "⭐": 0.5,
+      "🍇": 0.4, "🍉": 0.35, "🍌": 0.3, "🍊": 0.3, "🍋": 0.25, "🍒": 0.2
+    };
+
+    // 7 линий: 3 горизонтали, 2 диагонали, V (верх), Λ (низ)
+    // Каждая линия — массив из 3 пар [reel, row]
+    const LINES = [
+      [[0,0],[1,0],[2,0]],   // верхняя горизонталь
+      [[0,1],[1,1],[2,1]],   // средняя горизонталь
+      [[0,2],[1,2],[2,2]],   // нижняя горизонталь
+      [[0,0],[1,1],[2,2]],   // диагональ вниз
+      [[0,2],[1,1],[2,0]],   // диагональ вверх
+      [[0,0],[1,1],[2,0]],   // V (верх)
+      [[0,2],[1,1],[2,2]]    // Λ (низ)
+    ];
 
     function evaluateGrid(midIdxs) {
       const len = SYMBOLS.length;
+      // grid[reel][row] — 3 барабана × 3 строки
       const grid = [[], [], []];
       for (let r = 0; r < 3; r++) {
         const m = midIdxs[r];
-        grid[r][0] = SYMBOLS[(m - 1 + len) % len];
-        grid[r][1] = SYMBOLS[m];
-        grid[r][2] = SYMBOLS[(m + 1) % len];
+        grid[r][0] = SYMBOLS[(m - 1 + len) % len]; // верх
+        grid[r][1] = SYMBOLS[m];                    // центр
+        grid[r][2] = SYMBOLS[(m + 1) % len];       // низ
       }
-      const lines = [
-        [grid[0][0], grid[1][0], grid[2][0]],
-        [grid[0][1], grid[1][1], grid[2][1]],
-        [grid[0][2], grid[1][2], grid[2][2]],
-        [grid[0][0], grid[1][1], grid[2][2]],
-        [grid[0][2], grid[1][1], grid[2][0]]
-      ];
-      let totalMult = 0, winLines = 0;
-      lines.forEach(line => {
-        if (line[0] === line[1] && line[1] === line[2]) {
+
+      let totalMult = 0;
+      let winLines = 0;
+      let jackpotLine = null;
+
+      LINES.forEach((line, idx) => {
+        const syms = line.map(p => grid[p[0]][p[1]]);
+        // Проверяем 3 в линию
+        if (syms[0] === syms[1] && syms[1] === syms[2]) {
           winLines++;
-          totalMult += PAYOUTS[line[0]] || 2;
+          totalMult += PAY3[syms[0]] || 2;
+          // Запоминаем самую дорогую линию для потенциального "джекпота"
+          if (!jackpotLine || (PAY3[syms[0]] || 0) > jackpotLine.pay) {
+            jackpotLine = { pay: PAY3[syms[0]] || 0, symbol: syms[0] };
+          }
+        }
+        // Проверяем 2 в линию (слева, только первые 2)
+        else if (syms[0] === syms[1]) {
+          winLines++;
+          totalMult += PAY2[syms[0]] || 0.2;
         }
       });
-      return { totalMult, winLines, grid };
+
+      return { totalMult, winLines, grid, jackpotLine };
     }
 
     // ========== Спин ==========
@@ -978,7 +989,7 @@
 
       await animateAllReels(midIdxs);
 
-      const { totalMult, winLines, grid } = evaluateGrid(midIdxs);
+      const { totalMult, winLines, grid, jackpotLine } = evaluateGrid(midIdxs);
       const { cur } = getLevel();
       const levelBonus = cur.bonus;
 
@@ -988,11 +999,16 @@
         win = Math.round(bet * totalMult * (1 + levelBonus / 100));
         slotEls.forEach(s => s.classList.add('win'));
 
-        if (totalMult >= 40) {
+        // Джекпот — если 3 семёрки или 3 алмаза на СРЕДНЕЙ линии (row 1)
+        const midRow = [grid[0][1], grid[1][1], grid[2][1]];
+        const isMidJackpot = midRow[0] === midRow[1] && midRow[1] === midRow[2] &&
+                             (midRow[0] === '7️⃣' || midRow[0] === '💎');
+
+        if (isMidJackpot) {
           isJackpot = true;
           stats.jackpots++;
-          if (grid[0][1] === '💎' && grid[1][1] === '💎' && grid[2][1] === '💎') stats.diamonds++;
-          if (grid[0][1] === '7️⃣' && grid[1][1] === '7️⃣' && grid[2][1] === '7️⃣') stats.lucky7++;
+          if (midRow[0] === '💎') stats.diamonds++;
+          if (midRow[0] === '7️⃣') stats.lucky7++;
           messageEl.textContent = '🎉 ДЖЕКПОТ! +' + win + ' 🪙';
           soundJackpot();
           showBanner('🎉 +' + win, true);
@@ -1041,7 +1057,6 @@
       autoRunning = false; isSpinning = false; updateControls();
     }
 
-    // ========== Обработчики ==========
     spinButton.addEventListener('click', spin);
     leverEl.addEventListener('click', spin);
     autoBtn.addEventListener('click', () => { if (autoRunning) autoRunning = false; else startAuto(); });
