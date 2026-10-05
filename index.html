@@ -12,14 +12,13 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
   display:flex; justify-content:center; align-items:flex-start; }
 .app { width:100%; max-width:480px; padding:10px 10px 30px; }
 
-/* ========== HEADER ========== */
+/* HEADER */
 .header {
   display:flex; align-items:center; justify-content:space-between;
   padding:8px 10px;
   background:linear-gradient(180deg, rgba(124,45,18,0.5), rgba(69,10,10,0.3));
   border:1px solid rgba(251,191,36,0.35);
-  border-radius:14px;
-  margin-bottom:12px;
+  border-radius:14px; margin-bottom:12px;
   position:sticky; top:6px; z-index:100;
   backdrop-filter: blur(8px);
 }
@@ -34,21 +33,17 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
 .header-btn:active { background:rgba(251,191,36,0.25); transform:scale(0.95); }
 .header-title { font-weight:bold; font-size:15px; color:#fbbf24; letter-spacing:1px; }
 .header-balance { display:flex; align-items:center; gap:4px; font-weight:bold; font-size:14px; }
-.header-balance .icon { font-size:16px; }
 
-/* ========== SCREENS ========== */
+/* SCREENS */
 .screen { display:none; }
 .screen.active { display:block; }
 
-/* ========== MENU SCREEN ========== */
+/* MENU HERO */
 .menu-hero {
   background: linear-gradient(135deg, #7c2d12 0%, #450a0a 60%, #1a0d08 100%);
   border:1px solid rgba(251,191,36,0.4);
-  border-radius:16px;
-  padding:16px;
-  margin-bottom:14px;
-  position:relative;
-  overflow:hidden;
+  border-radius:16px; padding:14px 16px; margin-bottom:14px;
+  position:relative; overflow:hidden;
 }
 .menu-hero::before {
   content:"🎰 🎡 🃏 🎲";
@@ -56,40 +51,77 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
   font-size:50px; opacity:0.08; transform:rotate(-15deg);
   pointer-events:none;
 }
-.menu-hero h2 { margin:0 0 4px; font-size:20px; color:#fbbf24; }
+.menu-hero h2 { margin:0 0 4px; font-size:18px; color:#fbbf24; }
 .menu-hero p { margin:0; font-size:12px; color:#fcd34d; opacity:0.8; }
 
-.menu-grid {
-  display:grid; grid-template-columns:1fr 1fr; gap:10px;
+/* LOBBY */
+.lobby-section { margin-bottom:14px; }
+.lobby-head {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:8px; padding:0 2px;
 }
-.menu-tile {
-  background: linear-gradient(180deg, #2a1a10, #0b0503);
-  border:1px solid rgba(251,191,36,0.3);
-  border-radius:14px;
-  padding:18px 12px;
-  cursor:pointer;
-  transition: all .15s;
-  position:relative;
-  overflow:hidden;
-  text-align:left;
+.lobby-title {
+  font-size:15px; font-weight:bold; color:#fff;
+  display:flex; align-items:center; gap:6px;
 }
-.menu-tile:active { transform:scale(0.97); border-color:#fbbf24; }
-.menu-tile-emoji { font-size:38px; margin-bottom:8px; display:block; }
-.menu-tile-title { font-weight:bold; font-size:15px; color:#fbbf24; margin-bottom:3px; }
-.menu-tile-desc { font-size:11px; color:#9ca3af; line-height:1.3; }
-.menu-tile.coming { opacity:0.55; }
-.menu-tile.coming .menu-tile-title::after {
+.lobby-all {
+  font-size:12px; color:#fbbf24; cursor:pointer;
+  background:transparent; border:0; padding:0;
+}
+.game-row {
+  display:flex; gap:8px;
+  overflow-x:auto; overflow-y:hidden;
+  padding:2px 2px 8px;
+  scrollbar-width:none;
+}
+.game-row::-webkit-scrollbar { display:none; }
+.game-card {
+  flex:0 0 108px; height:150px;
+  border-radius:12px; position:relative; overflow:hidden;
+  cursor:pointer; border:1px solid rgba(251,191,36,0.25);
+  transition:transform .12s, border-color .12s;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.game-card:active { transform:scale(0.96); border-color:#fbbf24; }
+.game-card-emoji {
+  flex:1; display:flex; align-items:center; justify-content:center;
+  font-size:52px; text-shadow:0 4px 12px rgba(0,0,0,0.6);
+}
+.game-card-name {
+  padding:4px 6px 2px;
+  font-size:10px; font-weight:bold; color:#fff;
+  text-align:center; line-height:1.15;
+  text-shadow:0 2px 6px rgba(0,0,0,0.9);
+  min-height:22px;
+  display:flex; align-items:center; justify-content:center;
+}
+.game-card-provider {
+  background:rgba(0,0,0,0.55);
+  color:#fbbf24; font-size:7px; text-align:center;
+  padding:2px 0; letter-spacing:1px; font-weight:bold;
+  text-transform:uppercase;
+}
+.game-card.coming::after {
   content:"СКОРО";
+  position:absolute; top:4px; right:4px;
   background:#7f1d1d; color:#fca5a5;
-  font-size:8px; padding:2px 5px; border-radius:4px;
-  margin-left:6px; vertical-align:middle;
+  font-size:7px; padding:2px 5px; border-radius:4px;
+  font-weight:bold;
 }
+.bg-1 { background:linear-gradient(180deg, #92400e 0%, #7c2d12 45%, #450a0a 100%); }
+.bg-2 { background:linear-gradient(180deg, #4c1d95 0%, #6d28d9 45%, #1e1b4b 100%); }
+.bg-3 { background:linear-gradient(180deg, #b91c1c 0%, #7f1d1d 45%, #450a0a 100%); }
+.bg-4 { background:linear-gradient(180deg, #166534 0%, #065f46 45%, #022c22 100%); }
+.bg-5 { background:linear-gradient(180deg, #1e40af 0%, #1e3a8a 45%, #0c1a4b 100%); }
+.bg-6 { background:linear-gradient(180deg, #0e7490 0%, #155e75 45%, #042f2e 100%); }
+.bg-7 { background:linear-gradient(180deg, #7c2d12 0%, #450a0a 45%, #1a0d08 100%); }
+.bg-8 { background:linear-gradient(180deg, #7e22ce 0%, #4c1d95 45%, #1e1b4b 100%); }
+.bg-9 { background:linear-gradient(180deg, #a16207 0%, #713f12 45%, #1c0e02 100%); }
 
-/* ========== PROFILE PANEL ========== */
+/* PROFILE PANEL */
 .profile-overlay {
   position:fixed; inset:0; background:rgba(0,0,0,0.7);
-  z-index:200; opacity:0; pointer-events:none;
-  transition: opacity .25s;
+  z-index:200; opacity:0; pointer-events:none; transition: opacity .25s;
 }
 .profile-overlay.open { opacity:1; pointer-events:auto; }
 .profile-panel {
@@ -114,8 +146,7 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
 .profile-balance {
   background:linear-gradient(135deg, rgba(251,191,36,0.15), rgba(245,158,11,0.05));
   border:1px solid rgba(251,191,36,0.4);
-  border-radius:12px; padding:12px; margin-bottom:14px;
-  text-align:center;
+  border-radius:12px; padding:12px; margin-bottom:14px; text-align:center;
 }
 .profile-balance-label { font-size:11px; color:#9ca3af; margin-bottom:4px; }
 .profile-balance-value { font-size:22px; font-weight:bold; color:#fbbf24; }
@@ -141,7 +172,7 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
   font-size:16px; cursor:pointer;
 }
 
-/* ========== BACK BUTTON ========== */
+/* BACK BTN */
 .back-btn {
   display:inline-flex; align-items:center; gap:6px;
   background:rgba(251,191,36,0.1);
@@ -152,7 +183,7 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
 }
 .back-btn:active { background:rgba(251,191,36,0.25); }
 
-/* ========== SLOTS (existing) ========== */
+/* SLOTS */
 .greeting { color:#9ca3af; font-size:12px; margin-bottom:3px; }
 h1 { margin:0 0 4px; font-size:22px; color:#fbbf24; text-shadow:0 0 12px rgba(251,191,36,0.5); }
 
@@ -164,11 +195,6 @@ h1 { margin:0 0 4px; font-size:22px; color:#fbbf24; text-shadow:0 0 12px rgba(25
 .level-track { height:4px; background:rgba(255,255,255,0.1); border-radius:2px; overflow:hidden; }
 .level-fill { height:100%; background:linear-gradient(90deg,#f59e0b,#fbbf24); width:0%; transition:width .4s; }
 .level-bonus { font-size:10px; color:#9ca3af; margin-top:3px; }
-
-.balance { background:linear-gradient(135deg, rgba(251,191,36,0.15), rgba(245,158,11,0.05));
-  border:1px solid rgba(251,191,36,0.4); border-radius:14px; padding:8px; margin-bottom:8px; }
-.balance-title { font-size:11px; color:#fbbf24; margin-bottom:2px; }
-.coins { font-size:22px; font-weight:bold; }
 
 .bonus { width:100%; padding:9px; margin-bottom:10px; border-radius:12px;
   border:1px dashed #f59e0b; background:rgba(245,158,11,0.1); color:#f59e0b;
@@ -298,13 +324,10 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
   max-width:90vw; text-align:center; }
 .toast.show { transform:translateX(-50%) translateY(0); }
 
-/* Coming soon screen */
 .coming-soon {
-  text-align:center;
-  padding:60px 20px;
+  text-align:center; padding:60px 20px;
   background:linear-gradient(180deg,#2a1a10,#0b0503);
-  border:1px solid rgba(251,191,36,0.3);
-  border-radius:16px;
+  border:1px solid rgba(251,191,36,0.3); border-radius:16px;
 }
 .coming-soon-emoji { font-size:80px; margin-bottom:16px; animation:float 3s ease-in-out infinite; }
 @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
@@ -314,59 +337,32 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
 </head>
 <body>
 
-<!-- Profile overlay -->
 <div class="profile-overlay" id="profileOverlay"></div>
 <aside class="profile-panel" id="profilePanel">
   <button class="profile-close" id="profileClose">✕</button>
   <div class="profile-avatar" id="profileAvatar">🎰</div>
   <div class="profile-name" id="profileName">Гость</div>
   <div class="profile-id" id="profileId">Открыто вне Telegram</div>
-
   <div class="profile-balance">
     <div class="profile-balance-label">Баланс</div>
     <div class="profile-balance-value">🪙 <span id="profileBalance">1000</span></div>
   </div>
-
   <div class="profile-section">
     <div class="profile-section-title">Уровень</div>
-    <div class="profile-row">
-      <span class="profile-row-label">Ранг</span>
-      <span class="profile-row-value" id="profileLevel">Новичок</span>
-    </div>
-    <div class="profile-row">
-      <span class="profile-row-label">Спинов</span>
-      <span class="profile-row-value" id="profileSpins">0</span>
-    </div>
-    <div class="profile-row">
-      <span class="profile-row-label">Бонус к выигрышу</span>
-      <span class="profile-row-value" id="profileBonus">+0%</span>
-    </div>
+    <div class="profile-row"><span class="profile-row-label">Ранг</span><span class="profile-row-value" id="profileLevel">Новичок</span></div>
+    <div class="profile-row"><span class="profile-row-label">Спинов</span><span class="profile-row-value" id="profileSpins">0</span></div>
+    <div class="profile-row"><span class="profile-row-label">Бонус к выигрышу</span><span class="profile-row-value" id="profileBonus">+0%</span></div>
   </div>
-
   <div class="profile-section">
     <div class="profile-section-title">Статистика</div>
-    <div class="profile-row">
-      <span class="profile-row-label">Всего выиграно</span>
-      <span class="profile-row-value" id="profileWon">0 🪙</span>
-    </div>
-    <div class="profile-row">
-      <span class="profile-row-label">Лучший выигрыш</span>
-      <span class="profile-row-value" id="profileBest">0 🪙</span>
-    </div>
-    <div class="profile-row">
-      <span class="profile-row-label">Джекпотов</span>
-      <span class="profile-row-value" id="profileJackpots">0</span>
-    </div>
-    <div class="profile-row">
-      <span class="profile-row-label">Итог</span>
-      <span class="profile-row-value" id="profileNet">0 🪙</span>
-    </div>
+    <div class="profile-row"><span class="profile-row-label">Всего выиграно</span><span class="profile-row-value" id="profileWon">0 🪙</span></div>
+    <div class="profile-row"><span class="profile-row-label">Лучший выигрыш</span><span class="profile-row-value" id="profileBest">0 🪙</span></div>
+    <div class="profile-row"><span class="profile-row-label">Джекпотов</span><span class="profile-row-value" id="profileJackpots">0</span></div>
+    <div class="profile-row"><span class="profile-row-label">Итог</span><span class="profile-row-value" id="profileNet">0 🪙</span></div>
   </div>
-
   <button class="reset" id="profileShare" style="margin-top:14px;">📤 Поделиться ботом</button>
 </aside>
 
-<!-- App -->
 <div class="app">
   <div class="header">
     <button class="header-btn" id="menuBtn">☰</button>
@@ -374,56 +370,102 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
     <div class="header-balance">🪙 <span id="headerBalance">1000</span></div>
   </div>
 
-  <!-- ========== MENU SCREEN ========== -->
   <div class="screen active" id="screen-menu">
     <div class="menu-hero">
       <h2 id="menuGreeting">Добро пожаловать!</h2>
       <p>Выберите игру и вперёд за выигрышем</p>
     </div>
 
-    <div class="menu-grid">
-      <div class="menu-tile" data-game="slots">
-        <span class="menu-tile-emoji">🎰</span>
-        <div class="menu-tile-title">Слоты</div>
-        <div class="menu-tile-desc">5 барабанов, фриспины, джекпот</div>
+    <div class="lobby-section">
+      <div class="lobby-head">
+        <div class="lobby-title">🎰 Слоты</div>
+        <button class="lobby-all" data-all="slots">Все →</button>
       </div>
-
-      <div class="menu-tile coming" data-game="blackjack">
-        <span class="menu-tile-emoji">🃏</span>
-        <div class="menu-tile-title">Блэкджек</div>
-        <div class="menu-tile-desc">21 — не больше, против дилера</div>
+      <div class="game-row">
+        <div class="game-card bg-1" data-game="slots">
+          <div class="game-card-emoji">🎰</div>
+          <div class="game-card-name">Мини-казино</div>
+          <div class="game-card-provider">KyrgyzSoft</div>
+        </div>
+        <div class="game-card bg-2 coming" data-game="anubis">
+          <div class="game-card-emoji">👑</div>
+          <div class="game-card-name">Anubis Wrath</div>
+          <div class="game-card-provider">PGSoft</div>
+        </div>
+        <div class="game-card bg-3 coming" data-game="devil">
+          <div class="game-card-emoji">😈</div>
+          <div class="game-card-name">Devil Fire</div>
+          <div class="game-card-provider">Tada Gaming</div>
+        </div>
+        <div class="game-card bg-9 coming" data-game="gems">
+          <div class="game-card-emoji">💎</div>
+          <div class="game-card-name">Gemstones Gold</div>
+          <div class="game-card-provider">PGSoft</div>
+        </div>
       </div>
+    </div>
 
-      <div class="menu-tile coming" data-game="roulette">
-        <span class="menu-tile-emoji">🎡</span>
-        <div class="menu-tile-title">Рулетка</div>
-        <div class="menu-tile-desc">Европейская, 37 чисел</div>
+    <div class="lobby-section">
+      <div class="lobby-head">
+        <div class="lobby-title">⚡ Быстрые игры</div>
+        <button class="lobby-all" data-all="quick">Все →</button>
       </div>
-
-      <div class="menu-tile coming" data-game="poker">
-        <span class="menu-tile-emoji">🃏</span>
-        <div class="menu-tile-title">Техас Холдем</div>
-        <div class="menu-tile-desc">Покер против бота</div>
+      <div class="game-row">
+        <div class="game-card bg-4 coming" data-game="blackjack">
+          <div class="game-card-emoji">🃏</div>
+          <div class="game-card-name">Блэкджек</div>
+          <div class="game-card-provider">KyrgyzSoft</div>
+        </div>
+        <div class="game-card bg-5 coming" data-game="roulette">
+          <div class="game-card-emoji">🎡</div>
+          <div class="game-card-name">Рулетка</div>
+          <div class="game-card-provider">KyrgyzSoft</div>
+        </div>
+        <div class="game-card bg-6 coming" data-game="craps">
+          <div class="game-card-emoji">🎲</div>
+          <div class="game-card-name">Крэпс</div>
+          <div class="game-card-provider">KyrgyzSoft</div>
+        </div>
+        <div class="game-card bg-5 coming" data-game="keno">
+          <div class="game-card-emoji">🎯</div>
+          <div class="game-card-name">Кено</div>
+          <div class="game-card-provider">KyrgyzSoft</div>
+        </div>
       </div>
+    </div>
 
-      <div class="menu-tile coming" data-game="craps">
-        <span class="menu-tile-emoji">🎲</span>
-        <div class="menu-tile-title">Крэпс</div>
-        <div class="menu-tile-desc">Кости, ставки на выпавшее</div>
+    <div class="lobby-section">
+      <div class="lobby-head">
+        <div class="lobby-title">🔥 Популярные</div>
+        <button class="lobby-all" data-all="pop">Все →</button>
       </div>
-
-      <div class="menu-tile coming" data-game="keno">
-        <span class="menu-tile-emoji">🎯</span>
-        <div class="menu-tile-title">Кено</div>
-        <div class="menu-tile-desc">Числа, удача, джекпот</div>
+      <div class="game-row">
+        <div class="game-card bg-7 coming" data-game="poker">
+          <div class="game-card-emoji">🃏</div>
+          <div class="game-card-name">Wild Bounty</div>
+          <div class="game-card-provider">PGSoft</div>
+        </div>
+        <div class="game-card bg-9 coming" data-game="crown">
+          <div class="game-card-emoji">👑</div>
+          <div class="game-card-name">Crown Coins</div>
+          <div class="game-card-provider">Endorphina</div>
+        </div>
+        <div class="game-card bg-8 coming" data-game="mummy">
+          <div class="game-card-emoji">🧟</div>
+          <div class="game-card-name">Mummy Treasures</div>
+          <div class="game-card-provider">Belatra</div>
+        </div>
+        <div class="game-card bg-3 coming" data-game="wolf">
+          <div class="game-card-emoji">🐺</div>
+          <div class="game-card-name">Lucky Bear</div>
+          <div class="game-card-provider">KyrgyzSoft</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ========== SLOTS SCREEN ========== -->
   <div class="screen" id="screen-slots">
     <button class="back-btn" id="backToMenu">← В меню</button>
-
     <h1>🎰 Слоты</h1>
     <div class="greeting" id="greeting">Добро пожаловать!</div>
 
@@ -443,12 +485,8 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
         <div class="paytable-grid" id="paytableGrid"></div>
         <div class="pt-extra">🌟 Wild ×1.3 · 💎 Scatter 3+ → 5 FREE (×2)</div>
       </div>
-
       <div class="free-bar" id="freeBar">FREE GAME <span id="freeCounter">1</span> of 5</div>
-
-      <div class="slots-wrap">
-        <div class="slots" id="slots"></div>
-      </div>
+      <div class="slots-wrap"><div class="slots" id="slots"></div></div>
 
       <div class="bets-title">Ставка</div>
       <div class="bets">
@@ -459,9 +497,7 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
         <button class="bet max" id="maxBtn">МАКС</button>
       </div>
 
-      <div class="spin-wrap">
-        <button class="spin" id="spin">СПИН</button>
-      </div>
+      <div class="spin-wrap"><button class="spin" id="spin">СПИН</button></div>
 
       <div class="actions">
         <button id="autoBtn">⚡ АВТО ×5</button>
@@ -498,7 +534,6 @@ button.spin:disabled { opacity:.55; cursor:not-allowed; }
     </div>
   </div>
 
-  <!-- ========== COMING SOON SCREEN ========== -->
   <div class="screen" id="screen-coming">
     <button class="back-btn" id="backFromComing">← В меню</button>
     <div class="coming-soon">
@@ -525,7 +560,6 @@ if (tg) {
     userPhoto = user.photo_url;
   }
 }
-
 function applyUserUI() {
   document.getElementById('greeting').textContent = 'Привет, ' + userName + '!';
   document.getElementById('profileName').textContent = userName;
@@ -601,7 +635,6 @@ if(stats.jackpots===undefined)stats.jackpots=0;
 if(stats.scatters===undefined)stats.scatters=0;
 let history=JSON.parse(localStorage.getItem('casino_history')||'[]');
 let unlocked=JSON.parse(localStorage.getItem('casino_ach')||'[]');
-
 function saveBalance(){localStorage.setItem('casino_balance',String(balance));}
 function saveStats(){localStorage.setItem('casino_stats',JSON.stringify(stats));}
 function saveAch(){localStorage.setItem('casino_ach',JSON.stringify(unlocked));}
@@ -619,7 +652,6 @@ const SYMBOLS = [
 ];
 const WILD_IDX = SYMBOLS.indexOf("🌟");
 const SCATTER_IDX = SYMBOLS.indexOf("💎");
-
 const PAYS = {
   "🏆":[0,0,5,15,40],
   "👑":[0,0,3,10,25],
@@ -633,7 +665,6 @@ const PAYS = {
   "🍒":[0,0,0.3,0.8,2]
 };
 const LINES = [[1,1,1,1,1],[0,0,0,0,0],[2,2,2,2,2]];
-
 function renderPaytable(){
   const order=["🏆","👑","⭐","🔔","🍌","🍉","🍇","🍊","🍋","🍒"];
   const grid=document.getElementById('paytableGrid');
@@ -707,7 +738,7 @@ function checkAchievements(){
   });
 }
 
-// ===== Ежедневные задания =====
+// ===== Задания =====
 function todayKey(){return new Date().toISOString().slice(0,10);}
 const DAILY_TASKS=[
   {id:'spins20',title:'20 спинов сегодня',reward:300,target:20},
@@ -756,10 +787,8 @@ const bonusBtn=document.getElementById('bonus');
 const freeBar=document.getElementById('freeBar');
 const freeCounter=document.getElementById('freeCounter');
 const betButtons=document.querySelectorAll('.bet[data-bet]');
-
 let isSpinning=false, autoRunning=false;
 let freeSpinsLeft=0, freeSpinsTotal=0;
-
 function updateBalanceUI(){
   const b = balance.toLocaleString('ru-RU');
   headerBalance.textContent = b;
@@ -771,7 +800,6 @@ const REELS=5, ROWS=3, SYM_H=46, CYCLE_LEN=SYMBOLS.length*SYM_H;
 const STRIP_CYCLES=5;
 const slotsContainer=document.getElementById('slots');
 const reelEls=[], reelOffsets=[0,0,0,0,0];
-
 for(let i=0;i<REELS;i++){
   const slot=document.createElement('div');
   slot.className='slot'; slot.id='slot'+i;
@@ -1045,8 +1073,6 @@ function renderStats(){
   const el=document.getElementById('statNet');
   el.textContent=(net>=0?'+':'')+net.toLocaleString('ru-RU')+' 🪙';
   el.className='stat-value '+(net>=0?'pos':'neg');
-
-  // Профиль
   document.getElementById('profileWon').textContent = stats.totalWon.toLocaleString('ru-RU') + ' 🪙';
   document.getElementById('profileBest').textContent = stats.bestWin.toLocaleString('ru-RU') + ' 🪙';
   document.getElementById('profileJackpots').textContent = stats.jackpots;
@@ -1103,7 +1129,7 @@ bonusBtn.addEventListener('click',()=>{
   checkAchievements();
 });
 
-// ===== Баннер и тост =====
+// ===== Баннер / тост =====
 function showBanner(text,big){
   const el=document.getElementById('winBanner');
   el.textContent=text; el.classList.toggle('small',!big);
@@ -1123,10 +1149,9 @@ resetButton.addEventListener('click',()=>{
   balance=START_BALANCE; saveBalance(); updateBalanceUI();
   messageEl.textContent='Баланс сброшен'; checkAchievements();
 });
-
 const SHARE_URL='https://t.me/kyrgyz_casino_bot/minicasino';
 function doShare(){
-  const text='Я играю в 🎰 Kyrgyz Casino! Попробуй и ты — 5 барабанов, фриспины, джекпот!';
+  const text='Я играю в 🎰 Kyrgyz Casino! Попробуй и ты!';
   const url='https://t.me/share/url?url='+encodeURIComponent(SHARE_URL)+'&text='+encodeURIComponent(text);
   if(tg?.openTelegramLink) tg.openTelegramLink(url);
   else window.open(url,'_blank');
@@ -1134,54 +1159,53 @@ function doShare(){
 shareBtn.addEventListener('click', doShare);
 document.getElementById('profileShare').addEventListener('click', doShare);
 
-// ========== NAVIGATION ==========
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+// ===== NAVIGATION =====
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0, 0);
+  window.scrollTo(0,0);
 }
+document.getElementById('backToMenu').addEventListener('click',()=>showScreen('screen-menu'));
+document.getElementById('backFromComing').addEventListener('click',()=>showScreen('screen-menu'));
 
-document.getElementById('backToMenu').addEventListener('click', () => showScreen('screen-menu'));
-document.getElementById('backFromComing').addEventListener('click', () => showScreen('screen-menu'));
-
-// Menu tile clicks
 const COMING_GAMES = {
-  blackjack: { emoji:'🃏', title:'Блэкджек',  text:'Собери 21 и обыграй дилера. Появится в следующем обновлении.' },
-  roulette:  { emoji:'🎡', title:'Рулетка',   text:'Европейская рулетка на 37 чисел. Скоро!' },
-  poker:     { emoji:'🃏', title:'Техас Холдем', text:'Покер против бота. В разработке.' },
-  craps:     { emoji:'🎲', title:'Крэпс',     text:'Бросай кости и делай ставки. Скоро!' },
-  keno:      { emoji:'🎯', title:'Кено',      text:'Угадай числа и сорви джекпот. Скоро!' }
+  blackjack:{emoji:'🃏',title:'Блэкджек',text:'Собери 21 и обыграй дилера. Скоро!'},
+  roulette:{emoji:'🎡',title:'Рулетка',text:'Европейская рулетка на 37 чисел. Скоро!'},
+  poker:{emoji:'🃏',title:'Wild Bounty Showdown',text:'Слот от PGSoft. Скоро!'},
+  craps:{emoji:'🎲',title:'Крэпс',text:'Кости и ставки. Скоро!'},
+  keno:{emoji:'🎯',title:'Кено',text:'Угадай числа и сорви джекпот. Скоро!'},
+  anubis:{emoji:'👑',title:'Anubis Wrath',text:'Слот от PGSoft. Скоро!'},
+  devil:{emoji:'😈',title:'Devil Fire',text:'Слот от Tada Gaming. Скоро!'},
+  gems:{emoji:'💎',title:'Gemstones Gold',text:'Слот от PGSoft. Скоро!'},
+  crown:{emoji:'👑',title:'Crown Coins',text:'Слот от Endorphina. Скоро!'},
+  mummy:{emoji:'🧟',title:'Mummy Treasures',text:'Слот от Belatra. Скоро!'},
+  wolf:{emoji:'🐺',title:'Lucky Bear',text:'Слот от KyrgyzSoft. Скоро!'}
 };
-
-document.querySelectorAll('.menu-tile').forEach(tile => {
-  tile.addEventListener('click', () => {
-    const game = tile.dataset.game;
-    if (game === 'slots') {
-      showScreen('screen-slots');
-    } else {
-      const info = COMING_GAMES[game] || { emoji:'🎮', title:'Скоро', text:'В разработке' };
-      document.getElementById('comingEmoji').textContent = info.emoji;
-      document.getElementById('comingTitle').textContent = info.title;
-      document.getElementById('comingText').textContent = info.text;
+document.querySelectorAll('.game-card').forEach(tile=>{
+  tile.addEventListener('click',()=>{
+    const game=tile.dataset.game;
+    if(game==='slots'){ showScreen('screen-slots'); }
+    else {
+      const info=COMING_GAMES[game]||{emoji:'🎮',title:'Скоро',text:'В разработке'};
+      document.getElementById('comingEmoji').textContent=info.emoji;
+      document.getElementById('comingTitle').textContent=info.title;
+      document.getElementById('comingText').textContent=info.text;
       showScreen('screen-coming');
     }
   });
 });
+document.querySelectorAll('.lobby-all').forEach(btn=>{
+  btn.addEventListener('click',(e)=>{ e.stopPropagation(); showToast('Скоро: полный список игр'); });
+});
 
-// Profile panel
-const profileOverlay = document.getElementById('profileOverlay');
-const profilePanel = document.getElementById('profilePanel');
-function openProfile() {
-  profileOverlay.classList.add('open');
-  profilePanel.classList.add('open');
-}
-function closeProfile() {
-  profileOverlay.classList.remove('open');
-  profilePanel.classList.remove('open');
-}
-document.getElementById('menuBtn').addEventListener('click', openProfile);
-document.getElementById('profileClose').addEventListener('click', closeProfile);
-profileOverlay.addEventListener('click', closeProfile);
+// Profile
+const profileOverlay=document.getElementById('profileOverlay');
+const profilePanel=document.getElementById('profilePanel');
+function openProfile(){ profileOverlay.classList.add('open'); profilePanel.classList.add('open'); }
+function closeProfile(){ profileOverlay.classList.remove('open'); profilePanel.classList.remove('open'); }
+document.getElementById('menuBtn').addEventListener('click',openProfile);
+document.getElementById('profileClose').addEventListener('click',closeProfile);
+profileOverlay.addEventListener('click',closeProfile);
 
 // ===== Инициализация =====
 applyUserUI();
