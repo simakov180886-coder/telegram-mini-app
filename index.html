@@ -4,120 +4,56 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Мини-казино</title>
-
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
-      margin: 0;
-      min-height: 100vh;
+      margin: 0; min-height: 100vh;
       font-family: Arial, sans-serif;
       background: linear-gradient(160deg, #111827, #020617);
       color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: flex; justify-content: center; align-items: center;
     }
-
-    .casino {
-      width: 100%;
-      max-width: 430px;
-      padding: 24px 18px 30px;
-      text-align: center;
-    }
-
-    h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
-    }
-
-    .subtitle {
-      color: #9ca3af;
-      margin-bottom: 22px;
-    }
-
+    .casino { width: 100%; max-width: 430px; padding: 24px 18px 30px; text-align: center; }
+    .greeting { color: #9ca3af; font-size: 14px; margin-bottom: 6px; }
+    h1 { margin: 0 0 8px; font-size: 30px; }
+    .subtitle { color: #9ca3af; margin-bottom: 22px; }
     .balance {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px;
-      padding: 14px;
-      margin-bottom: 22px;
+      border-radius: 18px; padding: 14px; margin-bottom: 22px;
     }
-
-    .balance-title {
-      font-size: 13px;
-      color: #9ca3af;
-      margin-bottom: 5px;
-    }
-
-    .coins {
-      font-size: 28px;
-      font-weight: bold;
-    }
-
+    .balance-title { font-size: 13px; color: #9ca3af; margin-bottom: 5px; }
+    .coins { font-size: 28px; font-weight: bold; }
     .machine {
-      background: rgba(255,255,255,0.08);
-      border-radius: 24px;
-      padding: 22px 16px;
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.08); border-radius: 24px;
+      padding: 22px 16px; border: 1px solid rgba(255,255,255,0.12);
     }
-
-    .slots {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin: 10px 0 22px;
-    }
-
+    .slots { display: flex; gap: 10px; justify-content: center; margin: 10px 0 22px; }
     .slot {
-      width: 82px;
-      height: 82px;
-      background: #fff;
-      color: #111827;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 42px;
-      box-shadow: 0 8px 25px rgba(0,0,0,.3);
+      width: 82px; height: 82px; background: #fff; color: #111827;
+      border-radius: 16px; display: flex; align-items: center; justify-content: center;
+      font-size: 42px; box-shadow: 0 8px 25px rgba(0,0,0,.3);
+      transition: transform .08s;
     }
-
+    .slot.spinning { transform: scale(0.92); }
     button {
-      width: 100%;
-      border: 0;
-      border-radius: 16px;
-      padding: 16px;
-      font-size: 19px;
-      font-weight: bold;
-      cursor: pointer;
-      background: #f59e0b;
-      color: #111827;
+      width: 100%; border: 0; border-radius: 16px; padding: 16px;
+      font-size: 19px; font-weight: bold; cursor: pointer;
+      background: #f59e0b; color: #111827;
     }
-
-    button:disabled {
-      opacity: .5;
+    button:disabled { opacity: .5; }
+    .reset {
+      margin-top: 12px; padding: 10px; font-size: 14px; font-weight: normal;
+      background: transparent; color: #9ca3af; border: 1px solid rgba(255,255,255,0.15);
     }
-
-    .message {
-      min-height: 28px;
-      margin-top: 16px;
-      font-weight: bold;
-    }
-
-    .info {
-      color: #9ca3af;
-      font-size: 13px;
-      margin-top: 18px;
-    }
+    .message { min-height: 28px; margin-top: 16px; font-weight: bold; }
+    .info { color: #9ca3af; font-size: 13px; margin-top: 18px; }
   </style>
 </head>
-
 <body>
-
   <div class="casino">
-
+    <div class="greeting" id="greeting">Привет!</div>
     <h1>🎰 Мини-казино</h1>
     <div class="subtitle">Демо-игра с виртуальными монетами</div>
 
@@ -127,41 +63,67 @@
     </div>
 
     <div class="machine">
-
       <div class="slots">
         <div class="slot" id="slot1">🍒</div>
         <div class="slot" id="slot2">🍋</div>
         <div class="slot" id="slot3">⭐</div>
       </div>
-
       <button id="spin">КРУТИТЬ — 50 🪙</button>
-
+      <button class="reset" id="reset">Сбросить баланс</button>
       <div class="message" id="message"></div>
-
-      <div class="info">
-        Только виртуальные монеты. Реальных денег нет.
-      </div>
-
+      <div class="info">Только виртуальные монеты. Реальных денег нет.</div>
     </div>
   </div>
 
   <script>
+    // === Telegram WebApp ===
+    const tg = window.Telegram?.WebApp;
+    if (tg) {
+      tg.ready();
+      tg.expand();
+      const user = tg.initDataUnsafe?.user;
+      if (user) {
+        const name = user.first_name || user.username || 'игрок';
+        document.getElementById('greeting').textContent = 'Привет, ' + name + '!';
+      }
+    } else {
+      document.getElementById('greeting').textContent = 'Привет, гость! (вне Telegram)';
+    }
+
+    // === Баланс с сохранением ===
+    const START_BALANCE = 1000;
+    const STORAGE_KEY = 'casino_balance';
+    let balance = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+    if (isNaN(balance)) balance = START_BALANCE;
+
+    function saveBalance() {
+      localStorage.setItem(STORAGE_KEY, String(balance));
+    }
+
+    // === Игра ===
     const symbols = ["🍒", "🍋", "🍊", "🍉", "⭐", "💎", "7️⃣"];
-
-    let balance = 1000;
-
     const balanceEl = document.getElementById("balance");
     const spinButton = document.getElementById("spin");
+    const resetButton = document.getElementById("reset");
     const messageEl = document.getElementById("message");
-
     const slots = [
       document.getElementById("slot1"),
       document.getElementById("slot2"),
       document.getElementById("slot3")
     ];
 
+    balanceEl.textContent = balance;
+
     function randomSymbol() {
       return symbols[Math.floor(Math.random() * symbols.length)];
+    }
+
+    function vibrate() {
+      if (tg?.HapticFeedback) {
+        tg.HapticFeedback.impactOccurred('medium');
+      } else if (navigator.vibrate) {
+        navigator.vibrate(30);
+      }
     }
 
     function spin() {
@@ -169,50 +131,39 @@
         messageEl.textContent = "Недостаточно монет";
         return;
       }
-
       balance -= 50;
+      saveBalance();
       balanceEl.textContent = balance;
-
       spinButton.disabled = true;
       messageEl.textContent = "Крутим...";
+      slots.forEach(s => s.classList.add('spinning'));
+      vibrate();
 
       let count = 0;
-
       const animation = setInterval(() => {
-        slots.forEach(slot => {
-          slot.textContent = randomSymbol();
-        });
-
+        slots.forEach(slot => { slot.textContent = randomSymbol(); });
         count++;
-
         if (count >= 12) {
           clearInterval(animation);
+          slots.forEach(s => s.classList.remove('spinning'));
 
           const result = slots.map(() => randomSymbol());
-
-          slots.forEach((slot, i) => {
-            slot.textContent = result[i];
-          });
+          slots.forEach((slot, i) => { slot.textContent = result[i]; });
 
           if (result[0] === result[1] && result[1] === result[2]) {
             let win = 500;
-
             if (result[0] === "💎") win = 1500;
             if (result[0] === "7️⃣") win = 2500;
-
             balance += win;
             messageEl.textContent = "🎉 ДЖЕКПОТ! +" + win + " 🪙";
-          } else if (
-            result[0] === result[1] ||
-            result[1] === result[2] ||
-            result[0] === result[2]
-          ) {
+            vibrate();
+          } else if (result[0] === result[1] || result[1] === result[2] || result[0] === result[2]) {
             balance += 100;
             messageEl.textContent = "👍 Совпадение! +100 🪙";
           } else {
             messageEl.textContent = "Попробуйте ещё раз";
           }
-
+          saveBalance();
           balanceEl.textContent = balance;
           spinButton.disabled = false;
         }
@@ -221,11 +172,12 @@
 
     spinButton.addEventListener("click", spin);
 
-    if (window.Telegram && Telegram.WebApp) {
-      Telegram.WebApp.ready();
-      Telegram.WebApp.expand();
-    }
+    resetButton.addEventListener("click", () => {
+      balance = START_BALANCE;
+      saveBalance();
+      balanceEl.textContent = balance;
+      messageEl.textContent = "Баланс сброшен";
+    });
   </script>
-
 </body>
 </html>
