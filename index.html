@@ -39,7 +39,7 @@
       background: rgba(255,255,255,0.08); border-radius: 24px;
       padding: 22px 16px; border: 1px solid rgba(255,255,255,0.12);
     }
-    .slots { display: flex; gap: 10px; justify-content: center; margin: 10px 0 22px; }
+    .slots { display: flex; gap: 10px; justify-content: center; margin: 10px 0 16px; }
     .slot {
       width: 82px; height: 82px; background: #fff; color: #111827;
       border-radius: 16px; display: flex; align-items: center; justify-content: center;
@@ -57,6 +57,20 @@
       100% { transform: scale(1); }
     }
 
+    .bets-title { font-size: 12px; color: #9ca3af; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .bets { display: flex; gap: 6px; justify-content: center; margin-bottom: 14px; }
+    .bet {
+      flex: 1; padding: 10px 2px; border-radius: 12px;
+      background: rgba(255,255,255,0.06); color: #fff;
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 14px; font-weight: bold; cursor: pointer;
+    }
+    .bet.active {
+      background: #f59e0b; color: #111827; border-color: #f59e0b;
+    }
+    .bet.max { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.5); color: #fca5a5; }
+    .bet.max:active { background: rgba(239,68,68,0.3); }
+
     button.spin {
       width: 100%; border: 0; border-radius: 16px; padding: 16px;
       font-size: 19px; font-weight: bold; cursor: pointer;
@@ -64,14 +78,41 @@
     }
     button:disabled { opacity: .5; }
 
+    .actions { display: flex; gap: 8px; margin-top: 10px; }
+    .actions button {
+      flex: 1; padding: 12px; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06); color: white;
+      font-weight: bold; font-size: 14px; cursor: pointer;
+    }
+    .actions button:disabled { opacity: .5; }
+    .actions button.auto-running {
+      background: #ef4444; border-color: #ef4444; color: white;
+    }
+
     .reset {
-      margin-top: 10px; padding: 10px; font-size: 14px; font-weight: normal;
+      margin-top: 10px; padding: 10px; font-size: 13px; font-weight: normal;
       width: 100%; border-radius: 14px; cursor: pointer;
       background: transparent; color: #9ca3af;
       border: 1px solid rgba(255,255,255,0.15);
     }
+    .reset:disabled { opacity: .5; }
 
     .message { min-height: 28px; margin-top: 16px; font-weight: bold; }
+
+    .stats {
+      margin-top: 20px; padding: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+    }
+    .stats-title { font-size: 12px; color: #9ca3af; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-row { display: flex; justify-content: space-between; padding: 7px 0; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .stat-row:last-of-type { border-bottom: 0; }
+    .stat-label { color: #9ca3af; }
+    .stat-value { font-weight: bold; }
+    .stat-value.pos { color: #4ade80; }
+    .stat-value.neg { color: #f87171; }
 
     .history {
       margin-top: 20px; padding: 14px;
@@ -89,9 +130,33 @@
     .history-item.jackpot { background: rgba(245,158,11,0.3); }
 
     .info { color: #9ca3af; font-size: 13px; margin-top: 18px; }
+
+    .win-banner {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 52px; font-weight: 900;
+      color: #f59e0b;
+      text-shadow: 0 0 30px rgba(245,158,11,0.9), 0 4px 20px rgba(0,0,0,0.9);
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0;
+      white-space: nowrap;
+    }
+    .win-banner.show { animation: bannerPop 2s ease-out forwards; }
+    .win-banner.small { font-size: 40px; color: #4ade80; text-shadow: 0 0 25px rgba(74,222,128,0.8), 0 4px 20px rgba(0,0,0,0.9); }
+    @keyframes bannerPop {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+      20% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+      40% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      80% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }
+    }
   </style>
 </head>
 <body>
+  <div class="win-banner" id="winBanner"></div>
+
   <div class="casino">
     <div class="greeting" id="greeting">Привет!</div>
     <h1>🎰 Мини-казино</h1>
@@ -110,10 +175,35 @@
         <div class="slot" id="slot2">🍋</div>
         <div class="slot" id="slot3">⭐</div>
       </div>
+
+      <div class="bets-title">Ставка</div>
+      <div class="bets" id="bets">
+        <button class="bet" data-bet="50">50</button>
+        <button class="bet" data-bet="100">100</button>
+        <button class="bet" data-bet="250">250</button>
+        <button class="bet" data-bet="500">500</button>
+        <button class="bet max" id="maxBtn">МАКС</button>
+      </div>
+
       <button class="spin" id="spin">КРУТИТЬ — 50 🪙</button>
+
+      <div class="actions">
+        <button id="autoBtn">⚡ АВТО ×5</button>
+        <button id="shareBtn">📤 Поделиться</button>
+      </div>
+
       <button class="reset" id="reset">Сбросить баланс</button>
       <div class="message" id="message"></div>
       <div class="info">Только виртуальные монеты. Реальных денег нет.</div>
+    </div>
+
+    <div class="stats">
+      <div class="stats-title">📊 Статистика</div>
+      <div class="stat-row"><span class="stat-label">Спинов</span><span class="stat-value" id="statSpins">0</span></div>
+      <div class="stat-row"><span class="stat-label">Всего выиграно</span><span class="stat-value" id="statWon">0 🪙</span></div>
+      <div class="stat-row"><span class="stat-label">Лучший выигрыш</span><span class="stat-value" id="statBest">0 🪙</span></div>
+      <div class="stat-row"><span class="stat-label">Итог</span><span class="stat-value" id="statNet">0 🪙</span></div>
+      <button class="reset" id="resetStats">Сбросить статистику</button>
     </div>
 
     <div class="history">
@@ -137,7 +227,7 @@
       document.getElementById('greeting').textContent = 'Привет, гость! (вне Telegram)';
     }
 
-    // ========== Звук (Web Audio, без файлов) ==========
+    // ========== Звук ==========
     let audioCtx = null;
     function getAudio() {
       if (!audioCtx) {
@@ -145,17 +235,27 @@
       }
       return audioCtx;
     }
+    function unlockAudio() {
+      const ctx = getAudio();
+      if (ctx && ctx.state === 'suspended') ctx.resume().catch(() => {});
+    }
+    document.addEventListener('touchstart', unlockAudio, { passive: true });
+    document.addEventListener('click', unlockAudio);
+    document.addEventListener('touchend', unlockAudio, { passive: true });
+
     function playTone(freq, duration, type = 'sine', volume = 0.15) {
       const ctx = getAudio();
-      if (!ctx) return;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = type;
-      osc.frequency.value = freq;
-      gain.gain.setValueAtTime(volume, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-      osc.connect(gain); gain.connect(ctx.destination);
-      osc.start(); osc.stop(ctx.currentTime + duration);
+      if (!ctx || ctx.state !== 'running') return;
+      try {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(volume, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(); osc.stop(ctx.currentTime + duration);
+      } catch (e) {}
     }
     function soundTick() { playTone(900, 0.04, 'square', 0.04); }
     function soundWin() {
@@ -173,18 +273,110 @@
       setTimeout(() => playTone(200, 0.3, 'sawtooth', 0.08), 150);
     }
 
-    // ========== Баланс ==========
+    // ========== Хранилище ==========
     const START_BALANCE = 1000;
-    const STORAGE_KEY = 'casino_balance';
-    let balance = parseInt(localStorage.getItem(STORAGE_KEY), 10);
-    if (isNaN(balance)) balance = START_BALANCE;
+    function loadNum(key, def) {
+      const v = parseInt(localStorage.getItem(key), 10);
+      return isNaN(v) ? def : v;
+    }
 
-    function saveBalance() { localStorage.setItem(STORAGE_KEY, String(balance)); }
+    let balance = loadNum('casino_balance', START_BALANCE);
+    let bet = loadNum('casino_bet', 50);
+    if (![50, 100, 250, 500].includes(bet)) bet = 50;
+
+    let stats = JSON.parse(localStorage.getItem('casino_stats') || 'null') || {
+      spins: 0, totalBet: 0, totalWon: 0, bestWin: 0
+    };
+    let history = JSON.parse(localStorage.getItem('casino_history') || '[]');
+
+    function saveBalance() { localStorage.setItem('casino_balance', String(balance)); }
+    function saveStats() { localStorage.setItem('casino_stats', JSON.stringify(stats)); }
+
+    // ========== Элементы ==========
+    const balanceEl = document.getElementById('balance');
+    const spinButton = document.getElementById('spin');
+    const resetButton = document.getElementById('reset');
+    const resetStatsBtn = document.getElementById('resetStats');
+    const shareBtn = document.getElementById('shareBtn');
+    const autoBtn = document.getElementById('autoBtn');
+    const maxBtn = document.getElementById('maxBtn');
+    const messageEl = document.getElementById('message');
+    const bonusBtn = document.getElementById('bonus');
+    const betButtons = document.querySelectorAll('.bet[data-bet]');
+    const slots = [
+      document.getElementById('slot1'),
+      document.getElementById('slot2'),
+      document.getElementById('slot3')
+    ];
+
+    let isSpinning = false;
+    let autoRunning = false;
+
+    // ========== Ставка ==========
+    function updateBetUI() {
+      betButtons.forEach(b => {
+        b.classList.toggle('active', parseInt(b.dataset.bet, 10) === bet);
+      });
+      spinButton.textContent = 'КРУТИТЬ — ' + bet + ' 🪙';
+    }
+    betButtons.forEach(b => {
+      b.addEventListener('click', () => {
+        bet = parseInt(b.dataset.bet, 10);
+        localStorage.setItem('casino_bet', String(bet));
+        updateBetUI();
+        if (tg?.HapticFeedback) tg.HapticFeedback.selectionChanged();
+      });
+    });
+    maxBtn.addEventListener('click', () => {
+      const presets = [500, 250, 100, 50];
+      const best = presets.find(p => p <= balance) || 50;
+      bet = best;
+      localStorage.setItem('casino_bet', String(bet));
+      updateBetUI();
+      if (tg?.HapticFeedback) tg.HapticFeedback.selectionChanged();
+    });
+
+    // ========== Управление блокировкой ==========
+    function updateControls() {
+      const lock = isSpinning;
+      spinButton.disabled = lock;
+      maxBtn.disabled = lock;
+      betButtons.forEach(b => b.disabled = lock);
+      resetButton.disabled = lock;
+      resetStatsBtn.disabled = lock;
+      shareBtn.disabled = lock;
+
+      if (autoRunning) {
+        autoBtn.disabled = false;
+        autoBtn.textContent = '⏹ СТОП';
+        autoBtn.classList.add('auto-running');
+      } else {
+        autoBtn.disabled = lock;
+        autoBtn.textContent = '⚡ АВТО ×5';
+        autoBtn.classList.remove('auto-running');
+      }
+    }
+
+    // ========== Статистика ==========
+    function renderStats() {
+      document.getElementById('statSpins').textContent = stats.spins;
+      document.getElementById('statWon').textContent = stats.totalWon.toLocaleString('ru-RU') + ' 🪙';
+      document.getElementById('statBest').textContent = stats.bestWin.toLocaleString('ru-RU') + ' 🪙';
+      const net = stats.totalWon - stats.totalBet;
+      const netEl = document.getElementById('statNet');
+      netEl.textContent = (net >= 0 ? '+' : '') + net.toLocaleString('ru-RU') + ' 🪙';
+      netEl.className = 'stat-value ' + (net >= 0 ? 'pos' : 'neg');
+    }
+
+    resetStatsBtn.addEventListener('click', () => {
+      if (!confirm('Сбросить всю статистику?')) return;
+      stats = { spins: 0, totalBet: 0, totalWon: 0, bestWin: 0 };
+      saveStats();
+      renderStats();
+      messageEl.textContent = 'Статистика сброшена';
+    });
 
     // ========== История ==========
-    const HISTORY_KEY = 'casino_history';
-    let history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
-
     function renderHistory() {
       const el = document.getElementById('historyList');
       el.innerHTML = '';
@@ -195,22 +387,19 @@
         el.appendChild(div);
       });
     }
-
     function addHistory(symbols, jackpot) {
       history.unshift({ symbols, jackpot });
       history = history.slice(0, 5);
-      localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+      localStorage.setItem('casino_history', JSON.stringify(history));
       renderHistory();
     }
 
-    // ========== Ежедневный бонус ==========
+    // ========== Бонус ==========
     const BONUS_KEY = 'casino_last_bonus';
     const BONUS_AMOUNT = 500;
-    const BONUS_COOLDOWN = 24 * 60 * 60 * 1000; // 24 часа
-    const bonusBtn = document.getElementById('bonus');
-
+    const BONUS_COOLDOWN = 24 * 60 * 60 * 1000;
     function updateBonusBtn() {
-      const last = parseInt(localStorage.getItem(BONUS_KEY) || '0', 10);
+      const last = loadNum(BONUS_KEY, 0);
       const left = BONUS_COOLDOWN - (Date.now() - last);
       if (left <= 0) {
         bonusBtn.disabled = false;
@@ -222,9 +411,9 @@
         bonusBtn.textContent = '🎁 Бонус через ' + h + ' ч ' + m + ' мин';
       }
     }
-
     bonusBtn.addEventListener('click', () => {
       if (bonusBtn.disabled) return;
+      unlockAudio();
       balance += BONUS_AMOUNT;
       saveBalance();
       balanceEl.textContent = balance;
@@ -232,114 +421,169 @@
       updateBonusBtn();
       messageEl.textContent = '🎁 Бонус получен! +' + BONUS_AMOUNT + ' 🪙';
       soundWin();
+      showBanner('🎁 +' + BONUS_AMOUNT, false);
       if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
     });
 
+    // ========== Баннер ==========
+    function showBanner(text, big) {
+      const el = document.getElementById('winBanner');
+      el.textContent = text;
+      el.classList.toggle('small', !big);
+      el.classList.remove('show');
+      void el.offsetWidth;
+      el.classList.add('show');
+    }
+
     // ========== Игра ==========
     const symbols = ["🍒", "🍋", "🍊", "🍉", "⭐", "💎", "7️⃣"];
-    const balanceEl = document.getElementById("balance");
-    const spinButton = document.getElementById("spin");
-    const resetButton = document.getElementById("reset");
-    const messageEl = document.getElementById("message");
-    const slots = [
-      document.getElementById("slot1"),
-      document.getElementById("slot2"),
-      document.getElementById("slot3")
-    ];
-
-    balanceEl.textContent = balance;
-    renderHistory();
-    updateBonusBtn();
-    setInterval(updateBonusBtn, 60000);
 
     function randomSymbol() {
       return symbols[Math.floor(Math.random() * symbols.length)];
     }
-
     function vibrate(type = 'medium') {
-      if (tg?.HapticFeedback) {
-        tg.HapticFeedback.impactOccurred(type);
-      } else if (navigator.vibrate) {
-        navigator.vibrate(30);
-      }
+      if (tg?.HapticFeedback) tg.HapticFeedback.impactOccurred(type);
+      else if (navigator.vibrate) navigator.vibrate(30);
     }
-
     function clearWinGlow() {
       slots.forEach(s => s.classList.remove('win'));
     }
 
-    function spin() {
-      if (balance < 50) {
-        messageEl.textContent = "Недостаточно монет";
-        return;
-      }
-      // Разблокировать звук по клику (нужно на iOS)
-      const ctx = getAudio();
-      if (ctx && ctx.state === 'suspended') ctx.resume();
-
-      clearWinGlow();
-      balance -= 50;
-      saveBalance();
-      balanceEl.textContent = balance;
-      spinButton.disabled = true;
-      messageEl.textContent = "Крутим...";
-      slots.forEach(s => s.classList.add('spinning'));
-      vibrate();
-
-      let count = 0;
-      const animation = setInterval(() => {
-        slots.forEach(slot => { slot.textContent = randomSymbol(); });
-        if (count % 2 === 0) soundTick();
-        count++;
-        if (count >= 12) {
-          clearInterval(animation);
-          slots.forEach(s => s.classList.remove('spinning'));
-
-          const result = slots.map(() => randomSymbol());
-          slots.forEach((slot, i) => { slot.textContent = result[i]; });
-
-          let isJackpot = false;
-
-          if (result[0] === result[1] && result[1] === result[2]) {
-            isJackpot = true;
-            let win = 500;
-            if (result[0] === "💎") win = 1500;
-            if (result[0] === "7️⃣") win = 2500;
-            balance += win;
-            messageEl.textContent = "🎉 ДЖЕКПОТ! +" + win + " 🪙";
-            slots.forEach(s => s.classList.add('win'));
-            soundJackpot();
-            if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
-          } else if (result[0] === result[1] || result[1] === result[2] || result[0] === result[2]) {
-            balance += 100;
-            messageEl.textContent = "👍 Совпадение! +100 🪙";
-            slots.forEach((s, i) => {
-              if (result[i] === result[0] || result[i] === result[1] || result[i] === result[2]) {
-                s.classList.add('win');
-              }
-            });
-            soundWin();
-          } else {
-            messageEl.textContent = "Попробуйте ещё раз";
-            soundLose();
-          }
-
-          addHistory(result, isJackpot);
-          saveBalance();
-          balanceEl.textContent = balance;
-          spinButton.disabled = false;
+    function spinOnce() {
+      return new Promise(resolve => {
+        if (balance < bet) {
+          messageEl.textContent = 'Недостаточно монет для ставки ' + bet;
+          resolve();
+          return;
         }
-      }, 100);
+        unlockAudio();
+        clearWinGlow();
+        balance -= bet;
+        saveBalance();
+        balanceEl.textContent = balance;
+        messageEl.textContent = 'Крутим...';
+        slots.forEach(s => s.classList.add('spinning'));
+        vibrate();
+
+        let count = 0;
+        const animation = setInterval(() => {
+          slots.forEach(slot => { slot.textContent = randomSymbol(); });
+          if (count % 2 === 0) soundTick();
+          count++;
+          if (count >= 12) {
+            clearInterval(animation);
+            slots.forEach(s => s.classList.remove('spinning'));
+
+            const result = slots.map(() => randomSymbol());
+            slots.forEach((slot, i) => { slot.textContent = result[i]; });
+
+            let win = 0;
+            let isJackpot = false;
+
+            if (result[0] === result[1] && result[1] === result[2]) {
+              isJackpot = true;
+              let multiplier = 10;
+              if (result[0] === '💎') multiplier = 30;
+              if (result[0] === '7️⃣') multiplier = 50;
+              win = bet * multiplier;
+              messageEl.textContent = '🎉 ДЖЕКПОТ! +' + win + ' 🪙';
+              slots.forEach(s => s.classList.add('win'));
+              soundJackpot();
+              showBanner('🎉 +' + win, true);
+              if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
+            } else if (result[0] === result[1] || result[1] === result[2] || result[0] === result[2]) {
+              win = bet * 2;
+              messageEl.textContent = '👍 Совпадение! +' + win + ' 🪙';
+              slots.forEach(s => s.classList.add('win'));
+              soundWin();
+              showBanner('+' + win, false);
+            } else {
+              messageEl.textContent = 'Попробуйте ещё раз';
+              soundLose();
+            }
+
+            if (win > 0) {
+              balance += win;
+              saveBalance();
+              balanceEl.textContent = balance;
+            }
+
+            stats.spins++;
+            stats.totalBet += bet;
+            stats.totalWon += win;
+            if (win > stats.bestWin) stats.bestWin = win;
+            saveStats();
+            renderStats();
+
+            addHistory(result, isJackpot);
+            resolve();
+          }
+        }, 100);
+      });
     }
 
-    spinButton.addEventListener("click", spin);
+    async function spin() {
+      if (isSpinning) return;
+      isSpinning = true;
+      updateControls();
+      await spinOnce();
+      isSpinning = false;
+      updateControls();
+    }
 
-    resetButton.addEventListener("click", () => {
+    async function startAuto() {
+      if (autoRunning) { autoRunning = false; return; }
+      if (isSpinning) return;
+      autoRunning = true;
+      isSpinning = true;
+      updateControls();
+
+      for (let i = 0; i < 5; i++) {
+        if (!autoRunning) break;
+        if (balance < bet) {
+          messageEl.textContent = 'Недостаточно монет для ставки ' + bet;
+          break;
+        }
+        await spinOnce();
+        await new Promise(r => setTimeout(r, 250));
+      }
+
+      autoRunning = false;
+      isSpinning = false;
+      updateControls();
+    }
+
+    spinButton.addEventListener('click', spin);
+    autoBtn.addEventListener('click', () => {
+      if (autoRunning) { autoRunning = false; return; }
+      startAuto();
+    });
+
+    resetButton.addEventListener('click', () => {
+      if (!confirm('Точно сбросить баланс?')) return;
       balance = START_BALANCE;
       saveBalance();
       balanceEl.textContent = balance;
-      messageEl.textContent = "Баланс сброшен";
+      messageEl.textContent = 'Баланс сброшен';
     });
+
+    // ========== Поделиться ==========
+    const SHARE_URL = 'https://t.me/kyrgyz_casino_bot/minicasino';
+    shareBtn.addEventListener('click', () => {
+      const text = 'Я играю в 🎰 Мини-казино! Попробуй и ты — там виртуальные монеты и джекпоты.';
+      const url = 'https://t.me/share/url?url=' + encodeURIComponent(SHARE_URL) + '&text=' + encodeURIComponent(text);
+      if (tg?.openTelegramLink) tg.openTelegramLink(url);
+      else window.open(url, '_blank');
+    });
+
+    // ========== Инициализация ==========
+    balanceEl.textContent = balance;
+    renderHistory();
+    renderStats();
+    updateBonusBtn();
+    updateBetUI();
+    updateControls();
+    setInterval(updateBonusBtn, 60000);
   </script>
 </body>
 </html>
