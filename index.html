@@ -19,7 +19,7 @@ body { margin:0; min-height:100vh; font-family: Arial, sans-serif;
 .header-btn { background:rgba(251,191,36,0.1); border:1px solid rgba(251,191,36,0.4);
   color:#fbbf24; font-size:17px; width:38px; height:38px; border-radius:10px;
   cursor:pointer; display:flex; align-items:center; justify-content:center; }
-.header-btn:active { background:rgba(251,191,36,0.25); transform:scale(0.95); }
+.header-btn:active { background:rgba(251,191,36,0.25); }
 .header-title { font-weight:bold; font-size:15px; color:#fbbf24; letter-spacing:1px; }
 .header-balance { display:flex; align-items:center; gap:4px; font-weight:bold; font-size:14px; }
 
@@ -407,14 +407,15 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
   will-change: left, top;
 }
 
+/* Табло истории — вертикальное, новое снизу */
 .wheel-history-board {
   position: absolute;
   top: 0; right: 4px;
   z-index: 20;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column-reverse;
   gap: 3px;
-  padding: 6px 7px;
+  padding: 6px 6px;
   background: linear-gradient(180deg, rgba(20,10,5,0.96), rgba(10,5,2,0.96));
   border: 1.5px solid rgba(251,191,36,0.55);
   border-radius: 8px;
@@ -428,7 +429,28 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 .wheel-history-board .rh.red { background: #b91c1c; }
 .wheel-history-board .rh.black { background: #1f2937; }
 .wheel-history-board .rh.green { background: #15803d; }
-.wheel-history-board .rh.empty { background: rgba(255,255,255,0.05); }
+.wheel-history-board .rh.empty { background: rgba(255,255,255,0.06); }
+
+/* Сумма ставки — слева сверху */
+.rbet-total-badge {
+  position: absolute;
+  top: 0; left: 4px;
+  z-index: 20;
+  padding: 6px 10px;
+  background: linear-gradient(180deg, rgba(20,10,5,0.96), rgba(10,5,2,0.96));
+  border: 1.5px solid rgba(251,191,36,0.55);
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 900;
+  color: #fbbf24;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.75);
+  text-align: center;
+  min-width: 78px;
+}
+.rbet-total-badge .lbl { display:block; font-size:8px; letter-spacing:1.5px; color:#9ca3af; margin-bottom:2px; text-transform:uppercase; }
+.rbet-total-badge b { color: #fff; font-size: 15px; display:block; line-height:1.1; }
+.rbet-total-badge small { font-size: 9px; color: #fbbf24; }
 
 .rprompt { text-align: center; font-size: 11px; font-weight: 900;
   color: #fbbf24; letter-spacing: 3px; margin-bottom: 6px; text-transform: uppercase; }
@@ -470,9 +492,9 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
   border: 1px solid rgba(251,191,36,0.3); border-radius: 14px;
 }
 .rchip-btn {
-  flex: 1; min-width: 0; aspect-ratio: 1; max-width: 44px;
+  flex: 1; min-width: 0; aspect-ratio: 1; max-width: 48px;
   border-radius: 50%; border: 2px solid rgba(255,255,255,0.35);
-  color: #fff; font-size: 10px; font-weight: 900;
+  color: #fff; font-size: 11px; font-weight: 900;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; padding: 0;
   outline: 2px solid rgba(0,0,0,0.3); outline-offset: -5px;
@@ -480,7 +502,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 .rchip-btn.active { transform: scale(1.14);
   box-shadow: 0 0 0 3px #fbbf24, 0 0 18px rgba(251,191,36,0.7); }
 .rchip-btn[data-chip="1"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #f3f4f6 12% 55%, #9ca3af 72%, #4b5563 100%); color: #111; }
-.rchip-btn[data-chip="2"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #f87171 12% 55%, #991b1b 72%, #450a0a 100%); }
 .rchip-btn[data-chip="5"]   { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #fbbf24 12% 55%, #b45309 72%, #451a03 100%); color: #111; }
 .rchip-btn[data-chip="10"]  { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #60a5fa 12% 55%, #1e40af 72%, #0c1a4b 100%); }
 .rchip-btn[data-chip="25"]  { background: radial-gradient(circle at 38% 30%, #fff 0 6%, #4ade80 12% 55%, #15803d 72%, #052e16 100%); }
@@ -660,6 +681,11 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
     <button class="back-btn" data-back>← В меню</button>
     <h1>🎡 Рулетка</h1>
     <div class="roulette-section">
+      <div class="rbet-total-badge" id="rBetTotal">
+        <span class="lbl">Ставка</span>
+        <b id="rBetTotalVal">0</b>
+        <small>🪙</small>
+      </div>
       <div class="wheel-history-board" id="rHistoryBoard"></div>
       <div class="wheel-stage">
         <div class="wheel-shadow"></div>
@@ -710,45 +736,34 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
               </radialGradient>
             </defs>
 
-            <!-- Внешний деревянный диск -->
             <circle cx="170" cy="170" r="169" fill="url(#gWoodOuter)"/>
-            <!-- Тонкая текстура дерева -->
             <circle cx="170" cy="170" r="169" fill="none" stroke="#2a1405" stroke-width="0.6" opacity="0.4"/>
             <circle cx="170" cy="170" r="158" fill="none" stroke="#8a5420" stroke-width="0.4" opacity="0.5"/>
             <circle cx="170" cy="170" r="150" fill="none" stroke="#8a5420" stroke-width="0.4" opacity="0.4"/>
 
-            <!-- Хромированное кольцо между деревом и чёрным -->
             <circle cx="170" cy="170" r="168" fill="none" stroke="url(#gChrome)" stroke-width="3"/>
             <circle cx="170" cy="170" r="162" fill="none" stroke="#000" stroke-width="1"/>
 
-            <!-- Чёрный обод -->
             <circle cx="170" cy="170" r="162" fill="#0a0a0a"/>
             <circle cx="170" cy="170" r="158" fill="none" stroke="#1f2937" stroke-width="0.8"/>
 
-            <!-- Хромированное кольцо трека (где катится шарик) -->
             <circle cx="170" cy="170" r="154" fill="none" stroke="url(#gChromeRing)" stroke-width="6"/>
             <circle cx="170" cy="170" r="148" fill="#000"/>
             <circle cx="170" cy="170" r="148" fill="url(#gTrack)"/>
 
-            <!-- Внешняя тёмная граница секторов -->
             <circle cx="170" cy="170" r="146" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
 
-            <!-- Сектора и числа (заполняются из JS) -->
             <g id="sectorsG"></g>
             <g id="numbersG"></g>
 
-            <!-- Хромированное тонкое кольцо внутри секторов -->
             <circle cx="170" cy="170" r="112" fill="none" stroke="url(#gChrome)" stroke-width="2"/>
             <circle cx="170" cy="170" r="110" fill="none" stroke="#000" stroke-width="0.6"/>
 
-            <!-- Внутренний деревянный конус -->
             <circle cx="170" cy="170" r="109" fill="url(#gWoodInner)"/>
             <circle cx="170" cy="170" r="109" fill="none" stroke="#3a2008" stroke-width="0.6"/>
 
-            <!-- Спицы на конусе (заполняются из JS) -->
             <g id="spokesG"></g>
 
-            <!-- Хромированная ступица (стопка дисков) -->
             <circle cx="170" cy="170" r="60" fill="#0a0a0a"/>
             <circle cx="170" cy="170" r="58" fill="url(#gHub)"/>
             <circle cx="170" cy="170" r="50" fill="#0a0a0a"/>
@@ -762,14 +777,13 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
             <circle cx="170" cy="170" r="6" fill="#f8fafc"/>
             <circle cx="170" cy="170" r="3" fill="#ffffff"/>
 
-            <!-- Блик сверху слева -->
             <ellipse cx="130" cy="100" rx="90" ry="55" fill="url(#gHighlight)" pointer-events="none"/>
           </svg>
         </div>
         <div class="ball-layer">
           <div class="wheel-ball" id="wheelBall"></div>
         </div>
-        <div class="wheel-pointer" style="position:absolute;top:2px;left:50%;transform:translateX(-50%);z-index:6;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:14px solid #fbbf24;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.9));"></div>
+        <div style="position:absolute;top:2px;left:50%;transform:translateX(-50%);z-index:6;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:14px solid #fbbf24;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.9));"></div>
       </div>
       <div class="rprompt" id="rPrompt">СДЕЛАЙТЕ СТАВКУ</div>
       <div class="rtable" id="rtable"></div>
@@ -777,7 +791,6 @@ button.spin { width:104px; height:104px; border-radius:50%; border:4px solid #7f
 
     <div class="rchips-row" id="rchipsRow">
       <button class="rchip-btn" data-chip="1">1</button>
-      <button class="rchip-btn" data-chip="2">2</button>
       <button class="rchip-btn" data-chip="5">5</button>
       <button class="rchip-btn" data-chip="10">10</button>
       <button class="rchip-btn" data-chip="25">25</button>
@@ -890,22 +903,41 @@ function soundJackpot(){
 function soundCard(){ noiseBurst(0.09,0.06,900,0,5); playTone(720,0.04,'sine',0.04,0); }
 function soundScatter(){ [659,988,1319,1976].forEach((f,i)=>playTone(f,0.22,'triangle',0.15,i*0.10)); }
 function soundChip(){ playTone(1400,0.025,'triangle',0.05,0); playTone(2100,0.02,'sine',0.035,0.005); }
+
+/* Глухой мягкий тик колеса */
 function soundWheelTick(p){
   const vol = 0.015 + (1-p) * 0.022;
   noiseBurst(0.010, vol, 2200 + Math.random()*500, 0, 10);
   playTone(1050 + Math.random()*300, 0.010, 'triangle', vol*0.5, 0);
 }
+
+/* ====== МЕТАЛЛИЧЕСКОЕ "ТЫН-ТЫН-ТЫН" — шарик падает в сектор ====== */
 function soundBallDrop(){
-  const times = [0, 0.06, 0.13, 0.21, 0.30, 0.41, 0.54];
-  times.forEach((t, i) => {
-    const f = 520 - i * 45;
-    playTone(f, 0.045, 'triangle', 0.09 - i * 0.008, t);
-    noiseBurst(0.028, 0.06 - i*0.006, 900, t, 8);
-  });
+  // Серия коротких металлических ударов, ускоряющихся и затихающих
+  // Плюс финальный "дзынь" когда шар попадает в карман
+  const ctx = getAudio(); if(!ctx || ctx.state!=='running') return;
+  const t0 = ctx.currentTime;
+  
+  // 12 быстрых металлических тиков с интервалом ~55 мс, затухающие
+  let t = 0;
+  for (let i = 0; i < 12; i++){
+    const f = 2600 + Math.random()*1800 - i*80;
+    const vol = 0.06 * (1 - i/12) + 0.01;
+    // Металлический "тик" — короткий импульс с двумя гармониками
+    const delay = t;
+    playTone(f, 0.028, 'sine', vol, delay);
+    playTone(f * 1.87, 0.020, 'sine', vol * 0.6, delay + 0.001);
+    playTone(f * 2.65, 0.014, 'sine', vol * 0.35, delay + 0.002);
+    noiseBurst(0.008, vol * 0.6, f * 0.8, delay, 14);
+    t += 0.052 + i * 0.006; // интервал слегка растёт — шар замедляется
+  }
+  
+  // Финальный акцент — шар упал в карман (два тона)
   setTimeout(() => {
-    playTone(280, 0.14, 'sine', 0.12, 0);
-    playTone(200, 0.18, 'triangle', 0.08, 0.02);
-  }, 620);
+    playTone(1100, 0.10, 'triangle', 0.10, 0);
+    playTone(1650, 0.14, 'sine', 0.08, 0.015);
+    playTone(880, 0.20, 'sine', 0.06, 0.04);
+  }, t * 1000 + 60);
 }
 
 /* ============ STORAGE ============ */
@@ -1718,7 +1750,6 @@ function buildWheelSVG(){
   if (!svg) return;
   svg.setAttribute('viewBox', '0 0 340 340');
   const cx = 170, cy = 170;
-  // Сектора идут между хром-кольцами: внутренний r=112, внешний r=146
   const rIn = 112, rOut = 146;
   const sectorsG = document.getElementById('sectorsG');
   const numbersG = document.getElementById('numbersG');
@@ -1736,7 +1767,6 @@ function buildWheelSVG(){
     path.setAttribute('stroke-width', '0.6');
     path.setAttribute('stroke-opacity', '0.9');
     sectorsG.appendChild(path);
-
     const mid = polToXY(cx, cy, (rIn + rOut) / 2, aCenter);
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', mid.x.toFixed(2));
@@ -1751,8 +1781,6 @@ function buildWheelSVG(){
     text.textContent = num;
     numbersG.appendChild(text);
   }
-
-  // Спицы вертушки — от края ступицы (r=58) до внутреннего деревянного конуса (r=108)
   const spokesG = document.getElementById('spokesG');
   spokesG.innerHTML = '';
   const spokesCount = 8;
@@ -1769,7 +1797,6 @@ function buildWheelSVG(){
     ln.setAttribute('stroke-width', '1.6');
     ln.setAttribute('stroke-linecap', 'round');
     spokesG.appendChild(ln);
-    // Хром-блик поверх
     const hl = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     hl.setAttribute('x1', (p1.x - 0.6).toFixed(2));
     hl.setAttribute('y1', (p1.y - 0.6).toFixed(2));
@@ -1843,6 +1870,12 @@ function buildTable(){
     cell.addEventListener('click', ()=> rPlaceBet(cell.dataset.bet));
   });
 }
+function updateRBetTotal(){
+  const el = document.getElementById('rBetTotalVal');
+  if (!el) return;
+  const total = Object.values(rState.bets).reduce((a,b)=>a+b, 0);
+  el.textContent = total;
+}
 function rPlaceBet(key){
   if (rState.spinning) return;
   const amt = rState.chip;
@@ -1871,6 +1904,7 @@ function refreshRouletteUI(){
     if (rState.bets[k]){ span.textContent = rState.bets[k]; c.classList.add('has-bet'); }
     else { span.textContent = ''; c.classList.remove('has-bet'); }
   });
+  updateRBetTotal();
 }
 function rClearBets(){
   if (rState.spinning) return;
@@ -1888,10 +1922,12 @@ function renderRHistoryBoard(){
   if (!board) return;
   board.innerHTML = '';
   const total = 8;
+  // column-reverse: первый элемент в DOM окажется снизу.
+  // Значит, чтобы новые числа были снизу — первыми добавляем самые свежие.
   for (let i = 0; i < total; i++){
     const cell = document.createElement('div');
     if (i < rHistory.length){
-      const h = rHistory[i];
+      const h = rHistory[i]; // rHistory[0] — самое новое
       cell.className = 'rh ' + (h.n === 0 ? 'green' : (h.red ? 'red' : 'black'));
       cell.textContent = h.n;
     } else {
@@ -1937,7 +1973,6 @@ async function rSpin(){
     function frame(now){
       const p = Math.min(1, (now - t0) / duration);
 
-      // Колесо — по часовой, ease-out cubic
       const eW = 1 - Math.pow(1 - p, 3);
       const W = W0 + (W1 - W0) * eW;
       rState.wheelAngle = W;
@@ -1945,12 +1980,10 @@ async function rSpin(){
       numbersG.setAttribute('transform', `rotate(${W.toFixed(3)} 170 170)`);
       if (spokesG) spokesG.setAttribute('transform', `rotate(${(W*1.7).toFixed(3)} 170 170)`);
 
-      // Шарик — против часовой, ease-out quart
       const eB = 1 - Math.pow(1 - p, 4);
       const B = B0 + (Bfinal - B0) * eB;
       rState.ballAngle = B;
 
-      // Радиус: 150 (внешний трек) → 128 (в секторах)
       const rBall = 150 - 22 * Math.pow(p, 1.7);
 
       const B_rad = B * Math.PI / 180;
